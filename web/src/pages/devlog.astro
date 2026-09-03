@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DevlogRow from '../components/DevlogRow.astro';
+
+const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Devlog — Kuxar Studio">
+  <Header />
+  <section class="archive">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Bitácora completa</h2>
+        <span class="section-num mono">{allDevlog.length} ENTRADAS</span>
+      </div>
+      <div class="log-list">
+        {allDevlog.map((entry) => <DevlogRow entry={entry} />)}
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
