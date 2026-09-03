@@ -40,8 +40,6 @@ jobs:
           # GITHUB_TOKEN is required here by src/lib/github.ts (build-time repo stats) — scoped to contents:read only via this job's minimal permissions above, so leakage risk is bounded to read access.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/configure-pages@v5
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web/dist

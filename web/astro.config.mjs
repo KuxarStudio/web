@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://kuxarstudio.github.io',
-  base: '/web',
+  base: '/web/',
   build: {
     format: 'file',
   },
