@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kuxarstudio.github.io/web/sitemap-index.xml
