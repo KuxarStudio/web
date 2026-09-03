@@ -185,6 +185,12 @@ footer{border-top:2px solid var(--ink);padding:46px 0 40px;margin-top:30px;}
   .grid{grid-template-columns:1fr;}
   nav{display:none;}
   .log-row{grid-template-columns:1fr;gap:6px;}
+  .log-tag{justify-self:start;}
+}
+@media(max-width:480px){
+  .live-badge-full{display:none;}
+  .tool-card{flex-direction:column;}
+  .tool-download{width:100%;text-align:center;box-sizing:border-box;}
 }
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
