@@ -1,10 +1,30 @@
+/* Self-hosted variable fonts (latin subset — covers Spanish diacritics:
+   á é í ó ú ñ ü ¿ ¡). Downloaded once from Google Fonts and served
+   locally to remove the render-blocking fonts.googleapis.com/fonts.gstatic.com
+   round trip (measured ~2.3s of blocking time via Lighthouse). Each file
+   is a single variable font covering the weight range used here, so one
+   @font-face per family with a weight range is enough. */
+@font-face{
+  font-family:'Space Grotesk';
+  font-style:normal;
+  font-weight:500 700;
+  font-display:swap;
+  src:url('../assets/fonts/space-grotesk-latin.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+  src:url('../assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
 :root{
   --paper:#f2ede1;
   --paper-2:#eae3d2;
   --paper-rgb:242,237,225;
   --ink:#161f2b;
   --ink-soft:#3d4b59;
-  --ink-mute:#5b6b7d;
+  --ink-mute:#4f5c68;
   --line: rgba(22,31,43,0.14);
   --line-soft: rgba(22,31,43,0.08);
   --blue:#2f5fb0;

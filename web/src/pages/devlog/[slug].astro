@@ -16,6 +16,7 @@ const formattedDate = entry.data.date.toISOString().slice(0, 10).replace(/-/g, '
 ---
 <BaseLayout title={`${entry.data.title} — Kuxar Studio`} description={entry.data.excerpt}>
   <Header />
+  <main>
   <section class="archive">
     <div class="wrap" style="max-width:760px;">
       <p class="log-date mono">{formattedDate} · <span class="log-tag" style="border:none;padding:0;">{entry.data.project}</span></p>
@@ -26,5 +27,6 @@ const formattedDate = entry.data.date.toISOString().slice(0, 10).replace(/-/g, '
       <p style="margin-top:40px;"><a class="card-link" href={`${base}devlog.html`}>← Volver a la bitácora</a></p>
     </div>
   </section>
+  </main>
   <Footer />
 </BaseLayout>
