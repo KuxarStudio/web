@@ -7,9 +7,11 @@ const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="404 — página no encontrada — Kuxar Studio" description="Esta página no existe o se ha movido.">
   <Header />
+  <main>
   <section class="archive">
     <div class="wrap" style="max-width:640px;text-align:center;padding:60px 0 80px;">
-      <div class="term" style="text-align:left;display:inline-block;width:100%;">
+      <h1 class="post-title">404 — página no encontrada</h1>
+      <div class="term" style="text-align:left;display:inline-block;width:100%;margin-top:32px;">
         <div class="term-bar">
           <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
           <span class="term-title">kuxar@studio:~$ curl <span id="path">esta-página</span></span>
@@ -26,6 +28,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
   </section>
+  </main>
   <Footer />
   <script>
     const pathEl = document.getElementById('path');

@@ -12,6 +12,7 @@ const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.val
   description="Notas de desarrollo de Kuxar Studio: decisiones de diseño y avances reales de Nadir, Kaku! y BlindNote, sin relleno."
 >
   <Header />
+  <main>
   <section class="archive">
     <div class="wrap">
       <div class="section-head">
@@ -23,5 +24,6 @@ const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.val
       </div>
     </div>
   </section>
+  </main>
   <Footer />
 </BaseLayout>
