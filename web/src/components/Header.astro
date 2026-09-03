@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+const base = import.meta.env.BASE_URL;
+const projectCount = (await getCollection('projects')).length;
+const toolCount = (await getCollection('tools')).length;
+const activeCount = projectCount + toolCount;
+---
+<header>
+  <div class="headbar">
+    <a class="logo" href={base}><span class="mark"></span>KUXAR STUDIO</a>
+    <div class="head-right">
+      <span class="live-badge"><span class="live-dot"></span>{activeCount} proyectos activos</span>
+      <nav>
+        <a href={`${base}portfolio.html`}>Portfolio</a>
+        <a href={`${base}devlog.html`}>Devlog</a>
+        <a href={`${base}#herramientas`}>Herramientas</a>
+        <a href={`${base}#contacto`}>Contacto</a>
+      </nav>
+      <div class="head-tools">
+        <div class="lang-toggle" role="group" aria-label="Idioma">
+          <button type="button" id="lang-es" class="active" aria-pressed="true">ES</button>
+          <button type="button" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" id="theme-toggle" class="icon-btn" aria-label="Cambiar a modo oscuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle')!;
+  function currentTheme() {
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+  function syncThemeBtn() {
+    const isDark = currentTheme() === 'dark';
+    themeBtn.setAttribute('aria-label', isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+  }
+  syncThemeBtn();
+  themeBtn.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('kuxar-theme', next);
+    } catch (e) {}
+    syncThemeBtn();
+  });
+
+  const langEs = document.getElementById('lang-es')!;
+  const langEn = document.getElementById('lang-en')!;
+  function setLang(btn: HTMLElement, other: HTMLElement) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    other.classList.remove('active');
+    other.setAttribute('aria-pressed', 'false');
+  }
+  langEs.addEventListener('click', () => setLang(langEs, langEn));
+  langEn.addEventListener('click', () => setLang(langEn, langEs));
+</script>
