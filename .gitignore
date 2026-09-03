@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# astro build output
+web/dist/
+web/.astro/
+
+# env
+.env
+.env.*
+!.env.example
+
+# editor/OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
