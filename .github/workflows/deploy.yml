@@ -5,11 +5,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -17,8 +12,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
@@ -38,6 +37,7 @@ jobs:
         working-directory: web
         run: npm run build
         env:
+          # GITHUB_TOKEN is required here by src/lib/github.ts (build-time repo stats) — scoped to contents:read only via this job's minimal permissions above, so leakage risk is bounded to read access.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/configure-pages@v5
@@ -49,6 +49,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
