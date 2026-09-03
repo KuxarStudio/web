@@ -11,12 +11,15 @@ const stats = await Promise.all(
   allProjects.map((p) => (p.data.githubRepo ? getRepoStats(p.data.githubRepo) : Promise.resolve(null)))
 );
 ---
-<BaseLayout title="Portfolio — Kuxar Studio">
+<BaseLayout
+  title="Portfolio — Kuxar Studio"
+  description="Todos los juegos y apps de Kuxar Studio: Nadir: Protocol 1-Star, Kaku! y BlindNote, con su estado, stack y enlaces."
+>
   <Header />
   <section class="archive">
     <div class="wrap">
       <div class="section-head">
-        <h2>Portfolio completo</h2>
+        <h1>Portfolio completo</h1>
         <span class="section-num mono">{allProjects.length} PROYECTOS</span>
       </div>
       <div class="grid">

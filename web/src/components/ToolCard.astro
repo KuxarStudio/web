@@ -18,7 +18,7 @@ const initials = title
 <div class="tool-card">
   <div class="tool-icon">{initials}</div>
   <div>
-    <div class="card-title" style="padding-right:0;">{title}</div>
+    <h3 class="card-title" style="padding-right:0;">{title}</h3>
     <p class="card-desc">{description}</p>
     <span class="tool-cmd">$ {installCmd}</span>
     {stats && <p class="hash" style="margin-top:10px;">★ {stats.stars} · último commit #{stats.lastCommitSha}</p>}

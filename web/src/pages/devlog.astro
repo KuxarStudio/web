@@ -7,12 +7,15 @@ import DevlogRow from '../components/DevlogRow.astro';
 
 const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title="Devlog — Kuxar Studio">
+<BaseLayout
+  title="Devlog — Kuxar Studio"
+  description="Notas de desarrollo de Kuxar Studio: decisiones de diseño y avances reales de Nadir, Kaku! y BlindNote, sin relleno."
+>
   <Header />
   <section class="archive">
     <div class="wrap">
       <div class="section-head">
-        <h2>Bitácora completa</h2>
+        <h1>Bitácora completa</h1>
         <span class="section-num mono">{allDevlog.length} ENTRADAS</span>
       </div>
       <div class="log-list">
