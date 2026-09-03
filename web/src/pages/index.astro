@@ -1,10 +1,115 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import DevlogRow from '../components/DevlogRow.astro';
+import ToolCard from '../components/ToolCard.astro';
+import { getRepoStats } from '../lib/github';
+
+const base = import.meta.env.BASE_URL;
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+const featuredStats = await Promise.all(
+  featuredProjects.map((p) => (p.data.githubRepo ? getRepoStats(p.data.githubRepo) : Promise.resolve(null)))
+);
+
+const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latestDevlog = allDevlog.slice(0, 3);
+
+const tools = await getCollection('tools');
+const toolStats = await Promise.all(
+  tools.map((t) => (t.data.githubRepo ? getRepoStats(t.data.githubRepo) : Promise.resolve(null)))
+);
 ---
-<BaseLayout title="Kuxar Studio">
+<BaseLayout title="Kuxar Studio — juegos, apps y herramientas hechos con oficio">
   <Header />
-  <h1>Kuxar Studio</h1>
+
+  <div id="top" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Estudio independiente · Internet-based</p>
+        <h1 id="typed"></h1>
+        <p class="lede">Diseñamos y construimos juegos, apps de aprendizaje y herramientas — cada proyecto planeado como una pieza de ingeniería, no como un experimento suelto.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#portfolio">Ver proyectos</a>
+          <a class="btn btn-ghost" href="https://github.com/KuxarStudio" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="term">
+        <div class="term-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="term-title">kuxar@studio:~$ cat ficha.json<span class="term-cursor"></span></span>
+        </div>
+        <div class="term-body">
+          <div class="term-line"><span>disciplinas</span><b>Juegos · Apps · Herramientas</b></div>
+          <div class="term-line"><span>motor</span><b>Godot / GDScript</b></div>
+          <div class="term-line"><span>movil</span><b>Android / Kotlin</b></div>
+          <div class="term-line"><span>backend</span><b>Python · Firebase</b></div>
+          <div class="term-line"><span>sede</span><b>Internet-based</b></div>
+          <div class="term-legend">
+            <span class="legend-item"><span class="swatch" style="background:var(--juego)"></span>Juego</span>
+            <span class="legend-item"><span class="swatch" style="background:var(--aprendizaje)"></span>Aprendizaje</span>
+            <span class="legend-item"><span class="swatch" style="background:var(--herramienta)"></span>Herramienta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head"><h2>Portfolio</h2><span class="section-num mono">01 — PROYECTOS</span></div>
+      <div class="grid">
+        {featuredProjects.map((project, i) => <ProjectCard project={project} stats={featuredStats[i]} />)}
+      </div>
+      <div class="view-all"><a href={`${base}portfolio.html`}>Ver archivo completo →</a></div>
+    </div>
+  </section>
+
+  <section id="devlog" style="background:var(--paper-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);">
+    <div class="wrap">
+      <div class="section-head" style="border-color:var(--ink);"><h2>Devlog</h2><span class="section-num mono">02 — BITÁCORA</span></div>
+      <div class="log-list">
+        {latestDevlog.map((entry) => <DevlogRow entry={entry} />)}
+      </div>
+      <div class="view-all"><a href={`${base}devlog.html`}>Ver bitácora completa →</a></div>
+    </div>
+  </section>
+
+  <section id="herramientas">
+    <div class="wrap">
+      <div class="section-head"><h2>Herramientas</h2><span class="section-num mono">03 — HERRAMIENTAS</span></div>
+      {tools.map((tool, i) => <ToolCard tool={tool} stats={toolStats[i]} />)}
+      <div class="ghost-card">+ Más herramientas en camino</div>
+    </div>
+  </section>
+
   <Footer />
+
+  <script>
+    const el = document.getElementById('typed')!;
+    const full = 'Software con vocación de oficio.';
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      el.textContent = full;
+    } else {
+      let i = 0;
+      const tick = () => {
+        el.textContent = full.slice(0, i);
+        if (i < full.length) {
+          i++;
+          setTimeout(tick, 26);
+        } else {
+          el.innerHTML = full + '<span class="cur"></span>';
+        }
+      };
+      tick();
+    }
+  </script>
 </BaseLayout>
