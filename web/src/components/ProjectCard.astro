@@ -29,7 +29,7 @@ const primaryLink = googlePlay
 <div class="card" data-reveal>
   <div class="stripe" style={`background:var(--${category})`}></div>
   <div class="stamp" style={`background:var(--${category})`}>{categoryLabel[category]}</div>
-  <div class="card-title">{title}</div>
+  <h3 class="card-title">{title}</h3>
   <div class="card-thumb">
     {thumbnail ? <img src={thumbnail} alt={`Captura de ${title}`} loading="lazy" /> : <span class="card-thumb-label">{thumbnailLabel}</span>}
   </div>

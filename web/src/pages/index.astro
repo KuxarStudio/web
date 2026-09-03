@@ -27,14 +27,17 @@ const toolStats = await Promise.all(
   tools.map((t) => (t.data.githubRepo ? getRepoStats(t.data.githubRepo) : Promise.resolve(null)))
 );
 ---
-<BaseLayout title="Kuxar Studio — juegos, apps y herramientas hechos con oficio">
+<BaseLayout
+  title="Kuxar Studio — juegos, apps y herramientas hechos con oficio"
+  description="Estudio independiente construyendo juegos en Godot, apps de aprendizaje en Android y herramientas en Python. Portfolio, devlog y descargas."
+>
   <Header />
 
   <div id="top" class="hero">
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Estudio independiente · Internet-based</p>
-        <h1 id="typed"></h1>
+        <h1 id="typed">Software con vocación de oficio.</h1>
         <p class="lede">Diseñamos y construimos juegos, apps de aprendizaje y herramientas — cada proyecto planeado como una pieza de ingeniería, no como un experimento suelto.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#portfolio">Ver proyectos</a>
@@ -99,6 +102,7 @@ const toolStats = await Promise.all(
     if (reduced) {
       el.textContent = full;
     } else {
+      el.textContent = '';
       let i = 0;
       const tick = () => {
         el.textContent = full.slice(0, i);

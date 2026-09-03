@@ -9,7 +9,7 @@
   --line-soft: rgba(22,31,43,0.08);
   --blue:#2f5fb0;
   --live:#17b890;
-  --juego:#6a4cff;
+  --juego:#8266ff;
   --aprendizaje:#17b890;
   --herramienta:#c9820a;
   --on-accent:#14101c;
@@ -24,6 +24,11 @@
   --ink-mute:#838c99;
   --line: rgba(233,228,216,0.14);
   --line-soft: rgba(233,228,216,0.05);
+  /* --blue is the only accent that gets a dark-mode override: at the
+     original value it fails WCAG AA (2.9:1) against the dark background
+     for the visible text that uses it (commit hash, eyebrow, links).
+     Category colors stay identical across themes, per design. */
+  --blue:#6f9bff;
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -88,7 +93,7 @@ nav a:hover{border-color:var(--ink);color:var(--ink);}
 .term-title{margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);}
 .term-body{padding:22px 22px 24px;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
 .term-line{padding:6px 0;display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted rgba(255,255,255,0.12);color:rgba(223,230,238,0.9);}
-.term-line span:first-child{color:rgba(223,230,238,0.5);}
+.term-line span:first-child{color:rgba(223,230,238,0.7);}
 .term-line b{font-weight:500;color:#dfe6ee;}
 .term-legend{display:flex;gap:14px;margin-top:16px;flex-wrap:wrap;}
 .legend-item{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;color:rgba(223,230,238,0.7);}
@@ -98,7 +103,7 @@ nav a:hover{border-color:var(--ink);color:var(--ink);}
 section{padding:72px 0;}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:38px;border-bottom:2px solid var(--ink);padding-bottom:16px;}
 .section-num{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ink-mute);}
-h2{font-size:1.85rem;font-weight:700;margin:0;letter-spacing:-0.01em;}
+.section-head h1,.section-head h2{font-size:1.85rem;font-weight:700;margin:0;letter-spacing:-0.01em;}
 
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
 .card{position:relative;border:2px solid var(--ink);background:var(--paper-2);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));padding:26px 26px 22px;transition:all .2s ease;opacity:0;transform:translateY(16px);display:flex;flex-direction:column;}
@@ -128,7 +133,7 @@ h2{font-size:1.85rem;font-weight:700;margin:0;letter-spacing:-0.01em;}
 .log-row:last-child{border-bottom:none;}
 .log-row:hover{background:var(--paper);transform:translateY(-4px);box-shadow:0 6px 14px -6px rgba(22,31,43,0.35);z-index:1;}
 .log-date{font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:var(--ink-mute);display:flex;align-items:center;gap:8px;}
-.log-title{font-weight:700;font-size:1.02rem;}
+.log-title{font-weight:700;font-size:1.02rem;margin:0;}
 .log-title a{text-decoration:none;color:var(--ink);}
 .log-title a:hover{color:var(--blue);}
 .log-excerpt{color:var(--ink-soft);font-size:0.88rem;margin-top:4px;max-width:58ch;}
@@ -164,4 +169,13 @@ footer{border-top:2px solid var(--ink);padding:46px 0 40px;margin-top:30px;}
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
   .lede,.cta-row,.card,.log-row{opacity:1 !important;transform:none !important;}
+}
+@media (scripting: none){
+  /* no JS to add the .in class from the scroll-reveal observer — show content immediately */
+  .lede,.cta-row,.card,.log-row{opacity:1 !important;transform:none !important;}
+}
+
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:2px;
 }
