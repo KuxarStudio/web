@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getRepoStats } from '../lib/github';
+
+const allProjects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const stats = await Promise.all(
+  allProjects.map((p) => (p.data.githubRepo ? getRepoStats(p.data.githubRepo) : Promise.resolve(null)))
+);
+---
+<BaseLayout title="Portfolio — Kuxar Studio">
+  <Header />
+  <section class="archive">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Portfolio completo</h2>
+        <span class="section-num mono">{allProjects.length} PROYECTOS</span>
+      </div>
+      <div class="grid">
+        {allProjects.map((project, i) => <ProjectCard project={project} stats={stats[i]} />)}
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
