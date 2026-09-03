@@ -68,7 +68,8 @@ nav a:hover{border-color:var(--ink);color:var(--ink);}
 .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:52px;align-items:start;}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin:0 0 18px;display:flex;align-items:center;gap:10px;}
 .eyebrow::before{content:"";width:22px;height:2px;background:var(--blue);display:inline-block;}
-h1{font-size:clamp(2.3rem,4.4vw,3.9rem);line-height:1.06;font-weight:700;margin:0 0 24px;letter-spacing:-0.01em;min-height:3.2em;}
+.hero h1{font-size:clamp(2.3rem,4.4vw,3.9rem);line-height:1.06;font-weight:700;margin:0 0 24px;letter-spacing:-0.01em;min-height:3.2em;}
+.post-title{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;margin:0;font-weight:700;letter-spacing:-0.01em;}
 .cur{display:inline-block;width:0.5ch;background:var(--ink);height:0.85em;vertical-align:-0.1em;animation:blink 1s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
 .lede{font-size:1.1rem;color:var(--ink-soft);max-width:46ch;line-height:1.55;margin:0 0 32px;opacity:0;animation:rise .6s ease .9s forwards;}
