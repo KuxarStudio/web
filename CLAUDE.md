@@ -60,7 +60,8 @@ está:
 
 - **Tono (de la dirección "Taller"):** voz calmada y técnica de estudio/taller,
   precisión de "planos" — no grita, transmite oficio. Un panel tipo "ficha
-  técnica" que desglosa el stack (Godot/GDScript · Android/Kotlin · Python).
+  técnica" que desglosa el stack (Godot/GDScript para juegos complejos ·
+  Flutter/Dart para apps y juegos simples · Python para herramientas).
   Fondo papel/crema con retícula sutil tipo cuadrícula técnica.
 - **Estética visual (de la dirección "Señal"):** sistema de **color por
   categoría** — Juego = violeta `#6a4cff`, Aprendizaje = teal `#17b890`,
@@ -82,16 +83,27 @@ está:
   explícitamente.
 
 **Contenido real a usar (verificado desde GitHub, NO inventar datos nuevos):**
-- **Nadir: Protocol 1-Star** — Juego · En desarrollo · Godot/GDScript. "Un
-  misterio para móvil construido en Godot, diseñado para pantalla táctil."
-- **Kaku!** — App de aprendizaje · Android/Kotlin. "Hiragana, katakana y kanji
-  con reconocimiento de trazos en tiempo real."
-- **BlindNote** — Juego · Próximamente · Godot. "Adivina canciones de oído,
-  compite en rankings globales."
+
+⚠️ **Corrección del usuario (2026-09-03):** el stack por proyecto de más abajo
+ya estaba MAL en una nota de sesión anterior (asumía Kotlin/Godot de forma
+genérica). El criterio real: Godot solo para juegos complejos (Nadir);
+Flutter/Dart para apps y juegos más simples (Kaku!, BlindNote). No asumas un
+stack único para todo el estudio — pregunta si no está confirmado aquí.
+
+- **Nadir: Protocol 1-Star** — Juego · En desarrollo · Godot/GDScript (juego
+  complejo, de ahí Godot). "Un misterio para móvil construido en Godot,
+  diseñado para pantalla táctil."
+- **Kaku!** — App de aprendizaje · **Flutter/Dart** (NO Android/Kotlin nativo).
+  "Hiragana, katakana y kanji con reconocimiento de trazos en tiempo real."
+- **BlindNote** — Juego · Próximamente · **Flutter/Dart** (NO Godot — hecho con
+  Visual Studio). "Adivina canciones de oído, compite en rankings globales."
 - **PDF-Blender** — Herramienta · Python. "Fusiona, divide, desprotege y
   compara PDFs corporativos. 100% offline." (ya tiene repo propio en GitHub).
-- Stack general del estudio: Godot Engine, GDScript, Android, Kotlin, Jetpack
-  Compose, Python, Firebase, Git/GitHub.
+- Stack general del estudio (corregido): Godot/GDScript solo para juegos
+  complejos, Flutter/Dart para apps y juegos más simples, Python para
+  herramientas, Git/GitHub para todo. El backend de BlindNote (rankings
+  globales) probablemente necesita algo tipo Firebase, pero no está
+  confirmado — no lo des por hecho sin preguntar.
 - Contacto: `jack.projekts@gmail.com` — España, remoto.
 - Org de GitHub: `https://github.com/KuxarStudio` (7 repos públicos a fecha de
   esta nota; revisar de nuevo si hace falta la lista actualizada).
@@ -155,7 +167,12 @@ pactado):**
   con la interfaz. Para juegos → vídeo/GIF corto en loop de la mecánica
   principal, no solo texto.
 - **Sobre el estudio / manifiesto**: quién hay detrás, filosofía, stack
-  (Godot, GDScript, Android/Kotlin, Python) — humaniza la marca.
+  (Godot/GDScript para juegos complejos, Flutter/Dart para apps y juegos
+  simples, Python para herramientas) — humaniza la marca. **Ya identificado
+  como hueco real en la v1 (el usuario preguntó por esto explícitamente,
+  2026-09-03): hoy no hay ninguna sección que diga quién hay detrás del
+  estudio, ni una página "sobre mí" — solo la frase del manifiesto en el
+  hero/footer.**
 - **Press kit**: sección o subpágina con logos en alta resolución, capturas,
   descripciones cortas y contacto, para prensa/creadores de contenido.
   → **Nuevo apartado a valorar con el usuario**, no estaba en la lista

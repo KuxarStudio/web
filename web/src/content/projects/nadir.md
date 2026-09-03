@@ -4,7 +4,7 @@ category: "juego"
 status: "en-desarrollo"
 description: "Un misterio para móvil construido en Godot, diseñado para pantalla táctil."
 stack: ["Godot", "GDScript"]
-thumbnailLabel: "gif · próximamente"
+thumbnailLabel: "captura · próximamente"
 featured: true
 order: 1
 ---
