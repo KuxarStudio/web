@@ -79,9 +79,6 @@ nav a{padding:8px 14px;text-decoration:none;color:var(--ink-soft);border:1.5px s
 nav a:hover{border-color:var(--ink);color:var(--ink);}
 .head-right{display:flex;align-items:center;gap:14px;}
 .head-tools{display:flex;align-items:center;gap:6px;padding-left:14px;border-left:1.5px solid var(--line);}
-.lang-toggle{display:flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:0.74rem;letter-spacing:0.03em;border:1.5px solid var(--line);}
-.lang-toggle button{font:inherit;letter-spacing:inherit;background:none;border:none;color:var(--ink-mute);padding:6px 9px;cursor:pointer;}
-.lang-toggle button.active{background:var(--ink);color:var(--paper);}
 .icon-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--line);background:none;color:var(--ink);cursor:pointer;padding:0;}
 .icon-btn:hover{border-color:var(--ink);}
 .icon-btn svg{width:16px;height:16px;}
