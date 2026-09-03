@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { RepoStats } from '../lib/github';
+
+interface Props {
+  tool: CollectionEntry<'tools'>;
+  stats: RepoStats | null;
+}
+const { tool, stats } = Astro.props;
+const { title, description, installCmd, releasesUrl } = tool.data;
+const initials = title
+  .split(/[\s-]+/)
+  .map((w) => w[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+---
+<div class="tool-card">
+  <div class="tool-icon">{initials}</div>
+  <div>
+    <div class="card-title" style="padding-right:0;">{title}</div>
+    <p class="card-desc">{description}</p>
+    <span class="tool-cmd">$ {installCmd}</span>
+    {stats && <p class="hash" style="margin-top:10px;">★ {stats.stars} · último commit #{stats.lastCommitSha}</p>}
+    <br />
+    {releasesUrl && (
+      <a class="btn btn-ghost tool-download" href={releasesUrl} target="_blank" rel="noopener">Descargar versión ejecutable</a>
+    )}
+  </div>
+</div>

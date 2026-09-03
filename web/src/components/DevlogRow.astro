@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'devlog'>;
+}
+const { entry } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const formattedDate = entry.data.date
+  .toISOString()
+  .slice(0, 10)
+  .replace(/-/g, '·');
+---
+<div class="log-row" data-reveal>
+  <span class="log-date">{formattedDate}</span>
+  <div>
+    <div class="log-title"><a href={`${base}devlog/${entry.slug}.html`}>{entry.data.title}</a></div>
+    <p class="log-excerpt">{entry.data.excerpt}</p>
+  </div>
+  <span class="log-tag">{entry.data.project}</span>
+</div>

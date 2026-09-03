@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { RepoStats } from '../lib/github';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  stats: RepoStats | null;
+}
+const { project, stats } = Astro.props;
+const { title, category, status, description, stack, thumbnail, thumbnailLabel, googlePlay, appStore, steam, repo } = project.data;
+
+const categoryLabel: Record<string, string> = { juego: 'JUEGO', aprendizaje: 'APRENDIZAJE' };
+const statusLabel: Record<string, string> = {
+  'en-desarrollo': 'en desarrollo',
+  proximamente: 'próximamente',
+  disponible: 'disponible',
+};
+
+const primaryLink = googlePlay
+  ? { href: googlePlay, label: 'Google Play →' }
+  : appStore
+    ? { href: appStore, label: 'App Store →' }
+    : steam
+      ? { href: steam, label: 'Steam →' }
+      : repo
+        ? { href: repo, label: 'Repositorio →' }
+        : null;
+---
+<div class="card" data-reveal>
+  <div class="stripe" style={`background:var(--${category})`}></div>
+  <div class="stamp" style={`background:var(--${category})`}>{categoryLabel[category]}</div>
+  <div class="card-title">{title}</div>
+  <div class="card-thumb">
+    {thumbnail ? <img src={thumbnail} alt={`Captura de ${title}`} loading="lazy" /> : <span class="card-thumb-label">{thumbnailLabel}</span>}
+  </div>
+  <p class="card-desc">{description}</p>
+  <div class="card-meta">
+    <span class="hash">{stats ? `#${stats.lastCommitSha} · ${statusLabel[status]}` : statusLabel[status]}</span>
+    {primaryLink && <a class="card-link" href={primaryLink.href} target="_blank" rel="noopener">{primaryLink.label}</a>}
+  </div>
+</div>
