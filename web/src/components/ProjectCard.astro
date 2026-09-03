@@ -7,7 +7,7 @@ interface Props {
   stats: RepoStats | null;
 }
 const { project, stats } = Astro.props;
-const { title, category, status, description, stack, thumbnail, thumbnailLabel, googlePlay, appStore, steam, repo } = project.data;
+const { title, category, status, description, thumbnail, thumbnailLabel, googlePlay, appStore, steam, repo } = project.data;
 
 const categoryLabel: Record<string, string> = { juego: 'JUEGO', aprendizaje: 'APRENDIZAJE' };
 const statusLabel: Record<string, string> = {

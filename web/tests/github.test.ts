@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import { getRepoStats } from '../src/lib/github';
 
 describe('getRepoStats', () => {
@@ -47,6 +47,21 @@ describe('getRepoStats', () => {
       throw new Error('network down');
     }) as unknown as typeof fetch;
     const stats = await getRepoStats('KuxarStudio/PDF-Blender');
+    expect(stats).toBeNull();
+  });
+
+  it('returns null when the repo has no commits', async () => {
+    global.fetch = vi.fn(async (url: string) => {
+      if (url.endsWith('/repos/KuxarStudio/empty-repo')) {
+        return { ok: true, json: async () => ({ stargazers_count: 0 }) } as Response;
+      }
+      if (url.includes('/commits')) {
+        return { ok: true, json: async () => [] } as Response;
+      }
+      throw new Error(`unexpected url: ${url}`);
+    }) as unknown as typeof fetch;
+
+    const stats = await getRepoStats('KuxarStudio/empty-repo');
     expect(stats).toBeNull();
   });
 });
