@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('devlog');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const formattedDate = entry.data.date.toISOString().slice(0, 10).replace(/-/g, '·');
+---
+<BaseLayout title={`${entry.data.title} — Kuxar Studio`}>
+  <Header />
+  <section class="archive">
+    <div class="wrap" style="max-width:760px;">
+      <p class="log-date mono">{formattedDate} · <span class="log-tag" style="border:none;padding:0;">{entry.data.project}</span></p>
+      <h1 style="margin-top:12px;">{entry.data.title}</h1>
+      <div style="font-size:1.05rem;line-height:1.7;color:var(--ink-soft);margin-top:24px;">
+        <Content />
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
