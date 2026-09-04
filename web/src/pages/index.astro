@@ -72,7 +72,7 @@ const toolStats = await Promise.all(
       <div class="grid">
         {featuredProjects.map((project, i) => <ProjectCard project={project} stats={featuredStats[i]} />)}
       </div>
-      <div class="view-all"><a href={`${base}portfolio.html`}>Ver archivo completo →</a></div>
+      <div class="view-all"><a href={`${base}portfolio/`}>Ver archivo completo →</a></div>
     </div>
   </section>
 
@@ -82,7 +82,7 @@ const toolStats = await Promise.all(
       <div class="log-list">
         {latestDevlog.map((entry) => <DevlogRow entry={entry} />)}
       </div>
-      <div class="view-all"><a href={`${base}devlog.html`}>Ver bitácora completa →</a></div>
+      <div class="view-all"><a href={`${base}devlog/`}>Ver bitácora completa →</a></div>
     </div>
   </section>
 
