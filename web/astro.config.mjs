@@ -1,16 +1,12 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// `base: '/web/'` matches the current GitHub Pages *project* URL
-// (kuxarstudio.github.io/web/). When a custom domain is attached later,
-// GitHub Pages always serves a custom domain from the root — no /web
-// prefix — so at that point this becomes `base: '/'` and `site` becomes
-// the custom domain. That's a one-line change, not a migration: there is
-// no benefit to moving to a kuxarstudio.github.io-named repo beforehand.
-// See README.md "Dominio propio" for the full reasoning.
+// Custom domain (kuxarstudio.com) attached 2026-09-04 — GitHub Pages serves
+// it from the root, so base is '/' and site is the domain itself. See
+// README.md "Dominio propio" for why this didn't need a repo migration.
 export default defineConfig({
-  site: 'https://kuxarstudio.github.io',
-  base: '/web/',
+  site: 'https://kuxarstudio.com',
+  base: '/',
   build: {
     format: 'file',
   },
