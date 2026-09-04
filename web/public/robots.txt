@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kuxarstudio.github.io/web/sitemap-index.xml
+Sitemap: https://kuxarstudio.com/sitemap-index.xml
