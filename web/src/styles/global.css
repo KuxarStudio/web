@@ -196,6 +196,7 @@ section{padding:72px 0;}
 .view-all a{font-family:'JetBrains Mono',monospace;font-size:0.82rem;text-decoration:none;color:var(--ink);border-bottom:1.5px solid var(--ink);padding-bottom:2px;transition:color .15s ease,border-color .15s ease;}
 .view-all a:hover{color:var(--blue);border-color:var(--blue);}
 
+.tool-list{display:flex;flex-direction:column;gap:20px;}
 .tool-card{border:2px solid var(--ink);background:var(--paper-2);padding:28px;display:flex;gap:24px;align-items:flex-start;clip-path:polygon(0 0,100% 0,100% 100%,16px 100%,0 calc(100% - 16px));}
 .tool-icon{width:52px;height:52px;border:2px solid var(--ink);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;background:var(--herramienta);color:var(--on-accent);clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);}
 .tool-cmd{font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--ink);color:var(--paper);padding:8px 12px;display:inline-block;margin-top:12px;}
