@@ -91,6 +91,7 @@ const toolStats = await Promise.all(
       <div class="section-head"><h2>Herramientas</h2><span class="section-num mono">03 — HERRAMIENTAS</span></div>
       {tools.map((tool, i) => <ToolCard tool={tool} stats={toolStats[i]} />)}
       <div class="ghost-card">+ Más herramientas en camino</div>
+      <div class="view-all"><a href={`${base}herramientas/`}>Ver todas las herramientas →</a></div>
     </div>
   </section>
   </main>
