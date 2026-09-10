@@ -67,6 +67,22 @@ a{color:inherit;}
 .mono{font-family:'JetBrains Mono', monospace;}
 .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
 
+/* Scroll-reveal base: fade+lift on entering the viewport, driven by
+   src/lib/scroll-reveal.ts toggling .is-visible. Components with their
+   own transition (e.g. .card, .log-row) redeclare these properties
+   together with their hover transitions further down, which is fine —
+   equal-specificity rules later in the cascade fully override this block. */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .55s cubic-bezier(0.22,0.61,0.36,1), transform .55s cubic-bezier(0.22,0.61,0.36,1);
+  transition-delay:var(--reveal-delay,0ms);
+}
+[data-reveal].is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
 header{position:sticky;top:0;z-index:50;background:rgba(var(--paper-rgb),0.92);backdrop-filter:blur(6px);border-bottom:2px solid var(--ink);}
 .headbar{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1180px;margin:0 auto;}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:0.02em;font-size:1.05rem;text-decoration:none;color:var(--ink);}
@@ -123,8 +139,12 @@ section{padding:72px 0;}
 .section-head h1,.section-head h2{font-size:1.85rem;font-weight:700;margin:0;letter-spacing:-0.01em;}
 
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
-.card{position:relative;border:2px solid var(--ink);background:var(--paper-2);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));padding:26px 26px 22px;transition:all .2s ease;opacity:0;transform:translateY(16px);display:flex;flex-direction:column;}
-.card.in{opacity:1;transform:translateY(0);}
+.card{position:relative;border:2px solid var(--ink);background:var(--paper-2);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));padding:26px 26px 22px;opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms), transform .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms);display:flex;flex-direction:column;}
+.card.is-visible{opacity:1;transform:translateY(0);}
+/* Once the entrance transition finishes, scroll-reveal.ts adds .revealed,
+   swapping to a fast transition so hover doesn't inherit the stagger
+   delay or the slow entrance duration. */
+.card.revealed{transition:transform .2s ease, box-shadow .2s ease;}
 .card:hover{transform:translateY(-4px);box-shadow:6px 10px 0 var(--ink);}
 .stripe{position:absolute;top:0;left:0;right:0;height:6px;}
 .stamp{position:absolute;top:14px;right:-6px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.06em;padding:4px 10px 4px 8px;color:var(--on-accent);font-weight:600;transform:rotate(2deg);}
@@ -137,6 +157,21 @@ section{padding:72px 0;}
     var(--paper);
 }
 .card-thumb img,.card-thumb video{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* Reusable pure-CSS zoom-on-hover: put on a fixed-size, overflow:hidden
+   container around an <img>/<video> (e.g. .card-thumb). The media scales
+   up, clipped by the container, so the layout never shifts. :hover is
+   gated to devices that actually have it so touch doesn't get a
+   simulated-hover state that can stick post-tap; :active covers touch
+   instead (zooms while pressed, releases cleanly on lift), and
+   :focus-within covers keyboard nav when the media sits behind a link. */
+.media-zoom{overflow:hidden;}
+.media-zoom img,.media-zoom video{transition:transform .4s cubic-bezier(0.22,0.61,0.36,1);}
+.media-zoom:focus-within img,.media-zoom:focus-within video,
+.media-zoom:active img,.media-zoom:active video{transform:scale(1.06);}
+@media (hover:hover) and (pointer:fine){
+  .media-zoom:hover img,.media-zoom:hover video{transform:scale(1.06);}
+}
 .card-thumb-label{font-family:'JetBrains Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-mute);background:var(--paper);border:1px solid var(--line);padding:5px 10px;}
 .card-desc{color:var(--ink-soft);font-size:0.94rem;line-height:1.5;margin:0 0 16px;max-width:42ch;}
 .card-meta{border-top:1px dotted var(--line);padding-top:12px;display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
@@ -145,8 +180,9 @@ section{padding:72px 0;}
 .card-link:hover{color:var(--blue);border-color:var(--blue);}
 
 .log-list{border:2px solid var(--ink);}
-.log-row{position:relative;display:grid;grid-template-columns:150px 1fr auto;gap:20px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);background:var(--paper-2);opacity:0;transform:translateY(12px);transition:opacity .5s ease, transform .5s ease, background .2s ease, box-shadow .2s ease;}
-.log-row.in{opacity:1;transform:translateY(0);}
+.log-row{position:relative;display:grid;grid-template-columns:150px 1fr auto;gap:20px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);background:var(--paper-2);opacity:0;transform:translateY(12px);transition:opacity .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms), transform .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms);}
+.log-row.is-visible{opacity:1;transform:translateY(0);}
+.log-row.revealed{transition:transform .2s ease, background .2s ease, box-shadow .2s ease;}
 .log-row:last-child{border-bottom:none;}
 .log-row:hover{background:var(--paper);transform:translateY(-4px);box-shadow:0 6px 14px -6px rgba(22,31,43,0.35);z-index:1;}
 .log-date{font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:var(--ink-mute);display:flex;align-items:center;gap:8px;}
@@ -191,11 +227,11 @@ footer{border-top:2px solid var(--ink);padding:46px 0 40px;margin-top:30px;}
 }
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
-  .lede,.cta-row,.card,.log-row{opacity:1 !important;transform:none !important;}
+  .lede,.cta-row,[data-reveal]{opacity:1 !important;transform:none !important;}
 }
 @media (scripting: none){
-  /* no JS to add the .in class from the scroll-reveal observer — show content immediately */
-  .lede,.cta-row,.card,.log-row{opacity:1 !important;transform:none !important;}
+  /* no JS to add the .is-visible class from the scroll-reveal observer — show content immediately */
+  .lede,.cta-row,[data-reveal]{opacity:1 !important;transform:none !important;}
 }
 
 a:focus-visible,button:focus-visible{

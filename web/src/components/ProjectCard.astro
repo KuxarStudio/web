@@ -30,12 +30,12 @@ const primaryLink = googlePlay
   <div class="stripe" style={`background:var(--${category})`}></div>
   <div class="stamp" style={`background:var(--${category})`}>{categoryLabel[category]}</div>
   <h3 class="card-title">{title}</h3>
-  <div class="card-thumb">
+  <div class="card-thumb media-zoom">
     {thumbnail ? <img src={thumbnail} alt={`Captura de ${title}`} loading="lazy" /> : <span class="card-thumb-label">{thumbnailLabel}</span>}
   </div>
   <p class="card-desc">{description}</p>
   <div class="card-meta">
     <span class="hash">{stats ? `#${stats.lastCommitSha} · ${statusLabel[status]}` : statusLabel[status]}</span>
-    {primaryLink && <a class="card-link" href={primaryLink.href} target="_blank" rel="noopener">{primaryLink.label}</a>}
+    {primaryLink && <a class="card-link" href={primaryLink.href} target="_blank" rel="noopener" data-magnetic>{primaryLink.label}</a>}
   </div>
 </div>

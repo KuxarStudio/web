@@ -23,7 +23,7 @@ const stats = await Promise.all(
         <h1>Portfolio completo</h1>
         <span class="section-num mono">{allProjects.length} PROYECTOS</span>
       </div>
-      <div class="grid">
+      <div class="grid" data-reveal-group>
         {allProjects.map((project, i) => <ProjectCard project={project} stats={stats[i]} />)}
       </div>
     </div>
