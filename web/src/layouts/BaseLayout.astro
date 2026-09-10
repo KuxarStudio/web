@@ -48,18 +48,10 @@ const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
   <body>
     <slot />
     <script>
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in');
-              io.unobserve(entry.target);
-            }
-          }
-        },
-        { threshold: 0.15 }
-      );
-      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+      import { initScrollReveal } from '../lib/scroll-reveal';
+      import { initMagneticCta } from '../lib/magnetic-cta';
+      initScrollReveal();
+      initMagneticCta();
     </script>
   </body>
 </html>

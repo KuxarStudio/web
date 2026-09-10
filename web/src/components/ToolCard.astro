@@ -24,7 +24,7 @@ const initials = title
     {stats && <p class="hash" style="margin-top:10px;">★ {stats.stars} · último commit #{stats.lastCommitSha}</p>}
     <br />
     {releasesUrl && (
-      <a class="btn btn-ghost tool-download" href={releasesUrl} target="_blank" rel="noopener">Descargar versión ejecutable</a>
+      <a class="btn btn-ghost tool-download" href={releasesUrl} target="_blank" rel="noopener" data-magnetic>Descargar versión ejecutable</a>
     )}
   </div>
 </div>

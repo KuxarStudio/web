@@ -19,7 +19,7 @@ const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.val
         <h1>Bitácora completa</h1>
         <span class="section-num mono">{allDevlog.length} ENTRADAS</span>
       </div>
-      <div class="log-list">
+      <div class="log-list" data-reveal-group>
         {allDevlog.map((entry) => <DevlogRow entry={entry} />)}
       </div>
     </div>
