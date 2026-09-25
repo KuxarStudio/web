@@ -6,8 +6,7 @@ import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import DevlogRow from '../components/DevlogRow.astro';
 import ToolCard from '../components/ToolCard.astro';
-import SolutionCard from '../components/SolutionCard.astro';
-import { solutions } from '../data/solutions';
+import ParteFeature from '../components/ParteFeature.astro';
 import { getRepoStats } from '../lib/github';
 
 const base = import.meta.env.BASE_URL;
@@ -30,8 +29,8 @@ const toolStats = await Promise.all(
 );
 ---
 <BaseLayout
-  title="Kuxar Studio — soluciones de IA para empresas"
-  description="Estudio de software que diseña e implementa soluciones de IA a medida para empresas: automatización, datos, ventas y atención al cliente. Construido con el mismo oficio con el que hacemos nuestros propios productos."
+  title="Kuxar Studio — Parte, presupuestos para fontanería y reformas"
+  description="Parte convierte las notas de una visita en un presupuesto profesional editable, para pymes de fontanería, instalaciones y reformas. Un SaaS de Kuxar Studio, estudio de software que construye productos propios y a medida."
 >
   <Header />
 
@@ -39,12 +38,12 @@ const toolStats = await Promise.all(
   <div id="top" class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Estudio de software · Soluciones IA para empresas</p>
-        <h1 id="typed">Convertimos procesos manuales en software que funciona solo.</h1>
-        <p class="lede">Diseñamos e implementamos soluciones de IA a medida para empresas — desde agentes que automatizan tareas internas hasta productos propios listos para vender. Cada proyecto, construido con el mismo oficio con el que hacemos nuestros juegos y herramientas.</p>
+        <p class="eyebrow">Kuxar Studio · Parte, el SaaS para fontanería, instalaciones y reformas</p>
+        <h1 id="typed">El presupuesto de la visita, antes de irte de la obra.</h1>
+        <p class="lede">Dicta o escribe las notas de la visita, añade fotos si hace falta. Parte arma el presupuesto con tus tarifas y presupuestos anteriores, organiza materiales y mano de obra, y te pregunta lo que falte. Tú revisas precio, alcance y margen antes de enviarlo — nunca sale nada sin que lo veas.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proceso</a>
-          <a class="btn btn-ghost" href="#soluciones" data-magnetic>Ver soluciones</a>
+          <a class="btn btn-primary" href="#contacto" data-magnetic>Quiero probarlo</a>
+          <a class="btn btn-ghost" href="#soluciones" data-magnetic>Cómo funciona</a>
         </div>
       </div>
       <div class="term">
@@ -53,10 +52,10 @@ const toolStats = await Promise.all(
           <span class="term-title">kuxar@studio:~$ cat ficha.json<span class="term-cursor"></span></span>
         </div>
         <div class="term-body">
-          <div class="term-line"><span>enfoque</span><b>Soluciones IA para empresas</b></div>
-          <div class="term-line"><span>método</span><b>Producto propio + trabajo a medida</b></div>
-          <div class="term-line"><span>stack</span><b>IA aplicada · Automatización · Python</b></div>
-          <div class="term-line"><span>banco de pruebas</span><b>Godot · Flutter (productos propios)</b></div>
+          <div class="term-line"><span>producto</span><b>Parte — presupuestos de visita</b></div>
+          <div class="term-line"><span>para</span><b>Fontanería · Instalaciones · Reformas</b></div>
+          <div class="term-line"><span>modelo</span><b>Suscripción mensual</b></div>
+          <div class="term-line"><span>revisión</span><b>Siempre humana antes de enviar</b></div>
           <div class="term-line"><span>sede</span><b>Internet-based</b></div>
         </div>
       </div>
@@ -66,12 +65,10 @@ const toolStats = await Promise.all(
   <section id="soluciones">
     <div class="wrap">
       <div class="section-head"><h2>Soluciones para empresas</h2><span class="section-num mono">01 — SOLUCIONES</span></div>
-      <p class="section-intro">Trabajamos de dos formas: productos propios que resuelven un problema hiperespecífico de un sector, y desarrollo a medida bajo pedido cuando el problema es tuyo. Esto es lo que sabemos construir:</p>
-      <div class="grid">
-        {solutions.map((solution, i) => <SolutionCard solution={solution} index={i} />)}
-      </div>
+      <p class="section-intro">Empezamos con una solución concreta. Esta sección crece según construimos más — y si tu problema es distinto, también trabajamos a medida bajo pedido.</p>
+      <ParteFeature />
       <div class="solution-closing">
-        <p>Hacemos productos propios y trabajamos bajo pedido — si tienes un problema concreto, hablemos.</p>
+        <p>¿Tienes un problema parecido en otro sector, o algo completamente distinto? Trabajamos bajo pedido — hablemos.</p>
         <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proyecto</a>
       </div>
     </div>
@@ -112,7 +109,7 @@ const toolStats = await Promise.all(
 
   <script>
     const el = document.getElementById('typed')!;
-    const full = 'Convertimos procesos manuales en software que funciona solo.';
+    const full = 'El presupuesto de la visita, antes de irte de la obra.';
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
       el.textContent = full;
