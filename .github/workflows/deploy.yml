@@ -43,6 +43,10 @@ jobs:
         env:
           # GITHUB_TOKEN is required here by src/lib/github.ts (build-time repo stats) — scoped to contents:read only via this job's minimal permissions above, so leakage risk is bounded to read access.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Google Analytics 4 measurement ID (e.g. G-XXXXXXX). Public by nature (ends up in
+          # the page source), but kept as a repo variable so it's not hardcoded. Analytics.astro
+          # simply skips rendering the GA4 snippet if this is unset — safe to leave empty.
+          PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
 
       - uses: actions/upload-pages-artifact@v5
         with:
