@@ -1,0 +1,43 @@
+---
+const steps = [
+  {
+    title: 'Notas de la visita',
+    desc: 'Dicta o escribe lo que has visto, añade fotos si hacen falta — desde el móvil, en la propia obra.',
+  },
+  {
+    title: 'Parte arma el presupuesto',
+    desc: 'Usa tus tarifas y presupuestos anteriores, organiza materiales y mano de obra, y señala lo que falte o pueda faltar.',
+  },
+  {
+    title: 'Tú revisas',
+    desc: 'Precio, alcance y margen. El paso humano — nada sale sin que lo veas y lo ajustes.',
+  },
+  {
+    title: 'Envías desde el móvil',
+    desc: 'Presupuesto profesional y editable, listo antes de subir a la furgoneta.',
+  },
+];
+---
+<div class="feature-solution" data-reveal>
+  <div class="feature-head">
+    <span class="feature-badge mono">SAAS · EN DESARROLLO</span>
+    <h3 class="feature-title">Parte</h3>
+    <p class="feature-tagline">El presupuesto de la visita, antes de irte de la obra.</p>
+  </div>
+  <p class="feature-desc">Para pymes de fontanería, instalaciones y reformas que pierden la tarde con el papeleo — o se dejan partidas y trabajos sin cobrar. Parte convierte las notas de una visita en un presupuesto profesional editable, sin salir del móvil.</p>
+  <div class="feature-steps">
+    {steps.map((step, i) => (
+      <div class="feature-step">
+        <span class="feature-step-num mono">{String(i + 1).padStart(2, '0')}</span>
+        <div>
+          <b>{step.title}</b>
+          <p>{step.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="feature-meta">
+    <span class="feature-model mono">Suscripción mensual</span>
+    <a class="btn btn-primary" href="#contacto" data-magnetic>Quiero probarlo</a>
+  </div>
+</div>
