@@ -203,6 +203,22 @@ section{padding:72px 0;}
 .tool-download{margin-top:14px;font-size:0.76rem;padding:11px 18px;display:inline-block;}
 .ghost-card{border:2px dashed var(--line);padding:26px;display:flex;align-items:center;justify-content:center;color:var(--ink-mute);font-family:'JetBrains Mono',monospace;font-size:0.84rem;margin-top:18px;}
 
+.foot-contact{margin-bottom:44px;padding-bottom:44px;border-bottom:1px dotted var(--line);}
+.foot-contact-title{font-size:1.5rem;font-weight:700;letter-spacing:-0.01em;margin:0 0 22px;}
+.contact-form{max-width:520px;border:2px solid var(--ink);background:var(--paper-2);padding:26px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));}
+.contact-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.form-field{margin-bottom:16px;display:flex;flex-direction:column;gap:6px;}
+.form-field label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-mute);}
+.form-field input,.form-field textarea{font-family:inherit;font-size:0.92rem;padding:10px 12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);}
+.form-field input:focus,.form-field textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--ink);}
+.form-field textarea{resize:vertical;min-height:110px;font-family:inherit;}
+.contact-form .btn{border:none;cursor:pointer;}
+.contact-form .btn:disabled{opacity:0.6;cursor:default;transform:none;}
+.form-status{margin:14px 0 0;font-size:0.85rem;min-height:1.2em;}
+.form-status.success{color:var(--live);}
+.form-status.error{color:#c0392b;}
+.contact-fallback{color:var(--ink-soft);font-size:0.95rem;}
+.contact-fallback a{color:var(--blue);}
 footer{border-top:2px solid var(--ink);padding:46px 0 40px;margin-top:30px;}
 .foot-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
 .foot-manifesto{max-width:38ch;font-size:0.95rem;color:var(--ink-soft);line-height:1.5;}

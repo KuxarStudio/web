@@ -1,0 +1,101 @@
+---
+// Formulario de contacto sin backend propio, vía Web3Forms
+// (https://web3forms.com — gratis hasta 250 envíos/mes, con protección
+// anti-spam del lado del servidor). Si no hay access key configurada,
+// se muestra un aviso con el email de contacto en su lugar, para que el
+// build nunca dependa de tener la key para funcionar.
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
+---
+{accessKey ? (
+  <form id="contact-form" class="contact-form" novalidate>
+    <input type="hidden" name="access_key" value={accessKey} />
+    <input type="hidden" name="subject" value="Nuevo mensaje desde kuxarstudio.com" />
+    <input type="hidden" name="from_name" value="Formulario de kuxarstudio.com" />
+
+    {/* Honeypot: campo invisible para humanos. Si llega relleno, es un bot. */}
+    <div class="contact-honeypot" aria-hidden="true">
+      <label for="cf-website">No rellenar este campo</label>
+      <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="form-field">
+      <label for="cf-name">Nombre</label>
+      <input type="text" id="cf-name" name="name" required maxlength="100" autocomplete="name" />
+    </div>
+    <div class="form-field">
+      <label for="cf-email">Email</label>
+      <input type="email" id="cf-email" name="email" required maxlength="200" autocomplete="email" />
+    </div>
+    <div class="form-field">
+      <label for="cf-message">Mensaje</label>
+      <textarea id="cf-message" name="message" required maxlength="5000"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="cf-submit">Enviar mensaje</button>
+    <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+  </form>
+) : (
+  <p class="contact-fallback">
+    Escríbenos directamente a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>.
+  </p>
+)}
+
+<script>
+  (function () {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    const statusEl = document.getElementById('cf-status')!;
+    const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Honeypot: si el campo trampa viene relleno, es un bot. Fingimos
+      // éxito para no darle pistas de que fue detectado, y no enviamos nada.
+      const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (honeypot && honeypot.value.trim() !== '') {
+        statusEl.textContent = 'Mensaje enviado. ¡Gracias!';
+        statusEl.className = 'form-status success';
+        form.reset();
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      statusEl.textContent = '';
+      statusEl.className = 'form-status';
+
+      try {
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          statusEl.textContent = '¡Mensaje enviado! Te responderemos a tu email lo antes posible.';
+          statusEl.className = 'form-status success';
+          form.reset();
+        } else {
+          throw new Error(data.message || 'Error desconocido');
+        }
+      } catch (err) {
+        statusEl.textContent = 'No se pudo enviar el mensaje. Prueba de nuevo o escríbenos a admin@kuxarstudio.com.';
+        statusEl.className = 'form-status error';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar mensaje';
+      }
+    });
+  })();
+</script>

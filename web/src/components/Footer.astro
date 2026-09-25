@@ -1,8 +1,13 @@
 ---
+import ContactForm from './ContactForm.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <footer id="contacto">
   <div class="wrap">
+    <div class="foot-contact">
+      <h2 class="foot-contact-title">Hablemos de tu proyecto</h2>
+      <ContactForm />
+    </div>
     <div class="foot-grid">
       <div>
         <a class="logo" href={base}><span class="mark"></span>KUXAR STUDIO</a>
