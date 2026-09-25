@@ -1,8 +1,10 @@
 const SELECTOR = '[data-magnetic]';
-/** Max pull toward the cursor, in px. */
-const MAX_OFFSET = 9;
-/** Spring-like ease-out-back for the return-to-rest animation. */
-const RETURN_TRANSITION = 'transform .45s cubic-bezier(0.34, 1.56, 0.64, 1)';
+/** Max pull toward the cursor, in px. Kept small so the effect reads as a
+ * subtle magnetic hint rather than the button chasing the cursor. */
+const MAX_OFFSET = 5;
+/** Strong ease-out for the return-to-rest animation — no overshoot/bounce,
+ * since this fires on every hover and should feel calm, not springy. */
+const RETURN_TRANSITION = 'transform .3s cubic-bezier(0.23, 1, 0.32, 1)';
 
 function canHover(): boolean {
   return window.matchMedia('(hover: hover) and (pointer: fine)').matches;

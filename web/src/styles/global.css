@@ -84,6 +84,8 @@ a{color:inherit;}
 }
 
 header{position:sticky;top:0;z-index:50;background:rgba(var(--paper-rgb),0.92);backdrop-filter:blur(6px);border-bottom:2px solid var(--ink);}
+/* Anchor-link targets land below the sticky header (68px) instead of underneath it. */
+section[id],footer#contacto{scroll-margin-top:84px;}
 .headbar{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1180px;margin:0 auto;}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:0.02em;font-size:1.05rem;text-decoration:none;color:var(--ink);}
 .logo .mark{width:26px;height:26px;background:var(--ink);clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);display:inline-block;}
