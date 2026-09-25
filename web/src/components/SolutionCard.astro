@@ -1,0 +1,18 @@
+---
+import type { Solution } from '../data/solutions';
+
+interface Props {
+  solution: Solution;
+  index: number;
+}
+const { solution, index } = Astro.props;
+const num = String(index + 1).padStart(2, '0');
+---
+<div class="solution-card" data-reveal>
+  <span class="solution-num mono">{num}</span>
+  <h3 class="solution-title">{solution.title}</h3>
+  <p class="solution-desc">{solution.description}</p>
+  <ul class="solution-examples">
+    {solution.examples.map((ex) => <li>{ex}</li>)}
+  </ul>
+</div>

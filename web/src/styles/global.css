@@ -203,6 +203,21 @@ section{padding:72px 0;}
 .tool-download{margin-top:14px;font-size:0.76rem;padding:11px 18px;display:inline-block;}
 .ghost-card{border:2px dashed var(--line);padding:26px;display:flex;align-items:center;justify-content:center;color:var(--ink-mute);font-family:'JetBrains Mono',monospace;font-size:0.84rem;margin-top:18px;}
 
+.section-intro{color:var(--ink-soft);font-size:0.98rem;max-width:58ch;margin:-18px 0 32px;}
+.solution-card{position:relative;border:2px solid var(--ink);background:var(--paper-2);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));padding:26px 26px 22px;opacity:0;transform:translateY(16px);transition:opacity .45s cubic-bezier(0.23,1,0.32,1) var(--reveal-delay,0ms), transform .45s cubic-bezier(0.23,1,0.32,1) var(--reveal-delay,0ms);}
+.solution-card.is-visible{opacity:1;transform:translateY(0);}
+.solution-card.revealed{transition:transform .2s ease, box-shadow .2s ease;}
+.solution-card:hover{transform:translateY(-4px);box-shadow:6px 10px 0 var(--ink);}
+.solution-num{display:block;font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:var(--ink-mute);margin-bottom:10px;}
+.solution-title{font-size:1.2rem;font-weight:700;margin:0 0 10px;letter-spacing:-0.01em;}
+.solution-desc{color:var(--ink-soft);font-size:0.94rem;line-height:1.5;margin:0 0 16px;}
+.solution-examples{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.solution-examples li{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ink-mute);padding-left:16px;position:relative;line-height:1.4;}
+.solution-examples li::before{content:"\203a";position:absolute;left:0;color:var(--blue);}
+.solution-closing{margin-top:34px;padding-top:26px;border-top:1px dotted var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+.solution-closing p{margin:0;color:var(--ink-soft);font-size:0.98rem;max-width:52ch;}
+
+
 .foot-contact{margin-bottom:44px;padding-bottom:44px;border-bottom:1px dotted var(--line);}
 .foot-contact-title{font-size:1.5rem;font-weight:700;letter-spacing:-0.01em;margin:0 0 22px;}
 .contact-form{max-width:520px;border:2px solid var(--ink);background:var(--paper-2);padding:26px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));}

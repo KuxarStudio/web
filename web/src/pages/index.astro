@@ -6,6 +6,8 @@ import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import DevlogRow from '../components/DevlogRow.astro';
 import ToolCard from '../components/ToolCard.astro';
+import SolutionCard from '../components/SolutionCard.astro';
+import { solutions } from '../data/solutions';
 import { getRepoStats } from '../lib/github';
 
 const base = import.meta.env.BASE_URL;
@@ -28,8 +30,8 @@ const toolStats = await Promise.all(
 );
 ---
 <BaseLayout
-  title="Kuxar Studio — juegos, apps y herramientas hechos con oficio"
-  description="Estudio independiente construyendo juegos en Godot, apps de aprendizaje en Android y herramientas en Python. Portfolio, devlog y descargas."
+  title="Kuxar Studio — soluciones de IA para empresas"
+  description="Estudio de software que diseña e implementa soluciones de IA a medida para empresas: automatización, datos, ventas y atención al cliente. Construido con el mismo oficio con el que hacemos nuestros propios productos."
 >
   <Header />
 
@@ -37,12 +39,12 @@ const toolStats = await Promise.all(
   <div id="top" class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Estudio independiente · Internet-based</p>
-        <h1 id="typed">Software con vocación de oficio.</h1>
-        <p class="lede">Diseñamos y construimos juegos, apps de aprendizaje y herramientas — cada proyecto planeado como una pieza de ingeniería, no como un experimento suelto.</p>
+        <p class="eyebrow">Estudio de software · Soluciones IA para empresas</p>
+        <h1 id="typed">Convertimos procesos manuales en software que funciona solo.</h1>
+        <p class="lede">Diseñamos e implementamos soluciones de IA a medida para empresas — desde agentes que automatizan tareas internas hasta productos propios listos para vender. Cada proyecto, construido con el mismo oficio con el que hacemos nuestros juegos y herramientas.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#portfolio" data-magnetic>Ver proyectos</a>
-          <a class="btn btn-ghost" href="https://github.com/KuxarStudio" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a>
+          <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proceso</a>
+          <a class="btn btn-ghost" href="#soluciones" data-magnetic>Ver soluciones</a>
         </div>
       </div>
       <div class="term">
@@ -51,24 +53,34 @@ const toolStats = await Promise.all(
           <span class="term-title">kuxar@studio:~$ cat ficha.json<span class="term-cursor"></span></span>
         </div>
         <div class="term-body">
-          <div class="term-line"><span>disciplinas</span><b>Juegos · Apps · Herramientas</b></div>
-          <div class="term-line"><span>motor</span><b>Godot (juegos complejos)</b></div>
-          <div class="term-line"><span>apps</span><b>Flutter / Dart</b></div>
-          <div class="term-line"><span>herramientas</span><b>Python</b></div>
+          <div class="term-line"><span>enfoque</span><b>Soluciones IA para empresas</b></div>
+          <div class="term-line"><span>método</span><b>Producto propio + trabajo a medida</b></div>
+          <div class="term-line"><span>stack</span><b>IA aplicada · Automatización · Python</b></div>
+          <div class="term-line"><span>banco de pruebas</span><b>Godot · Flutter (productos propios)</b></div>
           <div class="term-line"><span>sede</span><b>Internet-based</b></div>
-          <div class="term-legend">
-            <span class="legend-item"><span class="swatch" style="background:var(--juego)"></span>Juego</span>
-            <span class="legend-item"><span class="swatch" style="background:var(--aprendizaje)"></span>Aprendizaje</span>
-            <span class="legend-item"><span class="swatch" style="background:var(--herramienta)"></span>Herramienta</span>
-          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <section id="soluciones">
+    <div class="wrap">
+      <div class="section-head"><h2>Soluciones para empresas</h2><span class="section-num mono">01 — SOLUCIONES</span></div>
+      <p class="section-intro">Trabajamos de dos formas: productos propios que resuelven un problema hiperespecífico de un sector, y desarrollo a medida bajo pedido cuando el problema es tuyo. Esto es lo que sabemos construir:</p>
+      <div class="grid">
+        {solutions.map((solution, i) => <SolutionCard solution={solution} index={i} />)}
+      </div>
+      <div class="solution-closing">
+        <p>Hacemos productos propios y trabajamos bajo pedido — si tienes un problema concreto, hablemos.</p>
+        <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proyecto</a>
+      </div>
+    </div>
+  </section>
+
   <section id="portfolio">
     <div class="wrap">
-      <div class="section-head"><h2>Portfolio</h2><span class="section-num mono">01 — PROYECTOS</span></div>
+      <div class="section-head"><h2>Cómo construimos</h2><span class="section-num mono">02 — PRUEBA DE OFICIO</span></div>
+      <p class="section-intro">Juegos, apps y herramientas propias — la prueba de que sabemos llevar software desde la idea hasta producción con el mismo cuidado que ponemos en el trabajo para clientes.</p>
       <div class="grid">
         {featuredProjects.map((project, i) => <ProjectCard project={project} stats={featuredStats[i]} />)}
       </div>
@@ -78,7 +90,7 @@ const toolStats = await Promise.all(
 
   <section id="devlog" style="background:var(--paper-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);">
     <div class="wrap">
-      <div class="section-head" style="border-color:var(--ink);"><h2>Devlog</h2><span class="section-num mono">02 — BITÁCORA</span></div>
+      <div class="section-head" style="border-color:var(--ink);"><h2>Devlog</h2><span class="section-num mono">03 — BITÁCORA</span></div>
       <div class="log-list">
         {latestDevlog.map((entry) => <DevlogRow entry={entry} />)}
       </div>
@@ -88,7 +100,7 @@ const toolStats = await Promise.all(
 
   <section id="herramientas">
     <div class="wrap">
-      <div class="section-head"><h2>Herramientas</h2><span class="section-num mono">03 — HERRAMIENTAS</span></div>
+      <div class="section-head"><h2>Herramientas</h2><span class="section-num mono">04 — HERRAMIENTAS</span></div>
       {tools.map((tool, i) => <ToolCard tool={tool} stats={toolStats[i]} />)}
       <div class="ghost-card">+ Más herramientas en camino</div>
       <div class="view-all"><a href={`${base}herramientas/`}>Ver todas las herramientas →</a></div>
@@ -100,7 +112,7 @@ const toolStats = await Promise.all(
 
   <script>
     const el = document.getElementById('typed')!;
-    const full = 'Software con vocación de oficio.';
+    const full = 'Convertimos procesos manuales en software que funciona solo.';
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
       el.textContent = full;
