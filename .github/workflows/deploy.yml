@@ -47,6 +47,8 @@ jobs:
           # the page source), but kept as a repo variable so it's not hardcoded. Analytics.astro
           # simply skips rendering the GA4 snippet if this is unset — safe to leave empty.
           PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
+          # Access key de Web3Forms para el formulario de contacto (ver web/.env.example)
+          PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
 
       - uses: actions/upload-pages-artifact@v5
         with:
