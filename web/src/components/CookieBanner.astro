@@ -1,0 +1,54 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<div id="cookie-banner" class="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <div class="wrap cookie-banner-inner">
+    <p>
+      Usamos cookies analíticas (Google Analytics) para entender cómo se usa la web.
+      Solo se activan si las aceptas. Más info en nuestra
+      <a href={`${base}privacidad/`}>Política de Privacidad</a>.
+    </p>
+    <div class="cookie-banner-actions">
+      <button type="button" id="cookie-reject" class="btn btn-ghost">Rechazar</button>
+      <button type="button" id="cookie-accept" class="btn btn-primary">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var KEY = 'kuxar-consent';
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    try {
+      var stored = localStorage.getItem(KEY);
+      if (stored !== 'granted' && stored !== 'denied') {
+        banner.hidden = false;
+      }
+    } catch (e) {
+      // localStorage no disponible (modo privado, etc.) — mostramos el banner igualmente
+      banner.hidden = false;
+    }
+
+    var acceptBtn = document.getElementById('cookie-accept');
+    var rejectBtn = document.getElementById('cookie-reject');
+
+    acceptBtn?.addEventListener('click', function () {
+      try {
+        localStorage.setItem(KEY, 'granted');
+      } catch (e) {}
+      banner!.hidden = true;
+      if (typeof (window as any).__kuxarLoadGA4 === 'function') {
+        (window as any).__kuxarLoadGA4();
+      }
+    });
+
+    rejectBtn?.addEventListener('click', function () {
+      try {
+        localStorage.setItem(KEY, 'denied');
+      } catch (e) {}
+      banner!.hidden = true;
+    });
+  })();
+</script>

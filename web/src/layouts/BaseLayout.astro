@@ -1,6 +1,8 @@
 ---
 import spaceGroteskUrl from '../assets/fonts/space-grotesk-latin.woff2?url';
 import jetBrainsMonoUrl from '../assets/fonts/jetbrains-mono-latin.woff2?url';
+import Analytics from '../components/Analytics.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 export interface Props {
   title: string;
@@ -44,9 +46,11 @@ const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
     <style is:global>
       @import "../styles/global.css";
     </style>
+    <Analytics />
   </head>
   <body>
     <slot />
+    <CookieBanner />
     <script>
       import { initScrollReveal } from '../lib/scroll-reveal';
       import { initMagneticCta } from '../lib/magnetic-cta';

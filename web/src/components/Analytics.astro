@@ -1,0 +1,35 @@
+---
+// Google Analytics 4, cargado condicionalmente:
+// - Solo si PUBLIC_GA_ID está definido (variable de entorno pública de Astro).
+// - Solo si el usuario ya dio su consentimiento en el CookieBanner (localStorage 'kuxar-consent').
+// Ver CookieBanner.astro: al aceptar, llama a window.__kuxarLoadGA4() para activar esto sin recargar.
+const gaId = import.meta.env.PUBLIC_GA_ID as string | undefined;
+---
+{gaId && (
+  <script define:vars={{ gaId }} is:inline>
+    window.__kuxarGaLoaded = false;
+    window.__kuxarLoadGA4 = function () {
+      if (window.__kuxarGaLoaded) return;
+      window.__kuxarGaLoaded = true;
+
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', gaId);
+    };
+
+    try {
+      if (localStorage.getItem('kuxar-consent') === 'granted') {
+        window.__kuxarLoadGA4();
+      }
+    } catch (e) {}
+  </script>
+)}
