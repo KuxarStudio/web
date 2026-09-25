@@ -5,7 +5,7 @@ const VISIBLE_CLASS = 'is-visible';
  * .log-row use it to swap back to a fast, undelayed transition so a later
  * hover doesn't inherit the slow reveal duration or the stagger delay. */
 const SETTLED_CLASS = 'revealed';
-const STAGGER_STEP_MS = 80;
+const STAGGER_STEP_MS = 60;
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;

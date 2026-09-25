@@ -75,7 +75,7 @@ a{color:inherit;}
 [data-reveal]{
   opacity:0;
   transform:translateY(12px);
-  transition:opacity .55s cubic-bezier(0.22,0.61,0.36,1), transform .55s cubic-bezier(0.22,0.61,0.36,1);
+  transition:opacity .45s cubic-bezier(0.23,1,0.32,1), transform .45s cubic-bezier(0.23,1,0.32,1);
   transition-delay:var(--reveal-delay,0ms);
 }
 [data-reveal].is-visible{
@@ -139,7 +139,7 @@ section{padding:72px 0;}
 .section-head h1,.section-head h2{font-size:1.85rem;font-weight:700;margin:0;letter-spacing:-0.01em;}
 
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
-.card{position:relative;border:2px solid var(--ink);background:var(--paper-2);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));padding:26px 26px 22px;opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms), transform .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms);display:flex;flex-direction:column;}
+.card{position:relative;border:2px solid var(--ink);background:var(--paper-2);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));padding:26px 26px 22px;opacity:0;transform:translateY(16px);transition:opacity .45s cubic-bezier(0.23,1,0.32,1) var(--reveal-delay,0ms), transform .45s cubic-bezier(0.23,1,0.32,1) var(--reveal-delay,0ms);display:flex;flex-direction:column;}
 .card.is-visible{opacity:1;transform:translateY(0);}
 /* Once the entrance transition finishes, scroll-reveal.ts adds .revealed,
    swapping to a fast transition so hover doesn't inherit the stagger
@@ -180,7 +180,7 @@ section{padding:72px 0;}
 .card-link:hover{color:var(--blue);border-color:var(--blue);}
 
 .log-list{border:2px solid var(--ink);}
-.log-row{position:relative;display:grid;grid-template-columns:150px 1fr auto;gap:20px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);background:var(--paper-2);opacity:0;transform:translateY(12px);transition:opacity .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms), transform .55s cubic-bezier(0.22,0.61,0.36,1) var(--reveal-delay,0ms);}
+.log-row{position:relative;display:grid;grid-template-columns:150px 1fr auto;gap:20px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);background:var(--paper-2);opacity:0;transform:translateY(12px);transition:opacity .45s cubic-bezier(0.23,1,0.32,1) var(--reveal-delay,0ms), transform .45s cubic-bezier(0.23,1,0.32,1) var(--reveal-delay,0ms);}
 .log-row.is-visible{opacity:1;transform:translateY(0);}
 .log-row.revealed{transition:transform .2s ease, background .2s ease, box-shadow .2s ease;}
 .log-row:last-child{border-bottom:none;}
