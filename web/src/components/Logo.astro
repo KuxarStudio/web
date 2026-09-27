@@ -1,0 +1,29 @@
+---
+// Marca de Kuxar Studio: una K de tres piezas (palo + dos brazos
+// separados), como tres productos distintos que forman un estudio.
+// - variant "mark": la K sola, en currentColor (cabecera, pie).
+// - variant "icon": la K en negativo dentro de un icono redondeado
+//   (favicon, avatar, tiendas). Versión estática en public/favicon.svg.
+interface Props {
+  variant?: 'mark' | 'icon';
+  size?: number;
+  class?: string;
+}
+const { variant = 'mark', size = 24, class: className } = Astro.props;
+---
+{variant === 'mark' ? (
+  <svg class={className} width={size} height={size} viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+    <rect x="4" y="3" width="9" height="26" rx="3"></rect>
+    <path d="M14.8 15.3 21.3 4.4c.4-.6 1-1 1.8-1h4.6c1.1 0 1.8 1.2 1.2 2.1L22.6 15.3z"></path>
+    <path d="M14.8 16.7 21.3 27.6c.4.6 1 1 1.8 1h4.6c1.1 0 1.8-1.2 1.2-2.1L22.6 16.7z"></path>
+  </svg>
+) : (
+  <svg class={className} width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+    <rect width="32" height="32" rx="9" fill="currentColor"></rect>
+    <g fill="var(--bg, #fff)">
+      <rect x="8.5" y="7" width="5" height="18" rx="1.6"></rect>
+      <path d="M14.6 15.4 19 8c.3-.5.7-.8 1.3-.8h3c.7 0 1.2.8.8 1.4L19.6 15.4z"></path>
+      <path d="M14.6 16.6 19 24c.3.5.7.8 1.3.8h3c.7 0 1.2-.8.8-1.4L19.6 16.6z"></path>
+    </g>
+  </svg>
+)}

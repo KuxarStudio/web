@@ -1,27 +1,33 @@
 ---
-import spaceGroteskUrl from '../assets/fonts/space-grotesk-latin.woff2?url';
-import jetBrainsMonoUrl from '../assets/fonts/jetbrains-mono-latin.woff2?url';
+import fontUrl from '../assets/fonts/familjen-grotesk-latin-wght-normal.woff2?url';
 import Analytics from '../components/Analytics.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 
 export interface Props {
   title: string;
   description?: string;
+  /** Imagen al compartir (ruta en public/, 1200x630). Por defecto la del estudio. */
+  ogImage?: string;
 }
-const { title, description = 'Kuxar Studio — juegos, apps de aprendizaje y herramientas, hechos con oficio.' } = Astro.props;
+const {
+  title,
+  description = "Kuxar Studio, estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.",
+  ogImage = 'og-image.png',
+} = Astro.props;
 const base = import.meta.env.BASE_URL;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
+const ogImageURL = new URL(`${base}${ogImage.replace(/^\//, '')}`, Astro.site);
 ---
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0d10" media="(prefers-color-scheme: dark)" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <link rel="preload" href={spaceGroteskUrl} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={jetBrainsMonoUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
 
     <meta property="og:type" content="website" />
@@ -38,7 +44,7 @@ const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
     <script is:inline>
       (function () {
         try {
-          var t = localStorage.getItem('kuxar-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          var t = localStorage.getItem("kuxar-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
           document.documentElement.setAttribute('data-theme', t);
         } catch (e) {}
       })();
@@ -49,13 +55,8 @@ const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
     <Analytics />
   </head>
   <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
     <slot />
     <CookieBanner />
-    <script>
-      import { initScrollReveal } from '../lib/scroll-reveal';
-      import { initMagneticCta } from '../lib/magnetic-cta';
-      initScrollReveal();
-      initMagneticCta();
-    </script>
   </body>
 </html>

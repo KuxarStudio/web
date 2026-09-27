@@ -1,15 +1,14 @@
 ---
 const base = import.meta.env.BASE_URL;
 ---
-<div id="cookie-banner" class="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Aviso de cookies">
-  <div class="wrap cookie-banner-inner">
+<div id="cookie-banner" class="cookie-banner" hidden role="region" aria-label="Aviso de cookies">
+  <div class="cookie-banner-inner">
     <p>
-      Usamos cookies analíticas (Google Analytics) para entender cómo se usa la web.
-      Solo se activan si las aceptas. Más info en nuestra
-      <a href={`${base}privacidad/`}>Política de Privacidad</a>.
+      Usamos cookies analíticas (Google Analytics) solo si las aceptas.
+      <a href={`${base}privacidad/`}>Política de privacidad</a>
     </p>
     <div class="cookie-banner-actions">
-      <button type="button" id="cookie-reject" class="btn btn-ghost">Rechazar</button>
+      <button type="button" id="cookie-reject" class="btn btn-secondary">Rechazar</button>
       <button type="button" id="cookie-accept" class="btn btn-primary">Aceptar</button>
     </div>
   </div>

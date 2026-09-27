@@ -7,21 +7,34 @@ import ProjectCard from '../components/ProjectCard.astro';
 import DevlogRow from '../components/DevlogRow.astro';
 import ToolCard from '../components/ToolCard.astro';
 import ParteFeature from '../components/ParteFeature.astro';
+import Parte from '../components/Parte.astro';
+import PhoneVideo from '../components/PhoneVideo.astro';
 import { getRepoStats } from '../lib/github';
+import { businessFaq } from '../lib/parte';
 
 const base = import.meta.env.BASE_URL;
 
-const allProjects = await getCollection('projects');
-const featuredProjects = allProjects
+const projects = (await getCollection('projects'))
   .filter((p) => p.data.featured)
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 4);
-const featuredStats = await Promise.all(
-  featuredProjects.map((p) => (p.data.githubRepo ? getRepoStats(p.data.githubRepo) : Promise.resolve(null)))
-);
+  .sort((a, b) => a.data.order - b.data.order);
 
-const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const latestDevlog = allDevlog.slice(0, 3);
+const latestDevlog = (await getCollection('devlog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+// Trocea textos planos para pintar el producto con su wordmark en el template.
+const splitParte = (text: string) => text.split(/(\bParte\b)/);
+
+// FAQPage para buscadores: mismo contenido que la lista visible.
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: businessFaq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 
 const tools = await getCollection('tools');
 const toolStats = await Promise.all(
@@ -29,103 +42,126 @@ const toolStats = await Promise.all(
 );
 ---
 <BaseLayout
-  title="Kuxar Studio — Parte, presupuestos para fontanería y reformas"
-  description="Parte convierte las notas de una visita en un presupuesto profesional editable, para pymes de fontanería, instalaciones y reformas. Un SaaS de Kuxar Studio, estudio de software que construye productos propios y a medida."
+  title="Kuxar Studio | Juegos, apps y software para empresas"
+  description="Kuxar Studio es un estudio de software independiente. Publicamos juegos, apps de aprendizaje y herramientas propias, y desarrollamos software para empresas."
 >
   <Header />
 
-  <main>
-  <div id="top" class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Kuxar Studio · Parte, el SaaS para fontanería, instalaciones y reformas</p>
-        <h1 id="typed">El presupuesto de la visita, antes de irte de la obra.</h1>
-        <p class="lede">Dicta o escribe las notas de la visita, añade fotos si hace falta. Parte arma el presupuesto con tus tarifas y presupuestos anteriores, organiza materiales y mano de obra, y te pregunta lo que falte. Tú revisas precio, alcance y margen antes de enviarlo — nunca sale nada sin que lo veas.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#contacto" data-magnetic>Quiero probarlo</a>
-          <a class="btn btn-ghost" href="#soluciones" data-magnetic>Cómo funciona</a>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="hero-title">Hacemos juegos, apps y software para empresas.</h1>
+          <p class="hero-sub">Kuxar Studio es un estudio de software independiente. Publicamos productos propios y desarrollamos software a medida.</p>
+          <nav class="doors" aria-label="¿Qué buscas?">
+            <a class="door" href="#proyectos">
+              <span class="door-title">Juegos y apps</span>
+              <span class="door-desc">Kaku!, BlindNote y Nadir. Descárgalos o sigue su desarrollo.</span>
+              <span class="door-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="door door-parte" href="#empresas">
+              <span class="door-title">Para empresas</span>
+              <span class="door-desc"><Parte /> para presupuestos de obra, y desarrollo a medida.</span>
+              <span class="door-arrow" aria-hidden="true">→</span>
+            </a>
+          </nav>
+        </div>
+        <div class="hero-media">
+          <figure class="hero-shot" data-product="kaku">
+            <PhoneVideo
+              src={`${base}media/kaku-trazos.mp4`}
+              webm={`${base}media/kaku-trazos.webm`}
+              poster={`${base}media/kaku-poster.webp`}
+              label="Kaku!: trazando el hiragana あ hasta completarlo."
+            />
+            <figcaption translate="no">Kaku!</figcaption>
+          </figure>
+          <figure class="hero-shot" data-product="blindnote">
+            <div class="phone">
+              <img src={`${base}media/blindnote-resultados.webp`} alt="BlindNote: pantalla de resultados para marcar artista, canción y año acertados." width="540" height="1098" decoding="async" />
+            </div>
+            <figcaption translate="no">BlindNote</figcaption>
+          </figure>
         </div>
       </div>
-      <div class="term">
-        <div class="term-bar">
-          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-          <span class="term-title">kuxar@studio:~$ cat ficha.json<span class="term-cursor"></span></span>
+    </section>
+
+    <section class="section" id="proyectos" aria-labelledby="proyectos-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="proyectos-title">Proyectos</h2>
+          <p>Lo que ya puedes usar y lo que tenemos en marcha.</p>
         </div>
-        <div class="term-body">
-          <div class="term-line"><span>producto</span><b>Parte — presupuestos de visita</b></div>
-          <div class="term-line"><span>para</span><b>Fontanería · Instalaciones · Reformas</b></div>
-          <div class="term-line"><span>modelo</span><b>Suscripción mensual</b></div>
-          <div class="term-line"><span>revisión</span><b>Siempre humana antes de enviar</b></div>
-          <div class="term-line"><span>sede</span><b>Internet-based</b></div>
+        <div class="projects">
+          {projects.map((project, i) => <ProjectCard project={project} featured={i === 0} />)}
+        </div>
+        <div class="tools">
+          {tools.map((tool, i) => <ToolCard tool={tool} stats={toolStats[i]} />)}
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <section id="soluciones">
-    <div class="wrap">
-      <div class="section-head"><h2>Soluciones para empresas</h2><span class="section-num mono">01 — SOLUCIONES</span></div>
-      <p class="section-intro">Empezamos con una solución concreta. Esta sección crece según construimos más — y si tu problema es distinto, también trabajamos a medida bajo pedido.</p>
-      <ParteFeature />
-      <div class="solution-closing">
-        <p>¿Tienes un problema parecido en otro sector, o algo completamente distinto? Trabajamos bajo pedido — hablemos.</p>
-        <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proyecto</a>
+    <section class="section" id="empresas" aria-labelledby="empresas-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="empresas-title">Para empresas</h2>
+          <p>Software que resuelve un problema concreto de tu negocio. Empezamos por uno que conocemos bien: los presupuestos de obra.</p>
+        </div>
+        <ParteFeature />
+        <div class="custom-work">
+          <h3>¿Tu problema es otro?</h3>
+          <p>También desarrollamos apps y herramientas a medida para empresas. Al terminar, <strong>el código es tuyo</strong>. Cuéntanos qué necesitas.</p>
+          <a class="text-link" href="#contacto">Escríbenos →</a>
+        </div>
+        <div class="faq">
+          <h3 id="faq-title">Preguntas frecuentes</h3>
+          <dl aria-labelledby="faq-title">
+            {businessFaq.map((item) => (
+              <div>
+                <dt>{splitParte(item.q).map((part) => (part === 'Parte' ? <Parte /> : part))}</dt>
+                <dd>{splitParte(item.a).map((part) => (part === 'Parte' ? <Parte /> : part))}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="portfolio">
-    <div class="wrap">
-      <div class="section-head"><h2>Cómo construimos</h2><span class="section-num mono">02 — PRUEBA DE OFICIO</span></div>
-      <p class="section-intro">Juegos, apps y herramientas propias — la prueba de que sabemos llevar software desde la idea hasta producción con el mismo cuidado que ponemos en el trabajo para clientes.</p>
-      <div class="grid">
-        {featuredProjects.map((project, i) => <ProjectCard project={project} stats={featuredStats[i]} />)}
+    <section class="section" id="estudio" aria-labelledby="estudio-title">
+      <div class="wrap studio">
+        <div>
+          <div class="section-head">
+            <h2 id="estudio-title">El estudio</h2>
+          </div>
+          <div class="studio-text">
+            <p>Somos <strong>tres desarrolladores independientes</strong> que trabajamos juntos como Kuxar Studio.</p>
+            <p>Hacemos <strong>productos propios</strong> (juegos, apps de aprendizaje y herramientas) y <strong>software para empresas</strong>. Lo que aprendemos en unos lo aplicamos en los otros.</p>
+            <p>Elegimos la tecnología según el proyecto, no al revés.</p>
+          </div>
+        </div>
+        <dl class="stack">
+          <div><dt>Juegos complejos</dt><dd>Godot y GDScript</dd></div>
+          <div><dt>Apps y juegos ligeros</dt><dd>Flutter y Dart</dd></div>
+          <div><dt>Herramientas</dt><dd>Python</dd></div>
+          <div><dt>Código</dt><dd><a class="text-link" href="https://github.com/KuxarStudio" rel="noopener">github.com/KuxarStudio</a></dd></div>
+        </dl>
       </div>
-      <div class="view-all"><a href={`${base}portfolio/`}>Ver archivo completo →</a></div>
-    </div>
-  </section>
+    </section>
 
-  <section id="devlog" style="background:var(--paper-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);">
-    <div class="wrap">
-      <div class="section-head" style="border-color:var(--ink);"><h2>Devlog</h2><span class="section-num mono">03 — BITÁCORA</span></div>
-      <div class="log-list">
-        {latestDevlog.map((entry) => <DevlogRow entry={entry} />)}
+    <section class="section" id="devlog" aria-labelledby="devlog-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="devlog-title">Devlog</h2>
+          <p>Cómo avanzan los proyectos, contado por quienes los hacen.</p>
+        </div>
+        <ul class="log-list">
+          {latestDevlog.map((entry) => <DevlogRow entry={entry} />)}
+        </ul>
+        <p class="section-foot"><a class="text-link" href={`${base}devlog/`}>Ver todas las entradas →</a></p>
       </div>
-      <div class="view-all"><a href={`${base}devlog/`}>Ver bitácora completa →</a></div>
-    </div>
-  </section>
-
-  <section id="herramientas">
-    <div class="wrap">
-      <div class="section-head"><h2>Herramientas</h2><span class="section-num mono">04 — HERRAMIENTAS</span></div>
-      {tools.map((tool, i) => <ToolCard tool={tool} stats={toolStats[i]} />)}
-      <div class="ghost-card">+ Más herramientas en camino</div>
-      <div class="view-all"><a href={`${base}herramientas/`}>Ver todas las herramientas →</a></div>
-    </div>
-  </section>
+    </section>
   </main>
 
   <Footer />
-
-  <script>
-    const el = document.getElementById('typed')!;
-    const full = 'El presupuesto de la visita, antes de irte de la obra.';
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      el.textContent = full;
-    } else {
-      el.textContent = '';
-      let i = 0;
-      const tick = () => {
-        el.textContent = full.slice(0, i);
-        if (i < full.length) {
-          i++;
-          setTimeout(tick, 26);
-        } else {
-          el.innerHTML = full + '<span class="cur"></span>';
-        }
-      };
-      tick();
-    }
-  </script>
 </BaseLayout>

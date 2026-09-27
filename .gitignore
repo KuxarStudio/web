@@ -15,3 +15,6 @@ web/.astro/
 Thumbs.db
 .vscode/*
 !.vscode/extensions.json
+
+# playwright-cli (capturas locales)
+web/.playwright-cli/

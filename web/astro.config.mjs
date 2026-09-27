@@ -20,8 +20,12 @@ export default defineConfig({
   redirects: {
     '/portfolio.html': '/portfolio/',
     '/devlog.html': '/devlog/',
-    '/devlog/kaku-trazos.html': '/devlog/kaku-trazos/',
-    '/devlog/nadir-primer-nivel.html': '/devlog/nadir-primer-nivel/',
-    '/devlog/blindnote-rankings.html': '/devlog/blindnote-rankings/',
+    // Entradas retiradas (no reflejaban el trabajo real): redirigen al índice.
+    '/devlog/nadir-primer-nivel.html': '/devlog/',
+    '/devlog/nadir-primer-nivel': '/devlog/',
+    '/devlog/kaku-trazos.html': '/devlog/',
+    '/devlog/kaku-trazos': '/devlog/',
+    '/devlog/blindnote-rankings.html': '/devlog/',
+    '/devlog/blindnote-rankings': '/devlog/',
   },
 });

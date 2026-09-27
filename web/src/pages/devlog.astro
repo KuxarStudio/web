@@ -8,22 +8,22 @@ import DevlogRow from '../components/DevlogRow.astro';
 const allDevlog = (await getCollection('devlog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <BaseLayout
-  title="Devlog — Kuxar Studio"
-  description="Notas de desarrollo de Kuxar Studio: decisiones de diseño y avances reales de Nadir, Kaku! y BlindNote, sin relleno."
+  title="Devlog | Kuxar Studio"
+  description="Notas de desarrollo de Kuxar Studio: decisiones y avances reales de Nadir, Kaku! y BlindNote."
 >
   <Header />
-  <main>
-  <section class="archive">
-    <div class="wrap">
-      <div class="section-head">
-        <h1>Bitácora completa</h1>
-        <span class="section-num mono">{allDevlog.length} ENTRADAS</span>
+  <main id="main">
+    <section class="section page-top">
+      <div class="wrap">
+        <div class="section-head">
+          <h1>Devlog</h1>
+          <p>Cómo avanzan los proyectos, contado por quienes los hacen.</p>
+        </div>
+        <ul class="log-list">
+          {allDevlog.map((entry) => <DevlogRow entry={entry} />)}
+        </ul>
       </div>
-      <div class="log-list" data-reveal-group>
-        {allDevlog.map((entry) => <DevlogRow entry={entry} />)}
-      </div>
-    </div>
-  </section>
+    </section>
   </main>
   <Footer />
 </BaseLayout>
