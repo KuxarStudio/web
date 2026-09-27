@@ -60,4 +60,27 @@ const devlog = defineCollection({
   }),
 });
 
-export const collections = { projects, tools, devlog };
+// Encargos para clientes (software a medida). Distinto de `projects`
+// (productos propios: juegos y apps, con marco de móvil y enlaces a tienda):
+// aquí la tarjeta muestra una captura en marco de navegador y, en vez de una
+// tienda, un enlace a demo (a veces protegida con contraseña) y/o al cliente.
+const work = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    /** Descripción genérica del cliente, sin nombre propio (privacidad). */
+    client: z.string(),
+    description: z.string(),
+    stack: z.array(z.string()),
+    /** Captura de la app en marco de navegador (no de móvil). */
+    image: z.object({ src: z.string(), alt: z.string() }),
+    status: z.enum(['entregado', 'en-desarrollo']),
+    demoUrl: z.string().url().optional(),
+    /** Nota junto al enlace de demo, p. ej. "protegida con contraseña". */
+    demoNote: z.string().optional(),
+    featured: z.boolean().default(true),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { projects, tools, devlog, work };

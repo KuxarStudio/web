@@ -9,6 +9,7 @@ import ToolCard from '../components/ToolCard.astro';
 import ParteFeature from '../components/ParteFeature.astro';
 import Parte from '../components/Parte.astro';
 import PhoneVideo from '../components/PhoneVideo.astro';
+import WorkCard from '../components/WorkCard.astro';
 import { getRepoStats } from '../lib/github';
 import { businessFaq } from '../lib/parte';
 
@@ -16,6 +17,10 @@ const base = import.meta.env.BASE_URL;
 
 const projects = (await getCollection('projects'))
   .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const work = (await getCollection('work'))
+  .filter((w) => w.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
 
 const latestDevlog = (await getCollection('devlog'))
@@ -108,6 +113,11 @@ const toolStats = await Promise.all(
           <p>Software que resuelve un problema concreto de tu negocio. Empezamos por uno que conocemos bien: los presupuestos de obra.</p>
         </div>
         <ParteFeature />
+        {work.length > 0 && (
+          <div class="works">
+            {work.map((item) => <WorkCard work={item} featured={work.length === 1} />)}
+          </div>
+        )}
         <div class="custom-work">
           <h3>¿Tu problema es otro?</h3>
           <p>También desarrollamos apps y herramientas a medida para empresas. Al terminar, <strong>el código es tuyo</strong>. Cuéntanos qué necesitas.</p>
