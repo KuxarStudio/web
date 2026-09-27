@@ -4,12 +4,18 @@
 // anti-spam del lado del servidor). Si no hay access key configurada,
 // se muestra un aviso con el email de contacto en su lugar, para que el
 // build nunca dependa de tener la key para funcionar.
+interface Props {
+  /** Muestra el email como alternativa si no hay access key. Desactívalo si
+   *  el contenedor ya enseña el email (p. ej. el footer). */
+  fallback?: boolean;
+}
+const { fallback = true } = Astro.props;
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 ---
 {accessKey ? (
   <form id="contact-form" class="contact-form" novalidate>
     <input type="hidden" name="access_key" value={accessKey} />
-    <input type="hidden" name="subject" value="Nuevo mensaje desde kuxarstudio.com" />
+    <input type="hidden" name="subject" id="cf-subject" value="Nuevo mensaje desde kuxarstudio.com" />
     <input type="hidden" name="from_name" value="Formulario de kuxarstudio.com" />
 
     {/* Honeypot: campo invisible para humanos. Si llega relleno, es un bot. */}
@@ -24,17 +30,17 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
     </div>
     <div class="form-field">
       <label for="cf-email">Email</label>
-      <input type="email" id="cf-email" name="email" required maxlength="200" autocomplete="email" />
+      <input type="email" id="cf-email" name="email" required maxlength="200" autocomplete="email" spellcheck="false" />
     </div>
     <div class="form-field">
       <label for="cf-message">Mensaje</label>
       <textarea id="cf-message" name="message" required maxlength="5000"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary" id="cf-submit">Enviar mensaje</button>
+    <button type="submit" class="btn btn-primary" id="cf-submit">Enviar</button>
     <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
   </form>
-) : (
+) : fallback && (
   <p class="contact-fallback">
     Escríbenos directamente a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>.
   </p>
@@ -48,6 +54,15 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
     const statusEl = document.getElementById('cf-status')!;
     const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement;
 
+    // ?asunto=parte (botones "Pedir acceso" de Parte) etiqueta el email para
+    // distinguir las solicitudes de acceso del resto de mensajes.
+    if (new URLSearchParams(window.location.search).get('asunto') === 'parte') {
+      const subjectInput = document.getElementById('cf-subject') as HTMLInputElement | null;
+      const messageInput = document.getElementById('cf-message') as HTMLTextAreaElement | null;
+      if (subjectInput) subjectInput.value = 'Solicitud de acceso anticipado a Parte';
+      if (messageInput && !messageInput.value) messageInput.value = 'Me interesa Parte. Mi empresa se dedica a ';
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -55,7 +70,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
       // éxito para no darle pistas de que fue detectado, y no enviamos nada.
       const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
       if (honeypot && honeypot.value.trim() !== '') {
-        statusEl.textContent = 'Mensaje enviado. ¡Gracias!';
+        statusEl.textContent = 'Mensaje enviado. Te responderemos por email.';
         statusEl.className = 'form-status success';
         form.reset();
         return;
@@ -83,7 +98,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
         const data = await res.json();
 
         if (data.success) {
-          statusEl.textContent = '¡Mensaje enviado! Te responderemos a tu email lo antes posible.';
+          statusEl.textContent = 'Mensaje enviado. Te responderemos por email lo antes posible.';
           statusEl.className = 'form-status success';
           form.reset();
         } else {
@@ -94,7 +109,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
         statusEl.className = 'form-status error';
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar mensaje';
+        submitBtn.textContent = 'Enviar';
       }
     });
   })();

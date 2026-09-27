@@ -1,0 +1,57 @@
+---
+// Vídeo corto en bucle dentro del marco de teléfono. Sustituye a los GIF:
+// mucho más ligero. Incluye botón de pausa (bucles de más de 5 s) y se
+// queda en el póster si el sistema pide reducir el movimiento.
+interface Props {
+  src: string;
+  webm?: string;
+  poster?: string;
+  label: string;
+}
+const { src, webm, poster, label } = Astro.props;
+---
+<div class="phone phone-video">
+  <video muted loop playsinline preload="metadata" poster={poster} aria-label={label} data-autoloop>
+    {webm && <source src={webm} type="video/webm" />}
+    <source src={src} type="video/mp4" />
+  </video>
+  <button type="button" class="video-toggle" aria-label="Pausar vídeo" data-video-toggle hidden>
+    <svg class="icon-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+    <svg class="icon-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"></path></svg>
+  </button>
+</div>
+
+<script>
+  // Arranca los bucles solo sin reduced-motion, y solo mientras están en
+  // pantalla (ahorra batería y datos en móvil).
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.phone-video').forEach((wrap) => {
+    const video = wrap.querySelector<HTMLVideoElement>('video[data-autoloop]');
+    const toggle = wrap.querySelector<HTMLButtonElement>('[data-video-toggle]');
+    if (!video || !toggle || wrap.dataset.ready) return;
+    wrap.dataset.ready = 'true';
+    toggle.hidden = false;
+
+    let userPaused = reduced;
+    const sync = () => {
+      const paused = video.paused;
+      toggle.setAttribute('aria-label', paused ? 'Reproducir vídeo' : 'Pausar vídeo');
+      wrap.classList.toggle('is-paused', paused);
+    };
+    const play = () => video.play().catch(() => sync());
+
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+    toggle.addEventListener('click', () => {
+      userPaused = !video.paused;
+      if (userPaused) video.pause();
+      else play();
+    });
+
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !userPaused) play();
+      else if (!entry.isIntersecting) video.pause();
+    }, { threshold: 0.25 }).observe(video);
+    sync();
+  });
+</script>

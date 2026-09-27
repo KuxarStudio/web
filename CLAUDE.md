@@ -104,7 +104,55 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   herramientas, Git/GitHub para todo. El backend de BlindNote (rankings
   globales) probablemente necesita algo tipo Firebase, pero no está
   confirmado — no lo des por hecho sin preguntar.
-- Contacto: `jack.projekts@gmail.com` — España, remoto.
+- Contacto: **`admin@kuxarstudio.com`** (confirmado por el usuario 2026-09-27;
+  sustituye a jack.projekts@gmail.com en la web). La web NO menciona
+  ubicación ("España", "en remoto"): el usuario pidió quitarlo (2026-09-27).
+
+**Decisiones confirmadas (2026-09-27, rediseño de la home):**
+- La home es del ESTUDIO, no de Parte. Parte (SaaS de presupuestos para
+  fontanería/reformas) tiene página propia `/parte/` y un bloque en la home
+  ("Para empresas"); nunca en el `<title>` de la home ni en el hero.
+- "Parte" como producto se escribe SIEMPRE con el componente
+  `web/src/components/Parte.astro` (wordmark con marca y color `--parte`),
+  para no confundirlo con la palabra común. No empezar frases con el verbo
+  "parte" cerca del producto. No tocar el uso común (p. ej. terminos.astro).
+- Voz del estudio: "nosotros". Son **3 desarrolladores independientes**. La
+  web no nombra a personas ni menciona el proceso de alta/forma legal (el
+  usuario pidió quitarlo). Nada de "Iñigo, persona física" en textos legales.
+  Recordar al usuario que la LSSI/RGPD exigen publicar titular con NIF y
+  dirección cuando la forma legal esté inscrita.
+- Devlog: solo entradas reales. Las de Kaku! y BlindNote se retiraron por
+  inventadas (2026-09-27); no crear entradas sin material del usuario.
+- BlindNote: juego de adivinar canciones (artista, título, año), por turnos
+  con amigos + rankings globales (confirmado).
+- Parte está **en diseño** (sin capturas ni prototipo): CTA "Pedir acceso"
+  (acceso anticipado), nunca "Probar".
+- Kaku! y BlindNote van siempre separados visualmente (cada uno su figura).
+- Nadir es un **RPG táctico de supervivencia** para móvil (no un "misterio");
+  fuente: su devlog real en kuxarstudio.github.io/nadir/, ya portado a
+  `web/src/content/devlog/nadir-log-00*.md`.
+- Medios reales en `web/public/media/` (vídeo en bucle de Kaku!, capturas de
+  BlindNote). Vídeo mp4/webm en vez de GIF. Nadir sin captura hasta tener arte.
+- **Dirección visual elegida (2026-09-27): "Vitrina"** en modo claro (marco
+  monocromo, el color lo ponen los productos con paneles de su interfaz
+  real, esquinas redondeadas, botones píldora). Modo oscuro = paleta
+  "Nocturno" (lienzo #0c0d10, paneles teñidos) con la MISMA tipografía y
+  formas. Sin acento de estudio (se descartó el lima). Tokens en
+  `web/src/styles/global.css`.
+- Tipografía: **Familjen Grotesk** (elegida por el usuario 2026-09-27), una
+  sola familia autoalojada. Motivo: evitar fuentes que "parecen hechas por IA".
+- Logo (propuesta aplicada, pendiente de OK final): K de tres piezas
+  (`web/src/components/Logo.astro`, variante "icon" para favicon/avatar).
+- Referencias B2B aportadas por el usuario: sonkeit.com, vertixsolutions.es,
+  arttalo-tech.com (competencia en software a medida). Tomar patrones de
+  conversión (CTA en cabecera, promesas comerciales, FAQ), no su estética.
+  No inventar promesas comerciales (precios, plazos, garantías).
+- Promesas comerciales CONFIRMADAS: en proyectos a medida el código es del
+  cliente al terminar; Parte será suscripción mensual. Nada más confirmado.
+- WhatsApp: el usuario no quiere publicar su móvil personal. Idea futura:
+  número dedicado con respuesta automática. Aviso dado: el AI Act (art. 50,
+  aplicable desde 2026-08-02) obliga a indicar que es un sistema automático;
+  no diseñarlo para ocultar que es un bot.
 - Org de GitHub: `https://github.com/KuxarStudio` (7 repos públicos a fecha de
   esta nota; revisar de nuevo si hace falta la lista actualizada).
 

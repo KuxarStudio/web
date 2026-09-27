@@ -6,16 +6,13 @@ interface Props {
 }
 const { entry } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const formattedDate = entry.data.date
-  .toISOString()
-  .slice(0, 10)
-  .replace(/-/g, '·');
+const date = entry.data.date;
+const formattedDate = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 ---
-<div class="log-row" data-reveal>
-  <span class="log-date">{formattedDate}</span>
-  <div>
-    <h3 class="log-title"><a href={`${base}devlog/${entry.slug}/`}>{entry.data.title}</a></h3>
-    <p class="log-excerpt">{entry.data.excerpt}</p>
-  </div>
-  <span class="log-tag">{entry.data.project}</span>
-</div>
+<li class="log-item">
+  <a class="log-link" href={`${base}devlog/${entry.slug}/`}>
+    <span class="log-meta"><time datetime={date.toISOString().slice(0, 10)}>{formattedDate}</time><br />{entry.data.project}</span>
+    <span class="log-title">{entry.data.title}</span>
+    <span class="log-excerpt">{entry.data.excerpt}</span>
+  </a>
+</li>

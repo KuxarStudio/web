@@ -12,22 +12,22 @@ const stats = await Promise.all(
 );
 ---
 <BaseLayout
-  title="Herramientas — Kuxar Studio"
-  description="Todas las herramientas de Kuxar Studio: utilidades offline como PDF-Blender, con su stack y enlaces de descarga."
+  title="Herramientas | Kuxar Studio"
+  description="Herramientas de Kuxar Studio: utilidades offline como PDF-Blender, con su stack y enlaces de descarga."
 >
   <Header />
-  <main>
-  <section class="archive">
-    <div class="wrap">
-      <div class="section-head">
-        <h1>Herramientas</h1>
-        <span class="section-num mono">{allTools.length} HERRAMIENTAS</span>
+  <main id="main">
+    <section class="section page-top">
+      <div class="wrap">
+        <div class="section-head">
+          <h1>Herramientas</h1>
+          <p>Utilidades que hacemos para nuestro propio trabajo y publicamos para quien las necesite.</p>
+        </div>
+        <div class="tools">
+          {allTools.map((tool, i) => <ToolCard tool={tool} stats={stats[i]} />)}
+        </div>
       </div>
-      <div class="tool-list" data-reveal-group>
-        {allTools.map((tool, i) => <ToolCard tool={tool} stats={stats[i]} />)}
-      </div>
-    </div>
-  </section>
+    </section>
   </main>
   <Footer />
 </BaseLayout>
