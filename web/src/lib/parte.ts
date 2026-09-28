@@ -19,7 +19,7 @@ export const parteSteps = [
   },
   {
     title: 'Lo envías desde el móvil',
-    desc: 'Un presupuesto profesional y editable, listo antes de subir a la furgoneta.',
+    desc: 'Un presupuesto profesional y editable, listo según sales de casa del cliente.',
   },
 ];
 
