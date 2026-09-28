@@ -7,6 +7,8 @@ image:
   src: "/media/gocita-agenda.webp"
   alt: "Agenda semanal de GoCita mostrando los días de la semana y el contador de citas."
 status: "entregado"
+demoUrl: "https://gocita-e5zf.vercel.app"
+demoNote: "demo con datos ficticios"
 featured: true
 order: 1
 ---
