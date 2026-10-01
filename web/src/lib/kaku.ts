@@ -2,14 +2,15 @@
 // la página visible y el JSON-LD (FAQPage) salen de aquí, así nunca divergen.
 // Solo hechos confirmados en la ficha de Google Play: no añadir precios,
 // plataformas ni cifras sin confirmar.
-export type Lang = 'es' | 'en';
+import { route, type Lang } from '../i18n';
+export type { Lang };
 
 export const KAKU_PLAY: Record<Lang, string> = {
   es: 'https://play.google.com/store/apps/details?id=com.kaku.kaku&hl=es_419',
   en: 'https://play.google.com/store/apps/details?id=com.kaku.kaku&hl=en',
 };
 
-export const kakuPaths: Record<Lang, string> = { es: '/kaku/', en: '/en/kaku/' };
+export const kakuPaths: Record<Lang, string> = { es: route('kaku', 'es'), en: route('kaku', 'en') };
 
 export interface KakuCopy {
   title: string;
@@ -135,8 +136,9 @@ export const kaku: Record<Lang, KakuCopy> = {
     ],
     moreHeading: 'More from Kuxar Studio',
     moreLinks: [
-      { label: 'All projects (Spanish)', href: '/portfolio/' },
-      { label: 'Studio devlog (Spanish)', href: '/devlog/' },
+      { label: 'All projects', href: '/en/projects/' },
+      { label: 'Studio devlog', href: '/en/devlog/' },
+      { label: 'About the studio', href: '/en/#studio' },
     ],
     breadcrumbHome: 'Home',
   },

@@ -1,0 +1,25 @@
+---
+import LegalPage from '../../../components/LegalPage.astro';
+import { BLINDNOTE_DELETION_TERM } from '../../../lib/legal';
+---
+<LegalPage
+  lang="en"
+  routeKey="blindnoteDelete"
+  title="BlindNote data deletion | Kuxar Studio"
+  heading="BlindNote account and data deletion"
+  description="How to revoke BlindNote’s access to your Spotify account and request deletion of technical identifiers."
+>
+  <p>At <strong>BlindNote</strong> we take your privacy seriously. Our application uses Spotify sign-in and does not store user credentials on servers of our own.</p>
+
+  <h2>How to revoke access</h2>
+  <p>To remove the link between your Spotify account and BlindNote, you can revoke access at any time from your Spotify dashboard:</p>
+  <ul>
+    <li>Go to <a href="https://www.spotify.com/account/apps/" target="_blank" rel="noopener">Spotify’s app settings</a>.</li>
+    <li>Find <strong>BlindNote</strong> and select “Remove access”.</li>
+  </ul>
+
+  <h2>Request to delete local data</h2>
+  <p>If you want us to delete any technical identifier (such as the advertising ID) associated with your use of the app, please email us at:</p>
+  <p><strong><a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></strong></p>
+  <p>We will process your request within a maximum of {BLINDNOTE_DELETION_TERM.en}.</p>
+</LegalPage>

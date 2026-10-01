@@ -1,0 +1,43 @@
+---
+import LegalPage from '../../../components/LegalPage.astro';
+import { KAKU_DELETION_TERM } from '../../../lib/legal';
+---
+<LegalPage
+  lang="en"
+  routeKey="kakuPrivacy"
+  title="Kaku! Privacy Policy | Kuxar Studio"
+  heading="Kaku! Privacy Policy"
+  description="Privacy policy of the Kaku! app: Google services used, how data is used and account deletion."
+  updated="01/10/2026"
+>
+  <p><em>This is a courtesy translation. The <a href="/kaku/privacy-policy/" hreflang="es" lang="es">Spanish version</a> is the original and prevails in case of any discrepancy.</em></p>
+  <p><strong>Kuxar Studio</strong> (“we”) operates the mobile application <strong>Kaku!</strong>. We take the privacy of our users and the protection of their data very seriously.</p>
+
+  <h2>1. Information and consent</h2>
+  <p>Kaku! is an educational application designed for practising Japanese writing. By using the application and signing in with Google, you accept the processing of information under this policy so that your progress can be kept.</p>
+
+  <h2>2. Third-party services and data collection</h2>
+  <p>Kaku! integrates Google services for its technical and commercial operation. These services may collect identifiers and technical data:</p>
+  <ul>
+    <li><strong>Google Sign-In (Firebase Auth):</strong> handles your account authentication. We collect your email address solely to identify your profile and let you recover your progress data on different devices.</li>
+    <li><strong>Google Play Billing:</strong> all “Sensei Pass” transactions are processed through Google’s official payment gateway. We do not store or have access to your bank or credit card details.</li>
+    <li><strong>Google Firestore:</strong> securely stores your progress (completed characters, streaks and statistics) linked to your account.</li>
+    <li><strong>Firebase Crashlytics and Analytics:</strong> collect crash reports and usage statistics in pseudonymised form to improve the stability of the application.</li>
+  </ul>
+
+  <h2>3. Use of data</h2>
+  <p>The data collected is used exclusively to:</p>
+  <ul>
+    <li>Provide the cloud sync functionality.</li>
+    <li>Verify your purchases (Sensei Pass, a one-time payment).</li>
+    <li>Improve the educational content based on the general use of the app.</li>
+  </ul>
+  <p><strong>Kuxar Studio will never sell your data to third parties or use it for advertising purposes unrelated to the application.</strong></p>
+
+  <h2>4. Deletion of data and account</h2>
+  <p>In compliance with Google Play policies, we guarantee your right to have your information deleted.</p>
+  <p>If you want to delete your Kaku! account and permanently erase all your progress data stored in Firestore, you can request it by sending an email to <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a> from the email address associated with your account, or from the <a href="/en/kaku/delete-account/">deletion request page</a>. We will process the deletion within a maximum of {KAKU_DELETION_TERM.en}.</p>
+
+  <h2>5. Contact</h2>
+  <p>If you have any question about your privacy, you can contact us at: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
+</LegalPage>

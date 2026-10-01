@@ -1,40 +1,40 @@
 ---
 import Logo from './Logo.astro';
 import Parte from './Parte.astro';
+import { route, otherLang, type Lang, type RouteKey } from '../i18n';
+import { ui } from '../i18n/ui';
 
 interface Props {
-  lang?: 'es' | 'en';
-  /** Ruta de la misma página en el otro idioma (muestra el selector de idioma). */
+  lang?: Lang;
+  /** Clave de la página: el selector de idioma apunta a su par en el otro idioma. */
+  routeKey?: RouteKey;
+  /** Ruta de la misma página en el otro idioma, a mano (páginas dinámicas). Tiene prioridad. */
   switchHref?: string;
 }
-const { lang = 'es', switchHref } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const { lang = 'es', routeKey, switchHref: switchHrefProp } = Astro.props;
+const t = ui[lang];
 const path = Astro.url.pathname;
+const other = otherLang(lang);
+const switchHref = switchHrefProp ?? (routeKey ? route(routeKey, other) : undefined);
 
-// Los enlaces a secciones de la home son absolutos (base + #ancla) para
-// que funcionen igual desde cualquier página.
+// Los enlaces a secciones de la home son absolutos (ruta de la home del idioma + #ancla)
+// para que funcionen igual desde cualquier página.
+const home = route('home', lang);
 interface NavLink { href: string; label: string; match?: string; product?: boolean; cta?: boolean }
-const linksEs: NavLink[] = [
-  { href: `${base}#proyectos`, label: 'Proyectos', match: `${base}portfolio/` },
-  { href: `${base}parte/`, label: 'Parte', match: `${base}parte/`, product: true },
-  { href: `${base}#estudio`, label: 'Estudio' },
-  { href: `${base}devlog/`, label: 'Devlog', match: `${base}devlog/` },
-  { href: '#contacto', label: 'Escríbenos', cta: true },
+const links: NavLink[] = [
+  { href: `${home}#${t.ids.projects}`, label: t.header.projects, match: route('projects', lang) },
+  { href: route('parte', lang), label: 'Parte', match: route('parte', lang), product: true },
+  { href: `${home}#${t.ids.studio}`, label: t.header.studio },
+  { href: route('devlog', lang), label: t.header.devlog, match: route('devlog', lang) },
+  { href: `#${t.ids.contact}`, label: t.header.contact, cta: true },
 ];
-// Versión inglesa: solo lo que existe traducido (Kaku!) y la home del estudio.
-const linksEn: NavLink[] = [
-  { href: `${base}en/kaku/`, label: 'Kaku!', match: `${base}en/kaku/` },
-  { href: base, label: 'Studio (ES)' },
-  { href: '#contacto', label: 'Contact', cta: true },
-];
-const links = lang === 'en' ? linksEn : linksEs;
 const isCurrent = (match?: string) => (match ? path.startsWith(match) : false);
 ---
 <header class="site-header">
   <div class="wrap headbar">
-    <a class="logo" href={base}><Logo class="logo-mark" />Kuxar Studio</a>
+    <a class="logo" href={home}><Logo class="logo-mark" />Kuxar Studio</a>
 
-    <nav class="site-nav" id="site-nav" aria-label={lang === 'en' ? 'Main' : 'Principal'}>
+    <nav class="site-nav" id="site-nav" aria-label={t.header.navLabel}>
       <ul>
         {links.map((link) => (
           <li>
@@ -48,14 +48,14 @@ const isCurrent = (match?: string) => (match ? path.startsWith(match) : false);
 
     <div class="head-actions">
       {switchHref && (
-        <a class="icon-btn lang-switch" href={switchHref} hreflang={lang === 'en' ? 'es' : 'en'} lang={lang === 'en' ? 'es' : 'en'} aria-label={lang === 'en' ? 'Ver en español' : 'View in English'}>{lang === 'en' ? 'ES' : 'EN'}</a>
+        <a class="icon-btn lang-switch" href={switchHref} hreflang={other} lang={other} aria-label={t.header.switchLabel}>{t.header.switchTo}</a>
       )}
-      <button type="button" id="theme-toggle" class="icon-btn" aria-label={lang === 'en' ? 'Switch to dark mode' : 'Cambiar a modo oscuro'} data-label-dark={lang === 'en' ? 'Switch to dark mode' : 'Cambiar a modo oscuro'} data-label-light={lang === 'en' ? 'Switch to light mode' : 'Cambiar a modo claro'}>
+      <button type="button" id="theme-toggle" class="icon-btn" aria-label={t.header.toDark} data-label-dark={t.header.toDark} data-label-light={t.header.toLight}>
         <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
         <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path></svg>
       </button>
       <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav">
-        <span class="menu-bars" aria-hidden="true"></span>{lang === 'en' ? 'Menu' : 'Menú'}
+        <span class="menu-bars" aria-hidden="true"></span>{t.header.menu}
       </button>
     </div>
   </div>

@@ -1,16 +1,15 @@
 ---
-interface Props { lang?: 'es' | 'en' }
+import { route, type Lang } from '../i18n';
+import { ui } from '../i18n/ui';
+interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const t = lang === 'en'
-  ? { label: 'Cookie notice', text: 'We use analytics cookies (Google Analytics) only if you accept them.', policy: 'Privacy policy (ES)', reject: 'Reject', accept: 'Accept' }
-  : { label: 'Aviso de cookies', text: 'Usamos cookies analíticas (Google Analytics) solo si las aceptas.', policy: 'Política de privacidad', reject: 'Rechazar', accept: 'Aceptar' };
+const t = ui[lang].cookie;
 ---
 <div id="cookie-banner" class="cookie-banner" hidden role="region" aria-label={t.label}>
   <div class="cookie-banner-inner">
     <p>
       {t.text}
-      <a href={`${base}privacidad/`}>{t.policy}</a>
+      <a href={route('privacy', lang)}>{t.policy}</a>
     </p>
     <div class="cookie-banner-actions">
       <button type="button" id="cookie-reject" class="btn btn-secondary">{t.reject}</button>

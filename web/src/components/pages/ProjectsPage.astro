@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import ProjectCard from '../ProjectCard.astro';
+import ToolCard from '../ToolCard.astro';
+import type { Lang } from '../../i18n';
+import { projectsPage } from '../../i18n/pages';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const copy = projectsPage[lang];
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const tools = await getCollection('tools');
+---
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="projects">
+  <Header lang={lang} routeKey="projects" />
+  <main id="main">
+    <section class="section page-top">
+      <div class="wrap">
+        <div class="section-head">
+          <h1>{copy.h1}</h1>
+          <p>{copy.intro}</p>
+        </div>
+        <div class="projects">
+          {projects.map((project, i) => <ProjectCard project={project} featured={i === 0} lang={lang} />)}
+        </div>
+        <div class="tools">
+          {tools.map((tool) => <ToolCard tool={tool} lang={lang} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
