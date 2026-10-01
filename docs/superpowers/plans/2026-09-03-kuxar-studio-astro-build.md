@@ -208,7 +208,7 @@ order: 1
 ---
 ```
 
-*(Sin `repo` ni `githubRepo`: el repositorio real, `KuxarStudio/nadir--protocol-1-star`, es privado — ver spec. No añadir ese campo a menos que el repo se haga público.)*
+*(Sin `repo` ni `githubRepo`: el repositorio real, `el repo privado de Nadir`, es privado — ver spec. No añadir ese campo a menos que el repo se haga público.)*
 
 - [ ] **Step 3: Create `web/src/content/projects/kaku.md`**
 
