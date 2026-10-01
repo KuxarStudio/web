@@ -82,6 +82,13 @@ def test_run_unavailable_when_grounding_not_in_free_tier():
     assert run.status == "unavailable" and "facturación" in run.message
 
 
+def test_run_unavailable_on_402_prepay_depleted():
+    err = FakeResponse(402, {"error": {"message": "Your prepayment credits are depleted."}})
+    session = FakeSession([err])
+    run = run_citations(CFG, "KEY", session=session, sleep=lambda s: None)
+    assert run.status == "unavailable" and "saldo" in run.message and len(session.calls) == 1
+
+
 def test_run_stops_after_three_consecutive_errors():
     errs = [FakeResponse(500, {"error": {"message": "boom"}}) for _ in range(20)]
     run = run_citations(CFG, "KEY", session=FakeSession(errs), sleep=lambda s: None)

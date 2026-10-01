@@ -48,9 +48,11 @@ Cada ejecución real guarda `snapshots/AAAA-MM-DD.json` en la rama **`seo-data`*
 ## Costes
 
 - Search Console, GitHub Actions y Resend (hasta 3.000 correos/mes): 0 €.
-- Gemini: el nivel gratuito **no incluye** búsqueda con Google. Con facturación activa
-  hay 5.000 búsquedas gratis al mes; el agente usa como mucho ~30 por semana. Si la
-  clave no tiene facturación, el módulo se salta y el informe lo avisa; lo demás funciona.
+- Gemini: el nivel gratuito **no incluye** búsqueda con Google, y la facturación es de
+  **prepago** (hay que cargar saldo; con saldo a 0 la API responde HTTP 402). El agente usa
+  como mucho ~30 búsquedas por semana. Por eso el módulo está desactivado por defecto
+  (`citations_enabled: false` en `projects.yaml`); actívalo cuando haya saldo y tráfico.
+  Si falla, el informe lo avisa y lo demás funciona.
 
 ## Límites a tener en cuenta
 

@@ -43,6 +43,22 @@ def test_send_failure_returns_error_and_keeps_snapshot_unsaved(tmp_path, monkeyp
     assert code == 1 and not (tmp_path / "data").exists()
 
 
+def test_citations_disabled_in_config_skips_without_calling_gemini(tmp_path, monkeypatch):
+    def boom(*a, **k):
+        raise AssertionError("no debe llamar a Gemini")
+
+    monkeypatch.setattr(cli, "run_citations", boom)
+    cfg = tmp_path / "p.yaml"
+    cfg.write_text(
+        "site: {domain: x.com, gsc_property: 'sc-domain:x.com'}\n"
+        "settings: {citations_enabled: false}\n"
+        "projects: [{id: a, name: A, prefixes: ['/']}]\n"
+    )
+    code = cli.run(args(tmp_path, config=str(cfg), dry_run=True, no_citations=False), env={"GEMINI_API_KEY": "k"}, today=date(2026, 10, 5))
+    assert code == 0
+    assert "desactivado" in (tmp_path / "out" / "report.txt").read_text()
+
+
 def test_missing_resend_key_fails(tmp_path):
     assert cli.run(args(tmp_path), env={}, today=date(2026, 10, 5)) == 1
 

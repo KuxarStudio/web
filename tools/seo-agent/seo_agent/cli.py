@@ -70,7 +70,11 @@ def run(args: argparse.Namespace, env: dict[str, str] | None = None, today: date
 
     # 2) Citaciones de IA (opcional).
     citation_run: CitationRun | None = None
-    if not args.no_citations:
+    if args.no_citations:
+        pass
+    elif not cfg.settings.citations_enabled:
+        citation_run = CitationRun("skipped", "Módulo de citaciones desactivado (citations_enabled: false en projects.yaml).")
+    else:
         citation_run = run_citations(cfg, env.get("GEMINI_API_KEY"))
         log.info("Citaciones: %s (%d resultados)", citation_run.status, len(citation_run.items))
 

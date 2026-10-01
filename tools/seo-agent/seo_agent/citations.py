@@ -122,6 +122,15 @@ def run_citations(
                 except ValueError:
                     detail = ""
                 error = f"HTTP {response.status_code}" + (f": {detail[:200]}" if detail else "")
+                if response.status_code == 402:
+                    # Facturación prepago de Gemini: sin saldo no hay llamadas, ni siquiera dentro de lo gratuito.
+                    return CitationRun(
+                        "unavailable",
+                        "Gemini no tiene saldo: la facturación es de prepago y el crédito está agotado o sin cargar. "
+                        "Añade crédito en AI Studio (Billing) o desactiva el módulo con citations_enabled: false. "
+                        f"Detalle: {error}",
+                        run.items,
+                    )
                 if response.status_code in (400, 401, 403, 404) and any(h in detail.lower() for h in UNAVAILABLE_HINTS):
                     return CitationRun(
                         "unavailable",
