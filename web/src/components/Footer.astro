@@ -2,36 +2,62 @@
 import Logo from './Logo.astro';
 import ContactForm from './ContactForm.astro';
 import Parte from './Parte.astro';
+interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const en = lang === 'en';
+const t = en
+  ? {
+      title: 'Get in touch',
+      intro: 'A question about Kaku!, our games and apps, or a custom project? Write to us and we will reply by email.',
+      about: 'Independent software studio. Games, learning apps, tools and software for businesses.',
+      nav: 'Footer',
+      projects: 'Projects (ES)', devlog: 'Devlog (ES)', studio: 'Studio (ES)', tools: 'Tools (ES)',
+      legal: 'Legal', privacy: 'Privacy (ES)', terms: 'Terms (ES)',
+    }
+  : {
+      title: 'Escríbenos',
+      intro: '',
+      about: 'Estudio de software independiente. Juegos, apps de aprendizaje, herramientas y software para empresas.',
+      nav: 'Pie de página',
+      projects: 'Proyectos', devlog: 'Devlog', studio: 'Estudio', tools: 'Herramientas',
+      legal: 'Legal', privacy: 'Privacidad', terms: 'Términos',
+    };
+const kakuHref = en ? `${base}en/kaku/` : `${base}kaku/`;
 ---
 <footer class="site-footer" id="contacto">
   <div class="wrap contact">
     <div class="contact-intro">
-      <h2>Escríbenos</h2>
-      <p>Un proyecto a medida, acceso anticipado a <Parte /> o una duda sobre nuestros juegos y apps. Te respondemos por email.</p>
+      <h2>{t.title}</h2>
+      {en ? (
+        <p>{t.intro}</p>
+      ) : (
+        <p>Un proyecto a medida, acceso anticipado a <Parte /> o una duda sobre nuestros juegos y apps. Te respondemos por email.</p>
+      )}
       <p><a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
     </div>
-    <ContactForm fallback={false} />
+    <ContactForm fallback={false} lang={lang} />
   </div>
 
   <div class="wrap foot">
     <div class="foot-about">
       <a class="logo" href={base}><Logo class="logo-mark" />Kuxar Studio</a>
-      <p>Estudio de software independiente. Juegos, apps de aprendizaje, herramientas y software para empresas.</p>
+      <p>{t.about}</p>
     </div>
-    <nav class="foot-nav" aria-label="Pie de página">
-      <a href={`${base}portfolio/`}>Proyectos</a>
-      <a href={`${base}parte/`}><Parte /></a>
-      <a href={`${base}herramientas/`}>Herramientas</a>
-      <a href={`${base}devlog/`}>Devlog</a>
-      <a href={`${base}#estudio`}>Estudio</a>
+    <nav class="foot-nav" aria-label={t.nav}>
+      <a href={kakuHref} translate="no">Kaku!</a>
+      <a href={`${base}portfolio/`} hreflang="es" lang="es">{t.projects}</a>
+      {!en && <a href={`${base}parte/`}><Parte /></a>}
+      <a href={`${base}herramientas/`} hreflang="es" lang="es">{t.tools}</a>
+      <a href={`${base}devlog/`} hreflang="es" lang="es">{t.devlog}</a>
+      <a href={`${base}#estudio`} hreflang="es" lang="es">{t.studio}</a>
       <a href="https://github.com/KuxarStudio" rel="noopener">GitHub</a>
     </nav>
     <div class="foot-bottom">
       <span>© 2026 Kuxar Studio</span>
-      <nav aria-label="Legal">
-        <a href={`${base}privacidad/`}>Privacidad</a>
-        <a href={`${base}terminos/`}>Términos</a>
+      <nav aria-label={t.legal}>
+        <a href={`${base}privacidad/`} hreflang="es" lang="es">{t.privacy}</a>
+        <a href={`${base}terminos/`} hreflang="es" lang="es">{t.terms}</a>
       </nav>
     </div>
   </div>
