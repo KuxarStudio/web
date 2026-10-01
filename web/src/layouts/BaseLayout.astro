@@ -8,17 +8,59 @@ export interface Props {
   description?: string;
   /** Imagen al compartir (ruta en public/, 1200x630). Por defecto la del estudio. */
   ogImage?: string;
+  /** Idioma de la página. Por defecto español. */
+  lang?: 'es' | 'en';
+  /** Versiones alternativas (hreflang). Rutas absolutas de sitio, p. ej. '/kaku/'. Incluye la propia página. */
+  alternates?: { hreflang: 'es' | 'en' | 'x-default'; path: string }[];
+  /** JSON-LD extra de la página (objeto o lista de objetos schema.org). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  ogType?: 'website' | 'article';
 }
 const {
   title,
   description = "Kuxar Studio, estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.",
   ogImage = 'og-image.png',
+  lang = 'es',
+  alternates = [],
+  jsonLd = [],
+  ogType = 'website',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(`${base}${ogImage.replace(/^\//, '')}`, Astro.site);
+
+// Entidad del estudio: se repite en todas las páginas para que buscadores y
+// asistentes de IA asocien siempre el sitio con la misma organización.
+const siteOrigin = Astro.site!.origin;
+const entityJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteOrigin}/#organization`,
+    name: 'Kuxar Studio',
+    url: `${siteOrigin}/`,
+    logo: `${siteOrigin}/favicon.svg`,
+    description: 'Estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.',
+    sameAs: [
+      'https://github.com/KuxarStudio',
+      'https://play.google.com/store/apps/developer?id=Kuxar+Studio',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteOrigin}/#website`,
+    url: `${siteOrigin}/`,
+    name: 'Kuxar Studio',
+    inLanguage: ['es', 'en'],
+    publisher: { '@id': `${siteOrigin}/#organization` },
+  },
+];
+const pageJsonLd = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const allJsonLd = [...entityJsonLd, ...pageJsonLd];
+const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
 ---
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,17 +68,20 @@ const ogImageURL = new URL(`${base}${ogImage.replace(/^\//, '')}`, Astro.site);
     <meta name="theme-color" content="#0c0d10" media="(prefers-color-scheme: dark)" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={new URL(alt.path, Astro.site)} />
+    ))}
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="Kuxar Studio" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={ogLocale} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -52,6 +97,7 @@ const ogImageURL = new URL(`${base}${ogImage.replace(/^\//, '')}`, Astro.site);
     <style is:global>
       @import "../styles/global.css";
     </style>
+    {allJsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />)}
     <Analytics />
   </head>
   <body>

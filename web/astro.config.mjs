@@ -16,7 +16,12 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Genera los xhtml:link de hreflang en el sitemap (/kaku/ <-> /en/kaku/).
+      i18n: { defaultLocale: 'es', locales: { es: 'es-ES', en: 'en-US' } },
+    }),
+  ],
   redirects: {
     '/portfolio.html': '/portfolio/',
     '/devlog.html': '/devlog/',

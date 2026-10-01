@@ -650,3 +650,14 @@ a,button,summary{touch-action:manipulation;}
 @media (min-width:768px){
   .faq dl{grid-template-columns:1fr 1fr;gap:14px;}
 }
+
+/* Selector de idioma (cabecera) */
+.lang-switch{font-size:0.8rem;font-weight:700;letter-spacing:0.04em;text-decoration:none;color:var(--ink);}
+.kaku-points{display:grid;gap:12px;margin-top:20px;padding:0;list-style:none;max-width:62ch;}
+.kaku-points li{padding:14px 16px;border-radius:var(--r-md);background:var(--surface-2);}
+.kaku-points b{display:block;}
+.kaku-points span{color:var(--ink-soft);}
+.kaku-hero{display:grid;gap:32px;align-items:center;}
+@media (min-width:860px){.kaku-hero{grid-template-columns:1.2fr 0.8fr;}}
+.kaku-answer{max-width:62ch;color:var(--ink-soft);font-size:1.05rem;line-height:1.6;}
+.kaku-answer + .kaku-answer{margin-top:12px;}

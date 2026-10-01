@@ -30,6 +30,8 @@ const projects = defineCollection({
     googlePlay: z.string().url().optional(),
     appStore: z.string().url().optional(),
     steam: z.string().url().optional(),
+    /** Ruta interna a la página propia del proyecto (ficha SEO), si existe. */
+    page: z.string().optional(),
     /** Ruta interna a la entrada de devlog más reciente del proyecto. */
     devlog: z.string().optional(),
     featured: z.boolean().default(true),
