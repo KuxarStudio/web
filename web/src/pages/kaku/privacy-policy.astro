@@ -1,5 +1,6 @@
 ---
 import LegalPage from '../../components/LegalPage.astro';
+import { KAKU_DELETION_TERM } from '../../lib/legal';
 ---
 <LegalPage
   title="Política de Privacidad de Kaku! | Kuxar Studio"
@@ -25,14 +26,14 @@ import LegalPage from '../../components/LegalPage.astro';
   <p>Los datos recopilados se utilizan exclusivamente para:</p>
   <ul>
     <li>Proveer la funcionalidad de sincronización en la nube.</li>
-    <li>Verificar el estado de tu suscripción o compras (Pase Sensei).</li>
+    <li>Verificar tus compras (Pase Sensei, un pago único).</li>
     <li>Mejorar el contenido educativo basado en el uso general de la app.</li>
   </ul>
   <p><strong>Kuxar Studio nunca venderá tus datos a terceros ni los utilizará para fines publicitarios ajenos a la aplicación.</strong></p>
 
   <h2>4. Eliminación de datos y cuenta</h2>
   <p>En cumplimiento con las políticas de Google Play, garantizamos tu derecho a la eliminación de información.</p>
-  <p>Si deseas eliminar tu cuenta de Kaku! y borrar de forma permanente todos tus datos de progreso almacenados en Firestore, puedes solicitarlo enviando un correo electrónico a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a> desde la dirección de correo asociada a tu cuenta, o desde la <a href="/kaku/delete-account/">página de solicitud de eliminación</a>. Procesaremos la eliminación en un plazo máximo de 7 días hábiles.</p>
+  <p>Si deseas eliminar tu cuenta de Kaku! y borrar de forma permanente todos tus datos de progreso almacenados en Firestore, puedes solicitarlo enviando un correo electrónico a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a> desde la dirección de correo asociada a tu cuenta, o desde la <a href="/kaku/delete-account/">página de solicitud de eliminación</a>. Procesaremos la eliminación en un plazo máximo de {KAKU_DELETION_TERM}.</p>
 
   <h2>5. Contacto</h2>
   <p>Si tienes cualquier duda sobre tu privacidad, puedes contactarnos en: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
