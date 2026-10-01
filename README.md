@@ -169,17 +169,3 @@ la URL de fallback `*.github.io/web/`, y desaparece igual con un dominio
 propio venga de donde venga. Además, `KuxarStudio/kuxarstudio.github.io` ya
 existe y sirve la web HTML actual en producción; sustituirla es una decisión
 deliberada y separada, no un efecto colateral de este cambio.
-
-## Estado de los repos de GitHub (para futuras sesiones)
-
-Verificado en esta sesión vía `gh repo list KuxarStudio`:
-
-| Proyecto | Repo | Visibilidad |
-|---|---|---|
-| Nadir: Protocol 1-Star | `KuxarStudio/nadir--protocol-1-star` | Privado |
-| Kaku! | `KuxarStudio/kaku-app` | Privado (ya publicado en Google Play) |
-| BlindNote | `KuxarStudio/Blindnote-Android` | Privado |
-| PDF-Blender | `KuxarStudio/PDF-Blender` | **Público** |
-
-Esta lista puede quedar desactualizada — antes de asumir que sigue siendo
-así, vuelve a comprobarlo con `gh repo list KuxarStudio`.

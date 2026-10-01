@@ -91,9 +91,9 @@ Org `KuxarStudio`, consultado vía `gh repo list` / `gh api` en esta sesión:
 
 | Proyecto | Repo | Visibilidad | Notas |
 |---|---|---|---|
-| Nadir: Protocol 1-Star | `KuxarStudio/nadir--protocol-1-star` | **Privado** | sin enlace público, sin stats de API |
-| Kaku! | `KuxarStudio/kaku-app` | **Privado** | ya publicado en Google Play: `https://play.google.com/store/apps/details?id=com.kaku.kaku&hl=es_419` |
-| BlindNote | `KuxarStudio/Blindnote-Android` | **Privado** | sin enlace público, sin stats de API |
+| Nadir: Protocol 1-Star | `el repo privado de Nadir` | **Privado** | sin enlace público, sin stats de API |
+| Kaku! | `el repo privado de Kaku!` | **Privado** | ya publicado en Google Play: `https://play.google.com/store/apps/details?id=com.kaku.kaku&hl=es_419` |
+| BlindNote | `el repo privado de BlindNote` | **Privado** | sin enlace público, sin stats de API |
 | PDF-Blender | `KuxarStudio/PDF-Blender` | **Público** | 0 estrellas, release real `v1.0` ("PDF Tools Pro") en `/releases/latest` |
 
 **Implicación de arquitectura:** el `GITHUB_TOKEN` automático de un workflow
