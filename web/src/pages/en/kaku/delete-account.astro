@@ -1,0 +1,27 @@
+---
+import LegalPage from '../../../components/LegalPage.astro';
+import { KAKU_DELETION_TERM } from '../../../lib/legal';
+---
+<LegalPage
+  lang="en"
+  routeKey="kakuDelete"
+  title="Delete your Kaku! account | Kuxar Studio"
+  heading="Kaku! data deletion request"
+  description="How to request the deletion of your Kaku! account and all your progress data."
+>
+  <p>We are sorry to see you go, but we fully respect your privacy and your control over your data.</p>
+
+  <h2>Warning: this action is irreversible</h2>
+  <p>When you delete your <strong>Kaku!</strong> account, the following will be permanently erased from our Firebase servers:</p>
+  <ul>
+    <li>Your Hiragana, Katakana and Kanji progress.</li>
+    <li>Your statistics and daily streak.</li>
+    <li>Your link to the Sensei Pass (if you had purchased it).</li>
+  </ul>
+
+  <h2>How to request it</h2>
+  <p>Send an email to the following address from the email you use in the app:</p>
+  <p><a class="btn btn-primary" href="mailto:admin@kuxarstudio.com?subject=Kaku account deletion request">Request deletion</a></p>
+  <p><strong>admin@kuxarstudio.com</strong></p>
+  <p>We will process your request within a maximum of {KAKU_DELETION_TERM.en}.</p>
+</LegalPage>

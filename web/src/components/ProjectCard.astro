@@ -2,33 +2,30 @@
 import type { CollectionEntry } from 'astro:content';
 import type { RepoStats } from '../lib/github';
 import PhoneVideo from './PhoneVideo.astro';
+import { localize, type Lang } from '../i18n';
+import { ui } from '../i18n/ui';
 
 interface Props {
   project: CollectionEntry<'projects'>;
   stats?: RepoStats | null;
   featured?: boolean;
+  lang?: Lang;
 }
-const { project, featured = false } = Astro.props;
+const { project, featured = false, lang = 'es' } = Astro.props;
+const t = ui[lang];
 const { title, category, status, description, stack, media, progress, googlePlay, appStore, steam, repo, devlog, page } =
-  project.data;
+  localize(project.data, lang);
 const base = import.meta.env.BASE_URL;
-
-const categoryLabel: Record<string, string> = { juego: 'Juego', aprendizaje: 'App de aprendizaje' };
-const statusLabel: Record<string, string> = {
-  'en-desarrollo': 'En desarrollo',
-  proximamente: 'Próximamente',
-  disponible: 'Disponible',
-};
 
 // Un enlace principal por tarjeta (tienda > repo), más el devlog si existe.
 const primaryLink = googlePlay
-  ? { href: googlePlay, label: 'Descargar en Google Play' }
+  ? { href: googlePlay, label: t.project.googlePlay }
   : appStore
-    ? { href: appStore, label: 'Descargar en App Store' }
+    ? { href: appStore, label: t.project.appStore }
     : steam
-      ? { href: steam, label: 'Ver en Steam' }
+      ? { href: steam, label: t.project.steam }
       : repo
-        ? { href: repo, label: 'Ver repositorio' }
+        ? { href: repo, label: t.project.repo }
         : null;
 const pageHref = page ? `${base}${page.replace(/^\//, '')}` : null;
 const devlogHref = devlog ? `${base}${devlog.replace(/^\//, '')}` : null;
@@ -38,7 +35,7 @@ const mediaSrc = (src: string) => `${base}${src.replace(/^\//, '')}`;
   <div class="project-media" data-product={project.slug}>
     {media ? (
       media.kind === 'video' ? (
-        <PhoneVideo src={mediaSrc(media.src)} webm={media.webm && mediaSrc(media.webm)} poster={media.poster && mediaSrc(media.poster)} label={media.alt} />
+        <PhoneVideo src={mediaSrc(media.src)} webm={media.webm && mediaSrc(media.webm)} poster={media.poster && mediaSrc(media.poster)} label={media.alt} lang={lang} />
       ) : (
         <div class="phone"><img src={mediaSrc(media.src)} alt={media.alt} loading="lazy" decoding="async" width="540" height="1098" /></div>
       )
@@ -46,7 +43,7 @@ const mediaSrc = (src: string) => `${base}${src.replace(/^\//, '')}`;
       <div
         class="project-tile"
         role={progress ? 'img' : undefined}
-        aria-label={progress ? `${title}: fase ${progress.current} de ${progress.total}, ${progress.label}` : undefined}
+        aria-label={progress ? `${title}: ${t.project.phase(progress.current, progress.total, progress.label)}` : undefined}
         aria-hidden={progress ? undefined : 'true'}
       >
         <b translate="no">{title.split(':')[0]}</b>
@@ -57,22 +54,22 @@ const mediaSrc = (src: string) => `${base}${src.replace(/^\//, '')}`;
                 <li class:list={[floor <= progress.current && 'done', floor === progress.current && 'now']}></li>
               ))}
             </ol>
-            <span>Fase {progress.current} de {progress.total}<br />{progress.label}</span>
+            <span>{t.project.phaseShort(progress.current, progress.total)}<br />{progress.label}</span>
           </>
         )}
       </div>
     )}
   </div>
   <div class="project-body">
-    <p class="project-meta"><b>{categoryLabel[category]}</b> · {stack.join(' / ')}</p>
+    <p class="project-meta"><b>{t.category[category]}</b> · {stack.join(' / ')}</p>
     <h3 translate="no">{title}</h3>
-    <p><span class:list={['status', `status-${status}`]}>{statusLabel[status]}</span></p>
+    <p><span class:list={['status', `status-${status}`]}>{t.status[status]}</span></p>
     <p class="project-desc">{description}</p>
     {(primaryLink || devlogHref || pageHref) && (
       <p class="project-links">
-        {pageHref && <a class="text-link" href={pageHref}>Más sobre {title.split(':')[0]} →</a>}
+        {pageHref && <a class="text-link" href={pageHref}>{t.project.more(title.split(':')[0])}</a>}
         {primaryLink && <a class="text-link" href={primaryLink.href} rel="noopener">{primaryLink.label} →</a>}
-        {devlogHref && <a class="text-link" href={devlogHref}>Leer el devlog →</a>}
+        {devlogHref && <a class="text-link" href={devlogHref}>{t.project.readDevlog}</a>}
       </p>
     )}
   </div>

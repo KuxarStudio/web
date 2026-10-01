@@ -1,33 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import DevlogPostPage from '../../components/pages/DevlogPostPage.astro';
+import type { Lang } from '../../i18n';
 
 export async function getStaticPaths() {
   const entries = await getCollection('devlog');
-  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+  const translated = new Set((await getCollection('devlog-en')).map((e) => e.slug));
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry, available: (translated.has(entry.slug) ? ['es', 'en'] : ['es']) as Lang[] },
+  }));
 }
-
-const { entry } = Astro.props;
-const { Content } = await entry.render();
-const base = import.meta.env.BASE_URL;
-const date = entry.data.date;
-const formattedDate = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const { entry, available } = Astro.props;
 ---
-<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.excerpt}>
-  <Header />
-  <main id="main">
-    <article class="section page-top">
-      <div class="wrap post">
-        <p class="post-meta"><time datetime={date.toISOString().slice(0, 10)}>{formattedDate}</time> · {entry.data.project}</p>
-        <h1 class="post-title">{entry.data.title}</h1>
-        <div class="post-body">
-          <Content />
-        </div>
-        <p class="post-back"><a class="text-link" href={`${base}devlog/`}>← Volver al devlog</a></p>
-      </div>
-    </article>
-  </main>
-  <Footer />
-</BaseLayout>
+<DevlogPostPage lang="es" entry={entry} available={available} />

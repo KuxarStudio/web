@@ -1,21 +1,25 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { RepoStats } from '../lib/github';
+import { localize, type Lang } from '../i18n';
+import { ui } from '../i18n/ui';
 
 interface Props {
   tool: CollectionEntry<'tools'>;
   stats?: RepoStats | null;
+  lang?: Lang;
 }
-const { tool, stats } = Astro.props;
-const { title, description, stack, installCmd, repo, releasesUrl } = tool.data;
+const { tool, stats, lang = 'es' } = Astro.props;
+const t = ui[lang].tool;
+const { title, description, stack, installCmd, repo, releasesUrl } = localize(tool.data, lang);
 ---
 <article class="tool">
-  <p class="project-meta"><b>Herramienta</b> · {stack.join(' / ')}{stats && stats.stars > 0 && ` · ★ ${stats.stars}`}</p>
+  <p class="project-meta"><b>{t.label}</b> · {stack.join(' / ')}{stats && stats.stars > 0 && ` · ★ ${stats.stars}`}</p>
   <h3>{title}</h3>
   <p class="tool-desc">{description}</p>
   <code class="tool-cmd">{installCmd}</code>
   <div class="tool-actions">
-    {releasesUrl && <a class="btn btn-secondary" href={releasesUrl} rel="noopener">Descargar</a>}
-    {repo && <a class="text-link" href={repo} rel="noopener">Código en GitHub →</a>}
+    {releasesUrl && <a class="btn btn-secondary" href={releasesUrl} rel="noopener">{t.download}</a>}
+    {repo && <a class="text-link" href={repo} rel="noopener">{t.code}</a>}
   </div>
 </article>

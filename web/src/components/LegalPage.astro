@@ -4,6 +4,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import type { Lang, RouteKey } from '../i18n';
+import { ui } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -12,21 +14,23 @@ interface Props {
   /** Texto libre, p. ej. "01/10/2026". */
   updated?: string;
   noindex?: boolean;
+  lang?: Lang;
+  routeKey?: RouteKey;
 }
-const { title, heading, description, updated, noindex = true } = Astro.props;
+const { title, heading, description, updated, noindex = true, lang = 'es', routeKey } = Astro.props;
 ---
-<BaseLayout title={title} description={description} noindex={noindex}>
-  <Header />
+<BaseLayout title={title} description={description} noindex={noindex} lang={lang} routeKey={routeKey}>
+  <Header lang={lang} routeKey={routeKey} />
   <main id="main">
     <section class="legal">
       <div class="wrap">
         <div class="section-head">
           <h1>{heading}</h1>
-          {updated && <span class="section-num mono">Última actualización: {updated}</span>}
+          {updated && <span class="section-num mono">{ui[lang].legal.updated}: {updated}</span>}
         </div>
         <div class="legal-body"><slot /></div>
       </div>
     </section>
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </BaseLayout>

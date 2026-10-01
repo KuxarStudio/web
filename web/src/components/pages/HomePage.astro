@@ -1,0 +1,183 @@
+---
+// Home del estudio, reutilizable para ES y EN (copy en i18n/home.ts).
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import ProjectCard from '../ProjectCard.astro';
+import DevlogRow from '../DevlogRow.astro';
+import ToolCard from '../ToolCard.astro';
+import ParteFeature from '../ParteFeature.astro';
+import Parte from '../Parte.astro';
+import PhoneVideo from '../PhoneVideo.astro';
+import WorkCard from '../WorkCard.astro';
+import { getRepoStats } from '../../lib/github';
+import { parte } from '../../lib/parte';
+import { devlogCollection } from '../../lib/devlog';
+import { route, type Lang } from '../../i18n';
+import { home as homeCopy, bold } from '../../i18n/home';
+import { ui } from '../../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const copy = homeCopy[lang];
+const t = ui[lang];
+const base = import.meta.env.BASE_URL;
+const suffix = lang === 'en' ? '-en' : '';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const work = (await getCollection('work'))
+  .filter((w) => w.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const latestDevlog = (await devlogCollection(lang)).slice(0, 3);
+
+// Trocea textos planos para pintar el producto con su wordmark en el template.
+const splitParte = (text: string) => text.split(/(\bParte\b)/);
+const faq = parte[lang].faq;
+
+// FAQPage para buscadores: mismo contenido que la lista visible.
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: lang,
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const tools = await getCollection('tools');
+const toolStats = await Promise.all(
+  tools.map((tool) => (tool.data.githubRepo ? getRepoStats(tool.data.githubRepo) : Promise.resolve(null)))
+);
+---
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="home" ogImage={lang === 'en' ? 'og-image-en.png' : 'og-image.png'}>
+  <Header lang={lang} routeKey="home" />
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="hero-title">{copy.h1}</h1>
+          <p class="hero-sub">{copy.heroSub}</p>
+          <nav class="doors" aria-label={copy.doorsLabel}>
+            <a class="door" href={`#${t.ids.projects}`}>
+              <span class="door-title">{copy.doors.games.title}</span>
+              <span class="door-desc">{copy.doors.games.desc}</span>
+              <span class="door-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="door door-parte" href={`#${t.ids.business}`}>
+              <span class="door-title">{copy.doors.business.title}</span>
+              <span class="door-desc">{splitParte(copy.doors.business.desc).map((part) => (part === 'Parte' ? <Parte /> : part))}</span>
+              <span class="door-arrow" aria-hidden="true">→</span>
+            </a>
+          </nav>
+        </div>
+        <div class="hero-media">
+          <figure class="hero-shot" data-product="kaku">
+            <PhoneVideo
+              src={`${base}media/kaku-trazos${suffix}.mp4`}
+              webm={`${base}media/kaku-trazos${suffix}.webm`}
+              poster={`${base}media/kaku-poster${suffix}.webp`}
+              label={copy.kakuVideoLabel}
+              lang={lang}
+            />
+            <figcaption translate="no">Kaku!</figcaption>
+          </figure>
+          <figure class="hero-shot" data-product="blindnote">
+            <div class="phone">
+              <img src={`${base}media/blindnote-resultados.webp`} alt={copy.blindnoteAlt} width="540" height="1098" decoding="async" />
+            </div>
+            <figcaption translate="no">BlindNote</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id={t.ids.projects} aria-labelledby="proyectos-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="proyectos-title">{copy.projects.h2}</h2>
+          <p>{copy.projects.intro}</p>
+        </div>
+        <div class="projects">
+          {projects.map((project, i) => <ProjectCard project={project} featured={i === 0} lang={lang} />)}
+        </div>
+        <div class="tools">
+          {tools.map((tool, i) => <ToolCard tool={tool} stats={toolStats[i]} lang={lang} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id={t.ids.business} aria-labelledby="empresas-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="empresas-title">{copy.business.h2}</h2>
+          <p>{copy.business.intro}</p>
+        </div>
+        <ParteFeature lang={lang} />
+        {work.length > 0 && (
+          <div class="works">
+            {work.map((item) => <WorkCard work={item} featured={work.length === 1} lang={lang} />)}
+          </div>
+        )}
+        <div class="custom-work">
+          <h3>{copy.business.custom.h3}</h3>
+          <p set:html={bold(copy.business.custom.text)} />
+          <a class="text-link" href={`#${t.ids.contact}`}>{copy.business.custom.link}</a>
+        </div>
+        <div class="faq">
+          <h3 id="faq-title">{copy.business.faqTitle}</h3>
+          <dl aria-labelledby="faq-title">
+            {faq.map((item) => (
+              <div>
+                <dt>{splitParte(item.q).map((part) => (part === 'Parte' ? <Parte /> : part))}</dt>
+                <dd>{splitParte(item.a).map((part) => (part === 'Parte' ? <Parte /> : part))}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+      </div>
+    </section>
+
+    <section class="section" id={t.ids.studio} aria-labelledby="estudio-title">
+      <div class="wrap studio">
+        <div>
+          <div class="section-head">
+            <h2 id="estudio-title">{copy.studio.h2}</h2>
+          </div>
+          <div class="studio-text">
+            {copy.studio.paragraphs.map((p) => <p set:html={bold(p)} />)}
+          </div>
+        </div>
+        <dl class="stack">
+          <div><dt>{copy.studio.stack.complexGames}</dt><dd>{lang === 'en' ? 'Godot and GDScript' : 'Godot y GDScript'}</dd></div>
+          <div><dt>{copy.studio.stack.lightApps}</dt><dd>{lang === 'en' ? 'Flutter and Dart' : 'Flutter y Dart'}</dd></div>
+          <div><dt>{copy.studio.stack.tools}</dt><dd>Python</dd></div>
+          <div><dt>{copy.studio.stack.code}</dt><dd><a class="text-link" href="https://github.com/KuxarStudio" rel="noopener">github.com/KuxarStudio</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id={t.ids.devlog} aria-labelledby="devlog-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="devlog-title">{copy.devlog.h2}</h2>
+          <p>{copy.devlog.intro}</p>
+        </div>
+        <ul class="log-list">
+          {latestDevlog.map((entry) => <DevlogRow entry={entry} lang={lang} />)}
+        </ul>
+        <p class="section-foot"><a class="text-link" href={route('devlog', lang)}>{t.devlog.all}</a></p>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>

@@ -11,4 +11,11 @@ demoUrl: "https://gocita-e5zf.vercel.app"
 demoNote: "demo con datos ficticios"
 featured: true
 order: 1
+en:
+  client: "Auto repair shop"
+  description: "Custom app to manage the workshop's appointment schedule: weekly view, creating and editing appointments, and one-click WhatsApp reminders to the customer."
+  stack: ["Next.js", "Cloud database", "Vercel"]
+  image:
+    alt: "GoCita weekly schedule showing the days of the week and the appointment counter."
+  demoNote: "demo with fictional data"
 ---

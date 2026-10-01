@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import DevlogPostPage from '../../../components/pages/DevlogPostPage.astro';
+import type { Lang } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('devlog-en');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry, available: ['es', 'en'] as Lang[] } }));
+}
+const { entry, available } = Astro.props;
+---
+<DevlogPostPage lang="en" entry={entry} available={available} />

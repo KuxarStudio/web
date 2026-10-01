@@ -3,6 +3,7 @@ import LegalPage from '../../components/LegalPage.astro';
 import { BLINDNOTE_DELETION_TERM } from '../../lib/legal';
 ---
 <LegalPage
+  routeKey="blindnoteDelete"
   title="Eliminación de datos de BlindNote | Kuxar Studio"
   heading="Eliminación de cuentas y datos de BlindNote"
   description="Cómo revocar el acceso de BlindNote a tu cuenta de Spotify y solicitar el borrado de identificadores técnicos."
@@ -19,5 +20,5 @@ import { BLINDNOTE_DELETION_TERM } from '../../lib/legal';
   <h2>Solicitud de borrado de datos locales</h2>
   <p>Si deseas que eliminemos cualquier identificador técnico (como el ID de publicidad) asociado a tu uso de la app, por favor envíanos un correo a:</p>
   <p><strong><a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></strong></p>
-  <p>Procesaremos tu solicitud en un plazo máximo de {BLINDNOTE_DELETION_TERM}.</p>
+  <p>Procesaremos tu solicitud en un plazo máximo de {BLINDNOTE_DELETION_TERM.es}.</p>
 </LegalPage>

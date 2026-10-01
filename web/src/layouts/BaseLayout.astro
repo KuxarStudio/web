@@ -2,6 +2,8 @@
 import fontUrl from '../assets/fonts/familjen-grotesk-latin-wght-normal.woff2?url';
 import Analytics from '../components/Analytics.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import { alternatesFor, type Alternate, type Lang, type RouteKey } from '../i18n';
+import { ui } from '../i18n/ui';
 
 export interface Props {
   title: string;
@@ -9,21 +11,28 @@ export interface Props {
   /** Imagen al compartir (ruta en public/, 1200x630). Por defecto la del estudio. */
   ogImage?: string;
   /** Idioma de la página. Por defecto español. */
-  lang?: 'es' | 'en';
-  /** Versiones alternativas (hreflang). Rutas absolutas de sitio, p. ej. '/kaku/'. Incluye la propia página. */
-  alternates?: { hreflang: 'es' | 'en' | 'x-default'; path: string }[];
+  lang?: Lang;
+  /** Clave de la página en el mapa de rutas (src/i18n): deriva el hreflang solo. */
+  routeKey?: RouteKey;
+  /** Versiones alternativas (hreflang) a mano, para páginas dinámicas. Rutas absolutas de sitio, p. ej. '/kaku/'. Incluye la propia página. */
+  alternates?: Alternate[];
   /** JSON-LD extra de la página (objeto o lista de objetos schema.org). */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   ogType?: 'website' | 'article';
   /** No indexar (páginas legales de apps, solicitudes de borrado...). */
   noindex?: boolean;
 }
+const DESCRIPTION = {
+  es: 'Kuxar Studio, estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.',
+  en: 'Kuxar Studio, an independent software studio: games, learning apps, tools and software for businesses.',
+};
 const {
   title,
-  description = "Kuxar Studio, estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.",
-  ogImage = 'og-image.png',
   lang = 'es',
-  alternates = [],
+  description = DESCRIPTION[lang],
+  ogImage = 'og-image.png',
+  routeKey,
+  alternates = routeKey ? alternatesFor(routeKey) : [],
   jsonLd = [],
   ogType = 'website',
   noindex = false,
@@ -105,7 +114,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
     <Analytics />
   </head>
   <body>
-    <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Saltar al contenido'}</a>
+    <a class="skip-link" href="#main">{ui[lang].skipLink}</a>
     <slot />
     <CookieBanner lang={lang} />
   </body>

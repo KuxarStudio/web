@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import { devlogPath, formatDate, route, alternatesFromPaths, otherLang, type Lang } from '../../i18n';
+import { ui } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  entry: CollectionEntry<'devlog'> | CollectionEntry<'devlog-en'>;
+  /** Idiomas en los que existe esta entrada (para hreflang y selector de idioma). */
+  available: Lang[];
+}
+const { lang, entry, available } = Astro.props;
+const { Content } = await entry.render();
+const date = entry.data.date;
+const t = ui[lang];
+
+const hasOther = available.includes(otherLang(lang));
+const paths = { es: devlogPath(entry.slug, 'es'), en: devlogPath(entry.slug, 'en') };
+// Si no hay traducción, la entrada no declara alternativas y el selector
+// de idioma lleva al índice del devlog del otro idioma.
+const alternates = hasOther ? alternatesFromPaths(paths) : [];
+const switchHref = hasOther ? paths[otherLang(lang)] : route('devlog', otherLang(lang));
+---
+<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.excerpt} lang={lang} alternates={alternates}>
+  <Header lang={lang} switchHref={switchHref} />
+  <main id="main">
+    <article class="section page-top">
+      <div class="wrap post">
+        <p class="post-meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time> · {entry.data.project}</p>
+        <h1 class="post-title">{entry.data.title}</h1>
+        <div class="post-body">
+          <Content />
+        </div>
+        <p class="post-back"><a class="text-link" href={route('devlog', lang)}>{t.devlog.back}</a></p>
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

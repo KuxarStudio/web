@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  lang="en"
+  routeKey="privacy"
+  title="Privacy Policy | Kuxar Studio"
+  description="How Kuxar Studio handles the personal data of people who visit kuxarstudio.com: controller, purpose, cookies and GDPR rights."
+>
+  <Header lang="en" routeKey="privacy" />
+  <main id="main">
+    <section class="legal">
+      <div class="wrap">
+        <div class="section-head">
+          <h1>Privacy Policy</h1>
+          <span class="section-num mono">Last updated: 27/09/2026</span>
+        </div>
+        <div class="legal-body">
+          <p><em>This is a courtesy translation. The <a href="/privacidad/" hreflang="es" lang="es">Spanish version</a> is the original and prevails in case of any discrepancy.</em></p>
+          <p>This policy explains what data Kuxar Studio processes through <strong>kuxarstudio.com</strong>, for what purpose, and what rights you have in relation to it, in accordance with Regulation (EU) 2016/679 (GDPR) and Spanish Organic Law 3/2018 (LOPDGDD).</p>
+          <p>The mobile apps (Kaku!, BlindNote) have their own policies: see the <a href="/en/privacy/apps/">apps privacy policy</a>.</p>
+
+          <h2>1. Data controller</h2>
+          <ul>
+            <li><strong>Owner:</strong> Kuxar Studio, a team of three independent developers</li>
+            <li><strong>Contact:</strong> <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></li>
+            <li><strong>Activity:</strong> independent software development (games, learning apps, tools and software for businesses)</li>
+          </ul>
+
+          <h2>2. Data processed and purpose</h2>
+          <p>This site is mainly informational: a project portfolio, a devlog and a tools hub. There is no user registration. The only personal data we collect is what you voluntarily send us to get in touch.</p>
+          <ul>
+            <li><strong>Contact by email:</strong> if you write to <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>, we process your email address and the content of your message solely to reply to you. That mailbox is handled through Cloudflare Email Routing, which forwards messages to the team’s inboxes.</li>
+            <li><strong>Contact form:</strong> if you use the form on the website, we process your name, your email and the content of your message solely to reply to you. Submission is handled through <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a>, which forwards it to us by email; we do not store this data in any database of our own.</li>
+            <li><strong>Web analytics (Google Analytics 4):</strong> if you accept analytics cookies in the website banner, we use Google Analytics to understand, in aggregate, how the site is used (pages visited, origin, device). It is not activated until you give your explicit consent.</li>
+            <li><strong>Theme preference (light/dark):</strong> we store your choice of visual theme in your own browser (<code>localStorage</code>). It is technical data, it does not identify you and it is necessary for the site to work, so it does not require consent.</li>
+          </ul>
+
+          <h2>3. Legal basis</h2>
+          <ul>
+            <li>Replying to email enquiries: legitimate interest in handling the communications you send us (Art. 6.1.f GDPR).</li>
+            <li>Analytics (Google Analytics 4): your explicit consent, which you can withdraw at any time by deleting your browser cookies or rejecting the banner (Art. 6.1.a GDPR).</li>
+          </ul>
+
+          <h2>4. Cookies and similar technologies</h2>
+          <p>When you enter kuxarstudio.com we ask you to accept or reject analytics cookies before they are activated. If you reject, no Google Analytics script is loaded and no analytics cookie is installed. You can change your decision at any time by deleting your browser’s cookies for this domain, which will make the banner appear again.</p>
+          <table class="legal-table">
+            <thead><tr><th>Cookie / storage</th><th>Purpose</th><th>Type</th><th>Duration</th></tr></thead>
+            <tbody>
+              <tr><td><code>kuxar-consent</code></td><td>Remember your decision on the cookie banner</td><td>Technical (localStorage)</td><td>Until you clear the site data</td></tr>
+              <tr><td><code>kuxar-theme</code></td><td>Remember whether you prefer the light or dark theme</td><td>Technical (localStorage)</td><td>Until you clear the site data</td></tr>
+              <tr><td><code>_ga</code>, <code>_ga_*</code></td><td>Audience measurement (Google Analytics 4)</td><td>Analytics, only with consent</td><td>Up to 2 years (managed by Google)</td></tr>
+            </tbody>
+          </table>
+
+          <h2>5. Recipients and processors</h2>
+          <ul>
+            <li><strong>GitHub Pages</strong> (GitHub, Inc.) — static hosting of the site.</li>
+            <li><strong>Cloudflare</strong> — email routing to <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>.</li>
+            <li><strong>Google Ireland Limited (Google Analytics 4)</strong> — web analytics, only if you accept cookies.</li>
+          </ul>
+          <p>Data is not sold or disclosed to third parties for commercial purposes.</p>
+
+          <h2>6. International transfers</h2>
+          <p>Google may process analytics data on servers outside the European Economic Area. Google participates in the <em>EU-U.S. Data Privacy Framework</em>, a mechanism recognised by the European Commission as an adequate safeguard for these transfers.</p>
+
+          <h2>7. Retention period</h2>
+          <p>Emails are kept for as long as necessary to handle your enquiry. Google Analytics 4 data is kept according to the property’s retention settings (by default, up to 14 months).</p>
+
+          <h2>8. Your rights</h2>
+          <p>You may exercise your rights of access, rectification, erasure, objection, restriction and portability at any time by writing to <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>. If you believe your request has not been properly handled, you may lodge a complaint with the <a href="https://www.aepd.es" target="_blank" rel="noopener">Spanish Data Protection Agency (AEPD)</a>.</p>
+
+          <h2>9. Security</h2>
+          <p>The site is served entirely over HTTPS. As a static site with no database of its own and no user panel, the exposure of personal data is minimal.</p>
+
+          <h2>10. Minors</h2>
+          <p>This site is not specifically aimed at minors. We do not actively request data from minors through it.</p>
+
+          <h2>11. Changes to this policy</h2>
+          <p>We may update this policy to reflect legal changes or changes to the site itself. The date of the latest update always appears in the header of this page.</p>
+
+          <h2>12. Contact</h2>
+          <p>For any question about this policy or your data: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang="en" />
+</BaseLayout>
