@@ -1,0 +1,105 @@
+# Registro de proyectos del agente SEO de Kuxar Studio.
+# Añadir un juego, app o herramienta nueva = añadir un bloque en `projects`.
+# El reparto de páginas entre proyectos usa el PREFIJO MÁS LARGO que coincida,
+# así que "studio" (prefijo "/") recoge todo lo que no reclame otro proyecto.
+site:
+  domain: kuxarstudio.com
+  gsc_property: "sc-domain:kuxarstudio.com"   # propiedad de dominio
+  languages: [es, en]
+
+settings:
+  window_days: 28            # ventana de comparación (y la anterior, del mismo tamaño)
+  gsc_lag_days: 3            # Search Console tarda ~2-3 días en consolidar datos
+  quick_win_min_position: 8
+  quick_win_max_position: 20
+  min_impressions: 5
+  max_jobs: 8
+  citations_max_queries: 30  # consultas con búsqueda de Google por semana
+  citations_model: gemini-flash-latest
+  citations_delay_seconds: 4
+
+projects:
+  - id: studio
+    name: Kuxar Studio
+    prefixes: ["/", "/en/"]
+    key_pages: ["/", "/en/", "/portfolio/", "/en/projects/"]
+    brand_terms: ["Kuxar Studio", "kuxarstudio"]
+    questions:
+      es:
+        - "¿Quién puede desarrollarme una app a medida para mi pequeña empresa?"
+        - "¿Cuánto tarda y qué necesito para encargar una app a medida para un taller?"
+      en:
+        - "Who can build a custom app for my small business?"
+    evidence_prompt: "¿Qué dato real del último encargo a medida (tiempo, problema resuelto, resultado medido) puedes contar sin nombrar al cliente?"
+    outreach_ideas: ["directorios de estudios independientes", "comunidades de desarrolladores", "listas de software a medida"]
+
+  - id: kaku
+    name: Kaku!
+    prefixes: ["/kaku/", "/en/kaku/"]
+    key_pages: ["/kaku/", "/en/kaku/"]
+    store_url: "https://play.google.com/store/apps/details?id=com.kaku.kaku"
+    brand_terms: ["Kaku!", "kuxarstudio"]
+    competitors: [skritter.com, renshuu.org, wanikani.com, tofugu.com]
+    questions:
+      es:
+        - "¿Cuál es la mejor app para aprender a escribir hiragana y katakana?"
+        - "¿Cómo practicar el orden de los trazos en japonés con el móvil?"
+        - "app para aprender a escribir kanji a mano JLPT N5"
+      en:
+        - "best app to learn to write hiragana and katakana by hand"
+        - "app to practice Japanese stroke order on a phone"
+        - "how to learn to handwrite JLPT N5 kanji with an app"
+    evidence_prompt: "Haz un test real con 3 personas que empiecen de cero: ¿cuánto tardan en escribir bien las 46 hiragana con Kaku!? Publica el número y cómo lo mediste."
+    outreach_ideas: ["AlternativeTo", "listas de recursos para aprender japonés", "comunidades de estudiantes de japonés (respetando sus normas de autopromoción)"]
+
+  - id: parte
+    name: Parte
+    prefixes: ["/parte/", "/en/parte/"]
+    key_pages: ["/parte/", "/en/parte/"]
+    brand_terms: ["Parte", "kuxarstudio"]
+    questions:
+      es:
+        - "¿Qué app sirve para hacer presupuestos de obra desde el móvil?"
+        - "software de presupuestos para fontaneros e instaladores"
+      en:
+        - "best quote app for plumbers and renovation contractors"
+        - "how to write a renovation quote on site from a phone"
+    evidence_prompt: "Parte está en diseño: cronometra cuánto tarda hoy un presupuesto de una visita real (de las notas al envío) y comparte el dato como punto de partida."
+    outreach_ideas: ["foros y comunidades de instaladores y reformistas", "asociaciones de fontanería y reformas"]
+
+  - id: blindnote
+    name: BlindNote
+    prefixes: ["/blindnote/", "/en/blindnote/"]
+    brand_terms: ["BlindNote", "kuxarstudio"]
+    questions:
+      es:
+        - "juegos para adivinar canciones con amigos por turnos en el móvil"
+      en:
+        - "song guessing game app to play with friends, guess artist title and year"
+    evidence_prompt: "BlindNote aún no tiene página propia: ¿qué dato de las partidas de prueba (canciones por turno, aciertos de año) puedes medir para su ficha?"
+    outreach_ideas: ["AlternativeTo", "listas de juegos de música para móvil"]
+
+  - id: nadir
+    name: "Nadir: Protocol 1-Star"
+    prefixes: ["/devlog/nadir-", "/en/devlog/nadir-"]
+    brand_terms: ["Nadir", "kuxarstudio"]
+    questions:
+      es:
+        - "RPG táctico de supervivencia para móvil con muerte permanente"
+      en:
+        - "tactical survival RPG for mobile with permadeath"
+    evidence_prompt: "Mide algo real de Nadir (p. ej. cuántas partidas dura de media subir la torre en tus pruebas) y cuéntalo en el devlog."
+    outreach_ideas: ["itch.io", "comunidades de desarrollo indie en Godot", "listas de RPG tácticos para móvil"]
+
+  - id: pdf-blender
+    name: PDF-Blender
+    prefixes: ["/herramientas/", "/en/tools/"]
+    key_pages: ["/herramientas/", "/en/tools/"]
+    brand_terms: ["PDF-Blender", "kuxarstudio"]
+    questions:
+      es:
+        - "herramienta offline para unir y dividir PDF sin subirlos a internet"
+      en:
+        - "offline tool to merge, split and compare PDF files without uploading them"
+    evidence_prompt: "Compara PDF-Blender con una alternativa online en una tarea real (unir 20 PDF de 50 páginas) y publica tiempos y qué sale de tu equipo en cada caso."
+    outreach_ideas: ["listas 'awesome' de herramientas Python", "PyPI y GitHub Topics", "comunidades de administración y finanzas"]

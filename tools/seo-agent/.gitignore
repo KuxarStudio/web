@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+.venv/
+# Salidas locales del agente (el histórico real vive en la rama seo-data)
+data/
+out/
+*.local.json

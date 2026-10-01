@@ -10,9 +10,12 @@ sin repetir preguntas ya respondidas.
 
 - `web/` → la web principal del estudio (Fase 1, lo que estamos construyendo ahora).
   Todos los recursos de la web (código, assets, config) van aquí dentro, no en la raíz.
+- `tools/seo-agent/` → agente SEO semanal multiproyecto (Python, informe por
+  correo; ver su README). Registro de proyectos en `tools/seo-agent/projects.yaml`:
+  al añadir un juego/app/herramienta a la web, añádelo ahí también.
 - Carpetas futuras (Fase 2, aún no creadas): `games/` (Godot/GDScript), `apps/`
-  (Android/Flutter), `tools/` (Python), quizá `docs/` para specs compartidas.
-  No las crees todavía a menos que se pida explícitamente — de momento solo `web/`.
+  (Android/Flutter), quizá `docs/` para specs compartidas. No las crees todavía a
+  menos que se pida explícitamente.
 
 ## Fase 1 — la web (`web/`)
 
