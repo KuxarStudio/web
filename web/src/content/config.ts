@@ -11,6 +11,9 @@ const media = z.object({
   alt: z.string(),
 });
 
+// Traducciones al inglés de un elemento de contenido, dentro del propio
+// frontmatter (`en:`). Solo los campos de texto; el resto se hereda. Ver
+// `localize()` en src/i18n/index.ts.
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
@@ -36,6 +39,18 @@ const projects = defineCollection({
     devlog: z.string().optional(),
     featured: z.boolean().default(true),
     order: z.number().default(0),
+    en: z
+      .object({
+        description: z.string().optional(),
+        media: media.partial().optional(),
+        progress: z.object({ label: z.string() }).optional(),
+        /** Ruta de la página propia en inglés (p. ej. /en/kaku/). */
+        page: z.string().optional(),
+        /** Ruta de la entrada de devlog en inglés. */
+        devlog: z.string().optional(),
+        googlePlay: z.string().url().optional(),
+      })
+      .optional(),
   }),
 });
 
@@ -49,18 +64,23 @@ const tools = defineCollection({
     repo: z.string().url().optional(),
     githubRepo: z.string().optional(),
     releasesUrl: z.string().url().optional(),
+    en: z.object({ description: z.string() }).optional(),
   }),
 });
 
-const devlog = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-    project: z.string(),
-    excerpt: z.string(),
-  }),
+const devlogSchema = z.object({
+  title: z.string(),
+  date: z.date(),
+  project: z.string(),
+  excerpt: z.string(),
 });
+
+const devlog = defineCollection({ type: 'content', schema: devlogSchema });
+
+// Entradas del devlog en inglés. Mismo nombre de archivo que la entrada en
+// español = mismo slug (/devlog/x/ <-> /en/devlog/x/). Una entrada sin
+// traducir simplemente no aparece en la versión inglesa.
+const devlogEn = defineCollection({ type: 'content', schema: devlogSchema });
 
 // Encargos para clientes (software a medida). Distinto de `projects`
 // (productos propios: juegos y apps, con marco de móvil y enlaces a tienda):
@@ -82,7 +102,16 @@ const work = defineCollection({
     demoNote: z.string().optional(),
     featured: z.boolean().default(true),
     order: z.number().default(0),
+    en: z
+      .object({
+        client: z.string().optional(),
+        description: z.string().optional(),
+        stack: z.array(z.string()).optional(),
+        image: z.object({ alt: z.string() }).optional(),
+        demoNote: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 
-export const collections = { projects, tools, devlog, work };
+export const collections = { projects, tools, devlog, 'devlog-en': devlogEn, work };

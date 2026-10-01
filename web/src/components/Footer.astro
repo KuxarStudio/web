@@ -2,35 +2,19 @@
 import Logo from './Logo.astro';
 import ContactForm from './ContactForm.astro';
 import Parte from './Parte.astro';
-interface Props { lang?: 'es' | 'en' }
+import { route, type Lang } from '../i18n';
+import { ui } from '../i18n/ui';
+interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const en = lang === 'en';
-const t = en
-  ? {
-      title: 'Get in touch',
-      intro: 'A question about Kaku!, our games and apps, or a custom project? Write to us and we will reply by email.',
-      about: 'Independent software studio. Games, learning apps, tools and software for businesses.',
-      nav: 'Footer',
-      projects: 'Projects (ES)', devlog: 'Devlog (ES)', studio: 'Studio (ES)', tools: 'Tools (ES)',
-      legal: 'Legal', privacy: 'Privacy (ES)', terms: 'Terms (ES)',
-    }
-  : {
-      title: 'Escríbenos',
-      intro: '',
-      about: 'Estudio de software independiente. Juegos, apps de aprendizaje, herramientas y software para empresas.',
-      nav: 'Pie de página',
-      projects: 'Proyectos', devlog: 'Devlog', studio: 'Estudio', tools: 'Herramientas',
-      legal: 'Legal', privacy: 'Privacidad', terms: 'Términos',
-    };
-const kakuHref = en ? `${base}en/kaku/` : `${base}kaku/`;
+const t = ui[lang];
+const home = route('home', lang);
 ---
-<footer class="site-footer" id="contacto">
+<footer class="site-footer" id={t.ids.contact}>
   <div class="wrap contact">
     <div class="contact-intro">
-      <h2>{t.title}</h2>
-      {en ? (
-        <p>{t.intro}</p>
+      <h2>{t.footer.title}</h2>
+      {lang === 'en' ? (
+        <p>A custom project, early access to <Parte />, or a question about our games and apps? Write to us and we will reply by email.</p>
       ) : (
         <p>Un proyecto a medida, acceso anticipado a <Parte /> o una duda sobre nuestros juegos y apps. Te respondemos por email.</p>
       )}
@@ -41,23 +25,23 @@ const kakuHref = en ? `${base}en/kaku/` : `${base}kaku/`;
 
   <div class="wrap foot">
     <div class="foot-about">
-      <a class="logo" href={base}><Logo class="logo-mark" />Kuxar Studio</a>
-      <p>{t.about}</p>
+      <a class="logo" href={home}><Logo class="logo-mark" />Kuxar Studio</a>
+      <p>{t.footer.about}</p>
     </div>
-    <nav class="foot-nav" aria-label={t.nav}>
-      <a href={kakuHref} translate="no">Kaku!</a>
-      <a href={`${base}portfolio/`} hreflang="es" lang="es">{t.projects}</a>
-      {!en && <a href={`${base}parte/`}><Parte /></a>}
-      <a href={`${base}herramientas/`} hreflang="es" lang="es">{t.tools}</a>
-      <a href={`${base}devlog/`} hreflang="es" lang="es">{t.devlog}</a>
-      <a href={`${base}#estudio`} hreflang="es" lang="es">{t.studio}</a>
+    <nav class="foot-nav" aria-label={t.footer.nav}>
+      <a href={route('kaku', lang)} translate="no">Kaku!</a>
+      <a href={route('projects', lang)}>{t.footer.projects}</a>
+      <a href={route('parte', lang)}><Parte /></a>
+      <a href={route('tools', lang)}>{t.footer.tools}</a>
+      <a href={route('devlog', lang)}>{t.footer.devlog}</a>
+      <a href={`${home}#${t.ids.studio}`}>{t.footer.studio}</a>
       <a href="https://github.com/KuxarStudio" rel="noopener">GitHub</a>
     </nav>
     <div class="foot-bottom">
       <span>© 2026 Kuxar Studio</span>
-      <nav aria-label={t.legal}>
-        <a href={`${base}privacidad/`} hreflang="es" lang="es">{t.privacy}</a>
-        <a href={`${base}terminos/`} hreflang="es" lang="es">{t.terms}</a>
+      <nav aria-label={t.footer.legal}>
+        <a href={route('privacy', lang)}>{t.footer.privacy}</a>
+        <a href={route('terms', lang)}>{t.footer.terms}</a>
       </nav>
     </div>
   </div>

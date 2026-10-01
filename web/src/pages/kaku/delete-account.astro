@@ -3,6 +3,7 @@ import LegalPage from '../../components/LegalPage.astro';
 import { KAKU_DELETION_TERM } from '../../lib/legal';
 ---
 <LegalPage
+  routeKey="kakuDelete"
   title="Eliminar cuenta de Kaku! | Kuxar Studio"
   heading="Solicitud de eliminación de datos de Kaku!"
   description="Cómo solicitar la eliminación de tu cuenta de Kaku! y de todos tus datos de progreso."
@@ -21,5 +22,5 @@ import { KAKU_DELETION_TERM } from '../../lib/legal';
   <p>Envía un correo electrónico a la siguiente dirección desde el email que usas en la aplicación:</p>
   <p><a class="btn btn-primary" href="mailto:admin@kuxarstudio.com?subject=Solicitud de eliminación de cuenta Kaku">Solicitar eliminación</a></p>
   <p><strong>admin@kuxarstudio.com</strong></p>
-  <p>Procesaremos tu solicitud en un plazo máximo de {KAKU_DELETION_TERM}.</p>
+  <p>Procesaremos tu solicitud en un plazo máximo de {KAKU_DELETION_TERM.es}.</p>
 </LegalPage>
