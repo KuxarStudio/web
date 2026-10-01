@@ -38,6 +38,7 @@ class Settings:
     quick_win_max_position: float = 20.0
     min_impressions: int = 5
     max_jobs: int = 8
+    citations_enabled: bool = True
     citations_max_queries: int = 30
     citations_model: str = "gemini-flash-latest"
     citations_delay_seconds: float = 4.0
