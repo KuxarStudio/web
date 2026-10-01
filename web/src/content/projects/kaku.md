@@ -11,6 +11,7 @@ media:
   poster: "/media/kaku-poster.webp"
   alt: "Kaku! en un móvil: el hiragana あ se traza paso a paso hasta completarlo."
 googlePlay: "https://play.google.com/store/apps/details?id=com.kaku.kaku&hl=es_419"
+page: "/kaku/"
 featured: true
 order: 1
 ---
