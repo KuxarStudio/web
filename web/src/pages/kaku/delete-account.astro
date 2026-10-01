@@ -1,5 +1,6 @@
 ---
 import LegalPage from '../../components/LegalPage.astro';
+import { KAKU_DELETION_TERM } from '../../lib/legal';
 ---
 <LegalPage
   title="Eliminar cuenta de Kaku! | Kuxar Studio"
@@ -20,5 +21,5 @@ import LegalPage from '../../components/LegalPage.astro';
   <p>Envía un correo electrónico a la siguiente dirección desde el email que usas en la aplicación:</p>
   <p><a class="btn btn-primary" href="mailto:admin@kuxarstudio.com?subject=Solicitud de eliminación de cuenta Kaku">Solicitar eliminación</a></p>
   <p><strong>admin@kuxarstudio.com</strong></p>
-  <p>Procesaremos tu solicitud en un plazo máximo de 7 días naturales.</p>
+  <p>Procesaremos tu solicitud en un plazo máximo de {KAKU_DELETION_TERM}.</p>
 </LegalPage>
