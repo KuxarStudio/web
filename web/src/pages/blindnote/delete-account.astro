@@ -1,5 +1,6 @@
 ---
 import LegalPage from '../../components/LegalPage.astro';
+import { BLINDNOTE_DELETION_TERM } from '../../lib/legal';
 ---
 <LegalPage
   title="Eliminación de datos de BlindNote | Kuxar Studio"
@@ -18,5 +19,5 @@ import LegalPage from '../../components/LegalPage.astro';
   <h2>Solicitud de borrado de datos locales</h2>
   <p>Si deseas que eliminemos cualquier identificador técnico (como el ID de publicidad) asociado a tu uso de la app, por favor envíanos un correo a:</p>
   <p><strong><a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></strong></p>
-  <p>Procesaremos tu solicitud en un plazo máximo de 48 horas.</p>
+  <p>Procesaremos tu solicitud en un plazo máximo de {BLINDNOTE_DELETION_TERM}.</p>
 </LegalPage>
