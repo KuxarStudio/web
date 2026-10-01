@@ -105,7 +105,7 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   globales) probablemente necesita algo tipo Firebase, pero no está
   confirmado — no lo des por hecho sin preguntar.
 - Contacto: **`admin@kuxarstudio.com`** (confirmado por el usuario 2026-09-27;
-  sustituye a jack.projekts@gmail.com en la web). La web NO menciona
+  sustituye al email anterior en la web). La web NO menciona
   ubicación ("España", "en remoto"): el usuario pidió quitarlo (2026-09-27).
 
 **Decisiones confirmadas (2026-09-27, rediseño de la home):**
@@ -118,7 +118,7 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   "parte" cerca del producto. No tocar el uso común (p. ej. terminos.astro).
 - Voz del estudio: "nosotros". Son **3 desarrolladores independientes**. La
   web no nombra a personas ni menciona el proceso de alta/forma legal (el
-  usuario pidió quitarlo). Nada de "Iñigo, persona física" en textos legales.
+  usuario pidió quitarlo). Nada de nombres de personas físicas en textos legales.
   Recordar al usuario que la LSSI/RGPD exigen publicar titular con NIF y
   dirección cuando la forma legal esté inscrita.
 - Devlog: solo entradas reales. Las de Kaku! y BlindNote se retiraron por
