@@ -18,6 +18,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Páginas legales de las apps y solicitudes de borrado: accesibles por URL
+      // (las pide Google Play) pero sin interés de búsqueda.
+      filter: (page) => !/\/(privacy-policy|delete-account)\/$|\/privacidad\/apps\/$/.test(page),
       // Genera los xhtml:link de hreflang en el sitemap (/kaku/ <-> /en/kaku/).
       i18n: { defaultLocale: 'es', locales: { es: 'es-ES', en: 'en-US' } },
     }),
