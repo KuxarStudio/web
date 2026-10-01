@@ -8,41 +8,60 @@ interface Props {
   /** Muestra el email como alternativa si no hay access key. Desactívalo si
    *  el contenedor ya enseña el email (p. ej. el footer). */
   fallback?: boolean;
+  lang?: 'es' | 'en';
 }
-const { fallback = true } = Astro.props;
+const { fallback = true, lang = 'es' } = Astro.props;
+const t = {
+  es: {
+    name: 'Nombre', email: 'Email', message: 'Mensaje', send: 'Enviar', sending: 'Enviando…',
+    ok: 'Mensaje enviado. Te responderemos por email lo antes posible.',
+    okBot: 'Mensaje enviado. Te responderemos por email.',
+    fail: 'No se pudo enviar el mensaje. Prueba de nuevo o escríbenos a admin@kuxarstudio.com.',
+    subject: 'Nuevo mensaje desde kuxarstudio.com', from: 'Formulario de kuxarstudio.com',
+    honey: 'No rellenar este campo', direct: 'Escríbenos directamente a',
+  },
+  en: {
+    name: 'Name', email: 'Email', message: 'Message', send: 'Send', sending: 'Sending…',
+    ok: "Message sent. We'll reply by email as soon as we can.",
+    okBot: "Message sent. We'll reply by email.",
+    fail: 'The message could not be sent. Try again or write to us at admin@kuxarstudio.com.',
+    subject: 'New message from kuxarstudio.com (English page)', from: 'kuxarstudio.com form (EN)',
+    honey: 'Leave this field empty', direct: 'Write to us directly at',
+  },
+}[lang];
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 ---
 {accessKey ? (
-  <form id="contact-form" class="contact-form" novalidate>
+  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail}>
     <input type="hidden" name="access_key" value={accessKey} />
-    <input type="hidden" name="subject" id="cf-subject" value="Nuevo mensaje desde kuxarstudio.com" />
-    <input type="hidden" name="from_name" value="Formulario de kuxarstudio.com" />
+    <input type="hidden" name="subject" id="cf-subject" value={t.subject} />
+    <input type="hidden" name="from_name" value={t.from} />
 
     {/* Honeypot: campo invisible para humanos. Si llega relleno, es un bot. */}
     <div class="contact-honeypot" aria-hidden="true">
-      <label for="cf-website">No rellenar este campo</label>
+      <label for="cf-website">{t.honey}</label>
       <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
     </div>
 
     <div class="form-field">
-      <label for="cf-name">Nombre</label>
+      <label for="cf-name">{t.name}</label>
       <input type="text" id="cf-name" name="name" required maxlength="100" autocomplete="name" />
     </div>
     <div class="form-field">
-      <label for="cf-email">Email</label>
+      <label for="cf-email">{t.email}</label>
       <input type="email" id="cf-email" name="email" required maxlength="200" autocomplete="email" spellcheck="false" />
     </div>
     <div class="form-field">
-      <label for="cf-message">Mensaje</label>
+      <label for="cf-message">{t.message}</label>
       <textarea id="cf-message" name="message" required maxlength="5000"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary" id="cf-submit">Enviar</button>
+    <button type="submit" class="btn btn-primary" id="cf-submit">{t.send}</button>
     <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
   </form>
 ) : fallback && (
   <p class="contact-fallback">
-    Escríbenos directamente a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>.
+    {t.direct} <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a>.
   </p>
 )}
 
@@ -70,7 +89,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
       // éxito para no darle pistas de que fue detectado, y no enviamos nada.
       const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
       if (honeypot && honeypot.value.trim() !== '') {
-        statusEl.textContent = 'Mensaje enviado. Te responderemos por email.';
+        statusEl.textContent = form.dataset.okBot || '';
         statusEl.className = 'form-status success';
         form.reset();
         return;
@@ -82,7 +101,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
       }
 
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando…';
+      submitBtn.textContent = form.dataset.sending || '';
       statusEl.textContent = '';
       statusEl.className = 'form-status';
 
@@ -98,18 +117,18 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
         const data = await res.json();
 
         if (data.success) {
-          statusEl.textContent = 'Mensaje enviado. Te responderemos por email lo antes posible.';
+          statusEl.textContent = form.dataset.ok || '';
           statusEl.className = 'form-status success';
           form.reset();
         } else {
           throw new Error(data.message || 'Error desconocido');
         }
       } catch (err) {
-        statusEl.textContent = 'No se pudo enviar el mensaje. Prueba de nuevo o escríbenos a admin@kuxarstudio.com.';
+        statusEl.textContent = form.dataset.fail || '';
         statusEl.className = 'form-status error';
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar';
+        submitBtn.textContent = form.dataset.send || '';
       }
     });
   })();

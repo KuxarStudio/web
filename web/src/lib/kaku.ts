@@ -30,14 +30,14 @@ export const kaku: Record<Lang, KakuCopy> = {
   es: {
     title: 'Kaku! | Aprende a escribir hiragana, katakana y kanji',
     description:
-      'Kaku! es una app para Android que reconoce tus trazos en tiempo real. Aprende hiragana, katakana y kanji N5 escribiéndolos, gratis para empezar.',
+      'Kaku! es una app para Android que reconoce tus trazos en tiempo real. Aprende hiragana y katakana gratis y desbloquea los kanji por 2,39 € (pago único).',
     h1: 'Kaku!: aprende a escribir hiragana, katakana y kanji en el móvil',
-    lead: 'Traza cada carácter con el dedo y Kaku! reconoce tus trazos en tiempo real: te dice al momento si el orden y la forma son correctos. Gratis para empezar.',
+    lead: 'Traza cada carácter con el dedo y Kaku! reconoce tus trazos en tiempo real: te dice al momento si el orden y la forma son correctos. Hiragana y katakana gratis; los kanji, con un pago único de 2,39 €.',
     cta: 'Descargar en Google Play',
     videoAlt: 'Kaku! en un móvil: el hiragana あ se traza paso a paso hasta completarlo.',
     stepsHeading: '¿Cómo funciona Kaku!?',
     steps: [
-      { title: 'Elige un carácter', desc: 'Hiragana, katakana o kanji del nivel JLPT N5.' },
+      { title: 'Elige un carácter', desc: 'Hiragana, katakana o kanji del nivel JLPT N5 (los kanji, con el Sensei Pass).' },
       { title: 'Trázalo con el dedo', desc: 'Sigues el orden de trazos correcto, trazo a trazo.' },
       { title: 'Recibe corrección al instante', desc: 'Kaku! valida el orden y la forma de cada trazo y te corrige en el momento.' },
     ],
@@ -54,8 +54,8 @@ export const kaku: Record<Lang, KakuCopy> = {
         id: 'gratis',
         q: '¿Kaku! es gratis?',
         a: [
-          'Puedes empezar gratis: hiragana, katakana y los kanji básicos N5 están disponibles sin pagar.',
-          'Las colecciones avanzadas de kanji y otras funciones extra se desbloquean con el Sensei Pass, un pago único. La idea es que empezar no cueste nada y que desbloquear los kanji cueste poco.',
+          'Puedes empezar gratis: hiragana y katakana están disponibles sin pagar.',
+          'Los kanji se desbloquean con el Sensei Pass, un pago único de 2,39 € (sin suscripción, para siempre). Empezar no cuesta nada, y desbloquear los kanji cuesta lo que un café.',
         ],
       },
       {
@@ -87,14 +87,14 @@ export const kaku: Record<Lang, KakuCopy> = {
   en: {
     title: 'Kaku! | Learn to write hiragana, katakana and kanji',
     description:
-      'Kaku! is an Android app that recognizes your strokes in real time. Learn hiragana, katakana and JLPT N5 kanji by writing them. Free to start.',
+      'Kaku! is an Android app that recognizes your strokes in real time. Learn hiragana and katakana for free and unlock kanji with a one-time €2.39 purchase.',
     h1: 'Kaku!: learn to write hiragana, katakana and kanji on your phone',
-    lead: 'Trace each character with your finger and Kaku! recognizes your strokes in real time, telling you right away whether the stroke order and shape are correct. Free to start.',
+    lead: 'Trace each character with your finger and Kaku! recognizes your strokes in real time, telling you right away whether the stroke order and shape are correct. Hiragana and katakana are free; kanji unlock with a one-time €2.39 purchase.',
     cta: 'Get it on Google Play',
     videoAlt: 'Kaku! on a phone: the hiragana あ is traced stroke by stroke until complete.',
     stepsHeading: 'How does Kaku! work?',
     steps: [
-      { title: 'Pick a character', desc: 'Hiragana, katakana or JLPT N5 kanji.' },
+      { title: 'Pick a character', desc: 'Hiragana, katakana or JLPT N5 kanji (kanji need the Sensei Pass).' },
       { title: 'Trace it with your finger', desc: 'You follow the correct stroke order, one stroke at a time.' },
       { title: 'Get instant correction', desc: 'Kaku! checks the order and shape of every stroke and corrects you on the spot.' },
     ],
@@ -111,8 +111,8 @@ export const kaku: Record<Lang, KakuCopy> = {
         id: 'free',
         q: 'Is Kaku! free?',
         a: [
-          'You can start for free: hiragana, katakana and the basic N5 kanji are available without paying.',
-          'Advanced kanji collections and extra features are unlocked with the Sensei Pass, a one-time purchase. Starting costs nothing, and unlocking kanji costs little.',
+          'You can start for free: hiragana and katakana are available without paying.',
+          'Kanji are unlocked with the Sensei Pass, a one-time purchase of €2.39 (no subscription, yours for good). Starting costs nothing, and unlocking kanji costs about the price of a coffee.',
         ],
       },
       {

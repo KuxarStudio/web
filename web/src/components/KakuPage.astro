@@ -28,8 +28,11 @@ const jsonLd = [
     applicationCategory: 'EducationalApplication',
     downloadUrl: KAKU_PLAY[lang],
     installUrl: KAKU_PLAY[lang],
-    image: abs('/og-image.png'),
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: lang === 'es' ? 'Gratis, con compra única opcional (Sensei Pass)' : 'Free, with an optional one-time purchase (Sensei Pass)' },
+    image: abs(lang === 'es' ? '/og-kaku.png' : '/og-kaku-en.png'),
+    offers: [
+      { '@type': 'Offer', name: lang === 'es' ? 'Hiragana y katakana' : 'Hiragana and katakana', price: '0', priceCurrency: 'EUR' },
+      { '@type': 'Offer', name: 'Sensei Pass', description: lang === 'es' ? 'Desbloquea los kanji. Pago único.' : 'Unlocks kanji. One-time purchase.', price: '2.39', priceCurrency: 'EUR' },
+    ],
     author: { '@id': `${site}/#organization` },
     publisher: { '@id': `${site}/#organization` },
   },
@@ -58,6 +61,7 @@ const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '
   title={copy.title}
   description={copy.description}
   lang={lang}
+  ogImage={lang === 'es' ? 'og-kaku.png' : 'og-kaku-en.png'}
   alternates={[
     { hreflang: 'es', path: kakuPaths.es },
     { hreflang: 'en', path: kakuPaths.en },
@@ -114,5 +118,5 @@ const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '
       </div>
     </section>
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </BaseLayout>

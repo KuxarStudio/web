@@ -39,7 +39,7 @@ const entityJsonLd = [
     '@id': `${siteOrigin}/#organization`,
     name: 'Kuxar Studio',
     url: `${siteOrigin}/`,
-    logo: `${siteOrigin}/favicon.svg`,
+    logo: { '@type': 'ImageObject', url: `${siteOrigin}/logo.png`, width: 512, height: 512 },
     description: 'Estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.',
     sameAs: [
       'https://github.com/KuxarStudio',
@@ -101,8 +101,8 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
     <Analytics />
   </head>
   <body>
-    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Saltar al contenido'}</a>
     <slot />
-    <CookieBanner />
+    <CookieBanner lang={lang} />
   </body>
 </html>
