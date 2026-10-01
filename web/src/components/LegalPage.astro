@@ -1,0 +1,32 @@
+---
+// Plantilla de páginas legales (políticas de apps, borrado de cuenta).
+// Mismo marco visual que privacidad.astro / terminos.astro.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+  /** Texto libre, p. ej. "01/10/2026". */
+  updated?: string;
+  noindex?: boolean;
+}
+const { title, heading, description, updated, noindex = true } = Astro.props;
+---
+<BaseLayout title={title} description={description} noindex={noindex}>
+  <Header />
+  <main id="main">
+    <section class="legal">
+      <div class="wrap">
+        <div class="section-head">
+          <h1>{heading}</h1>
+          {updated && <span class="section-num mono">Última actualización: {updated}</span>}
+        </div>
+        <div class="legal-body"><slot /></div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
