@@ -6,4 +6,6 @@ installCmd: "pip install pdf-blender"
 repo: "https://github.com/KuxarStudio/PDF-Blender"
 githubRepo: "KuxarStudio/PDF-Blender"
 releasesUrl: "https://github.com/KuxarStudio/PDF-Blender/releases/latest"
+en:
+  description: "Merge, split, unlock and compare corporate PDFs. 100% offline: nothing leaves your computer."
 ---

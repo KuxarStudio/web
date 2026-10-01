@@ -2,20 +2,25 @@
 // Vídeo corto en bucle dentro del marco de teléfono. Sustituye a los GIF:
 // mucho más ligero. Incluye botón de pausa (bucles de más de 5 s) y se
 // queda en el póster si el sistema pide reducir el movimiento.
+import { ui } from '../i18n/ui';
+import type { Lang } from '../i18n';
+
 interface Props {
   src: string;
   webm?: string;
   poster?: string;
   label: string;
+  lang?: Lang;
 }
-const { src, webm, poster, label } = Astro.props;
+const { src, webm, poster, label, lang = 'es' } = Astro.props;
+const t = ui[lang].video;
 ---
-<div class="phone phone-video">
+<div class="phone phone-video" data-label-pause={t.pause} data-label-play={t.play}>
   <video muted loop playsinline preload="metadata" poster={poster} aria-label={label} data-autoloop>
     {webm && <source src={webm} type="video/webm" />}
     <source src={src} type="video/mp4" />
   </video>
-  <button type="button" class="video-toggle" aria-label="Pausar vídeo" data-video-toggle hidden>
+  <button type="button" class="video-toggle" aria-label={t.pause} data-video-toggle hidden>
     <svg class="icon-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
     <svg class="icon-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"></path></svg>
   </button>
@@ -35,7 +40,7 @@ const { src, webm, poster, label } = Astro.props;
     let userPaused = reduced;
     const sync = () => {
       const paused = video.paused;
-      toggle.setAttribute('aria-label', paused ? 'Reproducir vídeo' : 'Pausar vídeo');
+      toggle.setAttribute('aria-label', (paused ? wrap.dataset.labelPlay : wrap.dataset.labelPause) || '');
       wrap.classList.toggle('is-paused', paused);
     };
     const play = () => video.play().catch(() => sync());

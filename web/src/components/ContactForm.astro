@@ -4,11 +4,13 @@
 // anti-spam del lado del servidor). Si no hay access key configurada,
 // se muestra un aviso con el email de contacto en su lugar, para que el
 // build nunca dependa de tener la key para funcionar.
+import type { Lang } from '../i18n';
+
 interface Props {
   /** Muestra el email como alternativa si no hay access key. Desactívalo si
    *  el contenedor ya enseña el email (p. ej. el footer). */
   fallback?: boolean;
-  lang?: 'es' | 'en';
+  lang?: Lang;
 }
 const { fallback = true, lang = 'es' } = Astro.props;
 const t = {
@@ -19,6 +21,8 @@ const t = {
     fail: 'No se pudo enviar el mensaje. Prueba de nuevo o escríbenos a admin@kuxarstudio.com.',
     subject: 'Nuevo mensaje desde kuxarstudio.com', from: 'Formulario de kuxarstudio.com',
     honey: 'No rellenar este campo', direct: 'Escríbenos directamente a',
+    parteSubject: 'Solicitud de acceso anticipado a Parte',
+    parteMessage: 'Me interesa Parte. Mi empresa se dedica a ',
   },
   en: {
     name: 'Name', email: 'Email', message: 'Message', send: 'Send', sending: 'Sending…',
@@ -27,12 +31,14 @@ const t = {
     fail: 'The message could not be sent. Try again or write to us at admin@kuxarstudio.com.',
     subject: 'New message from kuxarstudio.com (English page)', from: 'kuxarstudio.com form (EN)',
     honey: 'Leave this field empty', direct: 'Write to us directly at',
+    parteSubject: 'Early access request for Parte (English page)',
+    parteMessage: "I'm interested in Parte. My company does ",
   },
 }[lang];
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 ---
 {accessKey ? (
-  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail}>
+  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail} data-parte-subject={t.parteSubject} data-parte-message={t.parteMessage}>
     <input type="hidden" name="access_key" value={accessKey} />
     <input type="hidden" name="subject" id="cf-subject" value={t.subject} />
     <input type="hidden" name="from_name" value={t.from} />
@@ -78,8 +84,8 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
     if (new URLSearchParams(window.location.search).get('asunto') === 'parte') {
       const subjectInput = document.getElementById('cf-subject') as HTMLInputElement | null;
       const messageInput = document.getElementById('cf-message') as HTMLTextAreaElement | null;
-      if (subjectInput) subjectInput.value = 'Solicitud de acceso anticipado a Parte';
-      if (messageInput && !messageInput.value) messageInput.value = 'Me interesa Parte. Mi empresa se dedica a ';
+      if (subjectInput) subjectInput.value = form.dataset.parteSubject || subjectInput.value;
+      if (messageInput && !messageInput.value) messageInput.value = form.dataset.parteMessage || '';
     }
 
     form.addEventListener('submit', async function (e) {
