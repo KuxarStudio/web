@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # El agente SEO no forma parte del sitio: no hace falta redesplegar por él.
+    paths-ignore:
+      - 'tools/**'
+      - '.github/workflows/seo-weekly.yml'
   workflow_dispatch:
 
 concurrency:
