@@ -1,0 +1,45 @@
+{
+  "citations": {},
+  "date": "2026-10-01",
+  "projects": {
+    "blindnote": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "kaku": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "nadir": {
+      "clicks": 1.0,
+      "impressions": 3.0,
+      "position": 6.333333333333333
+    },
+    "parte": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "pdf-blender": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "studio": {
+      "clicks": 3.0,
+      "impressions": 14.0,
+      "position": 5.0
+    }
+  },
+  "total": {
+    "clicks": 4.0,
+    "impressions": 17.0,
+    "position": 5.235294117647059
+  },
+  "window": [
+    "2026-09-01",
+    "2026-09-28"
+  ]
+}
