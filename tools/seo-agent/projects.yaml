@@ -16,7 +16,7 @@ settings:
   max_jobs: 8
   # Desactivado hasta tener saldo en Gemini (prepago) y algo de tráfico: con la web recién
   # abierta casi todo saldría "no te citan". Pon true para reactivarlo.
-  citations_enabled: false
+  citations_enabled: true
   citations_max_queries: 30  # consultas con búsqueda de Google por semana
   citations_model: gemini-flash-latest
   citations_delay_seconds: 4
