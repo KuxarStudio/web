@@ -55,6 +55,8 @@ const jsonLd = [
     ],
   },
 ];
+// Vídeo con la interfaz en el idioma de la página (…-en.* para inglés).
+const suffix = lang === 'en' ? '-en' : '';
 const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`;
 ---
 <BaseLayout
@@ -82,9 +84,9 @@ const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '
         </div>
         <div class="project-media" data-product="kaku">
           <PhoneVideo
-            src={mediaSrc('/media/kaku-trazos.mp4')}
-            webm={mediaSrc('/media/kaku-trazos.webm')}
-            poster={mediaSrc('/media/kaku-poster.webp')}
+            src={mediaSrc(`/media/kaku-trazos${suffix}.mp4`)}
+            webm={mediaSrc(`/media/kaku-trazos${suffix}.webm`)}
+            poster={mediaSrc(`/media/kaku-poster${suffix}.webp`)}
             label={copy.videoAlt}
           />
         </div>
