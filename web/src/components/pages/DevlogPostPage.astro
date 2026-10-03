@@ -5,6 +5,8 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import { devlogPath, formatDate, route, alternatesFromPaths, otherLang, type Lang } from '../../i18n';
 import { ui } from '../../i18n/ui';
+import { blogPosting, breadcrumbList } from '../../lib/schema';
+import { devlogPage } from '../../i18n/pages';
 
 interface Props {
   lang: Lang;
@@ -22,9 +24,27 @@ const paths = { es: devlogPath(entry.slug, 'es'), en: devlogPath(entry.slug, 'en
 // Si no hay traducción, la entrada no declara alternativas y el selector
 // de idioma lleva al índice del devlog del otro idioma.
 const alternates = hasOther ? alternatesFromPaths(paths) : [];
+const site = Astro.site!.origin;
+const path = devlogPath(entry.slug, lang);
+const jsonLd = [
+  blogPosting({
+    site,
+    lang,
+    path,
+    headline: entry.data.title,
+    description: entry.data.excerpt,
+    datePublished: date,
+    about: entry.data.project,
+    image: `${site}/${lang === 'en' ? 'og-image-en.png' : 'og-image.png'}`,
+  }),
+  breadcrumbList(site, lang, [
+    { name: devlogPage[lang].h1, path: route('devlog', lang) },
+    { name: entry.data.title, path },
+  ]),
+];
 const switchHref = hasOther ? paths[otherLang(lang)] : route('devlog', otherLang(lang));
 ---
-<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.excerpt} lang={lang} alternates={alternates}>
+<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.excerpt} lang={lang} alternates={alternates} jsonLd={jsonLd} ogType="article">
   <Header lang={lang} switchHref={switchHref} />
   <main id="main">
     <article class="section page-top">
