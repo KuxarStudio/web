@@ -26,6 +26,23 @@ const guideSlugsByKey = (dir) =>
   );
 const guidesEs = guideSlugsByKey('guides');
 const guidesEn = guideSlugsByKey('guides-en');
+// lastmod real (frontmatter `updated` o, si no, `date`) solo para contenido con
+// fecha propia. Las páginas estáticas no llevan lastmod: Google lo ignora si no
+// es fiable, y en CI (checkout superficial) las fechas de git serían todas la misma.
+const lastmodByPath = new Map();
+const addLastmods = (dir, prefix) => {
+  for (const f of readdirSync(new URL(`./src/content/${dir}/`, import.meta.url)).filter((n) => n.endsWith('.md'))) {
+    const text = readFileSync(new URL(`./src/content/${dir}/${f}`, import.meta.url), 'utf8');
+    const fm = /^---\n([\s\S]*?)\n---/.exec(text)?.[1] ?? '';
+    const read = (k) => new RegExp(`^${k}:\\s*["']?(\\d{4}-\\d{2}-\\d{2})`, 'm').exec(fm)?.[1];
+    const d = read('updated') ?? read('date');
+    if (d) lastmodByPath.set(`${prefix}${f.replace(/\.md$/, '')}/`, new Date(d).toISOString());
+  }
+};
+addLastmods('devlog', '/devlog/');
+addLastmods('devlog-en', '/en/devlog/');
+addLastmods('guides', '/guias/');
+addLastmods('guides-en', '/en/guides/');
 const pairs = new Map(); // ruta -> { es, en }
 for (const pair of Object.values(routes)) {
   pairs.set(pair.es, pair);
@@ -68,7 +85,10 @@ export default defineConfig({
       // xhtml:link de hreflang: cada página con traducción enlaza a su par
       // (ver `pairs`). x-default apunta a la versión en español.
       serialize(item) {
-        const pair = pairs.get(new URL(item.url).pathname);
+        const path = new URL(item.url).pathname;
+        const lastmod = lastmodByPath.get(path);
+        if (lastmod) item.lastmod = lastmod;
+        const pair = pairs.get(path);
         if (pair) {
           item.links = [
             { url: SITE + pair.es, lang: 'es' },
