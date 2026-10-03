@@ -6,21 +6,32 @@ import { KAKU_DELETION_TERM } from '../../lib/legal';
   routeKey="kakuDelete"
   title="Eliminar cuenta de Kaku! | Kuxar Studio"
   heading="Solicitud de eliminación de datos de Kaku!"
-  description="Cómo solicitar la eliminación de tu cuenta de Kaku! y de todos tus datos de progreso."
+  description="Cómo solicitar la eliminación de tu cuenta de Kaku! y de todos tus datos: qué se elimina, qué puede conservarse y plazos."
 >
   <p>Lamentamos que quieras irte, pero respetamos totalmente tu privacidad y el control sobre tus datos.</p>
 
-  <h2>Atención: esta acción es irreversible</h2>
-  <p>Al eliminar tu cuenta de <strong>Kaku!</strong>, se borrarán de forma permanente de nuestros servidores de Firebase:</p>
+  <h2>Qué se elimina</h2>
+  <p><strong>Atención: esta acción es irreversible.</strong> Al eliminar tu cuenta de <strong>Kaku!</strong>, se borrarán de forma permanente:</p>
   <ul>
     <li>Tu progreso en Hiragana, Katakana y Kanji.</li>
-    <li>Tus estadísticas y racha diaria (Streak).</li>
+    <li>Tus estadísticas y tu racha diaria (Streak).</li>
+    <li>Las sugerencias que hayas enviado con tu cuenta.</li>
+    <li>Los datos vinculados a tu cuenta de Kaku! en Firebase (autenticación y Firestore).</li>
     <li>Tu vinculación con el Pase Sensei (si lo habías adquirido).</li>
+    <li>Tu registro de cliente en <strong>RevenueCat</strong>, el proveedor que gestiona las compras de la app: también le solicitaremos que lo elimine.</li>
+  </ul>
+
+  <h2>Qué puede conservarse</h2>
+  <ul>
+    <li>El registro de pedidos de <strong>Google Play</strong> (pagos y reembolsos). Lo conserva Google por sus propias obligaciones legales y fiscales, y no lo controlamos nosotros.</li>
+    <li>Los justificantes de venta o datos de facturación que la normativa fiscal y contable nos obligue a guardar, únicamente durante el plazo legal que corresponda y solo para ese fin.</li>
   </ul>
 
   <h2>Cómo solicitarlo</h2>
   <p>Envía un correo electrónico a la siguiente dirección desde el email que usas en la aplicación:</p>
   <p><a class="btn btn-primary" href="mailto:admin@kuxarstudio.com?subject=Solicitud de eliminación de cuenta Kaku">Solicitar eliminación</a></p>
   <p><strong>admin@kuxarstudio.com</strong></p>
-  <p>Procesaremos tu solicitud en un plazo máximo de {KAKU_DELETION_TERM.es}.</p>
+
+  <h2>Plazo</h2>
+  <p>Procesamos tu solicitud en un plazo máximo de {KAKU_DELETION_TERM.es}.</p>
 </LegalPage>
