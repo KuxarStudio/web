@@ -116,9 +116,11 @@ const work = defineCollection({
 
 // Guías (clusters de contenido). Una guía "pilar" por proyecto y varias guías
 // "cluster" que cuelgan de ella (campo `pillar` = slug del pilar). Misma
-// convención que el devlog: guides-en/ con el mismo nombre de archivo = mismo
-// slug en inglés. Ver src/lib/guides.ts.
+// convención que el devlog, pero con slug propio por idioma (URLs localizadas):
+// la versión ES y la EN se emparejan por `key`. Ver src/lib/guides.ts.
 const guideSchema = z.object({
+  /** Clave que une la versión ES y EN de una guía (el slug sí es distinto por idioma). */
+  key: z.string(),
   title: z.string(),
   description: z.string(),
   date: z.date(),
@@ -127,7 +129,7 @@ const guideSchema = z.object({
   /** Id del proyecto al que pertenece el cluster (p. ej. 'kaku'). */
   project: z.string(),
   role: z.enum(['pillar', 'cluster']),
-  /** Solo en `cluster`: slug de la guía pilar a la que enlaza. */
+  /** Solo en `cluster`: `key` de la guía pilar a la que enlaza. */
   pillar: z.string().optional(),
   order: z.number().default(0),
 }).refine((g) => g.role === 'pillar' || !!g.pillar, { message: 'Un cluster necesita `pillar`' });
