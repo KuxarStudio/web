@@ -7,14 +7,16 @@ import ProjectCard from '../ProjectCard.astro';
 import ToolCard from '../ToolCard.astro';
 import type { Lang } from '../../i18n';
 import { projectsPage } from '../../i18n/pages';
+import { breadcrumbForRoute } from '../../lib/schema';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const copy = projectsPage[lang];
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const tools = await getCollection('tools');
+const jsonLd = breadcrumbForRoute(Astro.site!.origin, lang, 'projects', copy.h1);
 ---
-<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="projects">
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="projects" jsonLd={jsonLd}>
   <Header lang={lang} routeKey="projects" />
   <main id="main">
     <section class="section page-top">

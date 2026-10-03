@@ -6,13 +6,15 @@ import DevlogRow from '../DevlogRow.astro';
 import { devlogCollection } from '../../lib/devlog';
 import type { Lang } from '../../i18n';
 import { devlogPage } from '../../i18n/pages';
+import { breadcrumbForRoute } from '../../lib/schema';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const copy = devlogPage[lang];
 const entries = await devlogCollection(lang);
+const jsonLd = breadcrumbForRoute(Astro.site!.origin, lang, 'devlog', copy.h1);
 ---
-<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="devlog">
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="devlog" jsonLd={jsonLd}>
   <Header lang={lang} routeKey="devlog" />
   <main id="main">
     <section class="section page-top">
