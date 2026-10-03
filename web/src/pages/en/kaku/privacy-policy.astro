@@ -21,12 +21,20 @@ import { KAKU_DELETION_TERM } from '../../../lib/legal';
   <ul>
     <li><strong>Google Sign-In (Firebase Auth):</strong> handles your account authentication. We collect your email address solely to identify your profile and let you recover your progress data on different devices.</li>
     <li><strong>Google Play Billing:</strong> all “Sensei Pass” transactions are processed through Google’s official payment gateway. We do not store or have access to your bank or credit card details.</li>
-    <li><strong>RevenueCat:</strong> provider that manages and validates purchases and subscriptions inside the app. It receives a customer identifier linked to your account and the status of your purchases (for example, whether your Sensei Pass is active). It does not receive your payment details, which are handled solely by Google Play.</li>
+    <li><strong>RevenueCat:</strong> service that verifies your purchases and manages access to paid content. More detail in section 3.</li>
     <li><strong>Google Firestore:</strong> securely stores your progress (completed characters, streaks and statistics) linked to your account.</li>
     <li><strong>Firebase Crashlytics and Analytics:</strong> collect crash reports and usage statistics in pseudonymised form to improve the stability of the application.</li>
   </ul>
 
-  <h2>3. Use of data</h2>
+  <h2>3. In-app purchases (Sensei Pass)</h2>
+  <p>Purchases are processed by Google Play. Kaku! does not receive or store your card or payment details.</p>
+  <p>To verify your purchase, unlock paid content and let you recover it if you change phones or reinstall the app, we use <strong>RevenueCat</strong> (RevenueCat, Inc.), which acts as a data processor on our behalf.</p>
+  <p>RevenueCat receives and processes: your Kaku! user identifier (the anonymous identifier Firebase generates for your account), your purchase history and status (product, dates, refunds), and the technical data needed to validate the purchase with Google Play (such as IP address, device model and OS version, and app version).</p>
+  <p>We use this data only to manage your purchase and your access to paid content. We do not sell it or use it for advertising.</p>
+  <p>We keep purchase data while you keep your account or as needed to meet legal obligations and handle refunds.</p>
+  <p>You can read how RevenueCat handles data at <a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a>.</p>
+
+  <h2>4. Use of data</h2>
   <p>The data collected is used exclusively to:</p>
   <ul>
     <li>Provide the cloud sync functionality.</li>
@@ -35,11 +43,11 @@ import { KAKU_DELETION_TERM } from '../../../lib/legal';
   </ul>
   <p><strong>Kuxar Studio will never sell your data to third parties or use it for advertising purposes unrelated to the application.</strong></p>
 
-  <h2>4. Deletion of data and account</h2>
+  <h2>5. Deletion of data and account</h2>
   <p>In compliance with Google Play policies, we guarantee your right to have your information deleted.</p>
   <p>If you want to delete your Kaku! account and permanently erase all your progress data stored in Firestore, you can request it by sending an email to <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a> from the email address associated with your account, or from the <a href="/en/kaku/delete-account/">deletion request page</a>. We will process the deletion within a maximum of {KAKU_DELETION_TERM.en}.</p>
   <p>We will also ask RevenueCat to delete your customer record. The Google Play order record is kept by Google for its own legal and tax obligations. The deletion request page explains in detail what is deleted and what may be retained.</p>
 
-  <h2>5. Contact</h2>
+  <h2>6. Contact</h2>
   <p>If you have any question about your privacy, you can contact us at: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
 </LegalPage>
