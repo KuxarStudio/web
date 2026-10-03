@@ -19,12 +19,20 @@ import { KAKU_DELETION_TERM } from '../../lib/legal';
   <ul>
     <li><strong>Google Sign-In (Firebase Auth):</strong> gestiona la autenticación de tu cuenta. Recopilamos tu dirección de correo electrónico únicamente para identificar tu perfil y permitirte recuperar tus datos de progreso en diferentes dispositivos.</li>
     <li><strong>Google Play Billing:</strong> todas las transacciones del «Pase Sensei» se procesan a través de la pasarela oficial de Google. No almacenamos ni tenemos acceso a tus datos bancarios o tarjetas de crédito.</li>
-    <li><strong>RevenueCat:</strong> proveedor que gestiona y valida las compras y suscripciones dentro de la app. Recibe un identificador de cliente vinculado a tu cuenta y el estado de tus compras (por ejemplo, si tienes el Pase Sensei activo). No recibe tus datos bancarios, que gestiona únicamente Google Play.</li>
+    <li><strong>RevenueCat:</strong> servicio que verifica tus compras y gestiona el acceso al contenido de pago. Más detalle en la sección 3.</li>
     <li><strong>Google Firestore:</strong> almacena de forma segura tu progreso (letras completadas, rachas y estadísticas) vinculado a tu cuenta.</li>
     <li><strong>Firebase Crashlytics y Analytics:</strong> recopilan informes de errores y estadísticas de uso de forma seudonimizada para mejorar la estabilidad de la aplicación.</li>
   </ul>
 
-  <h2>3. Uso de los datos</h2>
+  <h2>3. Compras dentro de la aplicación (Pase Sensei)</h2>
+  <p>Las compras se realizan a través de Google Play. Kaku! no recibe ni almacena los datos de tu tarjeta ni de tu método de pago.</p>
+  <p>Para verificar tu compra, desbloquear el contenido de pago y permitirte recuperarlo si cambias de móvil o reinstalas la aplicación, utilizamos el servicio <strong>RevenueCat</strong> (RevenueCat, Inc.), que actúa como encargado del tratamiento en nuestro nombre.</p>
+  <p>RevenueCat recibe y trata: el identificador de usuario de Kaku! (el identificador anónimo que genera Firebase para tu cuenta), el historial y el estado de tus compras (producto adquirido, fechas, reembolsos) y los datos técnicos necesarios para validar la compra con Google Play (como la dirección IP, el modelo y versión del sistema del dispositivo y la versión de la aplicación).</p>
+  <p>Usamos estos datos únicamente para gestionar tu compra y tu acceso al contenido de pago. No los vendemos ni los usamos con fines publicitarios.</p>
+  <p>Conservamos los datos de compra mientras mantengas tu cuenta o sea necesario para cumplir obligaciones legales y de gestión de reembolsos.</p>
+  <p>Puedes consultar cómo trata RevenueCat los datos en <a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a>.</p>
+
+  <h2>4. Uso de los datos</h2>
   <p>Los datos recopilados se utilizan exclusivamente para:</p>
   <ul>
     <li>Proveer la funcionalidad de sincronización en la nube.</li>
@@ -33,11 +41,11 @@ import { KAKU_DELETION_TERM } from '../../lib/legal';
   </ul>
   <p><strong>Kuxar Studio nunca venderá tus datos a terceros ni los utilizará para fines publicitarios ajenos a la aplicación.</strong></p>
 
-  <h2>4. Eliminación de datos y cuenta</h2>
+  <h2>5. Eliminación de datos y cuenta</h2>
   <p>En cumplimiento con las políticas de Google Play, garantizamos tu derecho a la eliminación de información.</p>
   <p>Si deseas eliminar tu cuenta de Kaku! y borrar de forma permanente todos tus datos de progreso almacenados en Firestore, puedes solicitarlo enviando un correo electrónico a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a> desde la dirección de correo asociada a tu cuenta, o desde la <a href="/kaku/delete-account/">página de solicitud de eliminación</a>. Procesaremos la eliminación en un plazo máximo de {KAKU_DELETION_TERM.es}.</p>
   <p>También solicitaremos a RevenueCat que elimine tu registro de cliente. El registro de pedidos de Google Play lo conserva Google por sus propias obligaciones legales y fiscales. En la página de solicitud de eliminación detallamos qué se elimina y qué puede conservarse.</p>
 
-  <h2>5. Contacto</h2>
+  <h2>6. Contacto</h2>
   <p>Si tienes cualquier duda sobre tu privacidad, puedes contactarnos en: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
 </LegalPage>
