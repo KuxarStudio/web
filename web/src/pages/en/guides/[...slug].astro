@@ -1,0 +1,18 @@
+---
+// /en/guides/ (índice) y /en/guides/<slug>/. Sin guías en inglés no se genera nada.
+import { getCollection } from 'astro:content';
+import GuidePostPage from '../../../components/pages/GuidePostPage.astro';
+import GuidesIndexPage from '../../../components/pages/GuidesIndexPage.astro';
+import type { Lang } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('guides-en');
+  if (entries.length === 0) return [];
+  return [
+    { params: { slug: undefined }, props: { entry: undefined, available: [] as Lang[] } },
+    ...entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry, available: ['es', 'en'] as Lang[] } })),
+  ];
+}
+const { entry, available } = Astro.props;
+---
+{entry ? <GuidePostPage lang="en" entry={entry} available={available} /> : <GuidesIndexPage lang="en" />}

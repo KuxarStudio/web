@@ -7,6 +7,7 @@ import { parte, parteTrialHref } from '../../lib/parte';
 import { route, type Lang } from '../../i18n';
 import { partePage } from '../../i18n/partePage';
 import { ui } from '../../i18n/ui';
+import { breadcrumbList } from '../../lib/schema';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -14,10 +15,11 @@ const copy = partePage[lang];
 const shared = parte[lang];
 const t = ui[lang];
 const here = route('parte', lang);
+const jsonLd = breadcrumbList(Astro.site!.origin, lang, [{ name: 'Parte', path: here }]);
 const trialHref = parteTrialHref(here, lang);
 const splitParte = (text: string) => text.split(/(\bParte\b)/);
 ---
-<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="parte" ogImage="og-parte.png">
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="parte" ogImage="og-parte.png" jsonLd={jsonLd}>
   <Header lang={lang} routeKey="parte" />
 
   <main id="main">
