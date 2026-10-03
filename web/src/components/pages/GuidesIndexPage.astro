@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import RelatedGuides from '../RelatedGuides.astro';
+import type { Lang } from '../../i18n';
+import { guidesPage } from '../../i18n/pages';
+import { breadcrumbForRoute } from '../../lib/schema';
+import { guidesCollection } from '../../lib/guides';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const copy = guidesPage[lang];
+const entries = await guidesCollection(lang);
+const pillars = entries.filter((g) => g.data.role === 'pillar');
+const jsonLd = breadcrumbForRoute(Astro.site!.origin, lang, 'guides', copy.h1);
+---
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="guides" jsonLd={jsonLd}>
+  <Header lang={lang} routeKey="guides" />
+  <main id="main">
+    <section class="section page-top">
+      <div class="wrap">
+        <div class="section-head">
+          <h1>{copy.h1}</h1>
+          <p>{copy.intro}</p>
+        </div>
+        <RelatedGuides lang={lang} items={pillars} />
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

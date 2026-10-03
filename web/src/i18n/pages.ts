@@ -33,6 +33,29 @@ export const toolsPage: Record<Lang, ListingCopy> = {
   },
 };
 
+export const guidesPage: Record<Lang, ListingCopy & { partOf: string; related: string; pillarLabel: string; back: string }> = {
+  es: {
+    title: 'Guías | Kuxar Studio',
+    description: 'Guías prácticas de Kuxar Studio sobre escritura japonesa y las herramientas que construimos.',
+    h1: 'Guías',
+    intro: 'Guías prácticas, ordenadas por tema.',
+    partOf: 'Parte de la guía',
+    related: 'Sigue leyendo',
+    pillarLabel: 'Guía completa',
+    back: '← Todas las guías',
+  },
+  en: {
+    title: 'Guides | Kuxar Studio',
+    description: 'Practical guides from Kuxar Studio on writing Japanese and the tools we build.',
+    h1: 'Guides',
+    intro: 'Practical guides, grouped by topic.',
+    partOf: 'Part of the guide',
+    related: 'Keep reading',
+    pillarLabel: 'Full guide',
+    back: '← All guides',
+  },
+};
+
 export const devlogPage: Record<Lang, ListingCopy> = {
   es: {
     title: 'Devlog | Kuxar Studio',

@@ -4,10 +4,13 @@ import ContactForm from './ContactForm.astro';
 import Parte from './Parte.astro';
 import { route, type Lang } from '../i18n';
 import { ui } from '../i18n/ui';
+import { getCollection } from 'astro:content';
+import { guidesPage } from '../i18n/pages';
 interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
 const t = ui[lang];
 const home = route('home', lang);
+const hasGuides = (await getCollection(lang === 'en' ? 'guides-en' : 'guides')).length > 0;
 ---
 <footer class="site-footer" id={t.ids.contact}>
   <div class="wrap contact">
@@ -34,6 +37,7 @@ const home = route('home', lang);
       <a href={route('parte', lang)}><Parte /></a>
       <a href={route('tools', lang)}>{t.footer.tools}</a>
       <a href={route('devlog', lang)}>{t.footer.devlog}</a>
+      {hasGuides && <a href={route('guides', lang)}>{guidesPage[lang].h1}</a>}
       <a href={`${home}#${t.ids.studio}`}>{t.footer.studio}</a>
       <a href="https://github.com/KuxarStudio" rel="noopener">GitHub</a>
     </nav>

@@ -1,0 +1,25 @@
+---
+import { guidePath, type Lang } from '../i18n';
+import { guidesPage } from '../i18n/pages';
+import type { Guide } from '../lib/guides';
+
+interface Props { lang: Lang; items: Guide[] }
+const { lang, items } = Astro.props;
+const t = guidesPage[lang];
+---
+{items.length > 0 && (
+  <nav class="related-guides" aria-labelledby="related-title">
+    <h2 id="related-title">{t.related}</h2>
+    <ul class="log-list">
+      {items.map((g) => (
+        <li class="log-item">
+          <a class="log-link" href={guidePath(g.slug, lang)}>
+            <span class="log-meta">{g.data.role === 'pillar' ? t.pillarLabel : ''}</span>
+            <span class="log-title">{g.data.title}</span>
+            <span class="log-excerpt">{g.data.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
