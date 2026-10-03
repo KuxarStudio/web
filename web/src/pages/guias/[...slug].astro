@@ -1,0 +1,23 @@
+---
+// /guias/ (índice) y /guias/<slug>/. Si no hay ninguna guía publicada no se
+// genera NADA (ni un índice vacío que cuente como página fina en el sitemap).
+import { getCollection } from 'astro:content';
+import GuidePostPage from '../../components/pages/GuidePostPage.astro';
+import GuidesIndexPage from '../../components/pages/GuidesIndexPage.astro';
+import type { Lang } from '../../i18n';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('guides');
+  if (entries.length === 0) return [];
+  const translated = new Set((await getCollection('guides-en')).map((e) => e.slug));
+  return [
+    { params: { slug: undefined }, props: { entry: undefined, available: [] as Lang[] } },
+    ...entries.map((entry) => ({
+      params: { slug: entry.slug },
+      props: { entry, available: (translated.has(entry.slug) ? ['es', 'en'] : ['es']) as Lang[] },
+    })),
+  ];
+}
+const { entry, available } = Astro.props;
+---
+{entry ? <GuidePostPage lang="es" entry={entry} available={available} /> : <GuidesIndexPage lang="es" />}

@@ -33,6 +33,8 @@ export const breadcrumbForRoute = (site: string, lang: Lang, key: RouteKey, name
   breadcrumbList(site, lang, [{ name, path: route(key, lang) }]);
 
 export interface BlogPostingInput {
+  /** Tipo schema.org. Devlog = BlogPosting (por defecto); guías = Article. */
+  type?: 'BlogPosting' | 'Article';
   site: string;
   lang: Lang;
   path: string;
@@ -52,7 +54,7 @@ export function blogPosting(i: BlogPostingInput) {
   const url = `${i.site}${i.path}`;
   return {
     '@context': CONTEXT,
-    '@type': 'BlogPosting',
+    '@type': i.type ?? 'BlogPosting',
     '@id': `${url}#post`,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     headline: i.headline,

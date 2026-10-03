@@ -17,6 +17,7 @@ export const routes = {
   projects: { es: '/portfolio/', en: '/en/projects/' },
   tools: { es: '/herramientas/', en: '/en/tools/' },
   devlog: { es: '/devlog/', en: '/en/devlog/' },
+  guides: { es: '/guias/', en: '/en/guides/' },
   parte: { es: '/parte/', en: '/en/parte/' },
   privacy: { es: '/privacidad/', en: '/en/privacy/' },
   terms: { es: '/terminos/', en: '/en/terms/' },
@@ -36,6 +37,9 @@ export const route = (key: RouteKey, lang: Lang): string => routes[key][lang];
 
 /** Ruta de una entrada de devlog. Mismo slug en ambos idiomas. */
 export const devlogPath = (slug: string, lang: Lang): string => `${route('devlog', lang)}${slug}/`;
+
+/** Ruta de una guía. Mismo slug en ambos idiomas. */
+export const guidePath = (slug: string, lang: Lang): string => `${route('guides', lang)}${slug}/`;
 
 export const otherLang = (lang: Lang): Lang => (lang === 'es' ? 'en' : 'es');
 
