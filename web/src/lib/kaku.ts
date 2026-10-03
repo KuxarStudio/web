@@ -79,6 +79,7 @@ export const kaku: Record<Lang, KakuCopy> = {
     ],
     moreHeading: 'Más de Kuxar Studio',
     moreLinks: [
+      { label: 'Guía: aprender a escribir japonés a mano', href: '/guias/aprender-a-escribir-japones-a-mano/' },
       { label: 'Todos los proyectos', href: '/portfolio/' },
       { label: 'Devlog del estudio', href: '/devlog/' },
       { label: 'Sobre el estudio', href: '/#estudio' },
@@ -136,6 +137,7 @@ export const kaku: Record<Lang, KakuCopy> = {
     ],
     moreHeading: 'More from Kuxar Studio',
     moreLinks: [
+      { label: 'Guide: learn to write Japanese by hand', href: '/en/guides/learn-to-write-japanese-by-hand/' },
       { label: 'All projects', href: '/en/projects/' },
       { label: 'Studio devlog', href: '/en/devlog/' },
       { label: 'About the studio', href: '/en/#studio' },

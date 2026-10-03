@@ -1,4 +1,25 @@
+# Kuxar Studio: todo el contenido público es rastreable, también por
+# buscadores y asistentes de IA (queremos que nos citen).
+
 User-agent: *
+Allow: /
+
+# Bots de búsqueda / respuesta de IA (traen visitas como fuente citada)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot
+Allow: /
+
+# Rastreadores de entrenamiento: permitidos a propósito
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://kuxarstudio.com/sitemap-index.xml

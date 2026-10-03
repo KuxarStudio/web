@@ -5,18 +5,35 @@ import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import ToolCard from '../ToolCard.astro';
 import { getRepoStats } from '../../lib/github';
-import type { Lang } from '../../i18n';
+import { route, localize, type Lang } from '../../i18n';
 import { toolsPage } from '../../i18n/pages';
+import { breadcrumbForRoute, toolApplication } from '../../lib/schema';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const copy = toolsPage[lang];
 const allTools = await getCollection('tools');
+const site = Astro.site!.origin;
+const jsonLd = [
+  breadcrumbForRoute(site, lang, 'tools', copy.h1),
+  ...allTools.map((t) => {
+    const d = localize(t.data, lang);
+    return toolApplication({
+      site,
+      lang,
+      name: d.title,
+      description: d.description,
+      url: `${site}${route('tools', lang)}`,
+      repo: d.repo,
+      programmingLanguage: d.stack[0],
+    });
+  }),
+];
 const stats = await Promise.all(
   allTools.map((t) => (t.data.githubRepo ? getRepoStats(t.data.githubRepo) : Promise.resolve(null)))
 );
 ---
-<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="tools">
+<BaseLayout title={copy.title} description={copy.description} lang={lang} routeKey="tools" jsonLd={jsonLd}>
   <Header lang={lang} routeKey="tools" />
   <main id="main">
     <section class="section page-top">

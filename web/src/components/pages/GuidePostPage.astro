@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import RelatedGuides from '../RelatedGuides.astro';
+import { guidePath, formatDate, route, alternatesFromPaths, otherLang, type Lang } from '../../i18n';
+import { guidesPage } from '../../i18n/pages';
+import { blogPosting, breadcrumbList } from '../../lib/schema';
+import { guidesCollection, pillarOf, relatedGuides, slugsByKey, type Guide } from '../../lib/guides';
+
+interface Props {
+  lang: Lang;
+  entry: Guide;
+  /** Idiomas en los que existe esta guía (hreflang y selector de idioma). */
+  available: Lang[];
+}
+const { lang, entry, available } = Astro.props;
+const { Content } = await entry.render();
+const t = guidesPage[lang];
+const all = await guidesCollection(lang);
+const pillar = pillarOf(entry, all);
+const related = relatedGuides(entry, all);
+
+const slugs = await slugsByKey(entry.data.key);
+const hasOther = available.includes(otherLang(lang)) && !!slugs.es && !!slugs.en;
+const paths = { es: guidePath(slugs.es ?? entry.slug, 'es'), en: guidePath(slugs.en ?? entry.slug, 'en') };
+const alternates = hasOther ? alternatesFromPaths(paths) : [];
+const switchHref = hasOther ? paths[otherLang(lang)] : route('guides', otherLang(lang));
+
+const site = Astro.site!.origin;
+const path = paths[lang];
+const { date, updated } = entry.data;
+const trail = [{ name: t.h1, path: route('guides', lang) }];
+if (pillar && pillar.data.key !== entry.data.key) trail.push({ name: pillar.data.title, path: guidePath(pillar.slug, lang) });
+trail.push({ name: entry.data.title, path });
+const jsonLd = [
+  blogPosting({
+    type: 'Article',
+    site,
+    lang,
+    path,
+    headline: entry.data.title,
+    description: entry.data.description,
+    datePublished: date,
+    dateModified: updated,
+    image: `${site}/${lang === 'en' ? 'og-image-en.png' : 'og-image.png'}`,
+  }),
+  breadcrumbList(site, lang, trail),
+];
+---
+<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.description} lang={lang} alternates={alternates} jsonLd={jsonLd} ogType="article">
+  <Header lang={lang} switchHref={switchHref} />
+  <main id="main">
+    <article class="section page-top">
+      <div class="wrap post">
+        {pillar && pillar.data.key !== entry.data.key && (
+          <p class="post-meta">{t.partOf}: <a class="text-link" href={guidePath(pillar.slug, lang)}>{pillar.data.title}</a></p>
+        )}
+        <p class="post-meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time></p>
+        <h1 class="post-title">{entry.data.title}</h1>
+        <div class="post-body">
+          <Content />
+        </div>
+        <RelatedGuides lang={lang} items={related} />
+        <p class="post-back"><a class="text-link" href={route('guides', lang)}>{t.back}</a></p>
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

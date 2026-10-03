@@ -114,4 +114,27 @@ const work = defineCollection({
   }),
 });
 
-export const collections = { projects, tools, devlog, 'devlog-en': devlogEn, work };
+// Guías (clusters de contenido). Una guía "pilar" por proyecto y varias guías
+// "cluster" que cuelgan de ella (campo `pillar` = slug del pilar). Misma
+// convención que el devlog, pero con slug propio por idioma (URLs localizadas):
+// la versión ES y la EN se emparejan por `key`. Ver src/lib/guides.ts.
+const guideSchema = z.object({
+  /** Clave que une la versión ES y EN de una guía (el slug sí es distinto por idioma). */
+  key: z.string(),
+  title: z.string(),
+  description: z.string(),
+  date: z.date(),
+  /** Fecha de la última revisión real del contenido (alimenta dateModified). */
+  updated: z.date().optional(),
+  /** Id del proyecto al que pertenece el cluster (p. ej. 'kaku'). */
+  project: z.string(),
+  role: z.enum(['pillar', 'cluster']),
+  /** Solo en `cluster`: `key` de la guía pilar a la que enlaza. */
+  pillar: z.string().optional(),
+  order: z.number().default(0),
+}).refine((g) => g.role === 'pillar' || !!g.pillar, { message: 'Un cluster necesita `pillar`' });
+
+const guides = defineCollection({ type: 'content', schema: guideSchema });
+const guidesEn = defineCollection({ type: 'content', schema: guideSchema });
+
+export const collections = { projects, tools, devlog, 'devlog-en': devlogEn, work, guides, 'guides-en': guidesEn };

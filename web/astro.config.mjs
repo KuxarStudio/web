@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { routes } from './src/i18n/index.ts';
 
 const SITE = 'https://kuxarstudio.com';
@@ -13,6 +13,19 @@ const translatedDevlog = new Set(
     .filter((f) => f.endsWith('.md'))
     .map((f) => f.replace(/\.md$/, '')),
 );
+// Guías: slug propio por idioma, emparejadas por la clave `key` del frontmatter.
+const guideSlugsByKey = (dir) =>
+  new Map(
+    readdirSync(new URL(`./src/content/${dir}/`, import.meta.url))
+      .filter((f) => f.endsWith('.md'))
+      .map((f) => {
+        const text = readFileSync(new URL(`./src/content/${dir}/${f}`, import.meta.url), 'utf8');
+        const key = /^key:\s*["']?([^"'\n]+)["']?\s*$/m.exec(text)?.[1];
+        return [key, f.replace(/\.md$/, '')];
+      }),
+  );
+const guidesEs = guideSlugsByKey('guides');
+const guidesEn = guideSlugsByKey('guides-en');
 const pairs = new Map(); // ruta -> { es, en }
 for (const pair of Object.values(routes)) {
   pairs.set(pair.es, pair);
@@ -20,6 +33,14 @@ for (const pair of Object.values(routes)) {
 }
 for (const slug of translatedDevlog) {
   const pair = { es: `/devlog/${slug}/`, en: `/en/devlog/${slug}/` };
+  pairs.set(pair.es, pair);
+  pairs.set(pair.en, pair);
+}
+
+for (const [key, slugEs] of guidesEs) {
+  const slugEn = guidesEn.get(key);
+  if (!slugEn) continue;
+  const pair = { es: `/guias/${slugEs}/`, en: `/en/guides/${slugEn}/` };
   pairs.set(pair.es, pair);
   pairs.set(pair.en, pair);
 }
