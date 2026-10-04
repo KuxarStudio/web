@@ -56,6 +56,11 @@ describe('auditPage', () => {
     expect(con).not.toContain('input-no-label');
   });
 
+  it('avisa si el producto aparece como "Kaku" sin exclamación', () => {
+    expect(types(auditPage('/x/', parsePage(page('<h1>a</h1><p>Prueba Kaku hoy.</p>'))))).toContain('brand-name');
+    expect(types(auditPage('/x/', parsePage(page('<h1>a</h1><p>Prueba Kaku! hoy.</p>'))))).not.toContain('brand-name');
+  });
+
   it('no exige canonical ni descripción a las páginas noindex', () => {
     const t = types(auditPage('/x/', parsePage(page('<h1>a</h1>', '<title>t</title><meta name="robots" content="noindex">'))));
     expect(t).not.toContain('missing-canonical');
