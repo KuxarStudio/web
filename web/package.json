@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run",
-    "check": "astro check"
+    "check": "astro check",
+    "audit": "node scripts/seo-audit/run.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -18,6 +19,7 @@
     "@astrojs/check": "^0.9.10",
     "@playwright/cli": "^0.1.21",
     "typescript": "^5.9.3",
-    "vitest": "^2.1.0"
+    "vitest": "^2.1.0",
+    "yaml": "^2.9.1"
   }
 }

@@ -8,14 +8,16 @@ interface Props {
   tool: CollectionEntry<'tools'>;
   stats?: RepoStats | null;
   lang?: Lang;
+  /** Nivel del título: h3 bajo una sección h2 (home), h2 si el listado cuelga directamente del h1. */
+  headingLevel?: 'h2' | 'h3';
 }
-const { tool, stats, lang = 'es' } = Astro.props;
+const { tool, stats, lang = 'es', headingLevel: Heading = 'h3' } = Astro.props;
 const t = ui[lang].tool;
 const { title, description, stack, installCmd, repo, releasesUrl } = localize(tool.data, lang);
 ---
 <article class="tool">
   <p class="project-meta"><b>{t.label}</b> · {stack.join(' / ')}{stats && stats.stars > 0 && ` · ★ ${stats.stars}`}</p>
-  <h3>{title}</h3>
+  <Heading>{title}</Heading>
   <p class="tool-desc">{description}</p>
   <code class="tool-cmd">{installCmd}</code>
   <div class="tool-actions">

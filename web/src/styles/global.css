@@ -314,7 +314,7 @@ p{margin:0;text-wrap:pretty;}
 .project-body{display:flex;flex-direction:column;gap:8px;min-width:0;}
 .project-meta{font-size:0.8rem;color:var(--ink-mute);}
 .project-meta b{font-weight:600;color:var(--ink-soft);}
-.project h3{font-size:1.2rem;font-weight:700;}
+.project :is(h2,h3){font-size:1.2rem;font-weight:700;}
 .project-desc{color:var(--ink-soft);font-size:0.95rem;line-height:1.45;}
 .project-links{display:flex;flex-wrap:wrap;gap:0 16px;margin-top:2px;}
 .project-links .text-link{font-size:0.92rem;}
@@ -323,13 +323,13 @@ p{margin:0;text-wrap:pretty;}
 
 @media (min-width:560px){
   .project{grid-template-columns:140px 1fr;padding:18px;gap:20px;}
-  .project h3{font-size:1.35rem;}
+  .project :is(h2,h3){font-size:1.35rem;}
 }
 @media (min-width:768px){
   .projects{grid-template-columns:1fr 1fr;gap:20px;}
   /* El proyecto destacado (el publicado) ocupa toda la fila. */
   .project-featured{grid-column:1 / -1;grid-template-columns:200px 1fr;padding:28px;gap:36px;align-items:center;}
-  .project-featured h3{font-size:1.9rem;}
+  .project-featured :is(h2,h3){font-size:1.9rem;}
   .project-featured .project-desc{font-size:1.08rem;max-width:48ch;}
 }
 
@@ -370,7 +370,7 @@ p{margin:0;text-wrap:pretty;}
   display:grid;gap:10px;padding:18px;border-radius:var(--r-lg);
   background:var(--surface-2);
 }
-.tool h3{font-size:1.2rem;}
+.tool :is(h2,h3){font-size:1.2rem;}
 .tool-desc{color:var(--ink-soft);font-size:0.95rem;}
 .tool-cmd{
   display:block;overflow-x:auto;white-space:nowrap;font-family:var(--font-mono);font-size:0.82rem;

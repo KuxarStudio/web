@@ -54,6 +54,12 @@ jobs:
           # Access key de Web3Forms para el formulario de contacto (ver web/.env.example)
           PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
 
+      # Frena el despliegue si hay enlaces rotos, páginas sin título/h1/lang o el sitio
+      # se desvía del mapa de temas (tools/seo-agent/topic-map.yaml).
+      - name: SEO audit
+        working-directory: web
+        run: npm run audit
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: web/dist
