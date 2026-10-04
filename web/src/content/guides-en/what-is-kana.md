@@ -49,7 +49,7 @@ In katakana, a long sound is marked with a dash (ー): コーヒー ("kōhī", c
 
 ## How many strokes
 
-Almost every kana is written with **1 to 4 strokes** (dakuten and handakuten marks are counted separately). That makes kana the best place to learn [stroke order](/en/guides/japanese-stroke-order-rules/): few pieces, very clear rules and plenty of repetition.
+Almost every kana is written with **1 to 4 strokes** (dakuten and handakuten marks are counted separately). That makes kana the best place to learn [stroke order](/en/guides/japanese-stroke-order-rules/): few pieces, very clear rules and plenty of repetition. The full chart with every stroke numbered is in the [stroke order sheets](/en/resources/stroke-order-sheets/).
 
 ## Frequently asked questions
 

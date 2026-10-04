@@ -156,6 +156,16 @@ describe('topicParity', () => {
     expect(r.coverage.kaku.live).toBe(0);
   });
 
+  it('un tema que es una página (no guía) se valida contra el sitemap', () => {
+    const map = { projects: { kaku: { topics: [{ key: 'hojas', status: 'live', page: { es: '/recursos/h/', en: '/en/resources/h/' } }] } } };
+    const ok = topicParity({ topicMap: map, guides: [], sitemapUrls: new Set(['/recursos/h/', '/en/resources/h/']) });
+    expect(ok.findings).toEqual([]);
+    expect(ok.coverage.kaku.live).toBe(1);
+    const ko = topicParity({ topicMap: map, guides: [], sitemapUrls: new Set(['/recursos/h/']) });
+    expect(ko.findings).toHaveLength(1);
+    expect(ko.findings[0]).toMatchObject({ type: 'topic-invisible', url: '/en/resources/h/' });
+  });
+
   it('una guía en el mapa pero ausente del sitemap es invisible', () => {
     const guides = [
       { key: 'a', project: 'kaku', es: '/guias/a/', en: '/en/guides/a/' },
