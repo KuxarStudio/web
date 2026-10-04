@@ -179,6 +179,16 @@ deploy publica a la rama/salida que GitHub Pages sirve.
 - Advertir de inmediato si una decisión de la web puede limitar la
   escalabilidad futura (apps, juegos, automatizaciones) del ecosistema.
 
+## SEO (montado el 2026-10-04; detalle en `docs/seo.md`)
+
+- `npm run audit` (en `web/`) audita `dist/` y bloquea CI/deploy si hay errores. Al añadir una
+  página o guía, ejecútalo; si es una guía, añade su `key` a `tools/seo-agent/topic-map.yaml`.
+- Nombre de marca: siempre "Kuxar Studio" y "Kaku!" (con exclamación). Identidad y `sameAs` en
+  `web/src/lib/entity.ts`: solo perfiles externos que existan de verdad.
+- Los `<title>` llevan " | Kuxar Studio" solo si caben en 60 caracteres (`withBrand`).
+- IndexNow se envía tras cada deploy a main; la clave pública está en `web/public/*.txt`.
+- Datos de trazos de las hojas de kana: KanjiVG, CC BY-SA 3.0. Mantén la atribución.
+
 ## Estudios de referencia (investigación aportada por el usuario)
 
 Referencias de estudios de software/juegos independientes, para inspirar tono
