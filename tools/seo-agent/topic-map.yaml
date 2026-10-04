@@ -36,9 +36,9 @@ projects:
       - { key: movil-o-papel, role: supporting, status: live, question: "¿Practicar en el móvil o en papel?" }
       - { key: jlpt-n5-escritura, role: supporting, status: live, question: "¿Hay que escribir a mano para el JLPT N5?" }
       - { key: kanji-n5, role: supporting, status: live, question: "¿Qué kanji aprender primero (N5)?" }
-      - { key: que-es-el-kana, role: definitional, status: planned, question: "¿Qué es el kana?" }
-      - { key: que-es-un-kanji, role: definitional, status: planned, question: "¿Qué es un kanji y cuántos hay que saber?" }
-      - { key: elegir-app-escritura, role: comparison, status: planned, question: "¿Cómo elegir una app para aprender a escribir japonés?" }
+      - { key: que-es-el-kana, role: definitional, status: live, question: "¿Qué es el kana?" }
+      - { key: que-es-un-kanji, role: definitional, status: live, question: "¿Qué es un kanji y cuántos hay que saber?" }
+      - { key: elegir-app-escritura, role: comparison, status: live, question: "¿Cómo elegir una app para aprender a escribir japonés?" }
       - { key: hojas-de-trazos, role: supporting, status: planned, question: "Hojas descargables de orden de trazos (activo compartible)" }
       - { key: kana-pequenos-y-dakuten, role: definitional, status: planned, question: "¿Qué son el dakuten y los kana pequeños?" }
       - { key: cuanto-tarda-hiragana, role: question, status: planned, question: "¿Cuánto se tarda en aprender hiragana?" }
