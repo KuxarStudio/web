@@ -31,6 +31,7 @@ export const SEVERITY = {
   'description-missing': 'warn',
   'description-long': 'warn',
   'heading-skip': 'warn',
+  'brand-name': 'warn',
 };
 
 export const MAX_CLICK_DEPTH = 3;
@@ -113,6 +114,7 @@ export function parsePage(html) {
     redirect: refresh,
     canonical,
     lang,
+    text: stripTags(b),
     headings,
     links,
     imgs,
@@ -215,6 +217,9 @@ export function auditPage(url, p) {
     }
     prev = h.level;
   }
+  // Consistencia de entidad: el producto es siempre "Kaku!" (con exclamación), nunca "Kaku".
+  const bareKaku = /\bKaku\b(?![!\w])/.exec(p.text ?? '');
+  if (bareKaku) out.push(finding('brand-name', url, `"Kaku" sin "!" cerca de: …${p.text.slice(Math.max(0, bareKaku.index - 25), bareKaku.index + 25)}…`));
   for (const img of p.imgs) if (img.alt === undefined) out.push(finding('img-no-alt', url, `<img src="${img.src ?? ''}"> sin alt (usa alt="" si es decorativa)`));
   for (const l of p.links) {
     if (!l.hasAccessibleName) out.push(finding('empty-link', url, `enlace vacío a ${l.href}`));

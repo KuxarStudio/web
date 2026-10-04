@@ -1,0 +1,92 @@
+---
+// /estudio/ y /en/studio/: página de entidad del estudio (E-E-A-T y "LLM info").
+// Una URL canónica con identidad, pruebas verificables fuera de la web, y la
+// descripción del estudio en tres longitudes para citar. Sin nombres de personas.
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import { route, localize, alternatesFor, type Lang } from '../../i18n';
+import { studioPage } from '../../i18n/studioPage';
+import { breadcrumbForRoute } from '../../lib/schema';
+import { STUDIO_EMAIL, SAME_AS, organizationId } from '../../lib/entity';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = studioPage[lang];
+const site = Astro.site!.origin;
+const path = route('studio', lang);
+
+const kaku = await getEntry('projects', 'kaku');
+const pdfBlender = await getEntry('tools', 'pdf-blender');
+const kakuPlay = kaku ? localize(kaku.data, lang).googlePlay : undefined;
+const pdfRepo = pdfBlender?.data.repo;
+const [githubUrl, playDevUrl] = SAME_AS;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${site}${path}#page`,
+    url: `${site}${path}`,
+    name: t.h1,
+    description: t.description,
+    inLanguage: lang,
+    about: { '@id': organizationId(site) },
+    mainEntity: { '@id': organizationId(site) },
+  },
+  breadcrumbForRoute(site, lang, 'studio', t.breadcrumb),
+];
+---
+<BaseLayout title={t.title} description={t.description} lang={lang} routeKey="studio" jsonLd={jsonLd}>
+  <Header lang={lang} routeKey="studio" />
+  <main id="main">
+    <article class="section page-top">
+      <div class="wrap post">
+        <h1 class="post-title">{t.h1}</h1>
+        <div class="post-body">
+          <p><strong>{t.lead}</strong></p>
+
+          <h2 id="quienes">{t.whoTitle}</h2>
+          {t.who.map((p) => <p>{p}</p>)}
+
+          <h2>{t.whatTitle}</h2>
+          <ul>
+            <li>{t.whatProducts} <a href={route('projects', lang)}>{lang === 'en' ? 'See the projects' : 'Ver los proyectos'}</a>.</li>
+            <li>{t.whatBusiness} <a href={route('parte', lang)}>Parte</a>.</li>
+          </ul>
+
+          <h2>{t.howTitle}</h2>
+          {t.how.map((p) => <p>{p}</p>)}
+
+          <h2>{t.stackTitle}</h2>
+          <dl class="stack">
+            {Object.values(t.stack).map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+
+          <h2>{t.proofTitle}</h2>
+          <p>{t.proofIntro}</p>
+          <ul>
+            <li><a href={githubUrl} rel="noopener">{t.proof.github}</a></li>
+            <li><a href={playDevUrl} rel="noopener">{t.proof.googlePlay}</a></li>
+            {kakuPlay && <li><a href={kakuPlay} rel="noopener">{t.proof.kaku}</a></li>}
+            {pdfRepo && <li><a href={pdfRepo} rel="noopener">{t.proof.pdfBlender}</a></li>}
+          </ul>
+
+          <h2 id="describirnos">{t.citeTitle}</h2>
+          <p>{t.citeIntro}</p>
+          <h3 class="post-h3">{t.citeLabels.short}</h3>
+          <p>{t.cite.short}</p>
+          <h3 class="post-h3">{t.citeLabels.medium}</h3>
+          <p>{t.cite.medium}</p>
+          <h3 class="post-h3">{t.citeLabels.long}</h3>
+          {t.cite.long.map((p) => <p>{p}</p>)}
+
+          <h2>{t.contactTitle}</h2>
+          <p>{t.contact} <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

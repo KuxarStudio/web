@@ -15,3 +15,16 @@ describe('withBrand', () => {
     expect(withBrand(t + 'x')).toBe(t + 'x');
   });
 });
+
+import { SAME_AS, STUDIO_NAME, organizationId } from '../src/lib/entity';
+
+describe('entidad del estudio', () => {
+  it('los perfiles externos son https y no se repiten', () => {
+    expect(SAME_AS.every((u) => u.startsWith('https://'))).toBe(true);
+    expect(new Set(SAME_AS).size).toBe(SAME_AS.length);
+  });
+  it('un único nombre y un único @id de organización', () => {
+    expect(STUDIO_NAME).toBe('Kuxar Studio');
+    expect(organizationId('https://kuxarstudio.com')).toBe('https://kuxarstudio.com/#organization');
+  });
+});

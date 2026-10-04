@@ -4,6 +4,7 @@ import Analytics from '../components/Analytics.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import { alternatesFor, type Alternate, type Lang, type RouteKey } from '../i18n';
 import { ui } from '../i18n/ui';
+import { SAME_AS, STUDIO_EMAIL, STUDIO_NAME, organizationId } from '../lib/entity';
 
 export interface Props {
   title: string;
@@ -48,24 +49,21 @@ const entityJsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': `${siteOrigin}/#organization`,
-    name: 'Kuxar Studio',
+    '@id': organizationId(siteOrigin),
+    name: STUDIO_NAME,
     url: `${siteOrigin}/`,
     logo: { '@type': 'ImageObject', url: `${siteOrigin}/logo.png`, width: 512, height: 512 },
     description: 'Estudio de software independiente: juegos, apps de aprendizaje, herramientas y software para empresas.',
-    email: 'admin@kuxarstudio.com',
-    contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'admin@kuxarstudio.com', availableLanguage: ['es', 'en'] },
-    sameAs: [
-      'https://github.com/KuxarStudio',
-      'https://play.google.com/store/apps/developer?id=Kuxar+Studio',
-    ],
+    email: STUDIO_EMAIL,
+    contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: STUDIO_EMAIL, availableLanguage: ['es', 'en'] },
+    sameAs: [...SAME_AS],
   },
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${siteOrigin}/#website`,
     url: `${siteOrigin}/`,
-    name: 'Kuxar Studio',
+    name: STUDIO_NAME,
     inLanguage: ['es', 'en'],
     publisher: { '@id': `${siteOrigin}/#organization` },
   },
