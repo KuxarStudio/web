@@ -495,6 +495,21 @@ p{margin:0;text-wrap:pretty;}
 .product-callout b{color:var(--ink);}
 .next-guide{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:1.05rem;}
 .next-guide span{color:var(--ink-mute);}
+.kana-sheets{max-width:980px;}
+.kana-sheets .post-body{max-width:68ch;}
+.kana-section{margin-top:36px;}
+.kana-section h2{font-size:1.35rem;}
+.kana-note{font-size:0.9rem;color:var(--ink-mute);margin-top:6px;}
+.kana-scroll{margin-top:12px;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;}
+.kana-scroll:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+.kana-table{border-collapse:collapse;width:100%;min-width:560px;}
+.kana-table th,.kana-table td{border:1px solid var(--line);padding:6px;text-align:center;vertical-align:middle;}
+.kana-table thead th,.kana-table tbody th{background:var(--surface-2);color:var(--ink-soft);font-size:0.85rem;font-weight:600;}
+.kana-table tbody th{width:44px;}
+.kana-table figure{margin:0;display:grid;justify-items:center;gap:2px;}
+.kana-table svg{width:100%;max-width:92px;height:auto;}
+.kana-table figcaption{font-size:0.8rem;color:#3f3f3c;}
+.kana-char{font-size:1rem;color:#111;}
 .related-guides{margin-top:40px;}
 .related-guides h2{font-size:1.2rem;margin-bottom:8px;}
 .post-back{margin-top:32px;}

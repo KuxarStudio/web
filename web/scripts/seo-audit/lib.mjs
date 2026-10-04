@@ -286,6 +286,13 @@ export function topicParity({ topicMap, guides, sitemapUrls }) {
     const live = [...mapped.values()].filter((t) => t.status === 'live');
     let alive = 0;
     for (const t of live) {
+      // Temas que no son guías (p. ej. una herramienta o un recurso) declaran sus URLs en `page`.
+      if (t.page) {
+        const missing = ['es', 'en'].filter((l) => !sitemapUrls.has(t.page[l]));
+        for (const l of missing) findings.push(finding('topic-invisible', t.page[l] ?? `topic:${projectId}/${t.key}`, `en el mapa pero ausente del sitemap (${t.key}, ${l})`));
+        if (!missing.length) alive++;
+        continue;
+      }
       const g = guides.find((x) => x.key === t.key && x.project === projectId);
       if (!g) {
         findings.push(finding('topic-invisible', `topic:${projectId}/${t.key}`, `en el mapa como "live" pero no existe la guía (key "${t.key}")`));

@@ -31,6 +31,8 @@ Seguir el orden y la dirección habituales hace que el carácter salga más prop
 
 Las líneas horizontales se trazan de izquierda a derecha y las verticales de arriba abajo. En el kana, la dirección es lo que distingue algunos caracteres parecidos (por ejemplo シ y ツ): lo vemos en [caracteres parecidos](/guias/hiragana-y-katakana-parecidos/).
 
+Si quieres tener a mano el orden de cada kana, hemos preparado [las hojas de orden de trazos de hiragana y katakana](/recursos/hojas-de-trazos/), con cada trazo numerado y PDF para imprimir, gratis y sin registro.
+
 ## Excepciones
 
 Son pocas, pero existen. Un ejemplo muy conocido: 右 empieza por el trazo diagonal, mientras que 左 empieza por la línea horizontal. Cuando dudes, no deduzcas: comprueba el orden en un diccionario o en una tabla de trazos. Algunos caracteres admiten además más de un orden aceptado.
