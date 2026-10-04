@@ -21,7 +21,7 @@ export const partePage: Record<Lang, PartePageCopy> = {
   es: {
     title: 'Parte | Presupuestos de obra desde el móvil · Kuxar Studio',
     description:
-      'Parte convierte las notas de una visita en un presupuesto profesional y editable, desde el móvil. Para pymes de fontanería, instalaciones y reformas. En diseño por Kuxar Studio.',
+      'Parte convierte las notas de una visita en un presupuesto editable, desde el móvil. Para pymes de fontanería, instalaciones y reformas. En diseño.',
     back: '← Kuxar Studio para empresas',
     requestAccess: 'Pedir acceso',
     howLink: 'Cómo funciona →',
@@ -42,7 +42,7 @@ export const partePage: Record<Lang, PartePageCopy> = {
   en: {
     title: 'Parte | Construction quotes from your phone · Kuxar Studio',
     description:
-      'Parte turns the notes from a site visit into a professional, editable quote, from your phone. For small plumbing, installation and renovation businesses. In design at Kuxar Studio.',
+      'Parte turns the notes from a site visit into an editable quote, from your phone. For small plumbing, installation and renovation businesses. In design.',
     back: '← Kuxar Studio for businesses',
     requestAccess: 'Request access',
     howLink: 'How it works →',

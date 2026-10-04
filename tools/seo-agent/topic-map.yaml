@@ -1,0 +1,44 @@
+# Mapa de temas por proyecto: la fuente de verdad de la autoridad temática.
+# Una fila = un tema = una página (ES + EN). `status: live` exige que la guía exista
+# en los dos idiomas y salga en el sitemap; `planned` es hueco declarado (cuenta para
+# el denominador de la cobertura pero no rompe el CI). Lo que está publicado y no
+# aparece aquí se marca como huérfano de tema.
+#
+# Roles: hub (pilar), supporting (profundiza un subtema del hub), definitional
+# ("qué es X"), question (una pregunta concreta de long-tail) y comparison
+# (decisión: cómo elegir entre opciones).
+# `key` = campo `key` del frontmatter de la guía (une la versión ES y la EN).
+#
+# Lo ejecuta `npm run audit` (web/scripts/seo-audit). Ratio de cobertura =
+# temas live / temas del mapa. Proxies de autoridad que debe vigilar el informe
+# semanal: cobertura, profundidad de clics (<=3), amplitud de ranking y citación por IA.
+projects:
+  kaku:
+    landing: { es: /kaku/, en: /en/kaku/ }
+    hub: escribir-japones
+    # Abanico de preguntas que una IA lanzaría (query fan-out) para la consulta
+    # "cómo aprender a escribir japonés". Cada hueco debería acabar en un tema.
+    fan_out:
+      - Por dónde empiezo: hiragana, katakana o kanji
+      - Qué es el kana y cuántos caracteres tiene
+      - Qué es un kanji y cuántos hay que saber
+      - Cómo se aprende el orden de los trazos
+      - Cómo evitar confundir caracteres parecidos
+      - Es mejor practicar en el móvil o en papel
+      - Hace falta escribir a mano para el JLPT N5
+      - Cómo elegir una app para practicar escritura
+    topics:
+      - { key: escribir-japones, role: hub, status: live, question: "¿Cómo aprender a escribir japonés a mano?" }
+      - { key: hiragana-practica, role: supporting, status: live, question: "¿Cómo aprender hiragana escribiendo?" }
+      - { key: kana-diferencias, role: supporting, status: live, question: "¿Qué diferencia hay entre hiragana y katakana?" }
+      - { key: kana-parecidos, role: supporting, status: live, question: "¿Cómo no confundir los kana parecidos?" }
+      - { key: orden-trazos, role: supporting, status: live, question: "¿Qué reglas sigue el orden de los trazos?" }
+      - { key: movil-o-papel, role: supporting, status: live, question: "¿Practicar en el móvil o en papel?" }
+      - { key: jlpt-n5-escritura, role: supporting, status: live, question: "¿Hay que escribir a mano para el JLPT N5?" }
+      - { key: kanji-n5, role: supporting, status: live, question: "¿Qué kanji aprender primero (N5)?" }
+      - { key: que-es-el-kana, role: definitional, status: planned, question: "¿Qué es el kana?" }
+      - { key: que-es-un-kanji, role: definitional, status: planned, question: "¿Qué es un kanji y cuántos hay que saber?" }
+      - { key: elegir-app-escritura, role: comparison, status: planned, question: "¿Cómo elegir una app para aprender a escribir japonés?" }
+      - { key: hojas-de-trazos, role: supporting, status: planned, question: "Hojas descargables de orden de trazos (activo compartible)" }
+      - { key: kana-pequenos-y-dakuten, role: definitional, status: planned, question: "¿Qué son el dakuten y los kana pequeños?" }
+      - { key: cuanto-tarda-hiragana, role: question, status: planned, question: "¿Cuánto se tarda en aprender hiragana?" }
