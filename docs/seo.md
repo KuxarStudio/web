@@ -52,3 +52,7 @@ cambiaron en el push. Prueba local: `node web/scripts/indexnow/run.mjs --before 
 `/recursos/hojas-de-trazos/` y sus PDF (`web/public/recursos/`). Datos de KanjiVG (CC BY-SA 3.0):
 **mantén la atribución**. Regenerar datos: `node scripts/kana/generate-data.mjs <clon-de-kanjivg>`;
 regenerar PDF: `node scripts/kana/make-pdf.mjs` (necesita Chromium; usa `playwright-core`).
+
+## Backlinks
+
+Método, tracker (`docs/backlinks/backlinks.csv`), textos de perfiles y mensajes de outreach en `docs/backlinks/`. Filtro de 6 pasos: nada se contacta si no pasa los cinco primeros.
