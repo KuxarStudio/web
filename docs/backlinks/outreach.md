@@ -41,7 +41,7 @@ Subject: Free printable hiragana and katakana stroke order sheets
 
 ## 4. Show HN: PDF-Blender
 
-Título: `Show HN: PDF-Blender – offline PDF merge/split/compare tool for Windows (GPL-3.0)`
+Título: `Show HN: PDF-Blender – offline PDF merge/split/compare tool (GPL-3.0)`
 
 Texto:
 
