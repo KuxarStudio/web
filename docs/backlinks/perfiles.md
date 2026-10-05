@@ -30,7 +30,7 @@ Primer vídeo recomendado: el bucle de trazos de Kaku! (ya está en `web/public/
 
 - Resumen corto: Herramienta de escritorio 100 % offline para unir, dividir, proteger, desproteger, convertir a Word y comparar PDF.
 - Descripción: usar el texto del README (https://github.com/KuxarStudio/PDF-Blender).
-- Licencia: GPL-3.0. Plataforma: Windows. Código abierto: sí.
+- Licencia: GPL-3.0. Plataformas: Windows (.exe en Releases) y cualquier sistema con Python (desde el código). Código abierto: sí.
 - Web: https://kuxarstudio.com/herramientas/
 
 ## itch.io: Nadir: Protocol 1-Star
