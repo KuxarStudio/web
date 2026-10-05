@@ -105,6 +105,9 @@ const jsonLd = [
           <h2>{t.citeTitle}</h2>
           <p>{t.citeText}</p>
           <p class="kana-note">{t.attribution}</p>
+          <h3 class="post-h3">{t.embedTitle}</h3>
+          <p>{t.embedText}</p>
+          <pre class="kana-embed" tabindex="0"><code>{t.embedSnippet}</code></pre>
         </div>
         <RelatedGuides lang={lang} items={related} />
       </div>
