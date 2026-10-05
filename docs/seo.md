@@ -52,3 +52,22 @@ cambiaron en el push. Prueba local: `node web/scripts/indexnow/run.mjs --before 
 `/recursos/hojas-de-trazos/` y sus PDF (`web/public/recursos/`). Datos de KanjiVG (CC BY-SA 3.0):
 **mantén la atribución**. Regenerar datos: `node scripts/kana/generate-data.mjs <clon-de-kanjivg>`;
 regenerar PDF: `node scripts/kana/make-pdf.mjs` (necesita Chromium; usa `playwright-core`).
+
+## Skills de Claude para SEO (`.claude/skills/`)
+
+Siete skills de un solo propósito, que Claude Code carga solo al abrir el repo. Se encadenan
+**auditar → planificar → escribir → medir** (la cadena del apunte "How to Use Claude for SEO"):
+
+| Paso | Skill | Se usa sobre | Devuelve |
+|---|---|---|---|
+| 1 Audit | `kuxar-seo-audit-page` | una página | lista de prioridades (usa `npm run audit`) |
+| 2 Audit | `kuxar-trust-check` | `/estudio/`, home, casos | puntuación E-E-A-T /16 + 3 mejoras |
+| 3 Plan | `kuxar-competitor-gap` | un proyecto y 2 rivales | huecos de contenido priorizados |
+| 4 Write | `kuxar-content-brief-draft` | cada hueco | brief + guía ES/EN + entrada en el topic-map |
+| 5 Write | `kuxar-title-optimizer` | cada página nueva | title y description con longitudes |
+| 6 Measure | `kuxar-striking-distance` | informe/CSV de GSC o Bing, mensual | consultas en posición 4–15 con un ajuste cada una |
+| 7 Measure | `kuxar-information-gain` | páginas que rankean y no convierten | puntuación Único/Específico/Auténtico |
+
+Cada skill lleva su formato de salida fijo y su sección "cuándo NO usarla". Para editarlas basta
+cualquier editor de texto (son `SKILL.md` normales, versionadas en git). Complementan al agente
+semanal (que mide) y a la auditoría de CI (que bloquea): las skills son el lado "trabajo con Claude".
