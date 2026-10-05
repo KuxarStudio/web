@@ -31,6 +31,8 @@ Following the usual order and direction makes characters better proportioned, he
 
 Horizontal lines are drawn left to right and vertical lines top to bottom. In kana, direction is what separates some look-alike characters (for example シ and ツ): see [similar-looking kana](/en/guides/similar-looking-kana/).
 
+If you want the order of every kana at hand, we made [stroke order sheets for hiragana and katakana](/en/resources/stroke-order-sheets/), with every stroke numbered and printable PDFs, free and with no sign-up.
+
 ## Exceptions
 
 There are few, but they exist. A well-known one: 右 starts with the diagonal stroke, while 左 starts with the horizontal line. When in doubt, do not guess: check the order in a dictionary or a stroke order chart. Some characters also accept more than one standard order.

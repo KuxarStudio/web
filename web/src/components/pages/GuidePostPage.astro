@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBrand } from '../../lib/seo';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import RelatedGuides from '../RelatedGuides.astro';
@@ -7,6 +8,9 @@ import { guidePath, formatDate, route, alternatesFromPaths, otherLang, type Lang
 import { guidesPage } from '../../i18n/pages';
 import { blogPosting, breadcrumbList } from '../../lib/schema';
 import { guidesCollection, pillarOf, relatedGuides, slugsByKey, type Guide } from '../../lib/guides';
+import { nextInSequence } from '../../lib/guide-order';
+import { getEntry } from 'astro:content';
+import { localize } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -20,6 +24,13 @@ const t = guidesPage[lang];
 const all = await guidesCollection(lang);
 const pillar = pillarOf(entry, all);
 const related = relatedGuides(entry, all);
+const next = nextInSequence(entry, all);
+
+// Enlace al producto alto en la página (regla de las sink pages): el lector que
+// llega buscando cómo se hace puede ir directo a la herramienta que lo hace.
+const product = await getEntry('projects', entry.data.project);
+const productData = product ? localize(product.data, lang) : undefined;
+const productHref = productData?.page;
 
 const slugs = await slugsByKey(entry.data.key);
 const hasOther = available.includes(otherLang(lang)) && !!slugs.es && !!slugs.en;
@@ -48,7 +59,7 @@ const jsonLd = [
   breadcrumbList(site, lang, trail),
 ];
 ---
-<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.description} lang={lang} alternates={alternates} jsonLd={jsonLd} ogType="article">
+<BaseLayout title={withBrand(entry.data.title)} description={entry.data.description} lang={lang} alternates={alternates} jsonLd={jsonLd} ogType="article">
   <Header lang={lang} switchHref={switchHref} />
   <main id="main">
     <article class="section page-top">
@@ -58,9 +69,17 @@ const jsonLd = [
         )}
         <p class="post-meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time></p>
         <h1 class="post-title">{entry.data.title}</h1>
+        {productData && productHref && (
+          <aside class="product-callout" aria-label={t.practiceIn}>
+            <p><b>{t.practiceIn}:</b> <a class="text-link" href={productHref} translate="no">{productData.title}</a> — {productData.description}</p>
+          </aside>
+        )}
         <div class="post-body">
           <Content />
         </div>
+        {next && (
+          <p class="next-guide"><span>{t.next}:</span> <a class="text-link" href={guidePath(next.slug, lang)}>{next.data.title}</a></p>
+        )}
         <RelatedGuides lang={lang} items={related} />
         <p class="post-back"><a class="text-link" href={route('guides', lang)}>{t.back}</a></p>
       </div>

@@ -6,6 +6,7 @@ import { route, type Lang } from '../i18n';
 import { ui } from '../i18n/ui';
 import { getCollection } from 'astro:content';
 import { guidesPage } from '../i18n/pages';
+import { kanaSheets } from '../i18n/kanaSheets';
 interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
 const t = ui[lang];
@@ -38,7 +39,8 @@ const hasGuides = (await getCollection(lang === 'en' ? 'guides-en' : 'guides')).
       <a href={route('tools', lang)}>{t.footer.tools}</a>
       <a href={route('devlog', lang)}>{t.footer.devlog}</a>
       {hasGuides && <a href={route('guides', lang)}>{guidesPage[lang].h1}</a>}
-      <a href={`${home}#${t.ids.studio}`}>{t.footer.studio}</a>
+      {hasGuides && <a href={route('kanaSheets', lang)}>{kanaSheets[lang].breadcrumb}</a>}
+      <a href={route('studio', lang)}>{t.footer.studio}</a>
       <a href="https://github.com/KuxarStudio" rel="noopener">GitHub</a>
     </nav>
     <div class="foot-bottom">

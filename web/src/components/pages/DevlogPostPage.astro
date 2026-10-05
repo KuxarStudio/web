@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBrand } from '../../lib/seo';
 import Header from '../Header.astro';
 import Footer from '../Footer.astro';
 import { devlogPath, formatDate, route, alternatesFromPaths, otherLang, type Lang } from '../../i18n';
@@ -44,7 +45,7 @@ const jsonLd = [
 ];
 const switchHref = hasOther ? paths[otherLang(lang)] : route('devlog', otherLang(lang));
 ---
-<BaseLayout title={`${entry.data.title} | Kuxar Studio`} description={entry.data.excerpt} lang={lang} alternates={alternates} jsonLd={jsonLd} ogType="article">
+<BaseLayout title={withBrand(entry.data.title)} description={entry.data.excerpt} lang={lang} alternates={alternates} jsonLd={jsonLd} ogType="article">
   <Header lang={lang} switchHref={switchHref} />
   <main id="main">
     <article class="section page-top">

@@ -154,6 +154,7 @@ const toolStats = await Promise.all(
           </div>
           <div class="studio-text">
             {copy.studio.paragraphs.map((p) => <p set:html={bold(p)} />)}
+            <p><a class="text-link" href={route('studio', lang)}>{lang === 'en' ? 'More about the studio →' : 'Más sobre el estudio →'}</a></p>
           </div>
         </div>
         <dl class="stack">

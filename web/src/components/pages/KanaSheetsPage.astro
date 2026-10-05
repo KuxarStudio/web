@@ -1,0 +1,114 @@
+---
+// /recursos/hojas-de-trazos/ y /en/resources/stroke-order-sheets/: activo compartible.
+// Tabla clásica (gojūon) con cada trazo numerado, sin registro ni formulario, más
+// los PDF de práctica. Los datos vienen de KanjiVG (CC BY-SA 3.0): la atribución
+// es obligatoria y va visible en la página.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import RelatedGuides from '../RelatedGuides.astro';
+import { route, type Lang } from '../../i18n';
+import { kanaSheets } from '../../i18n/kanaSheets';
+import { breadcrumbForRoute } from '../../lib/schema';
+import { guidesCollection } from '../../lib/guides';
+import { kanaSvg, strokeLabel } from '../../lib/kana-svg.mjs';
+import { COLUMNS, ROWS } from '../../data/kana-table.mjs';
+import strokes from '../../data/kana-strokes.json';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = kanaSheets[lang];
+const site = Astro.site!.origin;
+const data = strokes as unknown as Record<string, { s: string[]; n: [number, number][] }>;
+
+const scripts = [
+  { key: 'hira' as const, title: t.hiraganaTitle, id: 'hiragana' },
+  { key: 'kata' as const, title: t.katakanaTitle, id: 'katakana' },
+];
+const pdf = (script: string) => `/recursos/${lang === 'en' ? 'stroke-order-' : 'orden-de-trazos-'}${script}-${lang}.pdf`;
+
+const wanted = new Set(['orden-trazos', 'kana-parecidos', 'hiragana-practica', 'que-es-el-kana']);
+const related = (await guidesCollection(lang)).filter((g) => wanted.has(g.data.key));
+
+const jsonLd = [
+  breadcrumbForRoute(site, lang, 'kanaSheets', t.breadcrumb),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${site}${route('kanaSheets', lang)}#page`,
+    name: t.h1,
+    description: t.description,
+    inLanguage: lang,
+    isPartOf: { '@id': `${site}/#website` },
+    publisher: { '@id': `${site}/#organization` },
+    license: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    isBasedOn: 'https://kanjivg.tagaini.net',
+  },
+];
+---
+<BaseLayout title={t.title} description={t.description} lang={lang} routeKey="kanaSheets" jsonLd={jsonLd}>
+  <Header lang={lang} routeKey="kanaSheets" />
+  <main id="main">
+    <article class="section page-top">
+      <div class="wrap post kana-sheets">
+        <h1 class="post-title">{t.h1}</h1>
+        <div class="post-body">
+          {t.intro.map((p) => <p>{p}</p>)}
+
+          <h2>{t.downloadTitle}</h2>
+          <p>{t.downloadIntro}</p>
+          <ul>
+            <li><a href={pdf('hiragana')} download>{t.downloads.hiragana}</a></li>
+            <li><a href={pdf('katakana')} download>{t.downloads.katakana}</a></li>
+          </ul>
+          <p class="kana-note">{t.pdfNote}</p>
+
+          <h2>{t.howTitle}</h2>
+          {t.how.map((p) => <p>{p}</p>)}
+        </div>
+
+        {scripts.map((sc) => (
+          <section aria-labelledby={`${sc.id}-title`} class="kana-section">
+            <h2 id={`${sc.id}-title`}>{sc.title}</h2>
+            <p class="kana-note">{t.tip}</p>
+            <div class="kana-scroll" tabindex="0" role="region" aria-labelledby={`${sc.id}-title`}>
+              <table class="kana-table">
+                <thead>
+                  <tr>
+                    <th scope="col">{t.rowHeader}</th>
+                    {COLUMNS.map((c) => <th scope="col">{c}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {ROWS.map((row) => (
+                    <tr>
+                      <th scope="row">{row.id === 'nn' ? 'n' : row.id ? `${row.id}-` : '–'}</th>
+                      {row[sc.key].map((ch, i) => (
+                        <td>
+                          {ch && data[ch] ? (
+                            <figure>
+                              <Fragment set:html={kanaSvg(data[ch], { label: strokeLabel(ch, row.romaji[i]!, data[ch].s.length, lang), strokeWidth: 3.6 })} />
+                              <figcaption><span class="kana-char" lang="ja">{ch}</span> {row.romaji[i]}</figcaption>
+                            </figure>
+                          ) : null}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        ))}
+
+        <div class="post-body">
+          <h2>{t.citeTitle}</h2>
+          <p>{t.citeText}</p>
+          <p class="kana-note">{t.attribution}</p>
+        </div>
+        <RelatedGuides lang={lang} items={related} />
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
