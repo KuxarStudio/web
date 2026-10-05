@@ -61,3 +61,10 @@ Cada ejecución real guarda `snapshots/AAAA-MM-DD.json` en la rama **`seo-data`*
 - Las citaciones de IA son una muestra pequeña y variable: sirven para ver tendencia,
   no para medir al milímetro.
 - El agente propone trabajos; no publica nada ni contacta con nadie por su cuenta.
+
+## Respaldo de la programación
+
+GitHub puede retrasar o saltarse ejecuciones programadas. Además del lunes ~08:17 hay dos
+respaldos (lunes 11:47 y martes 08:47, hora de Madrid en verano) que solo corren si la rama
+`seo-data` aún no tiene un snapshot de esta semana, así que nunca se envían dos correos.
+Las ejecuciones manuales (`workflow_dispatch`) no pasan por ese filtro.
