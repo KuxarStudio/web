@@ -68,3 +68,9 @@ GitHub puede retrasar o saltarse ejecuciones programadas. Además del lunes ~08:
 respaldos (lunes 11:47 y martes 08:47, hora de Madrid en verano) que solo corren si la rama
 `seo-data` aún no tiene un snapshot de esta semana, así que nunca se envían dos correos.
 Las ejecuciones manuales (`workflow_dispatch`) no pasan por ese filtro.
+
+## Pausar un proyecto
+
+Añade `paused: true` a su bloque en `projects.yaml`: el agente lo ignora (no aparece en el
+informe, no gasta consultas de Gemini y no genera trabajos). Quítalo para reactivarlo.
+Ahora mismo está pausado BlindNote.

@@ -72,6 +72,7 @@ projects:
 
   - id: blindnote
     name: BlindNote
+    paused: true   # app aparcada: el agente la ignora. Quita esta línea para reactivarla.
     prefixes: ["/blindnote/", "/en/blindnote/"]
     brand_terms: ["BlindNote", "kuxarstudio"]
     questions:
