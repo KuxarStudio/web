@@ -500,6 +500,7 @@ p{margin:0;text-wrap:pretty;}
 .kana-section{margin-top:36px;}
 .kana-section h2{font-size:1.35rem;}
 .kana-note{font-size:0.9rem;color:var(--ink-mute);margin-top:6px;}
+.kana-embed{margin-top:8px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-md);overflow-x:auto;font-size:0.85rem;white-space:pre-wrap;word-break:break-word;}
 .kana-scroll{margin-top:12px;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;}
 .kana-scroll:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
 .kana-table{border-collapse:collapse;width:100%;min-width:560px;}
