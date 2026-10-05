@@ -1,0 +1,52 @@
+name: CI
+
+# Comprueba cada PR antes de fusionar: tipos, tests, build y auditoría SEO
+# (enlaces rotos, estructura, accesibilidad básica y paridad con el mapa de temas).
+on:
+  pull_request:
+    paths:
+      - 'web/**'
+      - 'tools/seo-agent/topic-map.yaml'
+      - '.github/workflows/ci.yml'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Type check
+        working-directory: web
+        run: npm run check
+
+      - name: Run tests
+        working-directory: web
+        run: npm test
+
+      - name: Build
+        working-directory: web
+        run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: SEO audit
+        working-directory: web
+        run: npm run audit

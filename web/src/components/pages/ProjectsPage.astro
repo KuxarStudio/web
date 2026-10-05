@@ -26,10 +26,10 @@ const jsonLd = breadcrumbForRoute(Astro.site!.origin, lang, 'projects', copy.h1)
           <p>{copy.intro}</p>
         </div>
         <div class="projects">
-          {projects.map((project, i) => <ProjectCard project={project} featured={i === 0} lang={lang} />)}
+          {projects.map((project, i) => <ProjectCard project={project} featured={i === 0} lang={lang} headingLevel="h2" />)}
         </div>
         <div class="tools">
-          {tools.map((tool) => <ToolCard tool={tool} lang={lang} />)}
+          {tools.map((tool) => <ToolCard tool={tool} lang={lang} headingLevel="h2" />)}
         </div>
       </div>
     </section>

@@ -10,8 +10,10 @@ interface Props {
   stats?: RepoStats | null;
   featured?: boolean;
   lang?: Lang;
+  /** Nivel del título: h3 bajo una sección h2 (home), h2 si el listado cuelga directamente del h1. */
+  headingLevel?: 'h2' | 'h3';
 }
-const { project, featured = false, lang = 'es' } = Astro.props;
+const { project, featured = false, lang = 'es', headingLevel: Heading = 'h3' } = Astro.props;
 const t = ui[lang];
 const { title, category, status, description, stack, media, progress, googlePlay, appStore, steam, repo, devlog, page } =
   localize(project.data, lang);
@@ -62,7 +64,7 @@ const mediaSrc = (src: string) => `${base}${src.replace(/^\//, '')}`;
   </div>
   <div class="project-body">
     <p class="project-meta"><b>{t.category[category]}</b> · {stack.join(' / ')}</p>
-    <h3 translate="no">{title}</h3>
+    <Heading translate="no">{title}</Heading>
     <p><span class:list={['status', `status-${status}`]}>{t.status[status]}</span></p>
     <p class="project-desc">{description}</p>
     {(primaryLink || devlogHref || pageHref) && (

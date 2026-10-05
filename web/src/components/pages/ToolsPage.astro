@@ -43,7 +43,7 @@ const stats = await Promise.all(
           <p>{copy.intro}</p>
         </div>
         <div class="tools">
-          {allTools.map((tool, i) => <ToolCard tool={tool} stats={stats[i]} lang={lang} />)}
+          {allTools.map((tool, i) => <ToolCard tool={tool} stats={stats[i]} lang={lang} headingLevel="h2" />)}
         </div>
       </div>
     </section>
