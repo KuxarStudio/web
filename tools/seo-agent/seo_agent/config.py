@@ -1,7 +1,8 @@
 """Carga y validación de projects.yaml.
 
 El registro de proyectos es la única fuente de verdad: añadir un juego, app o
-herramienta nueva es añadir un bloque en el YAML, sin tocar código.
+herramienta nueva es añadir un bloque en el YAML, sin tocar código. Con `paused: true` un proyecto se conserva en el YAML pero el
+agente lo ignora por completo (sus páginas pasan a contar para el estudio).
 """
 from __future__ import annotations
 
@@ -101,6 +102,9 @@ def parse_config(raw: dict[str, Any]) -> Config:
             raise ConfigError(f"{where}: id duplicado '{pid}'")
         seen.add(pid)
         where = f"projects[{pid}]"
+        if item.get("paused"):
+            # Proyecto aparcado: no entra en el informe, ni en las consultas de IA, ni en los trabajos.
+            continue
         questions_raw = item.get("questions") or {}
         bad_langs = set(questions_raw) - set(languages)
         if bad_langs:
