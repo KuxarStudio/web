@@ -53,6 +53,10 @@ cambiaron en el push. Prueba local: `node web/scripts/indexnow/run.mjs --before 
 **mantén la atribución**. Regenerar datos: `node scripts/kana/generate-data.mjs <clon-de-kanjivg>`;
 regenerar PDF: `node scripts/kana/make-pdf.mjs` (necesita Chromium; usa `playwright-core`).
 
+## Backlinks
+
+Método, tracker (`docs/backlinks/backlinks.csv`), textos de perfiles y mensajes de outreach en `docs/backlinks/`. Filtro de 6 pasos: nada se contacta si no pasa los cinco primeros.
+
 ## Skills de Claude para SEO (`.claude/skills/`)
 
 Siete skills de un solo propósito, que Claude Code carga solo al abrir el repo. Se encadenan

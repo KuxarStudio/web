@@ -18,6 +18,9 @@ export interface KanaSheetsCopy {
   citeTitle: string;
   citeText: string;
   attribution: string;
+  embedTitle: string;
+  embedText: string;
+  embedSnippet: string;
   breadcrumb: string;
   tip: string;
 }
@@ -47,6 +50,9 @@ export const kanaSheets: Record<Lang, KanaSheetsCopy> = {
     citeTitle: 'Cómo citar o enlazar',
     citeText: 'Si usas estas tablas en una web, un aula o un vídeo, enlaza a esta página (kuxarstudio.com) y mantén la atribución a KanjiVG.',
     attribution: 'Datos de trazos: KanjiVG (kanjivg.tagaini.net), © Ulrich Apel y colaboradores, licencia CC BY-SA 3.0.',
+    embedTitle: 'Texto listo para copiar',
+    embedText: 'Pega este fragmento junto a las hojas que uses. Cumple la atribución y enlaza de vuelta aquí.',
+    embedSnippet: '<p>Hojas de orden de trazos de hiragana y katakana por <a href="https://kuxarstudio.com/recursos/hojas-de-trazos/">Kuxar Studio</a>. Datos de trazos: <a href="https://kanjivg.tagaini.net">KanjiVG</a>, licencia <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.</p>',
     breadcrumb: 'Hojas de trazos',
     tip: 'Los números rojos indican el orden de cada trazo.',
   },
@@ -74,6 +80,9 @@ export const kanaSheets: Record<Lang, KanaSheetsCopy> = {
     citeTitle: 'How to cite or link',
     citeText: 'If you use these charts on a website, in a classroom or in a video, link to this page (kuxarstudio.com) and keep the KanjiVG attribution.',
     attribution: 'Stroke data: KanjiVG (kanjivg.tagaini.net), © Ulrich Apel and contributors, CC BY-SA 3.0 license.',
+    embedTitle: 'Ready-to-copy credit line',
+    embedText: 'Paste this snippet next to any sheet you use. It meets the attribution terms and links back here.',
+    embedSnippet: '<p>Hiragana and katakana stroke order sheets by <a href="https://kuxarstudio.com/en/resources/stroke-order-sheets/">Kuxar Studio</a>. Stroke data: <a href="https://kanjivg.tagaini.net">KanjiVG</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> license.</p>',
     breadcrumb: 'Stroke order sheets',
     tip: 'Red numbers show the order of each stroke.',
   },
