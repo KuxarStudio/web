@@ -1,0 +1,76 @@
+{
+  "citations": {
+    "blindnote": {
+      "asked": 2,
+      "brand": 0,
+      "own": 0
+    },
+    "kaku": {
+      "asked": 6,
+      "brand": 0,
+      "own": 0
+    },
+    "nadir": {
+      "asked": 2,
+      "brand": 0,
+      "own": 0
+    },
+    "parte": {
+      "asked": 4,
+      "brand": 1,
+      "own": 0
+    },
+    "pdf-blender": {
+      "asked": 2,
+      "brand": 0,
+      "own": 0
+    },
+    "studio": {
+      "asked": 3,
+      "brand": 0,
+      "own": 0
+    }
+  },
+  "date": "2026-10-05",
+  "projects": {
+    "blindnote": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "kaku": {
+      "clicks": 0.0,
+      "impressions": 1.0,
+      "position": 5.0
+    },
+    "nadir": {
+      "clicks": 1.0,
+      "impressions": 3.0,
+      "position": 6.333333333333333
+    },
+    "parte": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "pdf-blender": {
+      "clicks": 0,
+      "impressions": 0.0,
+      "position": 0.0
+    },
+    "studio": {
+      "clicks": 3.0,
+      "impressions": 16.0,
+      "position": 10.375
+    }
+  },
+  "total": {
+    "clicks": 4.0,
+    "impressions": 20.0,
+    "position": 9.5
+  },
+  "window": [
+    "2026-09-05",
+    "2026-10-02"
+  ]
+}
