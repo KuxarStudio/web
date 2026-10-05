@@ -7,6 +7,10 @@ name: SEO weekly report
 on:
   schedule:
     - cron: "17 6 * * 1" # lunes ~08:17 (Madrid, horario de verano; 07:17 en invierno)
+    # Respaldo: GitHub a veces retrasa o se salta ejecuciones programadas. Estas dos solo
+    # actúan si esta semana aún no hay snapshot (ver paso "Skip if already sent").
+    - cron: "47 9 * * 1" # lunes de respaldo
+    - cron: "47 6 * * 2" # martes de respaldo
   workflow_dispatch:
     inputs:
       dry_run:
@@ -66,7 +70,22 @@ jobs:
             git -C data remote add origin "$remote"
           fi
 
+      - name: Skip if already sent this week
+        id: gate
+        if: github.event_name == 'schedule'
+        run: |
+          set -euo pipefail
+          monday=$(date -u -d "monday this week" +%F)
+          [ "$(date -u +%u)" = "1" ] && monday=$(date -u +%F)
+          last=$(ls data/snapshots 2>/dev/null | sed 's/\.json$//' | sort | tail -1 || true)
+          echo "Lunes de esta semana: $monday · último snapshot: ${last:-ninguno}"
+          if [ -n "$last" ] && [[ ! "$last" < "$monday" ]]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Ya hay informe de esta semana: no se repite."
+          fi
+
       - name: Run agent
+        if: steps.gate.outputs.skip != 'true'
         env:
           GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -79,7 +98,7 @@ jobs:
           python -m seo_agent "${args[@]}"
 
       - name: Upload report
-        if: always()
+        if: always() && steps.gate.outputs.skip != 'true'
         uses: actions/upload-artifact@v7
         with:
           name: seo-report
@@ -87,7 +106,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Save history
-        if: env.DRY_RUN != 'true'
+        if: env.DRY_RUN != 'true' && steps.gate.outputs.skip != 'true'
         working-directory: tools/seo-agent/data
         run: |
           set -euo pipefail
