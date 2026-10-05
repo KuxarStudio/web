@@ -57,3 +57,16 @@ def test_question_language_must_be_declared():
     raw["projects"][0]["questions"] = {"fr": ["bonjour"]}
     with pytest.raises(ConfigError, match="idiomas no declarados"):
         parse_config(raw)
+
+
+def test_paused_project_is_ignored():
+    raw = _base()
+    raw["projects"].append({"id": "b", "name": "B", "prefixes": ["/b/"], "paused": True})
+    cfg = parse_config(raw)
+    assert [p.id for p in cfg.projects] == ["a"]
+    assert cfg.project_for_path("/b/x/").id == "a"
+
+
+def test_blindnote_is_paused_in_real_config():
+    cfg = load_config(ROOT / "projects.yaml")
+    assert "blindnote" not in {p.id for p in cfg.projects}
