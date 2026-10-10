@@ -70,3 +70,12 @@ def test_paused_project_is_ignored():
 def test_blindnote_is_paused_in_real_config():
     cfg = load_config(ROOT / "projects.yaml")
     assert "blindnote" not in {p.id for p in cfg.projects}
+
+
+def test_differentiator_optional_and_parsed():
+    raw = _base()
+    assert parse_config(raw).projects[0].differentiator is None
+    raw["projects"][0]["differentiator"] = "  El código es del cliente  "
+    assert parse_config(raw).projects[0].differentiator == "El código es del cliente"
+    raw["projects"][0]["differentiator"] = "   "
+    assert parse_config(raw).projects[0].differentiator is None

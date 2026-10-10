@@ -59,11 +59,12 @@ Método, tracker (`docs/backlinks/backlinks.csv`), textos de perfiles y mensajes
 
 ## Skills de Claude para SEO (`.claude/skills/`)
 
-Siete skills de un solo propósito, que Claude Code carga solo al abrir el repo. Se encadenan
-**auditar → planificar → escribir → medir** (la cadena del apunte "How to Use Claude for SEO"):
+Ocho skills de un solo propósito, que Claude Code carga solo al abrir el repo. Se encadenan
+**posicionar → auditar → planificar → escribir → medir** (la cadena del apunte "How to Use Claude for SEO"):
 
 | Paso | Skill | Se usa sobre | Devuelve |
 |---|---|---|---|
+| 0 Position | `kuxar-purple-cow` | un producto (primero `studio`, luego Kaku!) | diferenciador verdadero + un movimiento concreto; exige respuestas reales de Iñigo |
 | 1 Audit | `kuxar-seo-audit-page` | una página | lista de prioridades (usa `npm run audit`) |
 | 2 Audit | `kuxar-trust-check` | `/estudio/`, home, casos | puntuación E-E-A-T /16 + 3 mejoras |
 | 3 Plan | `kuxar-competitor-gap` | un proyecto y 2 rivales | huecos de contenido priorizados |
