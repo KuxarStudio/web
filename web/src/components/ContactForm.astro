@@ -4,7 +4,7 @@
 // anti-spam del lado del servidor). Si no hay access key configurada,
 // se muestra un aviso con el email de contacto en su lugar, para que el
 // build nunca dependa de tener la key para funcionar.
-import type { Lang } from '../i18n';
+import { route, type Lang } from '../i18n';
 
 interface Props {
   /** Muestra el email como alternativa si no hay access key. Desactívalo si
@@ -21,6 +21,8 @@ const t = {
     fail: 'No se pudo enviar el mensaje. Prueba de nuevo o escríbenos a admin@kuxarstudio.com.',
     subject: 'Nuevo mensaje desde kuxarstudio.com', from: 'Formulario de kuxarstudio.com',
     honey: 'No rellenar este campo', direct: 'Escríbenos directamente a',
+    errRequired: 'Este campo es obligatorio.',
+    errEmail: 'Escribe un email válido, por ejemplo nombre@dominio.com.',
     parteSubject: 'Solicitud de acceso anticipado a Parte',
     parteMessage: 'Me interesa Parte. Mi empresa se dedica a ',
   },
@@ -31,14 +33,17 @@ const t = {
     fail: 'The message could not be sent. Try again or write to us at admin@kuxarstudio.com.',
     subject: 'New message from kuxarstudio.com (English page)', from: 'kuxarstudio.com form (EN)',
     honey: 'Leave this field empty', direct: 'Write to us directly at',
+    errRequired: 'This field is required.',
+    errEmail: 'Enter a valid email, for example name@domain.com.',
     parteSubject: 'Early access request for Parte (English page)',
     parteMessage: "I'm interested in Parte. My company does ",
   },
 }[lang];
+const thanksUrl = route('thanks', lang);
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 ---
 {accessKey ? (
-  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail} data-parte-subject={t.parteSubject} data-parte-message={t.parteMessage}>
+  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail} data-thanks={thanksUrl} data-err-required={t.errRequired} data-err-email={t.errEmail} data-parte-subject={t.parteSubject} data-parte-message={t.parteMessage}>
     <input type="hidden" name="access_key" value={accessKey} />
     <input type="hidden" name="subject" id="cf-subject" value={t.subject} />
     <input type="hidden" name="from_name" value={t.from} />
@@ -51,15 +56,18 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 
     <div class="form-field">
       <label for="cf-name">{t.name}</label>
-      <input type="text" id="cf-name" name="name" required maxlength="100" autocomplete="name" />
+      <input type="text" id="cf-name" name="name" required maxlength="100" autocomplete="name" aria-describedby="cf-name-error" />
+      <p class="field-error" id="cf-name-error" hidden></p>
     </div>
     <div class="form-field">
       <label for="cf-email">{t.email}</label>
-      <input type="email" id="cf-email" name="email" required maxlength="200" autocomplete="email" spellcheck="false" />
+      <input type="email" id="cf-email" name="email" required maxlength="200" autocomplete="email" spellcheck="false" aria-describedby="cf-email-error" />
+      <p class="field-error" id="cf-email-error" hidden></p>
     </div>
     <div class="form-field">
       <label for="cf-message">{t.message}</label>
-      <textarea id="cf-message" name="message" required maxlength="5000"></textarea>
+      <textarea id="cf-message" name="message" required maxlength="5000" aria-describedby="cf-message-error"></textarea>
+      <p class="field-error" id="cf-message-error" hidden></p>
     </div>
 
     <button type="submit" class="btn btn-primary" id="cf-submit">{t.send}</button>
@@ -88,6 +96,39 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
       if (messageInput && !messageInput.value) messageInput.value = form.dataset.parteMessage || '';
     }
 
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('#cf-name, #cf-email, #cf-message'));
+
+    function errorFor(field: HTMLInputElement | HTMLTextAreaElement): string {
+      if (field.validity.valueMissing) return form!.dataset.errRequired || '';
+      if (field.validity.typeMismatch || field.validity.patternMismatch) return form!.dataset.errEmail || '';
+      return '';
+    }
+    function showError(field: HTMLInputElement | HTMLTextAreaElement, message: string) {
+      const el = document.getElementById(field.id + '-error');
+      if (el) {
+        el.textContent = message;
+        el.hidden = !message;
+      }
+      if (message) field.setAttribute('aria-invalid', 'true');
+      else field.removeAttribute('aria-invalid');
+    }
+    function validateAll(): boolean {
+      let firstInvalid: HTMLElement | null = null;
+      for (const field of fields) {
+        const message = errorFor(field);
+        showError(field, message);
+        if (message && !firstInvalid) firstInvalid = field;
+      }
+      firstInvalid?.focus();
+      return !firstInvalid;
+    }
+    // El error se retira en cuanto el campo vuelve a ser válido.
+    for (const field of fields) {
+      field.addEventListener('input', () => {
+        if (field.getAttribute('aria-invalid') === 'true') showError(field, errorFor(field));
+      });
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -101,10 +142,8 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
         return;
       }
 
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+      // Validación por campo: mensaje junto al campo, aria-invalid y foco en el primero.
+      if (!validateAll()) return;
 
       submitBtn.disabled = true;
       submitBtn.textContent = form.dataset.sending || '';
@@ -123,9 +162,13 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
         const data = await res.json();
 
         if (data.success) {
+          form.reset();
+          if (form.dataset.thanks) {
+            window.location.assign(form.dataset.thanks);
+            return;
+          }
           statusEl.textContent = form.dataset.ok || '';
           statusEl.className = 'form-status success';
-          form.reset();
         } else {
           throw new Error(data.message || 'Error desconocido');
         }

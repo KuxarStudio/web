@@ -52,6 +52,8 @@ export interface Ui {
   video: { pause: string; play: string };
   notFound: { title: string; description: string; h1: string; home: string; projects: string };
   legal: { updated: string };
+  stickyCta: { label: string };
+  thanks: { title: string; description: string; h1: string; body: string; home: string; projects: string };
 }
 
 export const ui: Record<Lang, Ui> = {
@@ -114,6 +116,15 @@ export const ui: Record<Lang, Ui> = {
       projects: 'Ver proyectos →',
     },
     legal: { updated: 'Última actualización' },
+    stickyCta: { label: 'Escríbenos' },
+    thanks: {
+      title: 'Mensaje enviado | Kuxar Studio',
+      description: 'Hemos recibido tu mensaje. Te responderemos por email lo antes posible.',
+      h1: 'Mensaje enviado',
+      body: 'Gracias por escribirnos. Hemos recibido tu mensaje y te responderemos por email lo antes posible.',
+      home: 'Volver al inicio',
+      projects: 'Ver proyectos →',
+    },
   },
   en: {
     skipLink: 'Skip to content',
@@ -174,5 +185,14 @@ export const ui: Record<Lang, Ui> = {
       projects: 'See projects →',
     },
     legal: { updated: 'Last updated' },
+    stickyCta: { label: 'Contact us' },
+    thanks: {
+      title: 'Message sent | Kuxar Studio',
+      description: 'We have received your message. We will reply by email as soon as we can.',
+      h1: 'Message sent',
+      body: 'Thanks for writing to us. We have received your message and will reply by email as soon as we can.',
+      home: 'Back to the homepage',
+      projects: 'See projects →',
+    },
   },
 };

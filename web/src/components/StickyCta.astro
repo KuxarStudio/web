@@ -1,0 +1,38 @@
+---
+// CTA fijo solo en móvil: lleva al bloque de contacto del pie. Se oculta
+// mientras ese bloque está a la vista (sería redundante) y mientras el banner
+// de cookies está abierto (ocuparían el mismo sitio). Sin JS no se muestra:
+// el menú ya enseña "Contacto" cuando no hay scripting.
+import type { Lang } from '../i18n';
+import { ui } from '../i18n/ui';
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const t = ui[lang];
+---
+<a class="btn btn-primary sticky-cta" id="sticky-cta" href={`#${t.ids.contact}`} data-target={t.ids.contact} hidden>{t.stickyCta.label}</a>
+
+<script>
+  (function () {
+    const cta = document.getElementById('sticky-cta') as HTMLAnchorElement | null;
+    if (!cta) return;
+    const target = document.getElementById(cta.dataset.target || '');
+    // Sin bloque de contacto en la página, el enlace apuntaría a la nada.
+    if (!target) return;
+    const banner = document.getElementById('cookie-banner');
+    let contactVisible = false;
+
+    function update() {
+      const bannerOpen = !!banner && !banner.hidden;
+      cta!.hidden = contactVisible || bannerOpen;
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        contactVisible = entries.some((e) => e.isIntersecting);
+        update();
+      }).observe(target);
+    }
+    if (banner) new MutationObserver(update).observe(banner, { attributes: true, attributeFilter: ['hidden'] });
+    update();
+  })();
+</script>
