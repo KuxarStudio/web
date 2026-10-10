@@ -2,6 +2,7 @@
 import fontUrl from '../assets/fonts/familjen-grotesk-latin-wght-normal.woff2?url';
 import Analytics from '../components/Analytics.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import StickyCta from '../components/StickyCta.astro';
 import { alternatesFor, type Alternate, type Lang, type RouteKey } from '../i18n';
 import { ui } from '../i18n/ui';
 import { SAME_AS, STUDIO_EMAIL, STUDIO_NAME, organizationId } from '../lib/entity';
@@ -84,7 +85,10 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
     {alternates.map((alt) => (
       <link rel="alternate" hreflang={alt.hreflang} href={new URL(alt.path, Astro.site)} />
     ))}
+    <link rel="icon" href={`${base}favicon.ico`} sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}site.webmanifest`} />
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
 
@@ -116,6 +120,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
   <body>
     <a class="skip-link" href="#main">{ui[lang].skipLink}</a>
     <slot />
+    {!noindex && <StickyCta lang={lang} />}
     <CookieBanner lang={lang} />
   </body>
 </html>
