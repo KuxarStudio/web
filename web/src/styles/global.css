@@ -540,6 +540,9 @@ p{margin:0;text-wrap:pretty;}
 .form-field textarea{resize:vertical;min-height:140px;}
 .contact-form .btn{width:100%;}
 @media (min-width:560px){.contact-form .btn{width:auto;justify-self:start;}}
+.form-field input[aria-invalid="true"],.form-field textarea[aria-invalid="true"]{border-color:var(--danger);}
+.field-error{font-size:0.85rem;line-height:1.35;color:var(--danger);}
+.field-error[hidden]{display:none;}
 .form-status{font-size:0.92rem;min-height:1.4em;}
 .form-status.success{color:var(--success);}
 .form-status.error{color:var(--danger);}
@@ -606,6 +609,14 @@ p{margin:0;text-wrap:pretty;}
   .cookie-banner{left:auto;right:24px;bottom:24px;max-width:460px;}
   .cookie-banner-inner{padding:16px 18px;gap:12px;}
 }
+
+/* CTA fijo de móvil (StickyCta.astro). En escritorio el CTA vive en la cabecera. */
+.sticky-cta{
+  position:fixed;left:var(--gutter);right:var(--gutter);bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;
+  justify-content:center;box-shadow:var(--shadow);
+}
+.sticky-cta[hidden]{display:none;}
+@media (min-width:900px){.sticky-cta{display:none;}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
