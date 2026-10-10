@@ -22,6 +22,8 @@ export const routes = {
   privacy: { es: '/privacidad/', en: '/en/privacy/' },
   terms: { es: '/terminos/', en: '/en/terms/' },
   studio: { es: '/estudio/', en: '/en/studio/' },
+  // Confirmación tras enviar el formulario (noindex, fuera del sitemap).
+  thanks: { es: '/gracias/', en: '/en/thanks/' },
   kanaSheets: { es: '/recursos/hojas-de-trazos/', en: '/en/resources/stroke-order-sheets/' },
   kaku: { es: '/kaku/', en: '/en/kaku/' },
   // Páginas legales de las apps (noindex; las pide Google Play).

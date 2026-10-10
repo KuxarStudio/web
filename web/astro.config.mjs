@@ -80,8 +80,9 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Páginas legales de las apps y solicitudes de borrado: accesibles por URL
-      // (las pide Google Play) pero sin interés de búsqueda.
-      filter: (page) => !/\/(privacy-policy|delete-account)\/$|\/(privacidad|privacy)\/apps\/$/.test(page),
+      // (las pide Google Play) pero sin interés de búsqueda. Igual la página de
+      // gracias del formulario (noindex).
+      filter: (page) => !/\/(privacy-policy|delete-account)\/$|\/(privacidad|privacy)\/apps\/$|\/(gracias|thanks)\/$/.test(page),
       // xhtml:link de hreflang: cada página con traducción enlaza a su par
       // (ver `pairs`). x-default apunta a la versión en español.
       serialize(item) {
