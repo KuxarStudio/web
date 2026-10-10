@@ -187,6 +187,8 @@ deploy publica a la rama/salida que GitHub Pages sirve.
   `web/src/lib/entity.ts`: solo perfiles externos que existan de verdad.
 - Los `<title>` llevan " | Kuxar Studio" solo si caben en 60 caracteres (`withBrand`).
 - IndexNow se envía tras cada deploy a main; la clave pública está en `web/public/*.txt`.
+- Posicionamiento: la skill `.claude/skills/kuxar-purple-cow/` propone el diferenciador de cada producto
+  (`differentiator` en `projects.yaml`, solo con OK de Iñigo y sin inventar nada). Detalle en `docs/seo.md`.
 - Datos de trazos de las hojas de kana: KanjiVG, CC BY-SA 3.0. Mantén la atribución.
 
 ## Estudios de referencia (investigación aportada por el usuario)

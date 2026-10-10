@@ -27,6 +27,7 @@ class Project:
     competitors: tuple[str, ...] = ()
     brand_terms: tuple[str, ...] = ()
     evidence_prompt: str | None = None
+    differentiator: str | None = None
     outreach_ideas: tuple[str, ...] = ()
     store_url: str | None = None
 
@@ -120,6 +121,7 @@ def parse_config(raw: dict[str, Any]) -> Config:
                 competitors=tuple(d.lower().removeprefix("www.") for d in item.get("competitors") or ()),
                 brand_terms=tuple(item.get("brand_terms") or (name,)),
                 evidence_prompt=item.get("evidence_prompt"),
+                differentiator=(str(item["differentiator"]).strip() or None) if item.get("differentiator") else None,
                 outreach_ideas=tuple(item.get("outreach_ideas") or ()),
                 store_url=item.get("store_url"),
             )

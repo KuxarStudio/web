@@ -21,12 +21,17 @@ settings:
   citations_model: gemini-flash-latest
   citations_delay_seconds: 4
 
+# Campo opcional `differentiator`: una frase con lo que hace distinto a cada proyecto.
+# Lo propone la skill `kuxar-purple-cow` y solo se escribe aquí con el OK de Iñigo (nunca inventado).
+# Si existe, el agente lo añade al trabajo semanal de "aporta un dato propio".
 projects:
   - id: studio
     name: Kuxar Studio
     prefixes: ["/", "/en/"]
     key_pages: ["/", "/en/", "/portfolio/", "/en/projects/"]
     brand_terms: ["Kuxar Studio", "kuxarstudio"]
+    # Referencias B2B que aportó Iñigo (CLAUDE.md). Solo marcan cuándo la IA cita a un rival.
+    competitors: [sonkeit.com, vertixsolutions.es, arttalo-tech.com]
     questions:
       es:
         - "¿Quién puede desarrollarme una app a medida para mi pequeña empresa?"
