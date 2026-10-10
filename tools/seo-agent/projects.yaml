@@ -30,6 +30,8 @@ projects:
     prefixes: ["/", "/en/"]
     key_pages: ["/", "/en/", "/portfolio/", "/en/projects/"]
     brand_terms: ["Kuxar Studio", "kuxarstudio"]
+    # Referencias B2B que aportó Iñigo (CLAUDE.md). Solo marcan cuándo la IA cita a un rival.
+    competitors: [sonkeit.com, vertixsolutions.es, arttalo-tech.com]
     questions:
       es:
         - "¿Quién puede desarrollarme una app a medida para mi pequeña empresa?"
