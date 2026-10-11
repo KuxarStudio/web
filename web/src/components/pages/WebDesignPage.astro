@@ -1,0 +1,183 @@
+---
+// /diseno-web/ y /en/web-design/: página comercial del servicio de diseño web.
+// Estructura pensada para buscar y convertir: propuesta + prueba visual arriba,
+// qué incluye, tipos de web, proceso, prueba verificable (esta misma web y un
+// encargo real), preguntas frecuentes y cierre con CTA al formulario del pie.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import DeviceMock from '../DeviceMock.astro';
+import WorkCard from '../WorkCard.astro';
+import FaqList from '../FaqList.astro';
+import { route, type Lang } from '../../i18n';
+import { ui } from '../../i18n/ui';
+import { bold } from '../../i18n/home';
+import { webDesignPage } from '../../i18n/webDesignPage';
+import { contactHref } from '../../lib/contact';
+import { breadcrumbForRoute, service } from '../../lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const copy = webDesignPage[lang];
+const t = ui[lang];
+const site = Astro.site!.origin;
+const here = route('webDesign', lang);
+const ctaHref = contactHref(here, 'web', lang);
+const suffix = lang === 'en' ? '-en' : '';
+const caseId = lang === 'en' ? 'gocita-case' : 'caso-gocita';
+
+const work = (await getCollection('work'))
+  .filter((w) => w.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const kindHref = (target: 'kaku' | 'parte' | 'case') => (target === 'case' ? `#${caseId}` : route(target, lang));
+
+const jsonLd = [
+  service({
+    site,
+    lang,
+    path: here,
+    name: copy.breadcrumb,
+    description: copy.description,
+    serviceType: copy.serviceType,
+    includes: copy.includes.items.map((item) => item.title),
+  }),
+  breadcrumbForRoute(site, lang, 'webDesign', copy.breadcrumb),
+];
+---
+<BaseLayout
+  title={copy.title}
+  description={copy.description}
+  lang={lang}
+  routeKey="webDesign"
+  ogImage={`og-web-design${suffix}.png`}
+  jsonLd={jsonLd}
+>
+  <Header lang={lang} routeKey="webDesign" />
+
+  <main id="main">
+    <section class="svc-hero" aria-labelledby="svc-title">
+      <div class="wrap svc-hero-grid">
+        <div>
+          <p class="parte-back"><a class="text-link" href={`${route('home', lang)}#${t.ids.business}`}>{copy.back}</a></p>
+          <p class="eyebrow">{copy.eyebrow}</p>
+          <h1 id="svc-title">{copy.h1}</h1>
+          <p class="hero-sub">{copy.sub}</p>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href={ctaHref}>{copy.cta}</a>
+            <a class="text-link" href="#proceso">{copy.howLink}</a>
+          </div>
+          <ul class="svc-proof" role="list">
+            {copy.proof.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <DeviceMock
+          url="kuxarstudio.com"
+          caption={copy.mock.caption}
+          eager
+          desktop={{ src: `/media/web-kuxar-escritorio${suffix}.webp`, alt: copy.mock.desktopAlt, width: 1280, height: 800 }}
+          mobile={{ src: `/media/web-kuxar-movil${suffix}.webp`, alt: copy.mock.mobileAlt, width: 390, height: 780 }}
+        />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="incluye-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="incluye-title">{copy.includes.h2}</h2>
+          <p>{copy.includes.intro}</p>
+        </div>
+        <ul class="feature-grid" role="list">
+          {copy.includes.items.map((item) => (
+            <li class="feature">
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tipos-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="tipos-title">{copy.kinds.h2}</h2>
+          <p>{copy.kinds.intro}</p>
+        </div>
+        <div class="kinds">
+          {copy.kinds.items.map((item) => (
+            <article class="kind">
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              {item.link && <a class="text-link" href={kindHref(item.link.target)}>{item.link.label}</a>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso" aria-labelledby="proceso-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="proceso-title">{copy.process.h2}</h2>
+          <p>{copy.process.intro}</p>
+        </div>
+        <ol class="process">
+          {copy.process.steps.map((step) => (
+            <li>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+                <p class="process-out"><b>{copy.process.outLabel}:</b> {step.out}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="prueba-title">
+      <div class="wrap">
+        <div class="case">
+          <div>
+            <div class="section-head">
+              <h2 id="prueba-title">{copy.caseStudy.h2}</h2>
+            </div>
+            <div class="case-text">
+              {copy.caseStudy.paragraphs.map((p) => <p set:html={bold(p)} />)}
+            </div>
+          </div>
+          <dl class="case-facts">
+            {copy.caseStudy.facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+        {work.length > 0 && (
+          <div class="works" id={caseId}>
+            <h3 class="case-app-title">{copy.caseStudy.appTitle}</h3>
+            <p class="case-app-intro">{copy.caseStudy.appIntro}</p>
+            {work.map((item) => <WorkCard work={item} featured={work.length === 1} lang={lang} headingLevel="h4" />)}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-web-title">
+      <div class="wrap">
+        <FaqList title={copy.faqTitle} items={copy.faq} lang={lang} id="faq-web-title" headingLevel={2} />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cierre-title">
+      <div class="wrap">
+        <div class="cta-band">
+          <h2 id="cierre-title">{copy.closing.h2}</h2>
+          <p>{copy.closing.text}</p>
+          <a class="btn" href={ctaHref}>{copy.cta}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>

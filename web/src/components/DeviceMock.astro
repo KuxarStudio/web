@@ -1,0 +1,40 @@
+---
+// Maqueta de una web en escritorio (marco de navegador) y en móvil (marco de
+// teléfono superpuesto). Para enseñar webs reales: las capturas se pasan por
+// props, así que sirve para esta web y para futuros encargos de clientes.
+interface Shot {
+  /** Ruta en public/ (con o sin barra inicial). */
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+interface Props {
+  desktop: Shot;
+  mobile: Shot;
+  /** Dominio que se pinta en la barra del navegador (decorativo). */
+  url: string;
+  caption?: string;
+  /** Prioridad de carga: true en el hero (LCP), false más abajo. */
+  eager?: boolean;
+}
+const { desktop, mobile, url, caption, eager = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const src = (path: string) => `${base}${path.replace(/^\//, '')}`;
+const loading = eager ? 'eager' : 'lazy';
+---
+<figure class="device-mock">
+  <div class="device-stage">
+    <div class="browser">
+      <div class="browser-bar" aria-hidden="true">
+        <span class="browser-dots"><i></i><i></i><i></i></span>
+        <span class="browser-url">{url}</span>
+      </div>
+      <img src={src(desktop.src)} alt={desktop.alt} width={desktop.width} height={desktop.height} loading={loading} fetchpriority={eager ? 'high' : undefined} decoding="async" />
+    </div>
+    <div class="phone">
+      <img src={src(mobile.src)} alt={mobile.alt} width={mobile.width} height={mobile.height} loading={loading} decoding="async" />
+    </div>
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

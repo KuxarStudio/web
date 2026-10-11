@@ -3,7 +3,7 @@
 // idiomas. Solo hechos confirmados por el equipo (ver CLAUDE.md): no añadir
 // precios, plazos ni garantías sin confirmar.
 import { route, type Lang } from '../i18n';
-import { ui } from '../i18n/ui';
+import { contactHref } from './contact';
 
 export interface ParteCopy {
   tagline: string;
@@ -56,7 +56,7 @@ export const parte: Record<Lang, ParteCopy> = {
       },
       {
         q: '¿Solo hacéis Parte?',
-        a: 'No. También desarrollamos apps y herramientas a medida para empresas.',
+        a: 'No. También diseñamos webs y desarrollamos apps y herramientas a medida para empresas.',
       },
     ],
   },
@@ -98,7 +98,7 @@ export const parte: Record<Lang, ParteCopy> = {
       },
       {
         q: 'Do you only build Parte?',
-        a: 'No. We also build custom apps and tools for businesses.',
+        a: 'No. We also design websites and build custom apps and tools for businesses.',
       },
     ],
   },
@@ -106,7 +106,7 @@ export const parte: Record<Lang, ParteCopy> = {
 
 /** Enlace al formulario de contacto (en el footer de cada página) que
  * etiqueta el mensaje como solicitud de acceso anticipado. `page` es la ruta actual. */
-export const parteTrialHref = (page: string, lang: Lang = 'es') => `${page}?asunto=parte#${ui[lang].ids.contact}`;
+export const parteTrialHref = (page: string, lang: Lang = 'es') => contactHref(page, 'parte', lang);
 
 /** Ruta de la página de Parte en un idioma (atajo para los componentes). */
 export const partePath = (lang: Lang) => route('parte', lang);

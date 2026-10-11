@@ -5,6 +5,7 @@
 // se muestra un aviso con el email de contacto en su lugar, para que el
 // build nunca dependa de tener la key para funcionar.
 import { route, type Lang } from '../i18n';
+import { contactTopics } from '../lib/contact';
 
 interface Props {
   /** Muestra el email como alternativa si no hay access key. Desactívalo si
@@ -23,8 +24,6 @@ const t = {
     honey: 'No rellenar este campo', direct: 'Escríbenos directamente a',
     errRequired: 'Este campo es obligatorio.',
     errEmail: 'Escribe un email válido, por ejemplo nombre@dominio.com.',
-    parteSubject: 'Solicitud de acceso anticipado a Parte',
-    parteMessage: 'Me interesa Parte. Mi empresa se dedica a ',
   },
   en: {
     name: 'Name', email: 'Email', message: 'Message', send: 'Send', sending: 'Sending…',
@@ -35,15 +34,15 @@ const t = {
     honey: 'Leave this field empty', direct: 'Write to us directly at',
     errRequired: 'This field is required.',
     errEmail: 'Enter a valid email, for example name@domain.com.',
-    parteSubject: 'Early access request for Parte (English page)',
-    parteMessage: "I'm interested in Parte. My company does ",
   },
 }[lang];
 const thanksUrl = route('thanks', lang);
+// Temas válidos de ?asunto= (lib/contact.ts), serializados para el script del cliente.
+const topics = JSON.stringify(contactTopics[lang]);
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 ---
 {accessKey ? (
-  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail} data-thanks={thanksUrl} data-err-required={t.errRequired} data-err-email={t.errEmail} data-parte-subject={t.parteSubject} data-parte-message={t.parteMessage}>
+  <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail} data-thanks={thanksUrl} data-err-required={t.errRequired} data-err-email={t.errEmail} data-topics={topics}>
     <input type="hidden" name="access_key" value={accessKey} />
     <input type="hidden" name="subject" id="cf-subject" value={t.subject} />
     <input type="hidden" name="from_name" value={t.from} />
@@ -87,13 +86,22 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
     const statusEl = document.getElementById('cf-status')!;
     const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement;
 
-    // ?asunto=parte (botones "Pedir acceso" de Parte) etiqueta el email para
-    // distinguir las solicitudes de acceso del resto de mensajes.
-    if (new URLSearchParams(window.location.search).get('asunto') === 'parte') {
-      const subjectInput = document.getElementById('cf-subject') as HTMLInputElement | null;
-      const messageInput = document.getElementById('cf-message') as HTMLTextAreaElement | null;
-      if (subjectInput) subjectInput.value = form.dataset.parteSubject || subjectInput.value;
-      if (messageInput && !messageInput.value) messageInput.value = form.dataset.parteMessage || '';
+    // ?asunto=<tema> (botones de Parte, diseño web, software a medida...)
+    // etiqueta el email y precarga el mensaje. Temas en lib/contact.ts; un
+    // valor desconocido o un JSON roto simplemente no cambia nada.
+    const topic = new URLSearchParams(window.location.search).get('asunto');
+    if (topic) {
+      let topics: Record<string, { subject: string; message: string }> = {};
+      try {
+        topics = JSON.parse(form.dataset.topics || '{}');
+      } catch (e) {}
+      const match = Object.prototype.hasOwnProperty.call(topics, topic) ? topics[topic] : undefined;
+      if (match) {
+        const subjectInput = document.getElementById('cf-subject') as HTMLInputElement | null;
+        const messageInput = document.getElementById('cf-message') as HTMLTextAreaElement | null;
+        if (subjectInput && match.subject) subjectInput.value = match.subject;
+        if (messageInput && !messageInput.value && match.message) messageInput.value = match.message;
+      }
     }
 
     const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('#cf-name, #cf-email, #cf-message'));

@@ -316,7 +316,7 @@ p{margin:0;text-wrap:pretty;}
 .project-meta b{font-weight:600;color:var(--ink-soft);}
 .project :is(h2,h3){font-size:1.2rem;font-weight:700;}
 .project-desc{color:var(--ink-soft);font-size:0.95rem;line-height:1.45;}
-.project-links{display:flex;flex-wrap:wrap;gap:0 16px;margin-top:2px;}
+.project-links{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px;margin-top:2px;}
 .project-links .text-link{font-size:0.92rem;}
 .status{display:inline-block;font-size:0.78rem;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--bg);color:var(--ink-soft);}
 .status-disponible{background:color-mix(in srgb, var(--success) 14%, transparent);color:var(--success);}
@@ -407,13 +407,6 @@ p{margin:0;text-wrap:pretty;}
 .parte-actions{display:flex;flex-direction:column;gap:6px;}
 .parte-actions .btn{width:100%;}
 .parte-note{font-size:0.85rem;color:var(--ink-mute);}
-.custom-work{
-  margin-top:14px;display:grid;gap:10px;padding:20px 18px;border-radius:var(--r-lg);
-  background:var(--surface-2);
-}
-.custom-work h3{font-size:1.15rem;}
-.custom-work p{color:var(--ink-soft);}
-.custom-work strong{color:var(--ink);}
 @media (min-width:560px){
   .parte-actions{flex-direction:row;align-items:center;gap:16px;}
   .parte-actions .btn{width:auto;}
@@ -422,8 +415,6 @@ p{margin:0;text-wrap:pretty;}
   .parte-panel{grid-template-columns:1fr 1fr;gap:48px;padding:36px;align-items:start;}
   .parte-panel .parte-actions{grid-column:1;}
   .parte-panel .parte-steps{grid-column:2;grid-row:1 / span 2;}
-  .custom-work{grid-template-columns:1fr auto;align-items:center;column-gap:32px;padding:24px 36px;}
-  .custom-work .text-link{grid-column:2;grid-row:1 / span 2;}
 }
 
 /* Página /parte/ */
@@ -703,3 +694,147 @@ a,button,summary{touch-action:manipulation;}
 @media (min-width:860px){.kaku-hero{grid-template-columns:1.2fr 0.8fr;}}
 .kaku-answer{max-width:62ch;color:var(--ink-soft);font-size:1.05rem;line-height:1.6;}
 .kaku-answer + .kaku-answer{margin-top:12px;}
+
+/* ------------------------------------------------------------------
+   Servicios para empresas (ServiceCard.astro): home y páginas de servicio.
+   Mismo lenguaje que las tarjetas de proyecto (panel gris, radios grandes).
+------------------------------------------------------------------ */
+.services{display:grid;gap:14px;}
+.service{
+  display:flex;flex-direction:column;gap:10px;padding:20px 18px;border-radius:var(--r-lg);
+  background:var(--surface-2);border:1.5px solid transparent;
+}
+.service :is(h2,h3){font-size:1.3rem;font-weight:700;max-width:26ch;}
+.service-desc{color:var(--ink-soft);font-size:0.97rem;line-height:1.5;max-width:52ch;}
+.service-action{margin-top:auto;padding-top:6px;}
+.service-primary{background:var(--surface);border-color:var(--ink);}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;}
+.chips li{font-size:0.8rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--bg);color:var(--ink-soft);border:1px solid var(--line);}
+.service-primary .chips li{background:var(--surface-2);border-color:transparent;}
+.works-label{font-size:0.85rem;font-weight:600;color:var(--ink-mute);margin-top:10px;}
+.business-parte{margin-top:14px;}
+@media (min-width:768px){
+  .services{grid-template-columns:1fr 1fr;gap:20px;}
+  .service{padding:28px;}
+  .service :is(h2,h3){font-size:1.5rem;}
+  .business-parte{margin-top:20px;}
+}
+
+/* ------------------------------------------------------------------
+   Página de diseño web (/diseno-web/, /en/web-design/)
+------------------------------------------------------------------ */
+.eyebrow{font-size:0.85rem;font-weight:600;color:var(--ink-mute);letter-spacing:0.01em;}
+.svc-hero{padding-block:28px 48px;}
+.svc-hero-grid{display:grid;gap:36px;align-items:center;}
+.svc-hero h1{margin-top:12px;font-size:clamp(2.2rem,9vw,3.9rem);font-weight:700;line-height:1.02;letter-spacing:-0.022em;max-width:17ch;}
+.svc-hero .hero-sub{max-width:50ch;}
+.svc-actions{display:flex;flex-direction:column;gap:6px;margin-top:24px;}
+.svc-actions .btn{width:100%;}
+.svc-proof{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:0.9rem;color:var(--ink-soft);}
+.svc-proof li{display:inline-flex;align-items:center;gap:8px;}
+.svc-proof li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--success);flex-shrink:0;}
+@media (min-width:560px){
+  .svc-actions{flex-direction:row;align-items:center;gap:16px;}
+  .svc-actions .btn{width:auto;}
+}
+@media (min-width:1024px){
+  .svc-hero{padding-block:56px 80px;}
+  .svc-hero-grid{grid-template-columns:1fr 1fr;gap:56px;}
+}
+
+/* Maqueta navegador + móvil con capturas reales (DeviceMock.astro). */
+.device-mock{margin:0;}
+.device-stage{position:relative;padding-bottom:32px;}
+.device-mock .browser{width:88%;}
+.browser-bar{
+  display:flex;align-items:center;gap:10px;height:30px;padding:0 12px;
+  background:var(--surface-2);border-bottom:1px solid var(--line);
+}
+.device-mock .browser::before{display:none;}
+.browser-dots{display:flex;gap:5px;flex-shrink:0;}
+.browser-dots i{width:8px;height:8px;border-radius:50%;background:var(--line);}
+.browser-url{
+  flex:1;min-width:0;height:18px;display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;color:var(--ink-mute);background:var(--bg);border-radius:999px;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+}
+.device-mock .phone{position:absolute;right:0;bottom:0;width:30%;border-width:4px;border-radius:18px;}
+.device-mock figcaption{margin-top:14px;font-size:0.82rem;color:var(--ink-mute);}
+
+/* Qué incluye: rejilla de puntos numerados. */
+.feature-grid{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:feat;}
+.feature{padding:20px 18px;border-radius:var(--r-lg);background:var(--surface-2);counter-increment:feat;}
+.feature::before{
+  content:counter(feat, decimal-leading-zero);display:block;margin-bottom:12px;
+  font-family:var(--font-mono);font-size:0.78rem;color:var(--ink-mute);
+}
+.feature h3{font-size:1.12rem;}
+.feature p{margin-top:8px;color:var(--ink-soft);font-size:0.95rem;line-height:1.5;}
+@media (min-width:640px){.feature-grid{grid-template-columns:1fr 1fr;}}
+@media (min-width:1024px){
+  .feature-grid{grid-template-columns:repeat(3,1fr);gap:20px;}
+  .feature{padding:26px;}
+}
+
+/* Tipos de web. */
+.kinds{display:grid;gap:14px;}
+.kind{display:flex;flex-direction:column;gap:8px;padding:20px 18px;border-radius:var(--r-lg);border:1.5px solid var(--line);}
+.kind h3{font-size:1.15rem;}
+.kind p{color:var(--ink-soft);font-size:0.95rem;line-height:1.5;}
+.kind .text-link{margin-top:auto;font-size:0.92rem;}
+@media (min-width:900px){
+  .kinds{grid-template-columns:repeat(3,1fr);gap:20px;}
+  .kind{padding:26px;}
+}
+
+/* Proceso: línea temporal vertical en móvil, cuatro columnas en escritorio. */
+.process{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:proc;}
+.process li{position:relative;display:grid;grid-template-columns:40px 1fr;align-content:start;gap:14px;padding-bottom:24px;counter-increment:proc;}
+.process li::before{
+  content:counter(proc);display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--bg);font-weight:700;
+}
+.process li:not(:last-child)::after{content:"";position:absolute;left:19px;top:44px;bottom:4px;width:2px;background:var(--line);}
+.process h3{font-size:1.1rem;padding-top:8px;}
+.process p{margin-top:6px;color:var(--ink-soft);font-size:0.95rem;line-height:1.5;}
+.process-out{margin-top:8px;font-size:0.85rem;color:var(--ink-mute);}
+.process-out b{color:var(--ink-soft);font-weight:600;}
+@media (min-width:900px){
+  .process{grid-template-columns:repeat(4,1fr);gap:24px;}
+  .process li{grid-template-columns:1fr;gap:16px;padding-bottom:0;align-content:start;}
+  .process li:not(:last-child)::after{left:52px;right:-16px;top:19px;bottom:auto;width:auto;height:2px;}
+  .process h3{padding-top:0;}
+}
+
+/* Prueba: esta misma web, con datos verificables. */
+.case{display:grid;gap:24px;}
+.case-facts{margin:0;display:grid;border-radius:var(--r-lg);background:var(--surface-2);}
+.case-facts div{display:grid;gap:2px;padding:14px 18px;border-bottom:1px solid var(--line);}
+.case-facts div:last-child{border-bottom:0;}
+.case-facts dt{font-size:0.85rem;color:var(--ink-mute);}
+.case-facts dd{margin:0;font-weight:600;}
+.case-text{display:grid;gap:14px;color:var(--ink-soft);font-size:1.05rem;max-width:56ch;}
+.case-text strong{color:var(--ink);}
+@media (min-width:900px){
+  .case{grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+}
+
+/* FAQ como sección propia (h2) en páginas de servicio. */
+.faq-section{margin-top:0;}
+.faq-section h2{font-size:clamp(2rem,8vw,3.2rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:12px;}
+
+/* Cierre con CTA. */
+.cta-band{display:grid;gap:18px;padding:28px 20px;border-radius:var(--r-lg);background:var(--ink);color:var(--bg);}
+.cta-band h2{font-size:clamp(1.8rem,7vw,2.8rem);font-weight:700;letter-spacing:-0.02em;max-width:20ch;}
+.cta-band p{color:color-mix(in srgb, var(--bg) 78%, transparent);max-width:52ch;}
+.cta-band .btn{background:var(--bg);color:var(--ink);justify-self:start;}
+.cta-band .btn:hover{background:var(--surface-2);}
+.cta-band a:not(.btn){color:var(--bg);}
+@media (min-width:900px){
+  .cta-band{grid-template-columns:1fr auto;align-items:center;column-gap:48px;padding:48px;}
+  .cta-band .btn{grid-column:2;grid-row:1 / span 2;}
+}
+.work-title{font-family:var(--font-display);font-size:1.35rem;font-weight:700;line-height:1.1;letter-spacing:-0.015em;margin:0;}
+.case-app-title{margin-top:40px;font-size:1.35rem;letter-spacing:-0.015em;}
+.case-app-intro{color:var(--ink-soft);max-width:60ch;}
+@media (min-width:768px){.case-app-title{margin-top:56px;}}
