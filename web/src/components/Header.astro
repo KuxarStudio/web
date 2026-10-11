@@ -23,6 +23,7 @@ const home = route('home', lang);
 interface NavLink { href: string; label: string; match?: string; product?: boolean; cta?: boolean }
 const links: NavLink[] = [
   { href: `${home}#${t.ids.projects}`, label: t.header.projects, match: route('projects', lang) },
+  { href: route('webDesign', lang), label: t.header.webDesign, match: route('webDesign', lang) },
   { href: route('parte', lang), label: 'Parte', match: route('parte', lang), product: true },
   { href: `${home}#${t.ids.studio}`, label: t.header.studio },
   { href: route('devlog', lang), label: t.header.devlog, match: route('devlog', lang) },

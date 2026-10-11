@@ -1,0 +1,38 @@
+---
+// Tarjeta de un servicio para empresas (diseño web, software a medida...).
+// Mismo lenguaje que las tarjetas de proyecto: panel gris, radios grandes,
+// metadato arriba. Los datos llegan por props: la tarjeta no sabe de qué
+// servicio se trata, así que sirve para cualquiera que se añada después.
+export interface ServiceCardProps {
+  /** Etiqueta corta del servicio (p. ej. «Diseño web»). */
+  label: string;
+  title: string;
+  desc: string;
+  /** Lo más importante que incluye, en pocas palabras (se pinta como chips). */
+  points?: string[];
+  href: string;
+  /** Texto del enlace: descriptivo, no «más información». */
+  linkLabel: string;
+  /** Destaca la tarjeta (botón sólido en lugar de enlace de texto). */
+  primary?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+const { label, title, desc, points = [], href, linkLabel, primary = false, headingLevel: Heading = 'h3' } = Astro.props as ServiceCardProps;
+---
+<article class:list={['service', primary && 'service-primary']}>
+  <p class="project-meta"><b>{label}</b></p>
+  <Heading>{title}</Heading>
+  <p class="service-desc">{desc}</p>
+  {points.length > 0 && (
+    <ul class="chips" role="list">
+      {points.map((point) => <li>{point}</li>)}
+    </ul>
+  )}
+  <p class="service-action">
+    {primary ? (
+      <a class="btn btn-primary" href={href}>{linkLabel}</a>
+    ) : (
+      <a class="text-link" href={href}>{linkLabel}</a>
+    )}
+  </p>
+</article>

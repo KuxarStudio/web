@@ -11,6 +11,7 @@ export interface Ui {
   header: {
     navLabel: string;
     projects: string;
+    webDesign: string;
     studio: string;
     devlog: string;
     contact: string;
@@ -25,6 +26,7 @@ export interface Ui {
     nav: string;
     about: string;
     projects: string;
+    webDesign: string;
     tools: string;
     devlog: string;
     studio: string;
@@ -63,6 +65,7 @@ export const ui: Record<Lang, Ui> = {
     header: {
       navLabel: 'Principal',
       projects: 'Proyectos',
+      webDesign: 'Diseño web',
       studio: 'Estudio',
       devlog: 'Devlog',
       contact: 'Escríbenos',
@@ -75,8 +78,9 @@ export const ui: Record<Lang, Ui> = {
     footer: {
       title: 'Escríbenos',
       nav: 'Pie de página',
-      about: 'Estudio de software independiente. Juegos, apps de aprendizaje, herramientas y software para empresas.',
+      about: 'Estudio de software independiente. Juegos, apps de aprendizaje, herramientas, diseño web y software para empresas.',
       projects: 'Proyectos',
+      webDesign: 'Diseño web',
       tools: 'Herramientas',
       devlog: 'Devlog',
       studio: 'Estudio',
@@ -132,6 +136,7 @@ export const ui: Record<Lang, Ui> = {
     header: {
       navLabel: 'Main',
       projects: 'Projects',
+      webDesign: 'Web design',
       studio: 'Studio',
       devlog: 'Devlog',
       contact: 'Contact',
@@ -144,8 +149,9 @@ export const ui: Record<Lang, Ui> = {
     footer: {
       title: 'Get in touch',
       nav: 'Footer',
-      about: 'Independent software studio. Games, learning apps, tools and software for businesses.',
+      about: 'Independent software studio. Games, learning apps, tools, web design and software for businesses.',
       projects: 'Projects',
+      webDesign: 'Web design',
       tools: 'Tools',
       devlog: 'Devlog',
       studio: 'Studio',

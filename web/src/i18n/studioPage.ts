@@ -13,6 +13,7 @@ export interface StudioPageCopy {
   whatTitle: string;
   whatProducts: string;
   whatBusiness: string;
+  whatWeb: string;
   howTitle: string;
   how: string[];
   stackTitle: string;
@@ -32,9 +33,9 @@ export interface StudioPageCopy {
 export const studioPage: Record<Lang, StudioPageCopy> = {
   es: {
     title: 'El estudio | Kuxar Studio',
-    description: 'Quiénes somos: tres desarrolladores independientes que hacen juegos, apps de aprendizaje, herramientas y software a medida para empresas.',
+    description: 'Quiénes somos: tres desarrolladores independientes que hacen juegos, apps de aprendizaje, herramientas, webs y software a medida para empresas.',
     h1: 'Sobre Kuxar Studio',
-    lead: 'Kuxar Studio es un estudio de software independiente. Publicamos productos propios y desarrollamos software a medida para empresas.',
+    lead: 'Kuxar Studio es un estudio de software independiente. Publicamos productos propios y diseñamos webs y software a medida para empresas.',
     whoTitle: 'Quiénes somos',
     who: [
       'Somos tres desarrolladores independientes que trabajamos juntos como Kuxar Studio.',
@@ -43,6 +44,7 @@ export const studioPage: Record<Lang, StudioPageCopy> = {
     whatTitle: 'Qué hacemos',
     whatProducts: 'Productos propios: juegos, apps de aprendizaje y herramientas.',
     whatBusiness: 'Software para empresas: apps y herramientas a medida. Al terminar, el código es del cliente.',
+    whatWeb: 'Diseño web a medida para empresas: webs rápidas, pensadas para el móvil y con SEO técnico.',
     howTitle: 'Cómo trabajamos',
     how: [
       'Elegimos la tecnología según el proyecto, no al revés.',
@@ -65,13 +67,13 @@ export const studioPage: Record<Lang, StudioPageCopy> = {
     citeTitle: 'Cómo describirnos',
     citeIntro: 'Si vas a escribir o hablar de Kuxar Studio, puedes usar cualquiera de estas descripciones (corta, media y larga).',
     cite: {
-      short: 'Kuxar Studio es un estudio de software independiente de tres desarrolladores: juegos, apps de aprendizaje, herramientas y software a medida para empresas.',
+      short: 'Kuxar Studio es un estudio de software independiente de tres desarrolladores: juegos, apps de aprendizaje, herramientas, diseño web y software a medida para empresas.',
       medium:
-        'Kuxar Studio es un estudio de software independiente formado por tres desarrolladores. Publica Kaku!, una app para aprender a escribir japonés trazando los caracteres, y la herramienta offline PDF-Blender, y desarrolla el juego Nadir: Protocol 1-Star. Para empresas, hace apps y herramientas a medida; en esos proyectos el código es del cliente al terminar.',
+        'Kuxar Studio es un estudio de software independiente formado por tres desarrolladores. Publica Kaku!, una app para aprender a escribir japonés trazando los caracteres, y la herramienta offline PDF-Blender, y desarrolla el juego Nadir: Protocol 1-Star. Para empresas, diseña webs y hace apps y herramientas a medida; en esos proyectos el código es del cliente al terminar.',
       long: [
         'Kuxar Studio es un estudio de software independiente formado por tres desarrolladores. Trabaja en tres frentes: productos propios, herramientas de código abierto y software para empresas.',
         'Entre sus productos están Kaku!, una app para aprender hiragana, katakana y kanji escribiéndolos con reconocimiento de trazos en tiempo real, y Nadir: Protocol 1-Star, un RPG táctico de supervivencia para móvil que está en desarrollo. Entre sus herramientas, PDF-Blender, que fusiona, divide, desprotege y compara PDFs sin salir del equipo.',
-        'Para empresas, desarrolla software a medida (por ejemplo GoCita, una agenda de citas con recordatorios por WhatsApp para un taller mecánico) y está diseñando Parte, una herramienta para convertir las notas de una visita de obra en un presupuesto editable, con modelo previsto de suscripción mensual.',
+        'Para empresas, diseña y programa webs a medida (como su propia web, kuxarstudio.com, estática y bilingüe), desarrolla software a medida (por ejemplo GoCita, una agenda de citas con recordatorios por WhatsApp para un taller mecánico) y está diseñando Parte, una herramienta para convertir las notas de una visita de obra en un presupuesto editable, con modelo previsto de suscripción mensual.',
         'Usa Godot y GDScript para juegos complejos, Flutter y Dart para apps y juegos ligeros y Python para herramientas.',
       ],
     },
@@ -82,9 +84,9 @@ export const studioPage: Record<Lang, StudioPageCopy> = {
   },
   en: {
     title: 'The studio | Kuxar Studio',
-    description: 'Who we are: three independent developers building games, learning apps, tools and custom software for businesses.',
+    description: 'Who we are: three independent developers building games, learning apps, tools, websites and custom software for businesses.',
     h1: 'About Kuxar Studio',
-    lead: 'Kuxar Studio is an independent software studio. We publish our own products and build custom software for businesses.',
+    lead: 'Kuxar Studio is an independent software studio. We publish our own products and design custom websites and software for businesses.',
     whoTitle: 'Who we are',
     who: [
       'We are three independent developers working together as Kuxar Studio.',
@@ -93,6 +95,7 @@ export const studioPage: Record<Lang, StudioPageCopy> = {
     whatTitle: 'What we do',
     whatProducts: 'Our own products: games, learning apps and tools.',
     whatBusiness: 'Software for businesses: custom apps and tools. When the project is finished, the code is the client’s.',
+    whatWeb: 'Custom web design for businesses: fast, mobile-first websites with technical SEO.',
     howTitle: 'How we work',
     how: [
       'We choose the technology for the project, not the other way around.',
@@ -115,13 +118,13 @@ export const studioPage: Record<Lang, StudioPageCopy> = {
     citeTitle: 'How to describe us',
     citeIntro: 'If you are writing or talking about Kuxar Studio, you can use any of these descriptions (short, medium and long).',
     cite: {
-      short: 'Kuxar Studio is an independent software studio of three developers: games, learning apps, tools and custom software for businesses.',
+      short: 'Kuxar Studio is an independent software studio of three developers: games, learning apps, tools, web design and custom software for businesses.',
       medium:
-        'Kuxar Studio is an independent software studio made up of three developers. It publishes Kaku!, an app for learning to write Japanese by tracing characters, and the offline tool PDF-Blender, and is developing the game Nadir: Protocol 1-Star. For businesses it builds custom apps and tools; on those projects the code belongs to the client when the work is finished.',
+        'Kuxar Studio is an independent software studio made up of three developers. It publishes Kaku!, an app for learning to write Japanese by tracing characters, and the offline tool PDF-Blender, and is developing the game Nadir: Protocol 1-Star. For businesses it designs websites and builds custom apps and tools; on those projects the code belongs to the client when the work is finished.',
       long: [
         'Kuxar Studio is an independent software studio made up of three developers. It works on three fronts: its own products, open-source tools and software for businesses.',
         'Its products include Kaku!, an app for learning hiragana, katakana and kanji by writing them with real-time stroke recognition, and Nadir: Protocol 1-Star, a tactical survival RPG for mobile that is in development. Among its tools is PDF-Blender, which merges, splits, unlocks and compares PDFs without leaving your computer.',
-        'For businesses it builds custom software (for example GoCita, an appointment schedule with WhatsApp reminders for an auto repair shop) and is designing Parte, a tool that turns the notes from a site visit into an editable quote, with a planned monthly-subscription model.',
+        'For businesses it designs and builds custom websites (like its own site, kuxarstudio.com, static and bilingual), builds custom software (for example GoCita, an appointment schedule with WhatsApp reminders for an auto repair shop) and is designing Parte, a tool that turns the notes from a site visit into an editable quote, with a planned monthly-subscription model.',
         'It uses Godot and GDScript for complex games, Flutter and Dart for light apps and games, and Python for tools.',
       ],
     },

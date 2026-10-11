@@ -7,8 +7,10 @@ interface Props {
   work: CollectionEntry<'work'>;
   featured?: boolean;
   lang?: Lang;
+  /** Nivel del título: h3 bajo una sección h2 (home); h4 si cuelga de un h3. */
+  headingLevel?: 'h3' | 'h4';
 }
-const { work, featured = false, lang = 'es' } = Astro.props;
+const { work, featured = false, lang = 'es', headingLevel: Heading = 'h3' } = Astro.props;
 const t = ui[lang];
 const { title, client, description, stack, image, status, demoUrl, demoNote } = localize(work.data, lang);
 const base = import.meta.env.BASE_URL;
@@ -23,7 +25,7 @@ const imgSrc = `${base}${image.src.replace(/^\//, '')}`;
   </div>
   <div class="work-body">
     <p class="project-meta"><b>{t.work.label}</b> · {client} · {stack.join(' / ')}</p>
-    <h3>{title}</h3>
+    <Heading class="work-title">{title}</Heading>
     <p><span class:list={['status', status === 'entregado' && 'status-disponible']}>{t.workStatus[status]}</span></p>
     <p class="project-desc">{description}</p>
     {demoUrl && (

@@ -25,14 +25,16 @@ projects:
   - id: studio
     name: Kuxar Studio
     prefixes: ["/", "/en/"]
-    key_pages: ["/", "/en/", "/portfolio/", "/en/projects/"]
+    key_pages: ["/", "/en/", "/portfolio/", "/en/projects/", "/diseno-web/", "/en/web-design/"]
     brand_terms: ["Kuxar Studio", "kuxarstudio"]
     questions:
       es:
+        - "¿Qué estudio puede hacerme una web a medida para mi empresa, rápida y con buen SEO?"
         - "¿Quién puede desarrollarme una app a medida para mi pequeña empresa?"
         - "¿Cuánto tarda y qué necesito para encargar una app a medida para un taller?"
       en:
         - "Who can build a custom app for my small business?"
+        - "custom web design studio for small businesses, fast and SEO-ready"
     evidence_prompt: "¿Qué dato real del último encargo a medida (tiempo, problema resuelto, resultado medido) puedes contar sin nombrar al cliente?"
     outreach_ideas: ["directorios de estudios independientes", "comunidades de desarrolladores", "listas de software a medida"]
 

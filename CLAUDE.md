@@ -156,6 +156,17 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   número dedicado con respuesta automática. Aviso dado: el AI Act (art. 50,
   aplicable desde 2026-08-02) obliga a indicar que es un sistema automático;
   no diseñarlo para ocultar que es un bot.
+- **Diseño web como servicio (2026-10-12):** página comercial `/diseno-web/`
+  (`/en/web-design/`), en la cabecera tras "Proyectos" y en el pie. En la home,
+  el bloque "Para empresas" va en este orden: servicios contratables hoy
+  (diseño web, software a medida; `ServiceCard.astro`) → encargo real (GoCita)
+  → Parte (en diseño) → FAQ (`FaqList.astro`, genera su FAQPage). La prueba
+  del servicio es esta misma web (capturas reales en `public/media/web-kuxar-*`;
+  regenerarlas si cambia mucho la home). Sin precios ni plazos: lo único
+  confirmado sigue siendo que el código es del cliente.
+- Temas del formulario de contacto en `web/src/lib/contact.ts`
+  (`?asunto=parte|web|software#contacto` etiqueta el email). Un servicio nuevo =
+  una clave ahí + `contactHref()`.
 - Org de GitHub: `https://github.com/KuxarStudio` (7 repos públicos a fecha de
   esta nota; revisar de nuevo si hace falta la lista actualizada).
 

@@ -1,0 +1,36 @@
+---
+// Preguntas frecuentes: lista abierta (sin acordeón, todo legible y rastreable)
+// + su FAQPage en JSON-LD con exactamente el mismo texto que se ve.
+// Se usa en la home (bloque de empresas) y en las páginas de servicio.
+import Parte from './Parte.astro';
+import { faqPage, type FaqItem } from '../lib/schema';
+import type { Lang } from '../i18n';
+
+interface Props {
+  title: string;
+  items: FaqItem[];
+  lang: Lang;
+  /** id del encabezado (único en la página). */
+  id?: string;
+  /** Nivel del encabezado: h3 dentro de una sección, h2 como sección propia. */
+  headingLevel?: 2 | 3;
+  /** Pinta la palabra «Parte» con su wordmark (solo donde se habla del producto). */
+  parteWordmark?: boolean;
+}
+const { title, items, lang, id = 'faq-title', headingLevel = 3, parteWordmark = false } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+const split = (text: string) => (parteWordmark ? text.split(/(\bParte\b)/) : [text]);
+const jsonLd = faqPage(lang, items);
+---
+<div class:list={['faq', headingLevel === 2 && 'faq-section']}>
+  <Heading id={id}>{title}</Heading>
+  <dl aria-labelledby={id}>
+    {items.map((item) => (
+      <div>
+        <dt>{split(item.q).map((part) => (part === 'Parte' && parteWordmark ? <Parte /> : part))}</dt>
+        <dd>{split(item.a).map((part) => (part === 'Parte' && parteWordmark ? <Parte /> : part))}</dd>
+      </div>
+    ))}
+  </dl>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</div>

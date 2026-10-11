@@ -19,6 +19,8 @@ export const routes = {
   devlog: { es: '/devlog/', en: '/en/devlog/' },
   guides: { es: '/guias/', en: '/en/guides/' },
   parte: { es: '/parte/', en: '/en/parte/' },
+  // Servicio de diseño y desarrollo web (página comercial).
+  webDesign: { es: '/diseno-web/', en: '/en/web-design/' },
   privacy: { es: '/privacidad/', en: '/en/privacy/' },
   terms: { es: '/terminos/', en: '/en/terms/' },
   studio: { es: '/estudio/', en: '/en/studio/' },

@@ -18,9 +18,9 @@ const hasGuides = (await getCollection(lang === 'en' ? 'guides-en' : 'guides')).
     <div class="contact-intro">
       <h2>{t.footer.title}</h2>
       {lang === 'en' ? (
-        <p>A custom project, early access to <Parte />, or a question about our games and apps? Write to us and we will reply by email.</p>
+        <p>A new website, a custom project, early access to <Parte /> or a question about our games and apps? Write to us and we will reply by email.</p>
       ) : (
-        <p>Un proyecto a medida, acceso anticipado a <Parte /> o una duda sobre nuestros juegos y apps. Te respondemos por email.</p>
+        <p>Una web nueva, un proyecto a medida, acceso anticipado a <Parte /> o una duda sobre nuestros juegos y apps. Te respondemos por email.</p>
       )}
       <p><a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
     </div>
@@ -35,6 +35,7 @@ const hasGuides = (await getCollection(lang === 'en' ? 'guides-en' : 'guides')).
     <nav class="foot-nav" aria-label={t.footer.nav}>
       <a href={route('kaku', lang)} translate="no">Kaku!</a>
       <a href={route('projects', lang)}>{t.footer.projects}</a>
+      <a href={route('webDesign', lang)}>{t.footer.webDesign}</a>
       <a href={route('parte', lang)}><Parte /></a>
       <a href={route('tools', lang)}>{t.footer.tools}</a>
       <a href={route('devlog', lang)}>{t.footer.devlog}</a>

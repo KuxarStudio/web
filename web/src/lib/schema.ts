@@ -111,3 +111,66 @@ export function itemList(items: { name: string; url: string }[]) {
     })),
   };
 }
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+/** Preguntas frecuentes. Solo para listas que se ven tal cual en la página. */
+export function faqPage(lang: Lang, items: FaqItem[]) {
+  return {
+    '@context': CONTEXT,
+    '@type': 'FAQPage',
+    inLanguage: lang,
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+}
+
+export interface ServiceInput {
+  site: string;
+  lang: Lang;
+  /** Ruta de la página del servicio (p. ej. '/diseno-web/'). */
+  path: string;
+  name: string;
+  description: string;
+  /** Tipo de servicio en texto libre (schema.org `serviceType`). */
+  serviceType: string;
+  /** Lo que incluye, como catálogo sin precios (no están confirmados). */
+  includes?: string[];
+}
+
+/**
+ * Servicio que presta el estudio. Sin `offers`, precios ni `areaServed`: no
+ * están confirmados y schema.org no los exige. El proveedor es la organización.
+ */
+export function service(i: ServiceInput) {
+  const url = `${i.site}${i.path}`;
+  return {
+    '@context': CONTEXT,
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    url,
+    name: i.name,
+    description: i.description,
+    serviceType: i.serviceType,
+    inLanguage: i.lang,
+    provider: { '@id': `${i.site}/#organization` },
+    ...(i.includes && i.includes.length > 0
+      ? {
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: i.name,
+            itemListElement: i.includes.map((name) => ({
+              '@type': 'Offer',
+              itemOffered: { '@type': 'Service', name },
+            })),
+          },
+        }
+      : {}),
+  };
+}

@@ -2,6 +2,14 @@
 // `bold()`; el producto «Parte» se pinta con su wordmark en la plantilla.
 import type { Lang } from './index';
 
+export interface ServiceText {
+  label: string;
+  title: string;
+  desc: string;
+  points: string[];
+  link: string;
+}
+
 export interface HomeCopy {
   title: string;
   description: string;
@@ -15,7 +23,10 @@ export interface HomeCopy {
   business: {
     h2: string;
     intro: string;
-    custom: { h3: string; text: string; link: string };
+    /** Servicios (tarjetas). Orden de pintado: web, software. */
+    services: Record<'web' | 'software', ServiceText>;
+    /** Rótulo sobre los encargos para clientes. */
+    workLabel: string;
     faqTitle: string;
   };
   studio: {
@@ -28,16 +39,16 @@ export interface HomeCopy {
 
 export const home: Record<Lang, HomeCopy> = {
   es: {
-    title: 'Kuxar Studio | Juegos, apps y software para empresas',
+    title: 'Kuxar Studio | Juegos, apps, webs y software a medida',
     description:
-      'Kuxar Studio es un estudio de software independiente. Publicamos juegos, apps de aprendizaje y herramientas propias, y desarrollamos software para empresas.',
-    h1: 'Hacemos juegos, apps y software para empresas.',
+      'Kuxar Studio es un estudio de software independiente. Publicamos juegos, apps y herramientas propias, y diseñamos webs y software a medida para empresas.',
+    h1: 'Hacemos juegos, apps, webs y software para empresas.',
     heroSub:
-      'Kuxar Studio es un estudio de software independiente. Publicamos productos propios y desarrollamos software a medida.',
+      'Kuxar Studio es un estudio de software independiente. Publicamos productos propios y diseñamos webs y software a medida.',
     doorsLabel: '¿Qué buscas?',
     doors: {
       games: { title: 'Juegos y apps', desc: 'Kaku!, BlindNote y Nadir. Descárgalos o sigue su desarrollo.' },
-      business: { title: 'Para empresas', desc: 'Parte para presupuestos de obra, y desarrollo a medida.' },
+      business: { title: 'Para empresas', desc: 'Diseño web, software a medida y Parte para presupuestos de obra.' },
     },
     kakuVideoLabel: 'Kaku!: trazando el hiragana あ hasta completarlo.',
     blindnoteAlt: 'BlindNote: pantalla de resultados para marcar artista, canción y año acertados.',
@@ -45,12 +56,24 @@ export const home: Record<Lang, HomeCopy> = {
     business: {
       h2: 'Para empresas',
       intro:
-        'Software que resuelve un problema concreto de tu negocio. Empezamos por uno que conocemos bien: los presupuestos de obra.',
-      custom: {
-        h3: '¿Tu problema es otro?',
-        text: 'También desarrollamos apps y herramientas a medida para empresas. Al terminar, **el código es tuyo**. Cuéntanos qué necesitas.',
-        link: 'Escríbenos →',
+        'Webs, apps y herramientas hechas para un negocio concreto, no para todos a la vez. Al terminar, el código es tuyo.',
+      services: {
+        web: {
+          label: 'Diseño web',
+          title: 'Webs a medida, rápidas y preparadas para Google',
+          desc: 'Diseñamos y programamos la web de tu empresa desde cero: pensada primero para el móvil, con SEO técnico desde la base y en los idiomas que necesites.',
+          points: ['Diseño a medida', 'Móvil primero', 'SEO técnico', 'Multidioma'],
+          link: 'Ver diseño web a medida',
+        },
+        software: {
+          label: 'Software a medida',
+          title: 'Apps y herramientas para cómo trabajas',
+          desc: 'Cuando una hoja de cálculo o una app genérica ya no llega: agendas, paneles internos o herramientas que conectan con lo que ya usas.',
+          points: ['Web apps', 'Apps móviles', 'Herramientas internas'],
+          link: 'Cuéntanos tu proyecto →',
+        },
       },
+      workLabel: 'Un encargo reciente',
       faqTitle: 'Preguntas frecuentes',
     },
     studio: {
@@ -65,16 +88,16 @@ export const home: Record<Lang, HomeCopy> = {
     devlog: { h2: 'Devlog', intro: 'Cómo avanzan los proyectos, contado por quienes los hacen.' },
   },
   en: {
-    title: 'Kuxar Studio | Games, apps and software for businesses',
+    title: 'Kuxar Studio | Games, apps, websites and custom software',
     description:
-      'Kuxar Studio is an independent software studio. We publish our own games, learning apps and tools, and build custom software for businesses.',
-    h1: 'We make games, apps and software for businesses.',
+      'Kuxar Studio is an independent software studio. We publish our own games, apps and tools, and design websites and custom software for businesses.',
+    h1: 'We make games, apps, websites and software for businesses.',
     heroSub:
-      'Kuxar Studio is an independent software studio. We publish our own products and build custom software.',
+      'Kuxar Studio is an independent software studio. We publish our own products and design custom websites and software.',
     doorsLabel: 'What are you looking for?',
     doors: {
       games: { title: 'Games and apps', desc: 'Kaku!, BlindNote and Nadir. Download them or follow their development.' },
-      business: { title: 'For businesses', desc: 'Parte for construction job quotes, and custom development.' },
+      business: { title: 'For businesses', desc: 'Web design, custom software and Parte for construction job quotes.' },
     },
     kakuVideoLabel: 'Kaku!: tracing the hiragana あ until it is complete.',
     blindnoteAlt: 'BlindNote: results screen for marking the artist, song and year you got right.',
@@ -82,12 +105,24 @@ export const home: Record<Lang, HomeCopy> = {
     business: {
       h2: 'For businesses',
       intro:
-        'Software that solves a specific problem in your business. We start with one we know well: quotes for construction jobs.',
-      custom: {
-        h3: 'Is your problem a different one?',
-        text: 'We also build custom apps and tools for businesses. When we finish, **the code is yours**. Tell us what you need.',
-        link: 'Get in touch →',
+        'Websites, apps and tools built for one specific business, not for everyone at once. When we finish, the code is yours.',
+      services: {
+        web: {
+          label: 'Web design',
+          title: 'Custom websites, fast and ready for Google',
+          desc: 'We design and build your company website from scratch: mobile first, with technical SEO built in and in the languages you need.',
+          points: ['Custom design', 'Mobile first', 'Technical SEO', 'Multilingual'],
+          link: 'See custom web design',
+        },
+        software: {
+          label: 'Custom software',
+          title: 'Apps and tools that fit how you work',
+          desc: 'For when a spreadsheet or an off-the-shelf app is no longer enough: schedules, internal dashboards or tools that connect to what you already use.',
+          points: ['Web apps', 'Mobile apps', 'Internal tools'],
+          link: 'Tell us about your project →',
+        },
       },
+      workLabel: 'A recent project',
       faqTitle: 'Frequently asked questions',
     },
     studio: {

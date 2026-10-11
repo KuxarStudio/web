@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { blogPosting, breadcrumbForRoute, breadcrumbList, itemList, toolApplication } from '../src/lib/schema';
+import { blogPosting, breadcrumbForRoute, breadcrumbList, faqPage, itemList, service, toolApplication } from '../src/lib/schema';
 
 const SITE = 'https://kuxarstudio.com';
 
@@ -64,5 +64,44 @@ describe('itemList', () => {
   it('numera los elementos desde 1', () => {
     const l = itemList([{ name: 'A', url: 'u1' }, { name: 'B', url: 'u2' }]);
     expect(l.itemListElement.map((e) => e.position)).toEqual([1, 2]);
+  });
+});
+
+
+describe('faqPage', () => {
+  it('convierte cada pregunta en Question con su respuesta', () => {
+    const f = faqPage('es', [{ q: '¿Pregunta?', a: 'Respuesta.' }]);
+    expect(f['@type']).toBe('FAQPage');
+    expect(f.inLanguage).toBe('es');
+    expect(f.mainEntity).toEqual([
+      { '@type': 'Question', name: '¿Pregunta?', acceptedAnswer: { '@type': 'Answer', text: 'Respuesta.' } },
+    ]);
+  });
+});
+
+describe('service', () => {
+  const base = {
+    site: SITE,
+    lang: 'es' as const,
+    path: '/diseno-web/',
+    name: 'Diseño web',
+    description: 'Webs a medida.',
+    serviceType: 'Diseño y desarrollo web',
+  };
+
+  it('enlaza con la organización y no inventa precios', () => {
+    const s = service(base);
+    expect(s['@id']).toBe(`${SITE}/diseno-web/#service`);
+    expect(s.provider).toEqual({ '@id': `${SITE}/#organization` });
+    expect(s).not.toHaveProperty('offers');
+    expect(s).not.toHaveProperty('hasOfferCatalog');
+  });
+
+  it('lista lo que incluye como catálogo sin precio', () => {
+    const s = service({ ...base, includes: ['Diseño a medida', 'SEO técnico'] });
+    const items = (s as any).hasOfferCatalog.itemListElement;
+    expect(items).toHaveLength(2);
+    expect(items[0]).toEqual({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Diseño a medida' } });
+    expect(JSON.stringify(s)).not.toMatch(/price/i);
   });
 });
