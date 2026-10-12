@@ -1,0 +1,18 @@
+---
+// Identificación del titular de Kaku! en las páginas legales. Los datos viven en
+// lib/legal.ts (KAKU_OWNER) para que privacidad y términos no puedan divergir.
+import type { Lang } from '../../i18n';
+import { KAKU_OWNER, LEGAL_EMAIL } from '../../lib/legal';
+
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const t = lang === 'es'
+  ? { owner: 'Titular', taxId: 'NIF/CIF', address: 'Domicilio', contact: 'Contacto' }
+  : { owner: 'Owner', taxId: 'Tax ID', address: 'Registered address', contact: 'Contact' };
+---
+<ul>
+  <li><strong>{t.owner}:</strong> {KAKU_OWNER.name ?? 'Kuxar Studio'}{KAKU_OWNER.name && ' (Kuxar Studio)'}</li>
+  {KAKU_OWNER.taxId && <li><strong>{t.taxId}:</strong> {KAKU_OWNER.taxId}</li>}
+  {KAKU_OWNER.address && <li><strong>{t.address}:</strong> {KAKU_OWNER.address}</li>}
+  <li><strong>{t.contact}:</strong> <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a></li>
+</ul>
