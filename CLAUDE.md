@@ -162,8 +162,10 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   (diseño web, software a medida; `ServiceCard.astro`) → encargo real (GoCita)
   → Parte (en diseño) → FAQ (`FaqList.astro`, genera su FAQPage). La prueba
   del servicio es esta misma web (capturas reales en `public/media/web-kuxar-*`;
-  regenerarlas si cambia mucho la home). Sin precios ni plazos: lo único
-  confirmado sigue siendo que el código es del cliente.
+  regenerarlas si cambia mucho la home). Sin precios ni plazos en la web
+  (confirmado 2026-10-12): se dan en la propuesta tras la primera
+  conversación. Confirmado también que se ofrece, si el cliente lo necesita,
+  que pueda editar los textos sin tocar código (FAQ de /diseno-web/).
 - Temas del formulario de contacto en `web/src/lib/contact.ts`
   (`?asunto=parte|web|software#contacto` etiqueta el email). Un servicio nuevo =
   una clave ahí + `contactHref()`.
