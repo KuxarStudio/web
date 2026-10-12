@@ -1,0 +1,76 @@
+---
+import LegalPage from '../../../components/LegalPage.astro';
+import KakuOwner from '../../../components/legal/KakuOwner.astro';
+import { KAKU_MIN_AGE, LEGAL_EMAIL, SPAIN_DIGITAL_CONSENT_AGE } from '../../../lib/legal';
+import { route } from '../../../i18n';
+---
+<LegalPage
+  lang="en"
+  routeKey="kakuTerms"
+  title="Kaku! Terms of Use | Kuxar Studio"
+  heading="Kaku! Terms of Use"
+  description="Terms of use of the Kaku! app: account, licence, Sensei Pass, refunds, third-party content and liability."
+  updated="12 October 2026"
+>
+  <p>These terms govern the use of <strong>Kaku!</strong>, the app for learning to write hiragana, katakana and kanji. By downloading and using the app you accept them. If you do not agree, please do not use it.</p>
+
+  <h2>1. Who provides Kaku!</h2>
+  <KakuOwner lang="en" />
+
+  <h2>2. Requirements</h2>
+  <p>You must be at least {KAKU_MIN_AGE} years old. If you are under {SPAIN_DIGITAL_CONSENT_AGE} and live in Spain, or under the age of contractual capacity in your country, you need permission from a parent or guardian to sign in with Google and to make purchases.</p>
+
+  <h2>3. Your account</h2>
+  <p>You can use Kaku! without registering: the app creates an anonymous account on your device. If you sign in with Google, your progress syncs across devices. You are responsible for the use of your Google account. You can reset your progress or delete your account at any time from Settings.</p>
+
+  <h2>4. Licence</h2>
+  <p>We grant you a personal, non-exclusive, non-transferable and revocable licence to use Kaku! on your devices for personal, non-commercial learning. You may not:</p>
+  <ul>
+    <li>copy, modify, decompile or redistribute the app, except as permitted by law;</li>
+    <li>bypass the purchase system or unlock paid content without buying it;</li>
+    <li>use the app for illegal purposes or try to access other people's data or attack our servers.</li>
+  </ul>
+  <p>The code, design, sounds, illustrations, texts and the Kaku! brand belong to Kuxar Studio.</p>
+
+  <h2>5. Third-party content</h2>
+  <p>Kanji stroke data comes from <a href="https://kanjivg.tagaini.net" rel="noopener">KanjiVG</a> (© Ulrich Apel), licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>. Our adapted version is published under the same licence at <a href="https://github.com/KuxarStudio/kanjivg-source" rel="noopener">github.com/KuxarStudio/kanjivg-source</a>. These terms do not limit the rights that licence gives you, nor the open-source licences of the app's components (see Settings &gt; Privacy &amp; legal &gt; Open-source licences).</p>
+
+  <h2>6. Sensei Pass</h2>
+  <ul>
+    <li><strong>What it is:</strong> a one-time in-app purchase, with no subscription or recurring payments, that unlocks Kaku!'s kanji: the N5 level and the kanji levels we add to the app.</li>
+    <li><strong>Price:</strong> as shown by Google Play before you confirm payment, including your country's taxes.</li>
+    <li><strong>Payment:</strong> processed by Google Play under its <a href="https://play.google/intl/en/about/play-terms/" rel="noopener">terms</a>. We never receive your card details.</li>
+    <li><strong>What it is linked to:</strong> the Google Play account you buy with. If you change phones or reinstall the app, recover it with "Restore purchases".</li>
+    <li><strong>Duration:</strong> it does not expire. It remains available for as long as Kaku! is available. If we ever stop offering the app, we will announce it with reasonable notice.</li>
+  </ul>
+
+  <h2>7. Withdrawal and refunds</h2>
+  <p>The Sensei Pass is digital content delivered at the time of purchase. Even so, if you are not satisfied you can request a refund:</p>
+  <ul>
+    <li>from Google Play, within the first 48 hours, under its <a href="https://support.google.com/googleplay/answer/2479637?hl=en" rel="noopener">refund policy</a>; or</li>
+    <li>by emailing <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a> within 14 days of purchase, including your Google Play order number (it starts with "GPA."). We will issue a full refund.</li>
+  </ul>
+  <p>Once the purchase is refunded, the Sensei Pass content is locked again.</p>
+  <p>This does not limit your statutory consumer rights: if the content does not work as described, you are entitled to have it brought into conformity or to a refund as provided by law.</p>
+
+  <h2>8. Availability and changes to the app</h2>
+  <p>We work to keep Kaku! running well, but there may be interruptions or bugs. We may update the app and add or change features and content. We will not remove content you have bought except for legal or technical reasons beyond our control; in that case we will offer you an alternative or a refund.</p>
+
+  <h2>9. Liability</h2>
+  <p>Kaku! is a learning tool: we do not guarantee any specific result in exams or certifications. We are liable for damage caused by wilful misconduct or gross negligence and wherever consumer law does not allow liability to be limited. Outside those cases, we are not liable for indirect damage or misuse of the app.</p>
+
+  <h2>10. Suspension</h2>
+  <p>You can stop using the app and delete your account at any time. We may suspend an account that seriously breaches these terms (for example, by attacking our servers), notifying you where possible.</p>
+
+  <h2>11. Privacy</h2>
+  <p>How we process your data is explained in the <a href={route('kakuPrivacy', 'en')}>Kaku! privacy policy</a>.</p>
+
+  <h2>12. Changes to these terms</h2>
+  <p>If we change these terms, we will update the date above. If the change is significant, we will notify you in the app before it applies. Changes will not affect purchases already made to your detriment.</p>
+
+  <h2>13. Governing law</h2>
+  <p>These terms are governed by Spanish law. If you are a consumer, you may bring a claim before the courts of your place of residence and you keep the protection of the mandatory rules of your country of residence.</p>
+
+  <h2>14. Contact</h2>
+  <p><a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a></p>
+</LegalPage>

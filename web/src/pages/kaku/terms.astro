@@ -1,0 +1,75 @@
+---
+import LegalPage from '../../components/LegalPage.astro';
+import KakuOwner from '../../components/legal/KakuOwner.astro';
+import { KAKU_MIN_AGE, LEGAL_EMAIL, SPAIN_DIGITAL_CONSENT_AGE } from '../../lib/legal';
+import { route } from '../../i18n';
+---
+<LegalPage
+  routeKey="kakuTerms"
+  title="Condiciones de uso de Kaku! | Kuxar Studio"
+  heading="Condiciones de uso de Kaku!"
+  description="Condiciones de uso de la app Kaku!: cuenta, licencia, Sensei Pass, reembolsos, contenido de terceros y responsabilidad."
+  updated="12 de octubre de 2026"
+>
+  <p>Estas condiciones regulan el uso de <strong>Kaku!</strong>, la app para aprender a escribir hiragana, katakana y kanji. Al descargar y usar la app las aceptas. Si no estás de acuerdo, no la uses.</p>
+
+  <h2>1. Quién ofrece Kaku!</h2>
+  <KakuOwner />
+
+  <h2>2. Requisitos</h2>
+  <p>Debes tener al menos {KAKU_MIN_AGE} años. Si tienes menos de {SPAIN_DIGITAL_CONSENT_AGE} y vives en España, o no tienes la edad para contratar en tu país, necesitas el permiso de tu madre, padre o tutor para iniciar sesión con Google y para hacer compras.</p>
+
+  <h2>3. Tu cuenta</h2>
+  <p>Puedes usar Kaku! sin registrarte: la app crea una cuenta anónima en tu dispositivo. Si inicias sesión con Google, tu progreso se sincroniza entre dispositivos. Eres responsable del uso de tu cuenta de Google. Puedes borrar tu progreso o eliminar tu cuenta cuando quieras desde Ajustes.</p>
+
+  <h2>4. Licencia de uso</h2>
+  <p>Te concedemos una licencia personal, no exclusiva, intransferible y revocable para usar Kaku! en tus dispositivos con fines de aprendizaje personal y no comercial. No puedes:</p>
+  <ul>
+    <li>copiar, modificar, descompilar o redistribuir la app, salvo en lo que permita la ley;</li>
+    <li>saltarte el sistema de compras o desbloquear el contenido de pago sin haberlo comprado;</li>
+    <li>usar la app para fines ilegales ni intentar acceder a datos de otras personas o atacar nuestros servidores.</li>
+  </ul>
+  <p>El código, el diseño, los sonidos, las ilustraciones, los textos y la marca Kaku! son de Kuxar Studio.</p>
+
+  <h2>5. Contenido de terceros</h2>
+  <p>Los datos de trazos de los kanji proceden de <a href="https://kanjivg.tagaini.net" rel="noopener">KanjiVG</a> (© Ulrich Apel), con licencia <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>. Nuestra versión adaptada se publica con la misma licencia en <a href="https://github.com/KuxarStudio/kanjivg-source" rel="noopener">github.com/KuxarStudio/kanjivg-source</a>. Estas condiciones no limitan los derechos que te dan esa licencia ni las licencias de código abierto de los componentes de la app (consúltalas en Ajustes &gt; Privacidad y legal &gt; Licencias de código abierto).</p>
+
+  <h2>6. Sensei Pass</h2>
+  <ul>
+    <li><strong>Qué es:</strong> una compra única dentro de la app, sin suscripción ni pagos recurrentes, que desbloquea los kanji de Kaku!: el nivel N5 y los niveles de kanji que añadamos a la app.</li>
+    <li><strong>Precio:</strong> el que muestra Google Play antes de confirmar el pago, con los impuestos de tu país incluidos.</li>
+    <li><strong>Pago:</strong> lo procesa Google Play según sus <a href="https://play.google/intl/es_es/about/play-terms/" rel="noopener">condiciones</a>. No recibimos los datos de tu tarjeta.</li>
+    <li><strong>A qué se vincula:</strong> a la cuenta de Google Play con la que compras. Si cambias de móvil o reinstalas la app, recupéralo con «Restaurar compras».</li>
+    <li><strong>Duración:</strong> no caduca. Se mantiene mientras Kaku! siga disponible. Si alguna vez dejamos de ofrecer la app, lo anunciaremos con antelación razonable.</li>
+  </ul>
+
+  <h2>7. Desistimiento y reembolsos</h2>
+  <p>El Sensei Pass es contenido digital que se entrega en el momento de la compra. Aun así, si no estás satisfecho, puedes pedir el reembolso:</p>
+  <ul>
+    <li>desde Google Play, en las primeras 48 horas, según su <a href="https://support.google.com/googleplay/answer/2479637?hl=es" rel="noopener">política de reembolsos</a>; o</li>
+    <li>escribiéndonos a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a> en los 14 días siguientes a la compra, indicando el número de pedido de Google Play (empieza por «GPA.»). Tramitamos el reembolso completo.</li>
+  </ul>
+  <p>Al reembolsarse la compra, el contenido del Sensei Pass se vuelve a bloquear.</p>
+  <p>Esto no limita tus derechos de garantía como consumidor: si el contenido no funciona como se describe, tienes derecho a que lo pongamos en conformidad o a un reembolso según la ley.</p>
+
+  <h2>8. Disponibilidad y cambios en la app</h2>
+  <p>Trabajamos para que Kaku! funcione bien, pero puede haber interrupciones o errores. Podemos actualizar la app, añadir o cambiar funciones y contenido. No retiraremos el contenido que hayas comprado salvo por motivos legales o técnicos ajenos a nosotros; en ese caso te ofreceremos una alternativa o el reembolso.</p>
+
+  <h2>9. Responsabilidad</h2>
+  <p>Kaku! es una herramienta de aprendizaje: no garantizamos un resultado concreto en exámenes o certificaciones. Respondemos de los daños que causemos por dolo o negligencia grave y en todo lo que la ley de consumidores no permita limitar. Fuera de esos casos, no respondemos de daños indirectos ni del mal uso de la app.</p>
+
+  <h2>10. Suspensión</h2>
+  <p>Puedes dejar de usar la app y eliminar tu cuenta cuando quieras. Podemos suspender una cuenta que incumpla gravemente estas condiciones (por ejemplo, por ataques a nuestros servidores), avisándote cuando sea posible.</p>
+
+  <h2>11. Privacidad</h2>
+  <p>Cómo tratamos tus datos se explica en la <a href={route('kakuPrivacy', 'es')}>política de privacidad de Kaku!</a>.</p>
+
+  <h2>12. Cambios en estas condiciones</h2>
+  <p>Si cambiamos estas condiciones, actualizaremos la fecha de arriba. Si el cambio es importante, te avisaremos dentro de la app antes de que se aplique. Los cambios no afectan a compras ya realizadas en tu perjuicio.</p>
+
+  <h2>13. Ley aplicable</h2>
+  <p>Estas condiciones se rigen por la ley española. Si eres consumidor, puedes reclamar ante los tribunales de tu domicilio y conservas la protección de las normas obligatorias de tu país de residencia.</p>
+
+  <h2>14. Contacto</h2>
+  <p><a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a></p>
+</LegalPage>

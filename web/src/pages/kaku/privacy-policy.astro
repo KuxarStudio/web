@@ -1,51 +1,118 @@
 ---
 import LegalPage from '../../components/LegalPage.astro';
-import { KAKU_DELETION_TERM } from '../../lib/legal';
+import KakuOwner from '../../components/legal/KakuOwner.astro';
+import { KAKU_DELETION_TERM, KAKU_MIN_AGE, LEGAL_EMAIL, SPAIN_DIGITAL_CONSENT_AGE } from '../../lib/legal';
+import { route } from '../../i18n';
 ---
 <LegalPage
   routeKey="kakuPrivacy"
   title="Política de Privacidad de Kaku! | Kuxar Studio"
   heading="Política de Privacidad de Kaku!"
-  description="Política de privacidad de la app Kaku!: servicios de Google utilizados, uso de los datos y eliminación de cuenta."
-  updated="03/10/2026"
+  description="Política de privacidad de la app Kaku!: qué datos se tratan, con qué base legal, proveedores, plazos de conservación, tus derechos y cómo eliminar tu cuenta."
+  updated="12 de octubre de 2026"
 >
-  <p><strong>Kuxar Studio</strong> («nosotros») opera la aplicación móvil <strong>Kaku!</strong>. Nos tomamos muy en serio la privacidad de nuestros usuarios y la protección de sus datos.</p>
+  <p>Esta política explica cómo se tratan tus datos personales cuando usas <strong>Kaku!</strong>, la app para aprender a escribir japonés. La escribimos para que se entienda: si algo no está claro, escríbenos.</p>
 
-  <h2>1. Información y consentimiento</h2>
-  <p>Kaku! es una aplicación educativa diseñada para la práctica de la escritura japonesa. Al utilizar la aplicación y registrarte a través de Google, aceptas el tratamiento de la información según esta política para garantizar la persistencia de tu progreso.</p>
+  <h2>1. Responsable del tratamiento</h2>
+  <KakuOwner />
 
-  <h2>2. Servicios de terceros y recopilación de datos</h2>
-  <p>Kaku! integra servicios de Google para su funcionamiento técnico y comercial. Estos servicios pueden recopilar identificadores y datos técnicos:</p>
-  <ul>
-    <li><strong>Google Sign-In (Firebase Auth):</strong> gestiona la autenticación de tu cuenta. Recopilamos tu dirección de correo electrónico únicamente para identificar tu perfil y permitirte recuperar tus datos de progreso en diferentes dispositivos.</li>
-    <li><strong>Google Play Billing:</strong> todas las transacciones del «Pase Sensei» se procesan a través de la pasarela oficial de Google. No almacenamos ni tenemos acceso a tus datos bancarios o tarjetas de crédito.</li>
-    <li><strong>RevenueCat:</strong> servicio que verifica tus compras y gestiona el acceso al contenido de pago. Más detalle en la sección 3.</li>
-    <li><strong>Google Firestore:</strong> almacena de forma segura tu progreso (letras completadas, rachas y estadísticas) vinculado a tu cuenta.</li>
-    <li><strong>Firebase Crashlytics y Analytics:</strong> recopilan informes de errores y estadísticas de uso de forma seudonimizada para mejorar la estabilidad de la aplicación.</li>
-  </ul>
+  <h2>2. Qué datos tratamos, para qué y con qué base legal</h2>
+  <table class="legal-table">
+      <thead>
+        <tr><th>Datos</th><th>Finalidad</th><th>Base legal (RGPD)</th><th>Conservación</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Identificador de usuario que genera Firebase. Si inicias sesión con Google: correo, nombre y foto de tu cuenta de Google.</td>
+          <td>Crear tu cuenta (anónima o con Google), sincronizar tu progreso entre dispositivos y mostrar tu perfil en Ajustes.</td>
+          <td>Ejecución del contrato: las condiciones de uso de la app (art. 6.1.b).</td>
+          <td>Mientras mantengas la cuenta.</td>
+        </tr>
+        <tr>
+          <td>Progreso: caracteres completados, veces practicados, resultados del reto diario y racha.</td>
+          <td>Guardar tu avance y mostrarte tus estadísticas.</td>
+          <td>Ejecución del contrato (art. 6.1.b).</td>
+          <td>Mientras mantengas la cuenta. Puedes borrarlo cuando quieras desde Ajustes.</td>
+        </tr>
+        <tr>
+          <td>Identificador de usuario, historial y estado de compras (producto, fechas, reembolsos) y datos técnicos para validar la compra (IP, modelo y sistema del dispositivo, versión de la app).</td>
+          <td>Verificar la compra del Sensei Pass, desbloquear el contenido de pago, restaurarlo si cambias de móvil y retirarlo si la compra se reembolsa.</td>
+          <td>Ejecución del contrato (art. 6.1.b) y obligaciones legales de gestión de reembolsos (art. 6.1.c).</td>
+          <td>Mientras mantengas la cuenta y, después, lo que exijan las obligaciones legales.</td>
+        </tr>
+        <tr>
+          <td>Estadísticas de uso seudonimizadas: lecciones empezadas y completadas, errores de trazo, uso del reto diario y de la pantalla de compra, identificador de instancia de la app.</td>
+          <td>Entender qué partes de la app funcionan y mejorar el contenido.</td>
+          <td><strong>Tu consentimiento</strong> (art. 6.1.a). Solo se recogen si las aceptas.</td>
+          <td>El plazo de retención configurado en Google Analytics (como máximo 14 meses).</td>
+        </tr>
+        <tr>
+          <td>Informes de errores: traza del fallo, modelo y sistema del dispositivo, versión de la app.</td>
+          <td>Detectar y corregir fallos.</td>
+          <td><strong>Tu consentimiento</strong> (art. 6.1.a). Solo se envían si los aceptas.</td>
+          <td>90 días (Firebase Crashlytics).</td>
+        </tr>
+        <tr>
+          <td>Señal de integridad del dispositivo y de la app (Firebase App Check con Play Integrity).</td>
+          <td>Comprobar que las peticiones vienen de la app legítima y proteger tus datos frente a abusos.</td>
+          <td>Interés legítimo en la seguridad del servicio (art. 6.1.f).</td>
+          <td>No la guardamos: se valida en cada petición.</td>
+        </tr>
+        <tr>
+          <td>Texto de las sugerencias que nos envías, tu identificador de usuario, fecha y versión de la app.</td>
+          <td>Leer y atender tus sugerencias.</td>
+          <td>Interés legítimo en atender la comunicación que tú decides enviarnos (art. 6.1.f).</td>
+          <td>Hasta 2 años, o hasta que elimines tu cuenta.</td>
+        </tr>
+        <tr>
+          <td>Identificador de usuario y fecha de la solicitud de eliminación.</td>
+          <td>Completar la eliminación de tu cuenta en los proveedores que la app no puede borrar sola.</td>
+          <td>Obligación legal de atender tu derecho de supresión (art. 6.1.c).</td>
+          <td>Hasta completar la eliminación (máximo {KAKU_DELETION_TERM.es}).</td>
+        </tr>
+      </tbody>
+  </table>
+  <p>Kaku! no usa publicidad ni el identificador de publicidad del dispositivo, no vende tus datos y no elabora perfiles con efectos sobre ti. Los ajustes de la app (tema, idioma, sonido, tu decisión sobre estadísticas) se guardan solo en tu móvil.</p>
 
-  <h2>3. Compras dentro de la aplicación (Pase Sensei)</h2>
+  <h2>3. Estadísticas e informes de errores: tú decides</h2>
+  <p>La primera vez que abres la app te preguntamos si aceptas las estadísticas de uso y los informes de errores. Hasta que respondes, no se recoge nada. Puedes cambiar tu decisión cuando quieras en <strong>Ajustes &gt; Privacidad y legal</strong>, con un interruptor para cada uno. Retirar el consentimiento no afecta a lo tratado antes.</p>
+
+  <h2>4. Compras (Sensei Pass)</h2>
   <p>Las compras se realizan a través de Google Play. Kaku! no recibe ni almacena los datos de tu tarjeta ni de tu método de pago.</p>
-  <p>Para verificar tu compra, desbloquear el contenido de pago y permitirte recuperarlo si cambias de móvil o reinstalas la aplicación, utilizamos el servicio <strong>RevenueCat</strong> (RevenueCat, Inc.), que actúa como encargado del tratamiento en nuestro nombre.</p>
-  <p>RevenueCat recibe y trata: el identificador de usuario de Kaku! (el identificador anónimo que genera Firebase para tu cuenta), el historial y el estado de tus compras (producto adquirido, fechas, reembolsos) y los datos técnicos necesarios para validar la compra con Google Play (como la dirección IP, el modelo y versión del sistema del dispositivo y la versión de la aplicación).</p>
-  <p>Usamos estos datos únicamente para gestionar tu compra y tu acceso al contenido de pago. No los vendemos ni los usamos con fines publicitarios.</p>
-  <p>Conservamos los datos de compra mientras mantengas tu cuenta o sea necesario para cumplir obligaciones legales y de gestión de reembolsos.</p>
-  <p>Puedes consultar cómo trata RevenueCat los datos en <a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a>.</p>
+  <p>Para verificar la compra usamos <strong>RevenueCat</strong> (RevenueCat, Inc.), que actúa como encargado del tratamiento en nuestro nombre y recibe los datos de la fila de compras de la tabla anterior. Puedes consultar su política en <a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a>.</p>
 
-  <h2>4. Uso de los datos</h2>
-  <p>Los datos recopilados se utilizan exclusivamente para:</p>
+  <h2>5. Proveedores (encargados del tratamiento)</h2>
+  <p>Solo compartimos datos con proveedores que los tratan en nuestro nombre, con contrato de encargo de tratamiento:</p>
   <ul>
-    <li>Proveer la funcionalidad de sincronización en la nube.</li>
-    <li>Verificar tus compras (Pase Sensei, un pago único).</li>
-    <li>Mejorar el contenido educativo basado en el uso general de la app.</li>
+    <li><strong>Google Ireland Limited / Google LLC</strong> (Firebase Authentication, Cloud Firestore, Google Analytics for Firebase, Firebase Crashlytics, Firebase App Check y Google Sign-In).</li>
+    <li><strong>RevenueCat, Inc.</strong> (verificación y gestión de compras).</li>
   </ul>
-  <p><strong>Kuxar Studio nunca venderá tus datos a terceros ni los utilizará para fines publicitarios ajenos a la aplicación.</strong></p>
+  <p><strong>Google Play</strong> (Google) procesa el pago como responsable independiente, según sus propias condiciones y su política de privacidad.</p>
 
-  <h2>5. Eliminación de datos y cuenta</h2>
-  <p>En cumplimiento con las políticas de Google Play, garantizamos tu derecho a la eliminación de información.</p>
-  <p>Si deseas eliminar tu cuenta de Kaku! y borrar de forma permanente todos tus datos de progreso almacenados en Firestore, puedes solicitarlo enviando un correo electrónico a <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a> desde la dirección de correo asociada a tu cuenta, o desde la <a href="/kaku/delete-account/">página de solicitud de eliminación</a>. Procesaremos la eliminación en un plazo máximo de {KAKU_DELETION_TERM.es}.</p>
-  <p>También solicitaremos a RevenueCat que elimine tu registro de cliente. El registro de pedidos de Google Play lo conserva Google por sus propias obligaciones legales y fiscales. En la página de solicitud de eliminación detallamos qué se elimina y qué puede conservarse.</p>
+  <h2>6. Transferencias internacionales</h2>
+  <p>Google y RevenueCat pueden tratar datos en Estados Unidos. Estas transferencias se amparan en el Marco de Privacidad de Datos UE-EE. UU. cuando la empresa está adherida y, en todo caso, en las cláusulas contractuales tipo aprobadas por la Comisión Europea que incluyen sus contratos de tratamiento de datos (art. 46 RGPD).</p>
 
-  <h2>6. Contacto</h2>
-  <p>Si tienes cualquier duda sobre tu privacidad, puedes contactarnos en: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
+  <h2>7. Tus derechos</h2>
+  <p>Puedes ejercer en cualquier momento tus derechos de <strong>acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad</strong>, y retirar tu consentimiento, escribiendo a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>. Indica tu identificador de usuario o el correo de tu cuenta de Google para que podamos localizar tus datos. Respondemos en el plazo de un mes.</p>
+  <p>Si consideras que no hemos atendido bien tu solicitud, puedes reclamar ante la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
+
+  <h2>8. Eliminar tu cuenta y tus datos</h2>
+  <ul>
+    <li><strong>Desde la app:</strong> Ajustes &gt; Gestión de datos &gt; <strong>Eliminar cuenta y datos</strong>. Se borran al momento tu cuenta, tu progreso, tus retos diarios y tu racha. Lo que la app no puede borrar sola (tu registro en RevenueCat y las sugerencias enviadas) lo eliminamos en un máximo de {KAKU_DELETION_TERM.es}.</li>
+    <li><strong>Sin la app:</strong> escribe a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a> desde el correo de tu cuenta, o consulta la <a href={route('kakuDelete', 'es')}>página de eliminación de cuenta</a>.</li>
+    <li><strong>Solo el progreso:</strong> Ajustes &gt; Gestión de datos &gt; Resetear progreso. Tu cuenta y tus compras se mantienen.</li>
+  </ul>
+  <p>Google conserva el registro de pedidos de Google Play por sus propias obligaciones legales y fiscales.</p>
+
+  <h2>9. Menores</h2>
+  <p>Kaku! está pensada para mayores de {KAKU_MIN_AGE} años. En España, si tienes menos de {SPAIN_DIGITAL_CONSENT_AGE} años necesitas el permiso de tu madre, padre o tutor para iniciar sesión con Google, hacer compras y aceptar las estadísticas. Si eres madre, padre o tutor y crees que un menor nos ha facilitado datos sin tu permiso, escríbenos y los eliminaremos.</p>
+
+  <h2>10. Seguridad</h2>
+  <p>Todas las comunicaciones van cifradas (HTTPS). Las reglas de la base de datos impiden que una cuenta lea o modifique los datos de otra, y nadie puede activar el contenido de pago desde la app: lo decide la verificación de compra. Firebase App Check bloquea las peticiones que no vienen de la app legítima. Si se produjera una brecha de seguridad que afecte a tus datos, lo notificaremos a la AEPD en un máximo de 72 horas y, si supone un riesgo alto para ti, también a ti.</p>
+
+  <h2>11. Cambios en esta política</h2>
+  <p>Si cambiamos esta política, actualizaremos la fecha de arriba. Si el cambio es importante (por ejemplo, un nuevo uso de tus datos), te avisaremos dentro de la app antes de que se aplique.</p>
+
+  <h2>12. Contacto</h2>
+  <p>Para cualquier duda sobre tu privacidad: <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>. Consulta también las <a href={route('kakuTerms', 'es')}>condiciones de uso de Kaku!</a>.</p>
 </LegalPage>
