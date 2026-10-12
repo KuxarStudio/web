@@ -17,7 +17,7 @@ import { KAKU_DELETION_TERM } from '../../lib/legal';
     <li>Tus estadísticas y tu racha diaria (Streak).</li>
     <li>Las sugerencias que hayas enviado con tu cuenta.</li>
     <li>Los datos vinculados a tu cuenta de Kaku! en Firebase (autenticación y Firestore).</li>
-    <li>Tu vinculación con el Pase Sensei (si lo habías adquirido).</li>
+    <li>El vínculo de tu cuenta de Kaku! con el Sensei Pass. La compra sigue asociada a tu cuenta de Google Play: si vuelves a usar la app, puedes recuperarla con «Restaurar compras».</li>
     <li>Tu registro de cliente en <strong>RevenueCat</strong>, el proveedor que gestiona las compras de la app: también le solicitaremos que lo elimine.</li>
   </ul>
 
@@ -28,10 +28,19 @@ import { KAKU_DELETION_TERM } from '../../lib/legal';
   <p>Kuxar Studio no emite facturas ni guarda datos de pago: las compras las gestiona Google Play.</p>
 
   <h2>Cómo solicitarlo</h2>
-  <p>Envía un correo electrónico a la siguiente dirección desde el email que usas en la aplicación:</p>
+  <h3>Desde la app (recomendado)</h3>
+  <ol>
+    <li>Abre Kaku! y entra en <strong>Ajustes</strong>.</li>
+    <li>En <strong>Gestión de datos</strong>, pulsa <strong>Eliminar cuenta y datos</strong>.</li>
+    <li>Confirma. Si iniciaste sesión con Google, te pediremos elegir de nuevo tu cuenta para verificar que eres tú.</li>
+  </ol>
+  <p>Tu cuenta, tu progreso, tus retos diarios y tu racha se borran al momento. Funciona también si usas la app sin iniciar sesión (cuenta anónima).</p>
+  <p>Si solo quieres empezar de cero sin eliminar la cuenta, usa <strong>Resetear progreso</strong> en el mismo apartado.</p>
+  <h3>Por correo electrónico</h3>
+  <p>Si ya no tienes la app instalada, envía un correo a la siguiente dirección desde el email de tu cuenta de Google:</p>
   <p><a class="btn btn-primary" href="mailto:admin@kuxarstudio.com?subject=Solicitud de eliminación de cuenta Kaku">Solicitar eliminación</a></p>
   <p><strong>admin@kuxarstudio.com</strong></p>
 
   <h2>Plazo</h2>
-  <p>Procesamos tu solicitud en un plazo máximo de {KAKU_DELETION_TERM.es}.</p>
+  <p>Procesamos las solicitudes por correo, y la eliminación del registro en RevenueCat y de las sugerencias de las solicitudes hechas desde la app, en un plazo máximo de {KAKU_DELETION_TERM.es}. Durante ese plazo conservamos únicamente tu identificador de usuario y la fecha de la solicitud, para poder completarla.</p>
 </LegalPage>
