@@ -32,6 +32,7 @@ export const routes = {
   appsPrivacy: { es: '/privacidad/apps/', en: '/en/privacy/apps/' },
   kakuPrivacy: { es: '/kaku/privacy-policy/', en: '/en/kaku/privacy-policy/' },
   kakuDelete: { es: '/kaku/delete-account/', en: '/en/kaku/delete-account/' },
+  kakuTerms: { es: '/kaku/terms/', en: '/en/kaku/terms/' },
   blindnotePrivacy: { es: '/blindnote/privacy-policy/', en: '/en/blindnote/privacy-policy/' },
   blindnoteDelete: { es: '/blindnote/delete-account/', en: '/en/blindnote/delete-account/' },
 } as const satisfies Record<string, Record<Lang, string>>;
