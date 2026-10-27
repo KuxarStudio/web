@@ -18,7 +18,7 @@ import { KAKU_DELETION_TERM } from '../../../lib/legal';
     <li>Your statistics and daily streak.</li>
     <li>The suggestions you sent with your account.</li>
     <li>The data linked to your Kaku! account in Firebase (authentication and Firestore).</li>
-    <li>Your link to the Sensei Pass (if you had purchased it).</li>
+    <li>The link between your Kaku! account and the Sensei Pass. The purchase stays associated with your Google Play account: if you use the app again, you can recover it with "Restore purchases".</li>
     <li>Your customer record at <strong>RevenueCat</strong>, the provider that manages in-app purchases: we will also ask them to delete it.</li>
   </ul>
 
@@ -29,10 +29,19 @@ import { KAKU_DELETION_TERM } from '../../../lib/legal';
   <p>Kuxar Studio does not issue invoices or store payment data: purchases are handled by Google Play.</p>
 
   <h2>How to request it</h2>
-  <p>Send an email to the following address from the email you use in the app:</p>
+  <h3>From the app (recommended)</h3>
+  <ol>
+    <li>Open Kaku! and go to <strong>Settings</strong>.</li>
+    <li>Under <strong>Data management</strong>, tap <strong>Delete account and data</strong>.</li>
+    <li>Confirm. If you signed in with Google, we will ask you to choose your account again to verify it is you.</li>
+  </ol>
+  <p>Your account, progress, daily challenges and streak are deleted immediately. This also works if you use the app without signing in (anonymous account).</p>
+  <p>If you only want to start over without deleting your account, use <strong>Reset progress</strong> in the same section.</p>
+  <h3>By email</h3>
+  <p>If you no longer have the app installed, send an email to the following address from your Google account's email:</p>
   <p><a class="btn btn-primary" href="mailto:admin@kuxarstudio.com?subject=Kaku account deletion request">Request deletion</a></p>
   <p><strong>admin@kuxarstudio.com</strong></p>
 
   <h2>Timeframe</h2>
-  <p>We process your request within a maximum of {KAKU_DELETION_TERM.en}.</p>
+  <p>We process email requests, and the deletion of the RevenueCat record and suggestions for requests made from the app, within a maximum of {KAKU_DELETION_TERM.en}. During that time we keep only your user identifier and the request date, so we can complete it.</p>
 </LegalPage>

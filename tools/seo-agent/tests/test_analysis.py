@@ -73,3 +73,15 @@ def test_evidence_job_rotates_by_week_and_outreach_only_first_week_of_month():
     assert ev1.project_id != ev2.project_id
     assert not any(j.kind == "enlaces" for j in w1)
     assert any(j.kind == "enlaces" for j in make_jobs(CFG, stats, wins, None, date(2026, 10, 5)))
+
+
+def test_evidence_job_mentions_differentiator_when_set():
+    from dataclasses import replace
+
+    from seo_agent.config import Config
+
+    projects = tuple(replace(p, differentiator="Texto de prueba") for p in CFG.projects)
+    cfg = Config(CFG.domain, CFG.gsc_property, CFG.languages, CFG.settings, projects)
+    stats, wins = build_stats(cfg, [row("/", 10)], [], [])
+    ev = next(j for j in make_jobs(cfg, stats, wins, None, date(2026, 10, 12)) if j.kind == "evidencia")
+    assert "Diferenciador a demostrar: Texto de prueba" in ev.detail
