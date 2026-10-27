@@ -89,10 +89,12 @@ verificar o está pendiente.
 
 **Otros repos del estudio**
 
-- [ ] `kuxarstudio.github.io`: quitar el email personal de las páginas
-  publicadas (privacidad, borrado de cuenta, `security.txt`) y de su historial.
-  Mantener las URLs que usan Google Play / App Store. (SR-06, SR-22)
-- [ ] `PDF-Blender`: quitar el email personal del historial. (SR-06)
+- [x] `kuxarstudio.github.io`: email personal sustituido por
+  `admin@kuxarstudio.com` en las páginas publicadas (privacidad, borrado de
+  cuenta, `security.txt`) y eliminado del historial (2026-10-27). Mismas URLs
+  para Google Play / App Store. (SR-06, SR-22)
+- [x] `PDF-Blender`: historial y etiqueta `v1.0` sin el email personal; la
+  release se publica desde el workflow `Build & release` (2026-10-27). (SR-06)
 - [ ] Revisar con esta misma checklist cualquier repo que se haga público.
 
 ## 4. Revisión periódica
