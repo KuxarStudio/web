@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBrand } from '../../lib/seo';
 import Header from '../Header.astro';
@@ -16,17 +17,17 @@ interface Props {
   available: Lang[];
 }
 const { lang, entry, available } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const date = entry.data.date;
 const t = ui[lang];
 
 const hasOther = available.includes(otherLang(lang));
-const paths = { es: devlogPath(entry.slug, 'es'), en: devlogPath(entry.slug, 'en') };
+const paths = { es: devlogPath(entry.id, 'es'), en: devlogPath(entry.id, 'en') };
 // Si no hay traducción, la entrada no declara alternativas y el selector
 // de idioma lleva al índice del devlog del otro idioma.
 const alternates = hasOther ? alternatesFromPaths(paths) : [];
 const site = Astro.site!.origin;
-const path = devlogPath(entry.slug, lang);
+const path = devlogPath(entry.id, lang);
 const jsonLd = [
   blogPosting({
     site,

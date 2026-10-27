@@ -12,7 +12,7 @@ description: Cuando se pida escribir una guía o artículo nuevo para kuxarstudi
    el clúster, qué dato propio o medido aporta (ver `kuxar-information-gain`).
 2. **Borrador ES** en `web/src/content/guides/<slug>.md` y **EN** en
    `web/src/content/guides-en/<slug>.md`, mismo `key`.
-3. Frontmatter (esquema en `web/src/content/config.ts`):
+3. Frontmatter (esquema en `web/src/content.config.ts`):
    ```
    key, title (≤60), description (≤160), date, project, role, pillar (si cluster), order
    ```

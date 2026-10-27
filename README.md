@@ -10,7 +10,7 @@ vive en `web/`, construido con [Astro](https://astro.build). Todo lo demás
 
 ## Empezar en local
 
-Requiere Node 20+.
+Requiere Node 22.23+ (lo exige Astro 7).
 
 ```bash
 cd web
@@ -54,7 +54,7 @@ pestaña Actions del repo (el workflow tiene `workflow_dispatch`).
 
 Todo el contenido real (proyectos, herramientas, entradas de devlog) vive en
 `web/src/content/` como archivos Markdown con frontmatter, validados contra
-el esquema en [`web/src/content/config.ts`](web/src/content/config.ts).
+el esquema en [`web/src/content.config.ts`](web/src/content.config.ts).
 Añadir contenido nuevo es crear un archivo — no hace falta tocar componentes
 ni páginas.
 

@@ -10,7 +10,7 @@ const { entry, lang = 'es' } = Astro.props;
 const date = entry.data.date;
 ---
 <li class="log-item">
-  <a class="log-link" href={devlogPath(entry.slug, lang)}>
+  <a class="log-link" href={devlogPath(entry.id, lang)}>
     <span class="log-meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang, 'short')}</time><br />{entry.data.project}</span>
     <span class="log-title">{entry.data.title}</span>
     <span class="log-excerpt">{entry.data.excerpt}</span>

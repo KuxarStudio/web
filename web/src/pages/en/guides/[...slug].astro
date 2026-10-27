@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   if (entries.length === 0) return [];
   return [
     { params: { slug: undefined }, props: { entry: undefined, available: [] as Lang[] } },
-    ...entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry, available: ['es', 'en'] as Lang[] } })),
+    ...entries.map((entry) => ({ params: { slug: entry.id }, props: { entry, available: ['es', 'en'] as Lang[] } })),
   ];
 }
 const { entry, available } = Astro.props;

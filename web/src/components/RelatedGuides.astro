@@ -13,7 +13,7 @@ const t = guidesPage[lang];
     <ul class="log-list">
       {items.map((g) => (
         <li class="log-item">
-          <a class="log-link" href={guidePath(g.slug, lang)}>
+          <a class="log-link" href={guidePath(g.id, lang)}>
             <span class="log-meta">{g.data.role === 'pillar' ? t.pillarLabel : ''}</span>
             <span class="log-title">{g.data.title}</span>
             <span class="log-excerpt">{g.data.description}</span>

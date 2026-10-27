@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   return [
     { params: { slug: undefined }, props: { entry: undefined, available: [] as Lang[] } },
     ...entries.map((entry) => ({
-      params: { slug: entry.slug },
+      params: { slug: entry.id },
       props: { entry, available: (translated.has(entry.data.key) ? ['es', 'en'] : ['es']) as Lang[] },
     })),
   ];
