@@ -67,7 +67,7 @@ Probabilidad (P) e impacto (I): Alto / Medio / Bajo. Estado a 2026-10-27.
 | T12 | Clickjacking | La web se incrusta en un iframe ajeno | B | B | No hay acciones sensibles en la web; GitHub Pages no permite `X-Frame-Options` | 🟡 Aceptado |
 | T13 | Abuso del formulario | Spam, agotar la cuota de Web3Forms | A | B | Honeypot (SR-18), clave limitada al dominio (SR-04) | ⚠️ Restricción de dominio sin verificar |
 | T14 | Suplantación del correo del dominio | Phishing desde `@kuxarstudio.com` | M | M | SPF + DKIM + DMARC (SR-25) | ⚠️ DMARC sin verificar |
-| T15 | Exposición de datos personales del equipo | Emails personales en commits o en páginas | A | M | Commits con noreply (SR-06); historial de `web` limpiado el 2026-10-27 | 🟡 Pendiente en `kuxarstudio.github.io` (emails publicados en páginas activas) y `PDF-Blender` (historial) |
+| T15 | Exposición de datos personales del equipo | Emails personales en commits o en páginas | A | M | Commits con noreply (SR-06); historiales de `web` y `kuxarstudio.github.io` y páginas publicadas limpiados el 2026-10-27 | 🟡 Pendiente: historial de `PDF-Blender` y refs de PR cerrados (solo GitHub Support) |
 | T16 | Fuga de información de negocio | Rama `seo-data` (métricas de Search Console), `CLAUDE.md`, `docs/` | A | B | Decisión consciente: el repo es público | 🟡 Aceptado |
 | T17 | Agente de IA manipulado | Instrucciones ocultas en una web o archivo que el agente procesa | B | A | SR-08: ramas + PR + CI; ninguna fusión ni force-push sin OK humano | ✅ |
 | T18 | Caída de las páginas legales de las apps | Cambio de URL al migrar la web | M | M | SR-22: no mover esas URLs sin redirección | ✅ / revisar en cada migración |
