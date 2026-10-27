@@ -93,7 +93,9 @@ verificar o está pendiente.
   `admin@kuxarstudio.com` en las páginas publicadas (privacidad, borrado de
   cuenta, `security.txt`) y eliminado del historial (2026-10-27). Mismas URLs
   para Google Play / App Store. (SR-06, SR-22)
-- [ ] `PDF-Blender`: quitar el email personal del historial. (SR-06)
+- [x] `PDF-Blender`: ramas sin el email personal (2026-10-27). (SR-06)
+- [ ] `PDF-Blender`: mover la etiqueta `v1.0` al commit limpio `2b7f4c7`
+  (`git push --force origin 2b7f4c7:refs/tags/v1.0`). (SR-06)
 - [ ] Revisar con esta misma checklist cualquier repo que se haga público.
 
 ## 4. Revisión periódica
