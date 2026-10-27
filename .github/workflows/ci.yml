@@ -50,3 +50,24 @@ jobs:
       - name: SEO audit
         working-directory: web
         run: npm run audit
+
+      # QA visual y de accesibilidad: axe-core (WCAG 2.2 AA) en todas las páginas,
+      # móvil y escritorio, claro y oscuro, más capturas de las páginas clave.
+      # Falla con errores serios/críticos o scroll horizontal. Informe en el
+      # "Job summary" y capturas en el artefacto `visual-qa`.
+      - name: Install Chromium
+        working-directory: web
+        run: npx playwright install --with-deps chromium
+
+      - name: Visual & accessibility QA
+        working-directory: web
+        run: npm run qa
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-qa
+          path: web/.visual-qa/
+          retention-days: 14
+          if-no-files-found: ignore

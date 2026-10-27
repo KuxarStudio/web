@@ -48,6 +48,7 @@ nueva web. Sí es útil como fuente de contenido/copy real (ver más abajo).
 3. Hub de herramientas
 4. Sobre mí / el estudio + Contacto
 
+**[HISTÓRICO — superado por "Vitrina" (2026-09-27); el sistema vigente está en `DESIGN.md`. No apliques nada de este bloque.]**
 **Dirección de diseño — EN EXPLORACIÓN, nada cerrado todavía.** El usuario NO
 ha elegido una dirección final. Lo único pasado hasta ahora: se exploraron 3
 direcciones distintas en un canvas de diseño (Artifact:
@@ -191,6 +192,16 @@ deploy publica a la rama/salida que GitHub Pages sirve.
   lógica y eficiente.
 - Advertir de inmediato si una decisión de la web puede limitar la
   escalabilidad futura (apps, juegos, automatizaciones) del ecosistema.
+
+## Diseño y QA visual (2026-10-27)
+
+- **`DESIGN.md` (raíz)** es el sistema de diseño vigente (Vitrina): tokens, componentes,
+  qué hacer y qué no, y guía para agentes. Léelo antes de tocar UI; si cambias tokens en
+  `global.css`, actualízalo en el mismo PR.
+- `npm run qa` (en `web/`, tras `npm run build`): axe-core WCAG 2.2 AA en todas las páginas
+  (móvil/escritorio, claro/oscuro), control de scroll horizontal y capturas de las páginas
+  clave en `web/.visual-qa/`. Corre en CI y bloquea con fallos serios; las capturas quedan
+  como artefacto `visual-qa` del PR.
 
 ## SEO (montado el 2026-10-04; detalle en `docs/seo.md`)
 
