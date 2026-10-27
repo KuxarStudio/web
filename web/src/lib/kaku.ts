@@ -21,6 +21,13 @@ export interface KakuCopy {
   videoAlt: string;
   sections: { id: string; q: string; a: string[] }[];
   steps: { title: string; desc: string }[];
+  /** Bloque de keywords de Search Console (escribir en japonés, hiragana y katakana, kanji). */
+  writing: {
+    heading: string;
+    intro: string;
+    items: { title: string; desc: string; link: { label: string; href: string } }[];
+    outro: { before: string; link: { label: string; href: string }; after: string };
+  };
   stepsHeading: string;
   moreHeading: string;
   moreLinks: { label: string; href: string }[];
@@ -29,10 +36,10 @@ export interface KakuCopy {
 
 export const kaku: Record<Lang, KakuCopy> = {
   es: {
-    title: 'Kaku! | Aprende a escribir hiragana, katakana y kanji',
+    title: 'Kaku!: escribe en japonés con el dedo, del hiragana al kanji',
     description:
-      'Kaku! es una app para Android que reconoce tus trazos en tiempo real. Aprende hiragana y katakana gratis y desbloquea los kanji por 2,39 € (pago único).',
-    h1: 'Kaku!: aprende a escribir hiragana, katakana y kanji en el móvil',
+      'Practica la escritura japonesa trazando hiragana, katakana y kanji con el dedo: Kaku! corrige tus trazos al momento. Kana gratis, kanji por 2,39 €. Pruébala.',
+    h1: 'Kaku!: aprende a escribir en japonés (hiragana, katakana y kanji) en el móvil',
     lead: 'Traza cada carácter con el dedo y Kaku! reconoce tus trazos en tiempo real: te dice al momento si el orden y la forma son correctos. Hiragana y katakana gratis; los kanji, con un pago único de 2,39 €.',
     cta: 'Descargar en Google Play',
     videoAlt: 'Kaku! en un móvil: el hiragana あ se traza paso a paso hasta completarlo.',
@@ -42,6 +49,33 @@ export const kaku: Record<Lang, KakuCopy> = {
       { title: 'Trázalo con el dedo', desc: 'Sigues el orden de trazos correcto, trazo a trazo.' },
       { title: 'Recibe corrección al instante', desc: 'Kaku! valida el orden y la forma de cada trazo y te corrige en el momento.' },
     ],
+    writing: {
+      heading: 'Escribir en japonés: hiragana, katakana y kanji',
+      intro:
+        'La escritura japonesa combina tres sistemas. La app Kaku! te ayuda a escribir los tres a mano, en el orden en que se suelen aprender:',
+      items: [
+        {
+          title: 'Hiragana',
+          desc: 'Los 46 caracteres básicos con los que se empieza a escribir en japonés. En Kaku! son gratis.',
+          link: { label: 'Cómo aprender hiragana escribiendo', href: '/guias/como-aprender-hiragana-escribiendo/' },
+        },
+        {
+          title: 'Katakana',
+          desc: 'Los otros 46 kana, que se usan sobre todo para palabras extranjeras. Hiragana y katakana se practican gratis.',
+          link: { label: 'Hiragana y katakana: diferencias', href: '/guias/hiragana-y-katakana-diferencias/' },
+        },
+        {
+          title: 'Kanji',
+          desc: 'Los kanji del nivel JLPT N5, trazo a trazo y con su orden correcto. Se desbloquean con el Sensei Pass.',
+          link: { label: 'Primeros kanji del JLPT N5', href: '/guias/primeros-kanji-jlpt-n5/' },
+        },
+      ],
+      outro: {
+        before: '¿Prefieres practicar también en papel? Tienes gratis las ',
+        link: { label: 'hojas de orden de trazos de hiragana y katakana', href: '/recursos/hojas-de-trazos/' },
+        after: ' en PDF.',
+      },
+    },
     sections: [
       {
         id: 'que-es',
@@ -87,10 +121,10 @@ export const kaku: Record<Lang, KakuCopy> = {
     breadcrumbHome: 'Inicio',
   },
   en: {
-    title: 'Kaku! | Learn to write hiragana, katakana and kanji',
+    title: 'Kaku!: Learn Japanese Handwriting, from Kana to Kanji',
     description:
-      'Kaku! is an Android app that recognizes your strokes in real time. Learn hiragana and katakana for free and unlock kanji with a one-time €2.39 purchase.',
-    h1: 'Kaku!: learn to write hiragana, katakana and kanji on your phone',
+      'Practice Japanese handwriting by tracing hiragana, katakana and kanji with your finger. Kaku! corrects every stroke instantly. Kana free, kanji €2.39. Try it.',
+    h1: 'Kaku!: learn Japanese handwriting (hiragana, katakana and kanji) on your phone',
     lead: 'Trace each character with your finger and Kaku! recognizes your strokes in real time, telling you right away whether the stroke order and shape are correct. Hiragana and katakana are free; kanji unlock with a one-time €2.39 purchase.',
     cta: 'Get it on Google Play',
     videoAlt: 'Kaku! on a phone: the hiragana あ is traced stroke by stroke until complete.',
@@ -100,6 +134,33 @@ export const kaku: Record<Lang, KakuCopy> = {
       { title: 'Trace it with your finger', desc: 'You follow the correct stroke order, one stroke at a time.' },
       { title: 'Get instant correction', desc: 'Kaku! checks the order and shape of every stroke and corrects you on the spot.' },
     ],
+    writing: {
+      heading: 'Japanese handwriting: kana and kanji',
+      intro:
+        'Written Japanese mixes three scripts. The Kaku! app helps you handwrite all three, in the order they are usually learned:',
+      items: [
+        {
+          title: 'Hiragana',
+          desc: 'The 46 basic Japanese kana you start writing with. In Kaku! they are free.',
+          link: { label: 'How to learn hiragana by writing', href: '/en/guides/how-to-learn-hiragana-by-writing/' },
+        },
+        {
+          title: 'Katakana',
+          desc: 'The other 46 kana, used mainly for foreign words. Hiragana and katakana practice is free.',
+          link: { label: 'Hiragana vs katakana', href: '/en/guides/hiragana-vs-katakana/' },
+        },
+        {
+          title: 'Kanji',
+          desc: 'JLPT N5 kanji, stroke by stroke in the correct order. They unlock with the Sensei Pass.',
+          link: { label: 'First JLPT N5 kanji', href: '/en/guides/first-jlpt-n5-kanji/' },
+        },
+      ],
+      outro: {
+        before: 'Want to practice on paper too? Grab the free ',
+        link: { label: 'hiragana and katakana stroke order sheets', href: '/en/resources/stroke-order-sheets/' },
+        after: ' (PDF).',
+      },
+    },
     sections: [
       {
         id: 'what-is',

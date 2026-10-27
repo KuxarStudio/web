@@ -57,4 +57,4 @@ Cuando domines las 46 básicas, aprende las marcas ゛ y ゜ (か → が, は �
 
 ## Con Kaku!
 
-En [Kaku!](/kaku/) puedes seguir este plan trazando cada carácter con el dedo: la app comprueba el orden y la dirección de tus trazos, y propone un reto diario de caracteres con pistas. El hiragana es gratis y no hace falta registrarse para empezar. Cuando ya lo domines, el siguiente paso son [las diferencias con el katakana](/guias/hiragana-y-katakana-diferencias/).
+En [Kaku!, la app para practicar hiragana escribiendo](/kaku/), puedes seguir este plan trazando cada carácter con el dedo: la app comprueba el orden y la dirección de tus trazos, y propone un reto diario de caracteres con pistas. El hiragana es gratis y no hace falta registrarse para empezar. Cuando ya lo domines, el siguiente paso son [las diferencias con el katakana](/guias/hiragana-y-katakana-diferencias/).

@@ -40,4 +40,4 @@ It is the same "look, trace, write from memory" logic we describe in [how to lea
 
 ## How Kaku! fits
 
-[Kaku!](/en/kaku/) is built for the phone side: you trace with your finger and the app checks the order and direction of each stroke. For paper, use the same characters and write from memory. And if you wonder whether you need handwriting for the exam, see [JLPT N5 and handwriting](/en/guides/jlpt-n5-do-you-need-handwriting/).
+Kaku! is built for the phone side: it is [a Japanese handwriting practice app](/en/kaku/) where you trace with your finger and the app checks the order and direction of each stroke. For paper, use the same characters and write from memory. And if you wonder whether you need handwriting for the exam, see [JLPT N5 and handwriting](/en/guides/jlpt-n5-do-you-need-handwriting/).

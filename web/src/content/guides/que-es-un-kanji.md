@@ -43,6 +43,8 @@ Los trazos van de **1** (一, "uno") a más de 20: 鬱 ("melancolía") tiene **2
 3. Aprende **pocos por sesión** y repasa los de días anteriores antes de sumar nuevos.
 4. Traza siguiendo el orden y luego escribe de memoria.
 
+Si quieres hacerlo en el móvil, [los kanji del N5 en Kaku!](/kaku/) se trazan con el dedo y la app comprueba el orden y la dirección de cada trazo.
+
 ## Preguntas frecuentes
 
 ### ¿Hay que escribir los kanji a mano?

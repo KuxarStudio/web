@@ -40,4 +40,4 @@ Es la misma lógica del ciclo "mira, calca, escribe de memoria" que describimos 
 
 ## Cómo encaja Kaku!
 
-[Kaku!](/kaku/) está pensada para la parte del móvil: trazas con el dedo y la app comprueba el orden y la dirección de cada trazo. Para el papel, usa los mismos caracteres y escribe de memoria. Y si te preguntas si te hace falta escribir a mano para el examen, mira [JLPT N5 y escritura a mano](/guias/jlpt-n5-hay-que-escribir-a-mano/).
+Kaku! está pensada para la parte del móvil: es [una app para practicar la escritura japonesa](/kaku/) en la que trazas con el dedo y la app comprueba el orden y la dirección de cada trazo. Para el papel, usa los mismos caracteres y escribe de memoria. Y si te preguntas si te hace falta escribir a mano para el examen, mira [JLPT N5 y escritura a mano](/guias/jlpt-n5-hay-que-escribir-a-mano/).

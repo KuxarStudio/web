@@ -65,6 +65,7 @@ const jsonLd = [
 
           <h2>{t.howTitle}</h2>
           {t.how.map((p) => <p>{p}</p>)}
+          <p>{t.app.before}<a href={route('kaku', lang)}>{t.app.label}</a>{t.app.after}</p>
         </div>
 
         {scripts.map((sc) => (

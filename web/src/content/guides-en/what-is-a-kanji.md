@@ -43,6 +43,8 @@ Stroke counts run from **1** (一, "one") to over 20: 鬱 ("melancholy") has **2
 3. Learn **a few per session** and review the earlier ones before adding new ones.
 4. Trace following the order, then write from memory.
 
+If you want to do it on your phone, [the N5 kanji in Kaku!](/en/kaku/) are traced with your finger and the app checks the order and direction of every stroke.
+
 ## Frequently asked questions
 
 ### Do I have to write kanji by hand?

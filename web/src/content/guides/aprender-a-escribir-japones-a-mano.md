@@ -50,7 +50,7 @@ El examen no te pide escribir a mano, pero eso no significa que no sirva: recono
 
 ## Dónde encaja Kaku!
 
-[Kaku!](/kaku/) es la app de Android que hemos hecho en Kuxar Studio para practicar justo este ciclo en el móvil: trazas hiragana, katakana y kanji del nivel N5 con el dedo, y la app comprueba el orden y la dirección de tus trazos. Hiragana y katakana son gratis; los kanji se desbloquean con un pago único. Funciona con cualquier método de esta guía: úsala para el paso de calcar y la corrección, y el papel para escribir de memoria.
+Kaku! es [nuestra app de Android para escribir en japonés](/kaku/), hecha en Kuxar Studio para practicar justo este ciclo en el móvil: trazas hiragana, katakana y kanji del nivel N5 con el dedo, y la app comprueba el orden y la dirección de tus trazos. Hiragana y katakana son gratis; los kanji se desbloquean con un pago único. Funciona con cualquier método de esta guía: úsala para el paso de calcar y la corrección, y el papel para escribir de memoria.
 
 ## Todas las guías de esta serie
 

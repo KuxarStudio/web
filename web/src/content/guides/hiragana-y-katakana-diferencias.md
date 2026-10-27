@@ -45,4 +45,4 @@ Por el hiragana: aparece en todas las frases, incluidas las más simples, y te p
 - Memorizar solo con la vista: pasa a trazar cada carácter siguiendo [el orden de los trazos](/guias/orden-de-los-trazos-en-japones/).
 - No repasar los caracteres que se confunden. Tenemos una lista en [caracteres parecidos en hiragana y katakana](/guias/hiragana-y-katakana-parecidos/).
 
-En [Kaku!](/kaku/) hiragana y katakana se practican trazándolos con el dedo, gratis, con comprobación del orden y la dirección de cada trazo.
+En Kaku! puedes [practicar hiragana y katakana gratis](/kaku/) trazándolos con el dedo, con comprobación del orden y la dirección de cada trazo.

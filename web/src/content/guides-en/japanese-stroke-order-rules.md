@@ -43,4 +43,4 @@ There are few, but they exist. A well-known one: 右 starts with the diagonal st
 - Trace several times following the order, then write from memory (the loop is in [how to learn hiragana by writing](/en/guides/how-to-learn-hiragana-by-writing/)).
 - If you use an app, make sure it checks the order and not just the final shape.
 
-In [Kaku!](/en/kaku/) every character is traced with your finger and the app checks the order and direction of your strokes, so a wrong order does not become a habit. When you reach kanji, the same rules apply: start with [the first N5 kanji](/en/guides/first-jlpt-n5-kanji/).
+In [Kaku!, our Japanese writing app](/en/kaku/), every character is traced with your finger and the app checks the order and direction of your strokes, so a wrong order does not become a habit. When you reach kanji, the same rules apply: start with [the first N5 kanji](/en/guides/first-jlpt-n5-kanji/).

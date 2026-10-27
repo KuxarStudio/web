@@ -49,7 +49,7 @@ En katakana, el sonido largo se marca con una raya (ー): コーヒー ("kōhī"
 
 ## Cuántos trazos tienen
 
-Casi todos los kana se escriben con entre **1 y 4 trazos** (las marcas de dakuten y handakuten van aparte). Por eso son el mejor sitio para aprender [el orden de los trazos](/guias/orden-de-los-trazos-en-japones/): pocas piezas, reglas muy claras y mucha repetición. Tienes la tabla completa con cada trazo numerado en [las hojas de orden de trazos](/recursos/hojas-de-trazos/).
+Casi todos los kana se escriben con entre **1 y 4 trazos** (las marcas de dakuten y handakuten van aparte). Por eso son el mejor sitio para aprender [el orden de los trazos](/guias/orden-de-los-trazos-en-japones/): pocas piezas, reglas muy claras y mucha repetición. Tienes la tabla completa con cada trazo numerado en [las hojas de orden de trazos](/recursos/hojas-de-trazos/), y si prefieres practicarlos en el móvil, [Kaku! te deja escribir hiragana y katakana](/kaku/) con el dedo, gratis.
 
 ## Preguntas frecuentes
 

@@ -43,4 +43,4 @@ Sí, aunque no los vayas a escribir a diario: escribir un kanji te obliga a fija
 
 ## Con Kaku!
 
-[Kaku!](/kaku/) incluye kanji del nivel N5 que se trazan con el dedo, con comprobación del orden y la dirección. Los kanji se desbloquean con el Sensei Pass (pago único); hiragana y katakana son gratis. Si estás decidiendo si te hace falta, lee [¿hay que escribir a mano para el JLPT N5?](/guias/jlpt-n5-hay-que-escribir-a-mano/).
+[Kaku! incluye kanji del nivel N5](/kaku/) que se trazan con el dedo, con comprobación del orden y la dirección. Los kanji se desbloquean con el Sensei Pass (pago único); hiragana y katakana son gratis. Si estás decidiendo si te hace falta, lee [¿hay que escribir a mano para el JLPT N5?](/guias/jlpt-n5-hay-que-escribir-a-mano/).

@@ -50,7 +50,7 @@ The exam does not ask you to handwrite, but that does not mean writing is useles
 
 ## Where Kaku! fits in
 
-[Kaku!](/en/kaku/) is the Android app we built at Kuxar Studio to practice exactly this loop on your phone: you trace hiragana, katakana and N5-level kanji with your finger, and the app checks the order and direction of your strokes. Hiragana and katakana are free; kanji unlock with a one-time purchase. It works with any method in this guide: use it for the tracing and correction step, and paper for writing from memory.
+Kaku! is [our Japanese handwriting app for Android](/en/kaku/), built at Kuxar Studio to practice exactly this loop on your phone: you trace hiragana, katakana and N5-level kanji with your finger, and the app checks the order and direction of your strokes. Hiragana and katakana are free; kanji unlock with a one-time purchase. It works with any method in this guide: use it for the tracing and correction step, and paper for writing from memory.
 
 ## All the guides in this series
 
