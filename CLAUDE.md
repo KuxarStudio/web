@@ -203,6 +203,18 @@ deploy publica a la rama/salida que GitHub Pages sirve.
   clave en `web/.visual-qa/`. Corre en CI y bloquea con fallos serios; las capturas quedan
   como artefacto `visual-qa` del PR.
 
+## Seguridad (2026-10-27; detalle en `docs/security/`)
+
+- Antes de tocar workflows, dependencias, scripts externos, formularios o de diseñar un
+  backend, lee `docs/security/security-requirements.md` (requisitos `SR-xx`) y la
+  arquitectura. Un servicio o workflow nuevo se anota en `security-architecture.md` y
+  `threat-model.md` en el mismo PR.
+- Antes de fusionar: sección 1 de `docs/security/security-checklist.md`.
+- Commits con el email noreply `262545842+KuxarStudio@users.noreply.github.com`; nunca
+  emails personales en commits ni en archivos.
+- Los agentes trabajan en ramas y abren PR: sin fusionar en `main` ni force-push sin OK
+  explícito del usuario.
+
 ## SEO (montado el 2026-10-04; detalle en `docs/seo.md`)
 
 - `npm run audit` (en `web/`) audita `dist/` y bloquea CI/deploy si hay errores. Al añadir una
