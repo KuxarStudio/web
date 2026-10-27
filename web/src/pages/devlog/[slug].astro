@@ -5,10 +5,10 @@ import type { Lang } from '../../i18n';
 
 export async function getStaticPaths() {
   const entries = await getCollection('devlog');
-  const translated = new Set((await getCollection('devlog-en')).map((e) => e.slug));
+  const translated = new Set((await getCollection('devlog-en')).map((e) => e.id));
   return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry, available: (translated.has(entry.slug) ? ['es', 'en'] : ['es']) as Lang[] },
+    params: { slug: entry.id },
+    props: { entry, available: (translated.has(entry.id) ? ['es', 'en'] : ['es']) as Lang[] },
   }));
 }
 const { entry, available } = Astro.props;

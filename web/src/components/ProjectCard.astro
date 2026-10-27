@@ -34,7 +34,7 @@ const devlogHref = devlog ? `${base}${devlog.replace(/^\//, '')}` : null;
 const mediaSrc = (src: string) => `${base}${src.replace(/^\//, '')}`;
 ---
 <article class:list={['project', featured && 'project-featured']}>
-  <div class="project-media" data-product={project.slug}>
+  <div class="project-media" data-product={project.id}>
     {media ? (
       media.kind === 'video' ? (
         <PhoneVideo src={mediaSrc(media.src)} webm={media.webm && mediaSrc(media.webm)} poster={media.poster && mediaSrc(media.poster)} label={media.alt} lang={lang} />

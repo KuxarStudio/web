@@ -17,7 +17,7 @@ export async function guidesCollection(lang: Lang): Promise<Guide[]> {
 /** Slug de una guía (por su `key`) en cada idioma en que existe. */
 export async function slugsByKey(key: string): Promise<Partial<Record<Lang, string>>> {
   const [es, en] = await Promise.all([guidesCollection('es'), guidesCollection('en')]);
-  return { es: es.find((g) => g.data.key === key)?.slug, en: en.find((g) => g.data.key === key)?.slug };
+  return { es: es.find((g) => g.data.key === key)?.id, en: en.find((g) => g.data.key === key)?.id };
 }
 
 /** Pilar al que pertenece una guía (ella misma si es pilar). */
