@@ -211,6 +211,8 @@ def make_jobs(
         prompt = chosen.evidence_prompt or (
             f"¿Qué test, número o ejemplo real de {chosen.name} puedes compartir esta semana? Algo medido de verdad, no una opinión."
         )
+        if chosen.differentiator:
+            prompt = f"{prompt} Diferenciador a demostrar: {chosen.differentiator}"
         jobs.append(Job(chosen.id, "evidencia", f"{chosen.name}: aporta un dato propio", prompt, 40))
 
     if today.day <= 7:
