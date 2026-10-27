@@ -57,4 +57,4 @@ Once you have the 46 basic characters down, learn the marks ゛ and ゜ (か →
 
 ## With Kaku!
 
-In [Kaku!](/en/kaku/) you can follow this plan by tracing each character with your finger: the app checks the order and direction of your strokes, and offers a daily character challenge with hints. Hiragana is free and you do not need to register to start. Once you have it down, the next step is [the differences from katakana](/en/guides/hiragana-vs-katakana/).
+In [Kaku!, our app for practicing hiragana by writing](/en/kaku/), you can follow this plan by tracing each character with your finger: the app checks the order and direction of your strokes, and offers a daily character challenge with hints. Hiragana is free and you do not need to register to start. Once you have it down, the next step is [the differences from katakana](/en/guides/hiragana-vs-katakana/).

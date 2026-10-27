@@ -57,6 +57,7 @@ const jsonLd = [
 ];
 // Vídeo con la interfaz en el idioma de la página (…-en.* para inglés).
 const suffix = lang === 'en' ? '-en' : '';
+const href = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`;
 const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`;
 ---
 <BaseLayout
@@ -99,6 +100,25 @@ const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '
       </div>
     </section>
 
+    <section class="section" id={lang === 'es' ? 'escribir-en-japones' : 'japanese-handwriting'} aria-labelledby="escritura-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="escritura-title">{copy.writing.heading}</h2></div>
+        <p class="kaku-answer">{copy.writing.intro}</p>
+        <ul class="kaku-points">
+          {copy.writing.items.map((it) => (
+            <li>
+              <b>{it.title}</b>
+              <span>{it.desc}</span>
+              <a class="text-link kaku-point-link" href={href(it.link.href)}>{it.link.label} →</a>
+            </li>
+          ))}
+        </ul>
+        <p class="kaku-answer" style="margin-top:16px">
+          {copy.writing.outro.before}<a class="text-link" href={href(copy.writing.outro.link.href)}>{copy.writing.outro.link.label}</a>{copy.writing.outro.after}
+        </p>
+      </div>
+    </section>
+
     {copy.sections.map((s) => (
       <section class="section" id={s.id} aria-labelledby={`${s.id}-title`}>
         <div class="wrap">
@@ -112,7 +132,7 @@ const mediaSrc = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '
       <div class="wrap">
         <div class="section-head"><h2 id="mas-title">{copy.moreHeading}</h2></div>
         <p class="project-links">
-          {copy.moreLinks.map((l) => <a class="text-link" href={`${import.meta.env.BASE_URL}${l.href.replace(/^\//, '')}`}>{l.label} →</a>)}
+          {copy.moreLinks.map((l) => <a class="text-link" href={href(l.href)}>{l.label} →</a>)}
         </p>
       </div>
     </section>

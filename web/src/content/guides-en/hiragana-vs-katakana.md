@@ -45,4 +45,4 @@ Hiragana: it appears in every sentence, even the simplest, and lets you read any
 - Memorizing by sight only: start tracing each character with the right [stroke order](/en/guides/japanese-stroke-order-rules/).
 - Not reviewing the characters you confuse. We have a list in [similar-looking hiragana and katakana](/en/guides/similar-looking-kana/).
 
-In [Kaku!](/en/kaku/) you practice hiragana and katakana by tracing them with your finger, for free, with a check on the order and direction of each stroke.
+In Kaku! you can [practice hiragana and katakana for free](/en/kaku/) by tracing them with your finger, with a check on the order and direction of each stroke.

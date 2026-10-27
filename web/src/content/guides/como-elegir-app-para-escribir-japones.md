@@ -36,7 +36,7 @@ Si la app da por bueno el trazo con el orden o la dirección cambiados, te está
 
 ## Dónde encaja Kaku!
 
-[Kaku!](/kaku/) es la app que hemos hecho en Kuxar Studio para esto. Con los criterios de arriba:
+[Kaku!, nuestra app para escribir en japonés](/kaku/), es la que hemos hecho en Kuxar Studio para esto. Con los criterios de arriba:
 
 - **Orden y dirección**: reconoce tus trazos en tiempo real y te corrige al momento.
 - **Contenido**: hiragana y katakana, y kanji del nivel N5.

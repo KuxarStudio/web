@@ -36,7 +36,7 @@ If the app accepts the stroke with the order or direction changed, it is teachin
 
 ## Where Kaku! fits
 
-[Kaku!](/en/kaku/) is the app we built at Kuxar Studio for this. Against the criteria above:
+[Kaku!, our app for writing Japanese](/en/kaku/), is the one we built at Kuxar Studio for this. Against the criteria above:
 
 - **Order and direction**: it recognizes your strokes in real time and corrects you on the spot.
 - **Content**: hiragana and katakana, plus N5-level kanji.

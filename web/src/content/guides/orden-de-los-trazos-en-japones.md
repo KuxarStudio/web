@@ -43,4 +43,4 @@ Son pocas, pero existen. Un ejemplo muy conocido: 右 empieza por el trazo diago
 - Calca varias veces siguiendo el orden y luego escribe de memoria (el ciclo está en [cómo aprender hiragana escribiendo](/guias/como-aprender-hiragana-escribiendo/)).
 - Si usas una app, que compruebe el orden y no solo la forma final.
 
-En [Kaku!](/kaku/) cada carácter se traza con el dedo y la app comprueba el orden y la dirección de tus trazos, para que no se te fije un orden equivocado. Cuando llegues a los kanji, te servirán estas mismas reglas: empieza por [los primeros kanji del N5](/guias/primeros-kanji-jlpt-n5/).
+En [Kaku!, nuestra app de escritura japonesa](/kaku/), cada carácter se traza con el dedo y la app comprueba el orden y la dirección de tus trazos, para que no se te fije un orden equivocado. Cuando llegues a los kanji, te servirán estas mismas reglas: empieza por [los primeros kanji del N5](/guias/primeros-kanji-jlpt-n5/).

@@ -37,4 +37,4 @@ Hay caracteres de kana que cualquier principiante confunde. La buena noticia: ca
 
 Si todavía no sabes la diferencia entre silabarios, empieza por [hiragana y katakana: diferencias](/guias/hiragana-y-katakana-diferencias/), y sigue el plan de [aprender hiragana escribiendo](/guias/como-aprender-hiragana-escribiendo/).
 
-En [Kaku!](/kaku/) la corrección de trazos comprueba el orden y la dirección, que es justo lo que separa estos pares: un trazo con la dirección equivocada se nota al momento.
+En [Kaku!, nuestra app de hiragana y katakana](/kaku/), la corrección de trazos comprueba el orden y la dirección, que es justo lo que separa estos pares: un trazo con la dirección equivocada se nota al momento.

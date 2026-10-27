@@ -37,4 +37,4 @@ Some kana characters trip up every beginner. The good news: they are almost alwa
 
 If you do not yet know the difference between the two syllabaries, begin with [hiragana vs katakana](/en/guides/hiragana-vs-katakana/), and follow the plan in [learning hiragana by writing](/en/guides/how-to-learn-hiragana-by-writing/).
 
-In [Kaku!](/en/kaku/) stroke correction checks order and direction, which is precisely what separates these pairs: a stroke drawn in the wrong direction shows up right away.
+In [Kaku!, our Japanese kana app](/en/kaku/), stroke correction checks order and direction, which is precisely what separates these pairs: a stroke drawn in the wrong direction shows up right away.

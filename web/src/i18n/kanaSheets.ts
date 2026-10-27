@@ -23,6 +23,8 @@ export interface KanaSheetsCopy {
   embedSnippet: string;
   breadcrumb: string;
   tip: string;
+  /** Enlace interno a Kaku! con ancla de keyword (Search Console). */
+  app: { before: string; label: string; after: string };
 }
 
 export const kanaSheets: Record<Lang, KanaSheetsCopy> = {
@@ -55,6 +57,7 @@ export const kanaSheets: Record<Lang, KanaSheetsCopy> = {
     embedSnippet: '<p>Hojas de orden de trazos de hiragana y katakana por <a href="https://kuxarstudio.com/recursos/hojas-de-trazos/">Kuxar Studio</a>. Datos de trazos: <a href="https://kanjivg.tagaini.net">KanjiVG</a>, licencia <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.</p>',
     breadcrumb: 'Hojas de trazos',
     tip: 'Los números rojos indican el orden de cada trazo.',
+    app: { before: '¿Prefieres practicar en el móvil? Con ', label: 'Kaku!, la app para escribir hiragana y katakana', after: ', trazas cada kana con el dedo y la app comprueba el orden y la dirección de tus trazos. Hiragana y katakana son gratis.' },
   },
   en: {
     title: 'Hiragana and Katakana Stroke Order (Chart and PDF)',
@@ -85,5 +88,6 @@ export const kanaSheets: Record<Lang, KanaSheetsCopy> = {
     embedSnippet: '<p>Hiragana and katakana stroke order sheets by <a href="https://kuxarstudio.com/en/resources/stroke-order-sheets/">Kuxar Studio</a>. Stroke data: <a href="https://kanjivg.tagaini.net">KanjiVG</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> license.</p>',
     breadcrumb: 'Stroke order sheets',
     tip: 'Red numbers show the order of each stroke.',
+    app: { before: 'Rather practice on your phone? With ', label: 'Kaku!, the app for writing Japanese kana', after: ', you trace each kana with your finger and the app checks the order and direction of your strokes. Hiragana and katakana are free.' },
   },
 };

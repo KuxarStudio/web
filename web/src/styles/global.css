@@ -690,6 +690,7 @@ a,button,summary{touch-action:manipulation;}
 .kaku-points li{padding:14px 16px;border-radius:var(--r-md);background:var(--surface-2);}
 .kaku-points b{display:block;}
 .kaku-points span{color:var(--ink-soft);}
+.kaku-point-link{display:table;margin-top:6px;}
 .kaku-hero{display:grid;gap:32px;align-items:center;}
 @media (min-width:860px){.kaku-hero{grid-template-columns:1.2fr 0.8fr;}}
 .kaku-answer{max-width:62ch;color:var(--ink-soft);font-size:1.05rem;line-height:1.6;}

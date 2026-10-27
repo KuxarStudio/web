@@ -43,4 +43,4 @@ Yes, even if you will not write them every day: writing a kanji forces you to no
 
 ## With Kaku!
 
-[Kaku!](/en/kaku/) includes N5-level kanji that you trace with your finger, with a check on order and direction. Kanji unlock with the Sensei Pass (one-time purchase); hiragana and katakana are free. If you are deciding whether you need it, read [do you need handwriting for JLPT N5?](/en/guides/jlpt-n5-do-you-need-handwriting/).
+[Kaku! includes N5-level kanji](/en/kaku/) that you trace with your finger, with a check on order and direction. Kanji unlock with the Sensei Pass (one-time purchase); hiragana and katakana are free. If you are deciding whether you need it, read [do you need handwriting for JLPT N5?](/en/guides/jlpt-n5-do-you-need-handwriting/).
