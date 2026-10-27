@@ -9,7 +9,9 @@ interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
 const t = ui[lang];
 ---
-<a class="btn btn-primary sticky-cta" id="sticky-cta" href={`#${t.ids.contact}`} data-target={t.ids.contact} hidden>{t.stickyCta.label}</a>
+<aside aria-label={t.stickyCta.label}>
+  <a class="btn btn-primary sticky-cta" id="sticky-cta" href={`#${t.ids.contact}`} data-target={t.ids.contact} hidden>{t.stickyCta.label}</a>
+</aside>
 
 <script>
   (function () {

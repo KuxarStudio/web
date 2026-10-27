@@ -33,7 +33,7 @@ const isCurrent = (match?: string) => (match ? path.startsWith(match) : false);
 ---
 <header class="site-header">
   <div class="wrap headbar">
-    <a class="logo" href={home}><Logo class="logo-mark" />Kuxar Studio</a>
+    <a class="logo" href={home} translate="no"><Logo class="logo-mark" />Kuxar Studio</a>
 
     <nav class="site-nav" id="site-nav" aria-label={t.header.navLabel}>
       <ul>
@@ -76,6 +76,7 @@ const isCurrent = (match?: string) => (match ? path.startsWith(match) : false);
   themeBtn.addEventListener('click', () => {
     const next = currentTheme() === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', next === 'dark' ? '#0c0d10' : '#ffffff'));
     try {
       localStorage.setItem('kuxar-theme', next);
     } catch (e) {}

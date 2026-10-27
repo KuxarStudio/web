@@ -108,6 +108,10 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
         try {
           var t = localStorage.getItem("kuxar-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
           document.documentElement.setAttribute('data-theme', t);
+          // La barra del navegador sigue al tema elegido, no solo al del sistema.
+          document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+            m.setAttribute('content', t === 'dark' ? '#0c0d10' : '#ffffff');
+          });
         } catch (e) {}
       })();
     </script>
