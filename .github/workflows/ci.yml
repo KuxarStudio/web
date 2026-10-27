@@ -70,4 +70,6 @@ jobs:
           name: visual-qa
           path: web/.visual-qa/
           retention-days: 14
-          if-no-files-found: ignore
+          if-no-files-found: warn
+          # .visual-qa empieza por punto: upload-artifact omite lo oculto por defecto.
+          include-hidden-files: true
