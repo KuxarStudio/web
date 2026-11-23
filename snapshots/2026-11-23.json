@@ -1,0 +1,66 @@
+{
+  "citations": {
+    "kaku": {
+      "asked": 6,
+      "brand": 0,
+      "own": 0
+    },
+    "nadir": {
+      "asked": 2,
+      "brand": 0,
+      "own": 0
+    },
+    "parte": {
+      "asked": 4,
+      "brand": 2,
+      "own": 0
+    },
+    "pdf-blender": {
+      "asked": 2,
+      "brand": 0,
+      "own": 0
+    },
+    "studio": {
+      "asked": 5,
+      "brand": 0,
+      "own": 0
+    }
+  },
+  "date": "2026-11-23",
+  "projects": {
+    "kaku": {
+      "clicks": 0.0,
+      "impressions": 118.0,
+      "position": 9.313559322033898
+    },
+    "nadir": {
+      "clicks": 0.0,
+      "impressions": 23.0,
+      "position": 9.782608695652174
+    },
+    "parte": {
+      "clicks": 0.0,
+      "impressions": 4.0,
+      "position": 6.25
+    },
+    "pdf-blender": {
+      "clicks": 0.0,
+      "impressions": 10.0,
+      "position": 7.7
+    },
+    "studio": {
+      "clicks": 18.0,
+      "impressions": 624.0,
+      "position": 17.01923076923077
+    }
+  },
+  "total": {
+    "clicks": 18.0,
+    "impressions": 779.0,
+    "position": 15.463414634146341
+  },
+  "window": [
+    "2026-10-24",
+    "2026-11-20"
+  ]
+}
