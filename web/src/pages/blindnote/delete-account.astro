@@ -1,6 +1,6 @@
 ---
 import LegalPage from '../../components/LegalPage.astro';
-import { BLINDNOTE_DELETION_TERM, BLINDNOTE_REQUEST_RETENTION, LEGAL_EMAIL } from '../../lib/legal';
+import { BLINDNOTE_ANALYTICS_RETENTION, BLINDNOTE_DELETION_TERM, BLINDNOTE_REQUEST_RETENTION, LEGAL_EMAIL } from '../../lib/legal';
 import { route } from '../../i18n';
 ---
 <LegalPage
@@ -15,9 +15,10 @@ import { route } from '../../i18n';
   <h2>Desactivar las estadísticas (datos de Firebase)</h2>
   <p>Si habías aceptado las estadísticas, abre BlindNote y ve a <strong>Ajustes &gt; Estadísticas de uso</strong>. Hazlo antes de desinstalar. Al desactivarlas:</p>
   <ul>
-    <li>Analytics deja de recoger datos y se reinician sus datos en el móvil, incluido su identificador.</li>
-    <li>La recogida de informes de fallos de Crashlytics se desactiva a partir del siguiente inicio de la app, y se borran los informes pendientes de envío.</li>
-    <li>Se borra la instalación de Firebase del móvil. Según Firebase, eso pone en marcha la eliminación de los datos ligados a esa instalación en un máximo de 180 días (<a href="https://firebase.google.com/docs/projects/manage-installations" rel="noopener">gestión de instalaciones de Firebase</a>).</li>
+    <li>Analytics deja de recoger datos y se reinician sus datos en el móvil, incluido su identificador de instancia.</li>
+    <li>Se borran los informes de fallos guardados en el móvil que aún no se habían enviado, y la recogida automática de Crashlytics se desactiva a partir del siguiente inicio de la app. Los fallos posteriores no se envían: Crashlytics puede guardarlos en el móvil, pero nunca se suben, la app los borra en cada inicio mientras las estadísticas siguen apagadas y desaparecen al desinstalarla.</li>
+    <li>La app pide a Firebase que borre la instalación de Firebase del móvil. Si no hay conexión, lo vuelve a intentar en los siguientes inicios mientras las estadísticas sigan apagadas. Según Firebase, cuando ese borrado se completa empieza la eliminación de los datos ligados a la instalación, en un máximo de 180 días (<a href="https://firebase.google.com/docs/projects/manage-installations" rel="noopener">gestión de instalaciones de Firebase</a>).</li>
+    <li>Los datos de Analytics ya enviados están ligados al identificador de instancia de Analytics, distinto del de la instalación, y se conservan durante el plazo de retención de Analytics ({BLINDNOTE_ANALYTICS_RETENTION.es}).</li>
   </ul>
 
   <h2>Desinstalar la app (datos del móvil)</h2>
@@ -28,6 +29,7 @@ import { route } from '../../i18n';
 
   <h2>Restablecer el identificador de publicidad</h2>
   <p>Es un ajuste de Android, no de BlindNote: puedes restablecerlo o borrarlo en los ajustes del móvil (normalmente en Privacidad &gt; Anuncios, o en Google &gt; Anuncios). Si sigues usando la app, también puedes cambiar tu decisión sobre los anuncios en <strong>Ajustes &gt; Privacidad de anuncios</strong> (donde se aplique).</p>
+  <p>Restablecer el identificador de publicidad no afecta al <em>app set ID</em>, un identificador que Android comparte entre las apps de un mismo desarrollador en el móvil y que AdMob usa para analítica y prevención del fraude.</p>
   <p>Lo que Google ya haya tratado para los anuncios lo conserva Google AdMob como responsable propio, según la <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad de Google</a>. Puedes dirigirte directamente a Google. Más detalles en la <a href={route('blindnotePrivacy', 'es')}>política de privacidad</a>.</p>
 
   <h2>Solicitud por correo electrónico</h2>
