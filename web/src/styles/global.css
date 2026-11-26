@@ -74,10 +74,10 @@
 
 /* Colores de producto: fondo del panel y tinta legible sobre él. */
 [data-product="kaku"]{--product-bg:#f4e3dd;--product-ink:#8a2318;}
-[data-product="blindnote"]{--product-bg:#7fc782;--product-ink:#0f3a14;}
+[data-product="blindnote"]{--product-bg:#e6ddf5;--product-ink:#5b21b6;}
 [data-product="nadir"]{--product-bg:#16171b;--product-ink:#ffaa00;}
 :root[data-theme="dark"] [data-product="kaku"]{--product-bg:#2b1c1a;--product-ink:#ef8a7e;}
-:root[data-theme="dark"] [data-product="blindnote"]{--product-bg:#16301b;--product-ink:#9ad99c;}
+:root[data-theme="dark"] [data-product="blindnote"]{--product-bg:#2a1352;--product-ink:#ffd23f;}
 :root[data-theme="dark"] [data-product="nadir"]{--product-bg:#221a07;--product-ink:#ffaa00;}
 @media (min-width:768px){
   :root{--gutter:24px;--header-h:68px;}

@@ -8,9 +8,11 @@ media:
   kind: "image"
   src: "/media/blindnote-turno.webp"
   alt: "Pantalla de turno de BlindNote: turno de Ana, cuenta atrás y botón «¡Lo sé!»."
+page: "/blindnote/"
 featured: true
 order: 2
 en:
+  page: "/en/blindnote/"
   description: "A group music quiz on one phone: the music plays in your Spotify and BlindNote is the referee. Guess the artist, title and year."
   media:
     alt: "BlindNote turn screen: Ana's turn, a countdown and an “I know it!” button."
