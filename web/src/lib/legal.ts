@@ -21,13 +21,23 @@ export const BLINDNOTE_DELETION_TERM: Record<Lang, string> = { es: 'un mes', en:
 
 /**
  * Retención de los datos de Google Analytics de BlindNote asociados a
- * identificadores. TODO: confirmar que en la consola de Analytics está en
- * 2 meses (docs/play/seguridad-datos.md del repo de BlindNote) antes de publicar.
+ * identificadores. Única fuente del plazo. TODO: CONFIRMAR EN LA CONSOLA de
+ * Google Analytics (Administrar > Recogida y conservación de datos) que está
+ * en 2 meses antes de publicar (docs/play/seguridad-datos.md de BlindNote).
  */
 export const BLINDNOTE_ANALYTICS_RETENTION: Record<Lang, string> = { es: '2 meses', en: '2 months' };
 
-/** Edad mínima del público de BlindNote (declarada en Play Console: 13 o más). */
-export const BLINDNOTE_MIN_AGE = 13;
+/**
+ * Edad mínima del público de BlindNote. TODO: confirmar con el usuario y en
+ * Play Console (antes se declaraba 13 o más; este borrador usa 16).
+ */
+export const BLINDNOTE_MIN_AGE = 16;
+
+/** Cuánto conservamos los correos de solicitudes de privacidad de BlindNote. */
+export const BLINDNOTE_REQUEST_RETENTION: Record<Lang, string> = {
+  es: 'hasta cerrar la solicitud y, como máximo, un año',
+  en: 'until the request is closed and, at most, one year',
+};
 
 export interface LegalOwnerData { name: string | null; taxId: string | null; address: string | null }
 
