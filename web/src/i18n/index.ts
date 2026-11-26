@@ -35,6 +35,7 @@ export const routes = {
   kakuTerms: { es: '/kaku/terms/', en: '/en/kaku/terms/' },
   blindnotePrivacy: { es: '/blindnote/privacy-policy/', en: '/en/blindnote/privacy-policy/' },
   blindnoteDelete: { es: '/blindnote/delete-account/', en: '/en/blindnote/delete-account/' },
+  blindnoteTerms: { es: '/blindnote/terms/', en: '/en/blindnote/terms/' },
 } as const satisfies Record<string, Record<Lang, string>>;
 
 export type RouteKey = keyof typeof routes;

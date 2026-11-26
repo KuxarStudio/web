@@ -1,0 +1,76 @@
+---
+import LegalPage from '../../components/LegalPage.astro';
+import LegalOwner from '../../components/legal/LegalOwner.astro';
+import { BLINDNOTE_MIN_AGE, BLINDNOTE_OWNER, LEGAL_EMAIL } from '../../lib/legal';
+import { route } from '../../i18n';
+---
+<LegalPage
+  routeKey="blindnoteTerms"
+  title="Condiciones de uso de BlindNote | Kuxar Studio"
+  heading="Condiciones de uso de BlindNote"
+  description="Condiciones de uso de la app BlindNote: requisitos, uso privado con Spotify, licencia, anuncios, catálogo y responsabilidad."
+  updated="26 de noviembre de 2026"
+>
+  <p>Estas condiciones regulan el uso de <strong>BlindNote</strong>, el concurso musical para Android en el que os pasáis el móvil por turnos para adivinar el artista, el título y el año de la canción que suena en Spotify. Al descargar y usar la app las aceptas. Si no estás de acuerdo, no la uses.</p>
+
+  <h2>En resumen</h2>
+  <ul>
+    <li>BlindNote es gratis, se financia con anuncios y no tiene compras.</li>
+    <li>Es para jugar en privado con tu gente. No la uses para poner música en bares, locales o eventos públicos: las condiciones de Spotify no lo permiten.</li>
+    <li>BlindNote no incluye música. Necesitas la app de Spotify y cumplir sus condiciones.</li>
+    <li>Debes tener al menos {BLINDNOTE_MIN_AGE} años.</li>
+  </ul>
+
+  <h2>1. Quién ofrece BlindNote</h2>
+  <LegalOwner owner={BLINDNOTE_OWNER} />
+
+  <h2>2. Requisitos</h2>
+  <ul>
+    <li>Tener al menos {BLINDNOTE_MIN_AGE} años.</li>
+    <li>Tener instalada la app de Spotify, con una cuenta iniciada y conexión a internet. Se recomienda Spotify Premium: con la cuenta gratuita, Spotify puede poner sus anuncios y límites durante la partida.</li>
+    <li>Dar a BlindNote el acceso a notificaciones de Android, que usa solo para ver y controlar la música de Spotify. Lo explicamos en la <a href={route('blindnotePrivacy', 'es')}>política de privacidad</a>.</li>
+  </ul>
+
+  <h2>3. Uso privado y condiciones de Spotify</h2>
+  <p>BlindNote no incluye canciones: la música suena en tu app de Spotify, con tu cuenta, y BlindNote hace de árbitro. Por eso, al jugar también tienes que cumplir las <a href="https://www.spotify.com/es/legal/end-user-agreement/" rel="noopener">condiciones de uso de Spotify</a>, que solo permiten un uso personal y no comercial.</p>
+  <ul>
+    <li>Puedes usar BlindNote para jugar en casa o con amigos.</li>
+    <li><strong>No</strong> la uses para poner música en bares, restaurantes, tiendas, gimnasios, eventos públicos o con cualquier fin comercial, por ejemplo concursos con entrada o premios organizados por un negocio.</li>
+    <li>Si lo haces, la responsabilidad frente a Spotify y frente a los titulares de los derechos de la música es tuya.</li>
+  </ul>
+  <p>BlindNote es compatible con Spotify, pero no está afiliada a Spotify ni cuenta con su patrocinio o aprobación. Spotify puede cambiar su app en cualquier momento, y eso puede hacer que BlindNote deje de funcionar total o parcialmente.</p>
+
+  <h2>4. Licencia de uso</h2>
+  <p>Te concedemos una licencia personal, gratuita, no exclusiva, intransferible y revocable para usar BlindNote en tus dispositivos con fines privados y no comerciales. No puedes:</p>
+  <ul>
+    <li>copiar, modificar, descompilar o redistribuir la app, salvo en lo que permita la ley;</li>
+    <li>quitar o bloquear los anuncios modificando la app;</li>
+    <li>usar la app con fines ilegales.</li>
+  </ul>
+  <p>El código, el diseño, los textos y la marca BlindNote son de Kuxar Studio.</p>
+
+  <h2>5. Anuncios</h2>
+  <p>BlindNote es gratis porque muestra anuncios de Google AdMob, como mucho uno a pantalla completa antes del resultado de cada partida. Lo que se trata para mostrarlos y cómo cambiar tu elección se explica en la <a href={route('blindnotePrivacy', 'es')}>política de privacidad</a>. No somos responsables del contenido de los anuncios de terceros ni de las webs o apps a las que llevan.</p>
+
+  <h2>6. El catálogo de canciones</h2>
+  <p>Cada temática incluye una lista de canciones con su título, artista y año, que usamos para reconocer lo que suena y mostrar la solución. Los años proceden de bases de datos musicales abiertas y los hemos revisado, pero puede haber errores: si ves alguno, escríbenos. Los nombres de artistas y canciones pertenecen a sus titulares; BlindNote no incluye grabaciones, letras ni portadas.</p>
+
+  <h2>7. Disponibilidad y cambios en la app</h2>
+  <p>Trabajamos para que BlindNote funcione bien, pero puede haber interrupciones o errores, en especial si cambian Spotify o Android. Podemos actualizar la app, cambiar sus funciones o temáticas y dejar de ofrecerla.</p>
+
+  <h2>8. Responsabilidad</h2>
+  <p>BlindNote es un juego. Respondemos de los daños que causemos por dolo o negligencia grave y en todo lo que la ley de consumidores no permita limitar. Fuera de esos casos, no respondemos de daños indirectos, del uso de la app en contra de estas condiciones o de las de Spotify, ni de lo que hagan Spotify, Google u otros servicios de terceros.</p>
+
+  <h2>9. Privacidad</h2>
+  <p>Cómo tratamos tus datos se explica en la <a href={route('blindnotePrivacy', 'es')}>política de privacidad de BlindNote</a>.</p>
+
+  <h2>10. Cambios en estas condiciones</h2>
+  <p>Si cambiamos estas condiciones, actualizaremos la fecha de arriba. Si el cambio es importante, te avisaremos dentro de la app antes de que se aplique.</p>
+
+  <h2>11. Ley aplicable</h2>
+  <p>Estas condiciones se rigen por la ley española. Si eres consumidor, puedes reclamar ante los tribunales de tu domicilio y conservas la protección de las normas obligatorias de tu país de residencia.</p>
+
+  <h2>12. Contacto</h2>
+  <p><a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a></p>
+  <p><small>Spotify es una marca de Spotify AB. Google, Android y AdMob son marcas de Google LLC.</small></p>
+</LegalPage>
