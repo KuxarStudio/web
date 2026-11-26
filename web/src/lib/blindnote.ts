@@ -43,7 +43,7 @@ export const blindnote: Record<Lang, BlindNoteCopy> = {
     imageAlt: 'BlindNote en un móvil: turno de Ana, cuenta atrás y botón «¡Lo sé!».',
     stepsHeading: '¿Cómo se juega?',
     steps: [
-      { title: 'Elige una temática y apunta a los jugadores', desc: 'De 3 a 20 rondas y de 5 a 60 segundos por turno.' },
+      { title: 'Elige una temática y apunta a los jugadores', desc: 'Hasta 20 rondas, según los jugadores y la temática, y de 5 a 60 segundos por turno.' },
       { title: 'Abre la lista en Spotify', desc: 'Activa el modo aleatorio y vuelve a BlindNote.' },
       { title: 'Pulsa «¡Lo sé!»', desc: 'En cada turno suena una canción: di el artista, el título y el año.' },
       { title: 'Revela la solución', desc: 'Marca los aciertos: hasta 3 puntos por canción. Al final, podio y confeti.' },
@@ -77,14 +77,14 @@ export const blindnote: Record<Lang, BlindNoteCopy> = {
         id: 'gratis',
         q: '¿BlindNote es gratis?',
         a: [
-          'Sí. No tiene compras ni registro: se financia con un anuncio antes del resultado de cada partida. Las estadísticas de uso son opcionales y están apagadas hasta que las aceptas.',
+          'Sí. No tiene compras ni registro: se financia con anuncios, como mucho uno antes del resultado de cada partida. Las estadísticas de uso son opcionales y están apagadas hasta que las aceptas.',
         ],
       },
       {
         id: 'donde',
         q: '¿Dónde puedo jugar?',
         a: [
-          'BlindNote es para Android y está en prueba cerrada en Google Play; pronto estará disponible para todos. Está en español, inglés y euskera, y es para mayores de 16 años.',
+          'BlindNote es para Android y está en prueba cerrada en Google Play; pronto se podrá descargar en todo el mundo. Está en español, inglés y euskera, y es para personas de 16 años en adelante.',
           'Es para jugar en privado, en casa o con amigos: las condiciones de Spotify no permiten usarlo para poner música en bares, locales o eventos públicos.',
         ],
       },
@@ -112,10 +112,10 @@ export const blindnote: Record<Lang, BlindNoteCopy> = {
     lead: "Gather your friends, pick a theme and guess what's playing. The music plays in your Spotify app and BlindNote is the referee: turns, a clock and up to 3 points per song.",
     cta: 'Get it on Google Play',
     ctaSoon: 'Coming soon to Google Play',
-    imageAlt: 'BlindNote on a phone: Ana’s turn, a countdown and an “I know it!” button.',
+    imageAlt: 'BlindNote on a phone, with its Spanish interface: Ana’s turn, a countdown and the «¡LO SÉ!» (“I know it!”) button.',
     stepsHeading: 'How do you play?',
     steps: [
-      { title: 'Pick a theme and add the players', desc: '3 to 20 rounds and 5 to 60 seconds per turn.' },
+      { title: 'Pick a theme and add the players', desc: 'Up to 20 rounds, depending on the players and the theme, and 5 to 60 seconds per turn.' },
       { title: 'Open the playlist in Spotify', desc: 'Turn on shuffle and come back to BlindNote.' },
       { title: 'Tap “I know it!”', desc: 'A song plays on each turn: say the artist, title and year.' },
       { title: 'Reveal the answer', desc: 'Mark what was right: up to 3 points per song. At the end, a podium and confetti.' },
@@ -149,14 +149,14 @@ export const blindnote: Record<Lang, BlindNoteCopy> = {
         id: 'free',
         q: 'Is BlindNote free?',
         a: [
-          'Yes. It has no purchases and no sign-up: it is funded by one ad before the result of each game. Usage statistics are optional and off until you accept them.',
+          'Yes. It has no purchases and no sign-up: it is funded by ads, at most one before the result of each game. Usage statistics are optional and off until you accept them.',
         ],
       },
       {
         id: 'where',
         q: 'Where can I play?',
         a: [
-          'BlindNote is for Android and is in closed testing on Google Play; it will soon be available to everyone. It is in Spanish, English and Basque, and it is for ages 16 and up.',
+          'BlindNote is for Android and is in closed testing on Google Play; it will soon be available to download worldwide. It is in Spanish, English and Basque, and it is for ages 16 and up.',
           "It is for playing privately, at home or with friends: Spotify's terms do not allow using it to play music in bars, venues or public events.",
         ],
       },
