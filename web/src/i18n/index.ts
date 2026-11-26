@@ -28,6 +28,7 @@ export const routes = {
   thanks: { es: '/gracias/', en: '/en/thanks/' },
   kanaSheets: { es: '/recursos/hojas-de-trazos/', en: '/en/resources/stroke-order-sheets/' },
   kaku: { es: '/kaku/', en: '/en/kaku/' },
+  blindnote: { es: '/blindnote/', en: '/en/blindnote/' },
   // Páginas legales de las apps (noindex; las pide Google Play).
   appsPrivacy: { es: '/privacidad/apps/', en: '/en/privacy/apps/' },
   kakuPrivacy: { es: '/kaku/privacy-policy/', en: '/en/kaku/privacy-policy/' },

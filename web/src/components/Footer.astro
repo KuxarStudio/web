@@ -34,6 +34,7 @@ const hasGuides = (await getCollection(lang === 'en' ? 'guides-en' : 'guides')).
     </div>
     <nav class="foot-nav" aria-label={t.footer.nav}>
       <a href={route('kaku', lang)} translate="no">Kaku!</a>
+      <a href={route('blindnote', lang)} translate="no">BlindNote</a>
       <a href={route('projects', lang)}>{t.footer.projects}</a>
       <a href={route('webDesign', lang)}>{t.footer.webDesign}</a>
       <a href={route('parte', lang)}><Parte /></a>
