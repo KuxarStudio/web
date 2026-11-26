@@ -1,32 +1,180 @@
 ---
 import LegalPage from '../../components/LegalPage.astro';
+import LegalOwner from '../../components/legal/LegalOwner.astro';
+import {
+  BLINDNOTE_ANALYTICS_RETENTION,
+  BLINDNOTE_DELETION_TERM,
+  BLINDNOTE_MIN_AGE,
+  BLINDNOTE_OWNER,
+  BLINDNOTE_REQUEST_RETENTION,
+  LEGAL_EMAIL,
+} from '../../lib/legal';
+import { route } from '../../i18n';
 ---
 <LegalPage
   routeKey="blindnotePrivacy"
   title="Política de Privacidad de BlindNote | Kuxar Studio"
   heading="Política de Privacidad de BlindNote"
-  description="Política de privacidad de la app BlindNote: servicios de terceros (Spotify, AdMob, Firebase) y datos personales."
-  updated="01/10/2026"
+  description="Política de privacidad de la app BlindNote: qué se queda en tu móvil, anuncios de AdMob, estadísticas opcionales de Firebase, base legal, plazos y tus derechos."
+  updated="26 de noviembre de 2026"
 >
-  <p><strong>Kuxar Studio</strong> («nosotros») opera la aplicación móvil BlindNote.</p>
+  <p>Esta política explica qué datos trata <strong>BlindNote</strong>, el concurso musical para Android en el que os pasáis el móvil por turnos para adivinar el artista, el título y el año de la canción que suena en Spotify. La escribimos para que se entienda: si algo no está claro, escríbenos.</p>
 
-  <h2>1. Información y consentimiento</h2>
-  <p>BlindNote es un juego de preguntas musicales. Al utilizar la aplicación, aceptas el tratamiento de información según esta política.</p>
-
-  <h2>2. Servicios de terceros</h2>
-  <p>Para funcionar correctamente, la app utiliza los siguientes servicios que pueden recopilar datos según sus propias políticas:</p>
+  <h2>En resumen</h2>
   <ul>
-    <li><strong>Spotify SDK:</strong> se utiliza para reproducir fragmentos de canciones. No almacenamos tus datos de cuenta. Consulta la <a href="https://www.spotify.com/es/legal/privacy-policy/" target="_blank" rel="noopener">Privacidad de Spotify</a>.</li>
-    <li><strong>Google AdMob:</strong> muestra anuncios. Google puede usar el ID de publicidad de tu dispositivo.</li>
-    <li><strong>Firebase Analytics:</strong> recoge estadísticas anónimas de uso para mejorar el juego.</li>
+    <li>BlindNote no tiene cuentas, registro ni rankings, y no tiene servidores propios.</li>
+    <li>El acceso a notificaciones solo se usa para ver y controlar la música de la app de Spotify. BlindNote no lee, guarda ni envía tus notificaciones.</li>
+    <li>Las canciones que suenan y los nombres de los jugadores no salen de tu móvil.</li>
+    <li>La app muestra anuncios de Google AdMob. Los anuncios personalizados solo se muestran con tu consentimiento donde la ley lo exige.</li>
+    <li>Las estadísticas de uso y los informes de fallos están apagados hasta que los aceptas.</li>
   </ul>
 
-  <h2>3. Datos personales</h2>
-  <p>No recopilamos ni vendemos información personal identificable (como emails o nombres) en nuestros servidores.</p>
+  <h2>1. Responsable del tratamiento</h2>
+  <LegalOwner owner={BLINDNOTE_OWNER} />
 
-  <h2>4. Eliminación de datos</h2>
-  <p>Consulta cómo revocar el acceso o solicitar el borrado en la <a href="/blindnote/delete-account/">página de eliminación de datos</a>.</p>
+  <h2>2. Qué es necesario para jugar y qué es opcional</h2>
+  <ul>
+    <li><strong>Necesario:</strong> tener la app de Spotify instalada y conceder a BlindNote el acceso a notificaciones. Sin ese acceso el juego no puede funcionar, porque BlindNote no puede ver ni controlar la canción que suena.</li>
+    <li><strong>Opcional: estadísticas de uso e informes de fallos.</strong> Si los rechazas, la app funciona exactamente igual; solo dejamos de saber cómo se usa y qué fallos tiene.</li>
+    <li><strong>Opcional: anuncios personalizados.</strong> Si los rechazas, puedes seguir jugando; Google puede mostrarte anuncios no personalizados (si tus decisiones de consentimiento lo permiten) o limitados, o ninguno.</li>
+  </ul>
 
-  <h2>5. Contacto</h2>
-  <p>Si tienes dudas, escríbenos a: <a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></p>
+  <h2>3. Qué datos tratamos, para qué y con qué base legal</h2>
+  <table class="legal-table" tabindex="0">
+    <thead>
+      <tr><th>Datos</th><th>Finalidad</th><th>Base legal (RGPD)</th><th>Conservación</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Título, artista e identificador de Spotify de la canción que suena, que la app ve gracias al acceso a notificaciones. <strong>Solo en tu móvil.</strong></td>
+        <td>Hacer de árbitro: pasar de canción, ponerla en marcha, pausarla y comprobar que pertenece a la temática elegida.</td>
+        <td>Prestación del servicio que nos pides (art. 6.1.b). Además, tú concedes el permiso de Android.</td>
+        <td>No se guarda: se usa en la memoria del móvil y no se envía.</td>
+      </tr>
+      <tr>
+        <td>Nombres de los jugadores y puntuaciones. <strong>Solo en tu móvil.</strong></td>
+        <td>Llevar la partida y mostrar el resultado.</td>
+        <td>Prestación del servicio (art. 6.1.b).</td>
+        <td>Se quedan solo en la memoria de la app hasta que sales de la partida (incluida la pantalla de resultados) o Android cierra la app, también si la app queda en segundo plano durante la partida. Nunca se escriben en el almacenamiento ni se envían.</td>
+      </tr>
+      <tr>
+        <td>Ajustes: tu respuesta sobre las estadísticas y el idioma. <strong>Solo en tu móvil.</strong></td>
+        <td>Recordar tus preferencias.</td>
+        <td>Prestación del servicio (art. 6.1.b) y obligación legal de respetar tu decisión sobre las estadísticas (art. 6.1.c).</td>
+        <td>Hasta que cambies la decisión, borres los datos de la app o la desinstales. No se incluyen en las copias de seguridad.</td>
+      </tr>
+      <tr>
+        <td>Mensaje de consentimiento de Google (User Messaging Platform): tu decisión sobre los anuncios, guardada en el móvil, y los datos técnicos que recibe Google al consultarlo, como la dirección IP y el tipo de dispositivo.</td>
+        <td>Saber si en tu país hay que pedirte permiso para los anuncios y recordar tu respuesta.</td>
+        <td>Cumplimiento de obligaciones legales (art. 6.1.c) e interés legítimo en poder acreditarlo (art. 6.1.f).</td>
+        <td>La decisión se queda en el móvil hasta que la cambies o desinstales la app. Lo que recibe Google, según su <a href="https://policies.google.com/technologies/retention" rel="noopener">política de conservación</a>.</td>
+      </tr>
+      <tr>
+        <td>Datos de los anuncios (Google AdMob): dirección IP (de la que se puede deducir una ubicación aproximada), interacciones con la app y los anuncios, datos de diagnóstico y rendimiento, identificador de publicidad de Android y <em>app set ID</em>.</td>
+        <td>Mostrar un anuncio antes del resultado de la partida para financiar la app, medirlo y prevenir el fraude.</td>
+        <td>Anuncios personalizados: <strong>tu consentimiento</strong> (art. 6.1.a). <a href="https://support.google.com/admob/answer/7676680" rel="noopener">Anuncios no personalizados</a>: pueden usar identificadores del dispositivo o cookies, así que solo se piden cuando tus decisiones de consentimiento lo permiten (tu consentimiento para guardar o consultar información en el dispositivo). <a href="https://support.google.com/admob/answer/10105530" rel="noopener">Anuncios limitados</a>, si no das ese consentimiento: interés legítimo (art. 6.1.f), según Google. Aunque rechaces la personalización, los anuncios limitados pueden usar almacenamiento local o cookies para detectar fraude y abusos, tal como lo describe <a href="https://support.google.com/admob/answer/10105530" rel="noopener">Google</a>.</td>
+        <td>Según la <a href="https://policies.google.com/technologies/retention" rel="noopener">política de conservación de Google</a>.</td>
+      </tr>
+      <tr>
+        <td>Estadísticas de uso (Google Analytics para Firebase): los eventos de la sección 5, los eventos automáticos de Analytics, datos técnicos (versión de la app, modelo, idioma, sistema y ubicación aproximada deducida de la IP) e identificadores seudónimos de la instalación.</td>
+        <td>Saber cómo se usa la app y mejorarla.</td>
+        <td><strong>Tu consentimiento</strong> (art. 6.1.a). Solo se recogen si las aceptas.</td>
+        <td>{BLINDNOTE_ANALYTICS_RETENTION.es} para los datos asociados a identificadores. Los totales sin identificadores pueden conservarse más tiempo.</td>
+      </tr>
+      <tr>
+        <td>Informes de fallos (Firebase Crashlytics): estado técnico de la app y del dispositivo en el momento del fallo, modelo, sistema, versión e identificadores aleatorios de instalación y de sesión.</td>
+        <td>Detectar y corregir fallos.</td>
+        <td><strong>Tu consentimiento</strong> (art. 6.1.a). Solo se envían si los aceptas.</td>
+        <td>Google indica 90 días antes de empezar a borrarlos.</td>
+      </tr>
+      <tr>
+        <td>Tu dirección de correo y lo que nos cuentes si nos escribes para ejercer tus derechos.</td>
+        <td>Atender tu solicitud.</td>
+        <td>Obligación legal de atender tus derechos (art. 6.1.c).</td>
+        <td>Conservamos esos correos {BLINDNOTE_REQUEST_RETENTION.es}.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>BlindNote no vende tus datos ni los cede a nadie más, salvo obligación legal, y no elabora perfiles con efectos sobre ti.</p>
+
+  <h2>4. Qué se queda en tu móvil</h2>
+  <ul>
+    <li><strong>Acceso a notificaciones.</strong> BlindNote usa el acceso a notificaciones para ver y controlar la música de la app de Spotify. Este permiso es más amplio de lo que BlindNote necesita: el sistema lo describe como acceso a todas las notificaciones. BlindNote lo usa únicamente para encontrar la sesión de reproducción de la app de Spotify y pausarla, reanudarla o pasar a la siguiente canción. El componente de la app que recibe ese acceso está vacío: no lee, guarda ni envía ninguna notificación, ni siquiera las de Spotify. Puedes retirar el permiso cuando quieras en los ajustes del sistema; sin él no se puede jugar.</li>
+    <li><strong>Canción que suena.</strong> Durante la partida, BlindNote ve el título, el artista y el identificador de la canción que suena en Spotify, y los compara con una lista incluida en la propia app. Solo se usan en la memoria del móvil: no se guardan, no se envían y no forman parte de las estadísticas.</li>
+    <li><strong>Nombres de los jugadores y puntuaciones.</strong> Se quedan solo en la memoria de la app hasta que sales de la partida (incluida la pantalla de resultados) o Android cierra la app, también si la app queda en segundo plano durante la partida. Nunca se escriben en el almacenamiento ni se envían.</li>
+    <li><strong>Apps instaladas.</strong> BlindNote comprueba si la app de Spotify está instalada. No consulta ninguna otra app y no envía el resultado.</li>
+    <li><strong>Ajustes.</strong> Se guardan en el espacio privado de la app y no pasan a otro dispositivo con las copias de seguridad.</li>
+  </ul>
+  <p><strong>Spotify.</strong> Para jugar necesitas la app de Spotify instalada en tu móvil. Es una app tuya e independiente, no un proveedor nuestro: BlindNote no reproduce música, no usa el inicio de sesión, el SDK ni la API de Spotify, no tiene acceso a tu cuenta y no recibe datos de Spotify por internet. Cuando abres una lista, pasas a la app de Spotify, que se rige por <a href="https://www.spotify.com/legal/privacy-policy/" rel="noopener">su propia política de privacidad</a>.</p>
+
+  <h2>5. Estadísticas e informes de fallos: tú decides</h2>
+  <p>Al abrir BlindNote por primera vez te preguntamos si quieres compartir estadísticas de uso e informes de fallos. <strong>Están apagados por defecto</strong> y la app funciona igual si los rechazas. Si los aceptas, se usan Google Analytics para Firebase y Firebase Crashlytics. Estos son los eventos que envía BlindNote:</p>
+  <table class="legal-table" tabindex="0">
+    <thead>
+      <tr><th>Evento</th><th>Qué indica</th><th>Parámetros que añade la app</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>permission_shown</code></td><td>Se ha mostrado la pantalla del permiso</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>permission_granted</code></td><td>Se ha concedido el permiso</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>permission_abandoned</code></td><td>Se ha salido sin concederlo</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>game_started</code></td><td>Ha empezado una partida</td><td>Temática, número de jugadores, rondas y segundos por turno</td></tr>
+      <tr><td><code>game_finished</code></td><td>Ha terminado una partida</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>game_abandoned</code></td><td>Se ha abandonado una partida</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>skip_failed</code></td><td>No se ha podido cambiar de canción</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>unknown_song</code></td><td>Ha sonado una canción que no es de la temática</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>prepare_failed</code></td><td>No se ha podido preparar la música</td><td>Ningún parámetro añadido por la app</td></tr>
+      <tr><td><code>ad_detected</code></td><td>Spotify ha puesto algo clasificado como anuncio o sin un identificador de canción reconocido</td><td>Ningún parámetro añadido por la app</td></tr>
+    </tbody>
+  </table>
+  <p>Además, Google Analytics registra <strong>eventos automáticos</strong>, por ejemplo: primera apertura, inicio de sesión de uso, tiempo de uso, pantalla mostrada, actualización de la app o del sistema, borrado de datos, desinstalación, fallo de la app y actividad de los anuncios. La <a href="https://support.google.com/analytics/answer/9234069" rel="noopener">lista completa</a> está en la web de Google. Analytics añade a todos los eventos los datos técnicos de la sección 3.</p>
+  <p>Estas herramientas no reciben títulos, artistas, nombres de jugadores ni notificaciones. Google asigna a la instalación <strong>identificadores seudónimos</strong> generados al azar (identificador de instancia de Analytics e identificadores de instalación de Firebase y de Crashlytics). No los usamos para averiguar quién eres, pero distinguen una instalación de otra. En BlindNote, Analytics tiene desactivados la recogida del identificador de publicidad y los anuncios personalizados.</p>
+  <p><strong>Cómo retirar el consentimiento:</strong> en <strong>Ajustes &gt; Estadísticas de uso</strong>. Al desactivarlo:</p>
+  <ul>
+    <li>Analytics deja de recoger datos y se reinician sus datos en el móvil, incluido su identificador de instancia.</li>
+    <li>Pedimos a Firebase que borre los informes de fallos pendientes en el dispositivo y dejamos de enviar informes a partir del siguiente arranque de la app.</li>
+    <li>La app pide a Firebase que borre la instalación de Firebase del móvil. Si no hay conexión, lo vuelve a intentar en los siguientes inicios mientras las estadísticas sigan apagadas. Según Firebase, cuando ese borrado se completa empieza la eliminación de los datos ligados a la instalación, en un máximo de 180 días (<a href="https://firebase.google.com/docs/projects/manage-installations" rel="noopener">gestión de instalaciones de Firebase</a>).</li>
+    <li>Los datos de Analytics ya enviados están ligados al identificador de instancia de Analytics, distinto del de la instalación, y se conservan durante el plazo de retención de Analytics ({BLINDNOTE_ANALYTICS_RETENTION.es}).</li>
+  </ul>
+  <p>Retirar el consentimiento no afecta a lo tratado antes.</p>
+
+  <h2>6. Anuncios y mensaje de consentimiento</h2>
+  <p>BlindNote puede mostrar un anuncio a pantalla completa antes del resultado de una partida, con Google Mobile Ads (AdMob).</p>
+  <ul>
+    <li><strong>Consentimiento.</strong> Al abrir la app, la herramienta de consentimiento de Google (User Messaging Platform) se conecta con Google para saber si en tu país hay que pedirte permiso, y guarda tu respuesta en el móvil.</li>
+    <li><strong>Cuándo se piden anuncios.</strong> Cada vez que abres la app, BlindNote actualiza tu situación con esa herramienta y solo pide anuncios si la herramienta lo autoriza: si ya has respondido al mensaje, aunque tu respuesta haya sido rechazar, o si en tu caso no hay que preguntarte. Si hace falta tu respuesta y todavía no la has dado, no se pide ningún anuncio. Si la actualización falla (por ejemplo, sin conexión) o el mensaje no se puede cargar o mostrar, <strong>puede volver a usarse la decisión que la herramienta guardó en una sesión anterior</strong>; si no guardó ninguna, no se piden anuncios.</li>
+    <li><strong>Qué anuncios.</strong> Con tu consentimiento, Google puede mostrar anuncios personalizados. Los <a href="https://support.google.com/admob/answer/7676680" rel="noopener">anuncios no personalizados</a> pueden seguir usando identificadores del dispositivo o cookies, así que solo se piden cuando tus decisiones de consentimiento lo permiten. Si no das consentimiento para guardar o consultar información en el dispositivo, Google puede mostrar <a href="https://support.google.com/admob/answer/10105530" rel="noopener">anuncios limitados</a>, basados en su interés legítimo, o ninguno. Aunque rechaces la personalización, los anuncios limitados pueden usar almacenamiento local o cookies para detectar fraude y abusos, tal como lo describe <a href="https://support.google.com/admob/answer/10105530" rel="noopener">Google</a>. Si cambias tu elección, BlindNote descarta el anuncio que tuviera preparado y vuelve a consultar la herramienta. Si no hay anuncio, la partida continúa igual.</li>
+    <li><strong>Cómo cambiar tu elección.</strong> Donde se aplique, en <strong>Ajustes &gt; Privacidad de anuncios</strong> dentro de BlindNote. Además, puedes restablecer o borrar el identificador de publicidad en los ajustes de Android. Restablecer el identificador de publicidad no afecta al <em>app set ID</em>, un identificador que Android comparte entre las apps de un mismo desarrollador en el móvil y que AdMob usa para analítica y prevención del fraude.</li>
+  </ul>
+  <p>Los datos de los anuncios viajan cifrados y Google los usa para publicidad, analítica y prevención del fraude. Puede compartirlos con los socios publicitarios que aparecen en el mensaje de consentimiento. Más información: <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">cómo usa Google los datos de las apps que utilizan sus servicios</a> y <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure" rel="noopener">datos que recoge el SDK de anuncios</a>.</p>
+
+  <h2>7. Proveedores</h2>
+  <p>El único proveedor es <strong>Google</strong> (según sus condiciones, en el Espacio Económico Europeo normalmente Google Ireland Limited), con estos papeles:</p>
+  <ul>
+    <li><strong>Google Analytics para Firebase y Firebase Crashlytics:</strong> según las condiciones de Google, Google actúa como <strong>encargado del tratamiento</strong> en nuestro nombre; ver las <a href="https://firebase.google.com/terms/data-processing-terms" rel="noopener">condiciones de tratamiento de datos de Firebase</a> (<a href="https://firebase.google.com/support/privacy" rel="noopener">privacidad en Firebase</a>).</li>
+    <li><strong>Google AdMob y User Messaging Platform:</strong> según las condiciones de Google, para la personalización de anuncios Google actúa como <strong>responsable independiente</strong>; ver sus <a href="https://business.safety.google/controllerterms/" rel="noopener">condiciones de responsable a responsable de la UE</a> y la <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad de Google</a>.</li>
+  </ul>
+  <p>Spotify no es un proveedor nuestro: es una app independiente que tú tienes instalada (ver sección 4).</p>
+
+  <h2>8. Transferencias internacionales</h2>
+  <p>Google puede tratar datos en Estados Unidos y en otros países fuera del Espacio Económico Europeo. Estas transferencias se amparan en el <strong>Marco de Privacidad de Datos UE-EE. UU.</strong>, en el que Google LLC está certificada (<a href="https://www.dataprivacyframework.gov/list" rel="noopener">lista de empresas certificadas</a>), y en las <strong>cláusulas contractuales tipo</strong> de la Comisión Europea (art. 46 RGPD) que incluyen sus condiciones. Puedes consultar estas garantías en <a href="https://policies.google.com/privacy/frameworks" rel="noopener">los marcos de transferencia de datos de Google</a> o pedirnos una copia.</p>
+
+  <h2>9. Tus derechos</h2>
+  <p>Puedes ejercer en cualquier momento tus derechos de <strong>acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad</strong>, y retirar tu consentimiento, escribiendo a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>. Respondemos en un plazo máximo de {BLINDNOTE_DELETION_TERM.es} y conservamos esos correos {BLINDNOTE_REQUEST_RETENTION.es}. Como no hay cuentas ni sabemos quién usa la app, es posible que no podamos relacionar contigo los datos que conserva Google; si es así, te lo diremos. También puedes dirigirte directamente a <a href="https://policies.google.com/privacy" rel="noopener">Google</a>.</p>
+  <p>Tienes derecho a reclamar en cualquier momento ante la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>) o ante la autoridad de tu país, sin necesidad de escribirnos antes.</p>
+
+  <h2>10. Eliminar tus datos</h2>
+  <p>BlindNote no tiene cuentas, así que no hay ninguna cuenta que eliminar. Puedes desactivar las estadísticas (lo que solicita el borrado de la instalación de Firebase, que se reintenta si no hay conexión; ver sección 5), desinstalar la app para borrar lo que guarda en el móvil, retirar el acceso a notificaciones y restablecer el identificador de publicidad en los ajustes de Android. Lo que Google ya haya tratado para los anuncios sigue su propia política. Te lo explicamos en la <a href={route('blindnoteDelete', 'es')}>página de eliminación de datos</a>.</p>
+
+  <h2>11. Menores</h2>
+  <p>BlindNote es para personas a partir de los {BLINDNOTE_MIN_AGE} años y no está dirigida a menores de {BLINDNOTE_MIN_AGE}. Por eso el mensaje de consentimiento de Google usa la configuración por defecto, sin la marca de menor de edad, y la app no tiene ningún mecanismo de autorización de madres, padres o tutores. Si crees que un menor nos ha facilitado datos, escríbenos a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>.</p>
+
+  <h2>12. Seguridad</h2>
+  <p>Los datos que se envían a Google viajan cifrados. BlindNote no permite conexiones sin cifrar, guarda sus ajustes en el espacio privado de la app y los excluye de las copias de seguridad. Si se produjera una brecha de seguridad que afecte a tus datos, lo notificaríamos a la AEPD en un máximo de 72 horas y, si supusiera un riesgo alto para ti, también a ti.</p>
+
+  <h2>13. Cambios en esta política</h2>
+  <p>Si cambia la app o la forma de tratar los datos, actualizaremos esta página y su fecha. Si el cambio es importante, avisaremos en la app y, cuando haga falta, volveremos a pedir tu consentimiento.</p>
+
+  <h2>14. Contacto</h2>
+  <p>Para cualquier duda sobre tu privacidad: <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>.</p>
+  <p><small>Compatible con Spotify; sin afiliación. Spotify es una marca de Spotify AB. Google, Android, AdMob y Firebase son marcas de Google LLC.</small></p>
 </LegalPage>

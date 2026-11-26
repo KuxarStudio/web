@@ -91,7 +91,8 @@ está:
 ⚠️ **Corrección del usuario (2026-09-03):** el stack por proyecto de más abajo
 ya estaba MAL en una nota de sesión anterior (asumía Kotlin/Godot de forma
 genérica). El criterio real: Godot solo para juegos complejos (Nadir);
-Flutter/Dart para apps y juegos más simples (Kaku!, BlindNote). No asumas un
+Flutter/Dart para apps y juegos más simples (Kaku!). BlindNote es ahora app
+Android nativa en Kotlin (2026-11-26). No asumas un
 stack único para todo el estudio — pregunta si no está confirmado aquí.
 
 - **Nadir: Protocol 1-Star** — Juego · En desarrollo · Godot/GDScript (juego
@@ -99,15 +100,18 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   diseñado para pantalla táctil."
 - **Kaku!** — App de aprendizaje · **Flutter/Dart** (NO Android/Kotlin nativo).
   "Hiragana, katakana y kanji con reconocimiento de trazos en tiempo real."
-- **BlindNote** — Juego · Próximamente · **Flutter/Dart** (NO Godot — hecho con
-  Visual Studio). "Adivina canciones de oído, compite en rankings globales."
+- **BlindNote** — Juego · Próximamente · **Android nativo en Kotlin** (la versión
+  Flutter/Dart anterior se sustituyó; actualizado 2026-11-26). Concurso musical
+  de pasar el móvil por turnos: la música suena en la app de Spotify del jugador
+  y BlindNote hace de árbitro. Sin cuentas, sin rankings, sin servidores propios,
+  sin SDK/login/API de Spotify. Datos: AdMob + UMP y Firebase opcional
+  (detalle en su política de privacidad, `web/src/pages/blindnote/`).
 - **PDF-Blender** — Herramienta · Python. "Fusiona, divide, desprotege y
   compara PDFs corporativos. 100% offline." (ya tiene repo propio en GitHub).
 - Stack general del estudio (corregido): Godot/GDScript solo para juegos
   complejos, Flutter/Dart para apps y juegos más simples, Python para
-  herramientas, Git/GitHub para todo. El backend de BlindNote (rankings
-  globales) probablemente necesita algo tipo Firebase, pero no está
-  confirmado — no lo des por hecho sin preguntar.
+  herramientas, Git/GitHub para todo. BlindNote no tiene backend propio
+  (sin rankings globales desde la versión Kotlin).
 - Contacto: **`admin@kuxarstudio.com`** (confirmado por el usuario 2026-09-27;
   sustituye al email anterior en la web). La web NO menciona
   ubicación ("España", "en remoto"): el usuario pidió quitarlo (2026-09-27).
@@ -127,8 +131,8 @@ stack único para todo el estudio — pregunta si no está confirmado aquí.
   dirección cuando la forma legal esté inscrita.
 - Devlog: solo entradas reales. Las de Kaku! y BlindNote se retiraron por
   inventadas (2026-09-27); no crear entradas sin material del usuario.
-- BlindNote: juego de adivinar canciones (artista, título, año), por turnos
-  con amigos + rankings globales (confirmado).
+- BlindNote: juego de adivinar canciones (artista, título, año), pasando el
+  móvil por turnos con amigos; sin rankings (actualizado 2026-11-26).
 - Parte está **en diseño** (sin capturas ni prototipo): CTA "Pedir acceso"
   (acceso anticipado), nunca "Probar".
 - Kaku! y BlindNote van siempre separados visualmente (cada uno su figura).

@@ -1,25 +1,44 @@
 ---
 import LegalPage from '../../../components/LegalPage.astro';
-import { BLINDNOTE_DELETION_TERM } from '../../../lib/legal';
+import { BLINDNOTE_ANALYTICS_RETENTION, BLINDNOTE_DELETION_TERM, BLINDNOTE_REQUEST_RETENTION, LEGAL_EMAIL } from '../../../lib/legal';
+import { route } from '../../../i18n';
 ---
 <LegalPage
   lang="en"
   routeKey="blindnoteDelete"
   title="BlindNote data deletion | Kuxar Studio"
-  heading="BlindNote account and data deletion"
-  description="How to revoke BlindNote’s access to your Spotify account and request deletion of technical identifiers."
+  heading="BlindNote data deletion"
+  description="BlindNote has no accounts. How to delete its data: usage statistics and Firebase, uninstalling, notification access, advertising ID and requests by email."
+  updated="26 November 2026"
 >
-  <p>At <strong>BlindNote</strong> we take your privacy seriously. Our application uses Spotify sign-in and does not store user credentials on servers of our own.</p>
+  <p><strong>BlindNote has no accounts</strong>, sign-up or servers of its own, so there is no account to delete. The songs being played, the players' names and the scores never leave your phone. To delete or unlink the rest of the data, you have these options; each one covers a different part.</p>
 
-  <h2>How to revoke access</h2>
-  <p>To remove the link between your Spotify account and BlindNote, you can revoke access at any time from your Spotify dashboard:</p>
+  <h2>Turn off the statistics (Firebase data)</h2>
+  <p>If you had accepted the statistics, open BlindNote and go to <strong>Settings &gt; Usage statistics</strong>. Do this before uninstalling. When you turn them off:</p>
   <ul>
-    <li>Go to <a href="https://www.spotify.com/account/apps/" target="_blank" rel="noopener">Spotify’s app settings</a>.</li>
-    <li>Find <strong>BlindNote</strong> and select “Remove access”.</li>
+    <li>Analytics stops collecting data and its data on the phone, including its instance identifier, is reset.</li>
+    <li>We ask Firebase to delete the crash reports pending on the device and stop sending reports from the next app start.</li>
+    <li>The app asks Firebase to delete the Firebase installation on the phone. If there is no connection, it tries again on later starts while the statistics stay off. According to Firebase, once that deletion succeeds the removal of the data linked to the installation begins, within 180 days (<a href="https://firebase.google.com/docs/projects/manage-installations" rel="noopener">managing Firebase installations</a>).</li>
+    <li>Analytics data already sent is linked to the Analytics instance identifier, which is separate from the installation one, and is kept for the Analytics retention period ({BLINDNOTE_ANALYTICS_RETENTION.en}).</li>
   </ul>
 
-  <h2>Request to delete local data</h2>
-  <p>If you want us to delete any technical identifier (such as the advertising ID) associated with your use of the app, please email us at:</p>
-  <p><strong><a href="mailto:admin@kuxarstudio.com">admin@kuxarstudio.com</a></strong></p>
-  <p>We will process your request within a maximum of {BLINDNOTE_DELETION_TERM.en}.</p>
+  <h2>Uninstall the app (data on the phone)</h2>
+  <p>Uninstalling BlindNote deletes what it stores on the phone: your answer about the statistics, the language and your decision about ads. BlindNote makes no backups, so they do not come back if you install it again. Android also revokes notification access when you uninstall it.</p>
+
+  <h2>Revoke notification access</h2>
+  <p>If you want to keep the app, you can revoke the access in the Android settings (special app access, notification access; the exact name depends on the phone). The game cannot be played without it.</p>
+
+  <h2>Reset the advertising ID</h2>
+  <p>This is an Android setting, not a BlindNote one: you can reset or delete it in the phone's settings (usually under Privacy &gt; Ads, or Google &gt; Ads). If you keep using the app, you can also change your decision about ads in <strong>Settings &gt; Ad privacy</strong> (where applicable).</p>
+  <p>Resetting the advertising ID does not affect the app set ID, an identifier that Android shares between the apps of the same developer on the phone and that AdMob uses for analytics and fraud prevention.</p>
+  <p>What Google has already processed for ads is kept by Google AdMob as an independent controller, under the <a href="https://policies.google.com/privacy" rel="noopener">Google privacy policy</a>. You can contact Google directly. More details in the <a href={route('blindnotePrivacy', 'en')}>privacy policy</a>.</p>
+
+  <h2>Request by email</h2>
+  <p>If you want us to ask Google to delete the Firebase or AdMob data, or to exercise any other right, write to us:</p>
+  <p><a class="btn btn-primary" href={`mailto:${LEGAL_EMAIL}?subject=BlindNote data deletion request`}>Request deletion</a></p>
+  <p><strong>{LEGAL_EMAIL}</strong></p>
+  <p>We reply within {BLINDNOTE_DELETION_TERM.en} at most. As there are no accounts and we do not know who uses the app, we may not be able to link the data kept by Google to you; if so, we will tell you and point you to the options above. We keep your email {BLINDNOTE_REQUEST_RETENTION.en}.</p>
+
+  <h2>Spotify</h2>
+  <p>BlindNote does not use Spotify's sign-in or API and has no access to your account, so there is no BlindNote access to revoke in Spotify. Your Spotify data is governed by <a href="https://www.spotify.com/legal/privacy-policy/" rel="noopener">its own privacy policy</a>.</p>
 </LegalPage>

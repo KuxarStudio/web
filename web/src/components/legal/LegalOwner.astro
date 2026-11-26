@@ -1,0 +1,19 @@
+---
+// Identificación del titular en las páginas legales. Los datos viven en
+// lib/legal.ts (STUDIO_OWNER y los alias por app) para que privacidad y
+// términos no puedan divergir.
+import type { Lang } from '../../i18n';
+import { LEGAL_EMAIL, type LegalOwnerData } from '../../lib/legal';
+
+interface Props { owner: LegalOwnerData; lang?: Lang }
+const { owner, lang = 'es' } = Astro.props;
+const t = lang === 'es'
+  ? { owner: 'Titular', taxId: 'NIF/CIF', address: 'Domicilio', contact: 'Contacto' }
+  : { owner: 'Owner', taxId: 'Tax ID', address: 'Registered address', contact: 'Contact' };
+---
+<ul>
+  <li><strong>{t.owner}:</strong> {owner.name ?? 'Kuxar Studio'}{owner.name && ' (Kuxar Studio)'}</li>
+  {owner.taxId && <li><strong>{t.taxId}:</strong> {owner.taxId}</li>}
+  {owner.address && <li><strong>{t.address}:</strong> {owner.address}</li>}
+  <li><strong>{t.contact}:</strong> <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a></li>
+</ul>
