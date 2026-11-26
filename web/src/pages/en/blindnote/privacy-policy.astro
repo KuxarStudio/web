@@ -17,7 +17,7 @@ import { route } from '../../../i18n';
   title="BlindNote Privacy Policy | Kuxar Studio"
   heading="BlindNote Privacy Policy"
   description="Privacy policy of the BlindNote app: what stays on your phone, AdMob ads, optional Firebase statistics, legal basis, retention periods and your rights."
-  updated="26 November 2026"
+  updated="[DATE OF THE NEW VERSION]"
 >
   <p>This policy explains what data is processed by <strong>BlindNote</strong>, the Android music quiz where you pass the phone around in turns to guess the artist, title and year of the song playing in Spotify. We wrote it to be understood: if anything is unclear, write to us.</p>
 
@@ -50,13 +50,13 @@ import { route } from '../../../i18n';
         <td>Title, artist and Spotify track identifier of the song being played, which the app sees thanks to notification access. <strong>Only on your phone.</strong></td>
         <td>Act as the referee: skip to another song, start it, pause it and check that it belongs to the chosen theme.</td>
         <td>Provision of the service you ask for (Art. 6(1)(b)). You also grant the Android permission.</td>
-        <td>Not stored: used in the phone's memory and never sent.</td>
+        <td>Not stored or sent. Only which songs from the app's list have come up in an unfinished game is saved, and it is deleted with it.</td>
       </tr>
       <tr>
         <td>Player names and scores. <strong>Only on your phone.</strong></td>
         <td>Run the game and show the result.</td>
         <td>Provision of the service (Art. 6(1)(b)).</td>
-        <td>They stay only in the app's memory until you leave the game (including the results screen) or Android closes the app, also while the app is in the background during the game. They are never written to storage or sent.</td>
+        <td>While a game is unfinished, they are saved in the app's private storage so that it can be resumed if Android closes the app. They are deleted when the game ends or is abandoned, when you choose «Start another» or, if you do not resume it within 24 hours, the next time you open the app. They are never sent or copied to another device.</td>
       </tr>
       <tr>
         <td>Settings: your answer about the statistics and the language. <strong>Only on your phone.</strong></td>
@@ -101,8 +101,8 @@ import { route } from '../../../i18n';
   <h2>4. What stays on your phone</h2>
   <ul>
     <li><strong>Notification access.</strong> BlindNote uses notification access to see and control the music in the Spotify app. This permission is broader than BlindNote needs: the system describes it as access to all notifications. BlindNote uses it only to find the playback session of the Spotify app and to pause it, resume it or skip to the next song. The app component that receives this access is empty: it does not read, store or send any notification, not even those from Spotify. You can withdraw the permission at any time in the system settings; the game cannot be played without it.</li>
-    <li><strong>Song being played.</strong> During a game, BlindNote sees the title, artist and identifier of the song playing in Spotify and compares them with a list included in the app itself. They are only used in the phone's memory: they are not stored, not sent and not part of the statistics.</li>
-    <li><strong>Player names and scores.</strong> They stay only in the app's memory until you leave the game (including the results screen) or Android closes the app, also while the app is in the background during the game. They are never written to storage or sent.</li>
+    <li><strong>Song being played.</strong> During a game, BlindNote sees the title, artist and identifier of the song playing in Spotify and compares them with a list included in the app itself. They are only used in the phone's memory: they are not stored, not sent and not part of the statistics. To avoid repeating songs when an unfinished game is resumed, the app saves with it which songs from its list have already come up, and this is deleted together with the game.</li>
+    <li><strong>Player names and scores.</strong> While a game is unfinished, they are saved in the app's private storage so that it can be resumed if Android closes the app. They are deleted when the game ends or is abandoned, when you choose «Start another» or, if you do not resume it within 24 hours, the next time you open the app. They are never sent or copied to another device.</li>
     <li><strong>Installed apps.</strong> BlindNote checks whether the Spotify app is installed. It does not look for any other app and does not send the result.</li>
     <li><strong>Settings.</strong> They are stored in the app's private storage and are not moved to another device through backups.</li>
   </ul>
