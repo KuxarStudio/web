@@ -17,7 +17,7 @@ import { route } from '../../../i18n';
   <p>If you had accepted the statistics, open BlindNote and go to <strong>Settings &gt; Usage statistics</strong>. Do this before uninstalling. When you turn them off:</p>
   <ul>
     <li>Analytics stops collecting data and its data on the phone, including its instance identifier, is reset.</li>
-    <li>Crash reports stored on the phone that had not been sent yet are deleted, and automatic Crashlytics collection is turned off from the next app start. Later crashes are not sent: Crashlytics may store them on the phone, but they are never uploaded, the app deletes them at each start while the statistics stay off and they disappear when you uninstall it.</li>
+    <li>We ask Firebase to delete the crash reports pending on the device and stop sending reports from the next app start.</li>
     <li>The app asks Firebase to delete the Firebase installation on the phone. If there is no connection, it tries again on later starts while the statistics stay off. According to Firebase, once that deletion succeeds the removal of the data linked to the installation begins, within 180 days (<a href="https://firebase.google.com/docs/projects/manage-installations" rel="noopener">managing Firebase installations</a>).</li>
     <li>Analytics data already sent is linked to the Analytics instance identifier, which is separate from the installation one, and is kept for the Analytics retention period ({BLINDNOTE_ANALYTICS_RETENTION.en}).</li>
   </ul>

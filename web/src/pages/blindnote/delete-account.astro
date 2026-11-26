@@ -16,7 +16,7 @@ import { route } from '../../i18n';
   <p>Si habías aceptado las estadísticas, abre BlindNote y ve a <strong>Ajustes &gt; Estadísticas de uso</strong>. Hazlo antes de desinstalar. Al desactivarlas:</p>
   <ul>
     <li>Analytics deja de recoger datos y se reinician sus datos en el móvil, incluido su identificador de instancia.</li>
-    <li>Se borran los informes de fallos guardados en el móvil que aún no se habían enviado, y la recogida automática de Crashlytics se desactiva a partir del siguiente inicio de la app. Los fallos posteriores no se envían: Crashlytics puede guardarlos en el móvil, pero nunca se suben, la app los borra en cada inicio mientras las estadísticas siguen apagadas y desaparecen al desinstalarla.</li>
+    <li>Pedimos a Firebase que borre los informes de fallos pendientes en el dispositivo y dejamos de enviar informes a partir del siguiente arranque de la app.</li>
     <li>La app pide a Firebase que borre la instalación de Firebase del móvil. Si no hay conexión, lo vuelve a intentar en los siguientes inicios mientras las estadísticas sigan apagadas. Según Firebase, cuando ese borrado se completa empieza la eliminación de los datos ligados a la instalación, en un máximo de 180 días (<a href="https://firebase.google.com/docs/projects/manage-installations" rel="noopener">gestión de instalaciones de Firebase</a>).</li>
     <li>Los datos de Analytics ya enviados están ligados al identificador de instancia de Analytics, distinto del de la instalación, y se conservan durante el plazo de retención de Analytics ({BLINDNOTE_ANALYTICS_RETENTION.es}).</li>
   </ul>
