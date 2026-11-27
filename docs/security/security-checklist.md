@@ -75,8 +75,8 @@ verificar o está pendiente.
 **Servicios externos**
 
 - [ ] Web3Forms: access key limitada al dominio `kuxarstudio.com`. (SR-04)
-- [ ] Google Cloud: `GEMINI_API_KEY` restringida a la API de Gemini y alerta de
-  presupuesto configurada. (SR-04)
+- [ ] ~~Google Cloud: `GEMINI_API_KEY` restringida a la API de Gemini y alerta de
+  presupuesto configurada.~~ N/A: agente SEO retirado (2026-11-27). (SR-04)
 - [ ] Cuenta de servicio de Search Console con permiso de solo lectura. (SR-04)
 - [ ] Resend: clave con permiso solo de envío. (SR-04)
 
@@ -115,8 +115,9 @@ verificar o está pendiente.
 
 **Cada año**
 
-- [ ] Rotar `GEMINI_API_KEY`, `RESEND_API_KEY` y la clave de la cuenta de
-  servicio de Search Console.
+- [ ] ~~Rotar `GEMINI_API_KEY`, `RESEND_API_KEY` y la clave de la cuenta de
+  servicio de Search Console.~~ N/A desde 2026-11-27: agente SEO retirado y
+  claves revocadas.
 - [ ] Confirmar la renovación del dominio.
 
 ## 5. Si algo va mal

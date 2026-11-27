@@ -14,7 +14,9 @@ deja la superficie de ataque en cuatro sitios:
 1. Las **cuentas** que pueden cambiar el código o el DNS.
 2. El **pipeline** de build (dependencias y GitHub Actions).
 3. Los **servicios externos** a los que llama el navegador.
-4. El **agente SEO**, el único componente con secretos.
+4. El **agente SEO**, el único componente con secretos. *(Retirado el
+   2026-11-27: workflow desactivado, claves revocadas y secretos borrados del
+   repo. Las secciones del agente quedan como histórico.)*
 
 ## 2. Vista general
 
