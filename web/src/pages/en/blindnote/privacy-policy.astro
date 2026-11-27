@@ -7,6 +7,7 @@ import {
   BLINDNOTE_MIN_AGE,
   BLINDNOTE_OWNER,
   BLINDNOTE_REQUEST_RETENTION,
+  BLINDNOTE_SUPPORT_RETENTION,
   LEGAL_EMAIL,
 } from '../../../lib/legal';
 import { route } from '../../../i18n';
@@ -97,8 +98,8 @@ import { route } from '../../../i18n';
       <tr>
         <td>If you write to us for any other reason (for example, with the "Contact us" button in Settings): your email address, what you tell us and the technical details the app adds at the end of the message (BlindNote version, phone make and model, and Android version). You see them before sending and can delete them.</td>
         <td>Reply to you and, if you report a bug, be able to reproduce it.</td>
-        <td>Our <strong>legitimate interest</strong> in answering people who write to us (Art. 6(1)(f)).</td>
-        <td>We keep those emails {BLINDNOTE_REQUEST_RETENTION.en}.</td>
+        <td>Our <strong>legitimate interest</strong> in answering people who write to us and in fixing the bugs they report (Art. 6(1)(f)). We only receive the technical details if you leave them in the message.</td>
+        <td>We keep those emails {BLINDNOTE_SUPPORT_RETENTION.en}.</td>
       </tr>
     </tbody>
   </table>
@@ -156,18 +157,24 @@ import { route } from '../../../i18n';
   <p>We have linked our AdMob account with Firebase to see in one dashboard how the ads and the app perform. Because of that link, the ads SDK may also send Google Analytics events about the ads, for example that one was shown or tapped. <strong>This only happens if you have accepted usage statistics</strong>: if you decline them, Analytics is off and receives nothing.</p>
 
   <h2>7. Providers</h2>
-  <p>The only provider is <strong>Google</strong> (according to its terms, in the European Economic Area usually Google Ireland Limited), with these roles:</p>
+  <p>The app's provider is <strong>Google</strong> (according to its terms, in the European Economic Area usually Google Ireland Limited), with these roles:</p>
   <ul>
     <li><strong>Google Analytics for Firebase and Firebase Crashlytics:</strong> according to Google's terms, Google acts as a <strong>processor</strong> on our behalf; see the <a href="https://firebase.google.com/terms/data-processing-terms" rel="noopener">Firebase data processing terms</a> (<a href="https://firebase.google.com/support/privacy" rel="noopener">privacy in Firebase</a>).</li>
     <li><strong>Google AdMob and User Messaging Platform:</strong> according to Google's terms, for ad personalisation Google acts as an <strong>independent controller</strong>; see its <a href="https://business.safety.google/controllerterms/" rel="noopener">EU controller-controller terms</a> and the <a href="https://policies.google.com/privacy" rel="noopener">Google privacy policy</a>.</li>
   </ul>
+  <p>If you write to us, the email also goes through these services:</p>
+  <ul>
+    <li><strong>Cloudflare Email Routing</strong> (Cloudflare, Inc.): receives what you send to <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a> and forwards it to our inboxes, as a <strong>processor</strong> under its <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" rel="noopener">data processing addendum</a>.</li>
+    <li><strong>Gmail</strong> (Google): where our inboxes are and those emails are stored, under Google's terms and <a href="https://policies.google.com/privacy" rel="noopener">privacy policy</a>.</li>
+  </ul>
   <p>Spotify is not a provider of ours: it is an independent app that you have installed (see section 4).</p>
 
   <h2>8. International transfers</h2>
-  <p>Google may process data in the United States and other countries outside the European Economic Area. These transfers rely on the <strong>EU-US Data Privacy Framework</strong>, under which Google LLC is certified (<a href="https://www.dataprivacyframework.gov/list" rel="noopener">list of certified companies</a>), and on the European Commission's <strong>standard contractual clauses</strong> (Art. 46 GDPR) included in its terms. You can read these safeguards in <a href="https://policies.google.com/privacy/frameworks" rel="noopener">Google's data transfer frameworks</a> or ask us for a copy.</p>
+  <p>Google may process data in the United States and other countries outside the European Economic Area. These transfers rely on the <strong>EU-US Data Privacy Framework</strong>, under which Google LLC is certified (<a href="https://www.dataprivacyframework.gov/list" rel="noopener">list of certified companies</a>), and on the European Commission's <strong>standard contractual clauses</strong> (Art. 46 GDPR) included in its terms. You can read these safeguards in <a href="https://policies.google.com/privacy/frameworks" rel="noopener">Google's data transfer frameworks</a> or ask us for a copy. If you write to us, Cloudflare may also process the email outside the European Economic Area, with the same safeguards: it is certified under that Framework and its data processing addendum includes the standard contractual clauses.</p>
 
   <h2>9. Your rights</h2>
   <p>You can exercise your rights of <strong>access, rectification, erasure, objection, restriction of processing and portability</strong> at any time, and withdraw your consent, by writing to <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>. We reply within {BLINDNOTE_DELETION_TERM.en} at most and keep those emails {BLINDNOTE_REQUEST_RETENTION.en}. As there are no accounts and we do not know who uses the app, we may not be able to link the data kept by Google to you; if so, we will tell you. You can also contact <a href="https://policies.google.com/privacy" rel="noopener">Google</a> directly.</p>
+  <p><strong>Right to object:</strong> we process the emails you send us on the basis of legitimate interest, so you can object at any time, on grounds relating to your particular situation, by writing to the same address. We will stop processing them unless there are compelling legitimate grounds or we need them for legal claims.</p>
   <p>You have the right to lodge a complaint at any time with the <strong>Spanish Data Protection Agency</strong> (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>) or with the authority of your country, without having to write to us first.</p>
 
   <h2>10. Deleting your data</h2>
