@@ -9,6 +9,13 @@ backend.
 ([requisitos](security-requirements.md)); estructura en la
 [arquitectura](security-architecture.md).
 
+> **Actualización 2026-11-27 — Agente SEO retirado.** El workflow `seo-weekly`
+> se desactivó, sus credenciales (`GEMINI_API_KEY`, `RESEND_API_KEY` y la cuenta
+> de servicio de Search Console) se revocaron en origen y los 4 secretos se
+> borraron del repo. Los activos y amenazas ligados al agente (secretos de
+> Actions, T05, T19) **ya no están activos**; se conservan abajo como histórico.
+> Reactivarlo exigiría recrear claves y secretos.
+
 ## 1. Activos
 
 | Activo | Por qué importa |
