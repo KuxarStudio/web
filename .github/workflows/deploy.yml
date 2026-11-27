@@ -55,6 +55,8 @@ jobs:
           PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
           # Access key de Web3Forms para el formulario de contacto (ver web/.env.example)
           PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
+          # Cloudflare Turnstile site key (pública) para el captcha del formulario.
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
 
       # Frena el despliegue si hay enlaces rotos, páginas sin título/h1/lang o el sitio
       # se desvía del mapa de temas (tools/seo-agent/topic-map.yaml).

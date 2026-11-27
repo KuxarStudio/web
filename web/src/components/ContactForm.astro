@@ -40,6 +40,11 @@ const thanksUrl = route('thanks', lang);
 // Temas válidos de ?asunto= (lib/contact.ts), serializados para el script del cliente.
 const topics = JSON.stringify(contactTopics[lang]);
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
+// Cloudflare Turnstile (captcha casi siempre sin interacción). La site key es
+// pública (va en el HTML); la secret key se configura en el panel de Web3Forms,
+// que valida el token en su servidor. Sin esta variable, el captcha no se
+// renderiza y el formulario sigue funcionando igual que antes.
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined;
 ---
 {accessKey ? (
   <form id="contact-form" class="contact-form" novalidate data-sending={t.sending} data-send={t.send} data-ok={t.ok} data-ok-bot={t.okBot} data-fail={t.fail} data-thanks={thanksUrl} data-err-required={t.errRequired} data-err-email={t.errEmail} data-topics={topics}>
@@ -68,6 +73,10 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
       <textarea id="cf-message" name="message" required maxlength="5000" aria-describedby="cf-message-error"></textarea>
       <p class="field-error" id="cf-message-error" hidden></p>
     </div>
+
+    {turnstileKey && (
+      <div class="cf-turnstile" data-sitekey={turnstileKey} data-appearance="interaction-only"></div>
+    )}
 
     <button type="submit" class="btn btn-primary" id="cf-submit">{t.send}</button>
     <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
@@ -190,3 +199,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
     });
   })();
 </script>
+
+{turnstileKey && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
