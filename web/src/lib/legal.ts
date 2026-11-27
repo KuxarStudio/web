@@ -35,6 +35,12 @@ export const BLINDNOTE_REQUEST_RETENTION: Record<Lang, string> = {
   en: 'until the request is closed and, at most, one year',
 };
 
+/** Cuánto conservamos los correos de soporte de BlindNote (botón Contactar u otras consultas). */
+export const BLINDNOTE_SUPPORT_RETENTION: Record<Lang, string> = {
+  es: 'hasta resolver tu consulta y, como máximo, un año desde que la recibimos',
+  en: 'until your enquiry is resolved and, at most, one year from receipt',
+};
+
 export interface LegalOwnerData { name: string | null; taxId: string | null; address: string | null }
 
 /**

@@ -7,6 +7,7 @@ import {
   BLINDNOTE_MIN_AGE,
   BLINDNOTE_OWNER,
   BLINDNOTE_REQUEST_RETENTION,
+  BLINDNOTE_SUPPORT_RETENTION,
   LEGAL_EMAIL,
 } from '../../lib/legal';
 import { route } from '../../i18n';
@@ -16,7 +17,7 @@ import { route } from '../../i18n';
   title="Política de Privacidad de BlindNote | Kuxar Studio"
   heading="Política de Privacidad de BlindNote"
   description="Política de privacidad de la app BlindNote: qué se queda en tu móvil, anuncios de AdMob, estadísticas opcionales de Firebase, base legal, plazos y tus derechos."
-  updated="26 de noviembre de 2026"
+  updated="27 de noviembre de 2026"
 >
   <p>Esta política explica qué datos trata <strong>BlindNote</strong>, el concurso musical para Android en el que os pasáis el móvil por turnos para adivinar el artista, el título y el año de la canción que suena en Spotify. La escribimos para que se entienda: si algo no está claro, escríbenos.</p>
 
@@ -93,6 +94,12 @@ import { route } from '../../i18n';
         <td>Obligación legal de atender tus derechos (art. 6.1.c).</td>
         <td>Conservamos esos correos {BLINDNOTE_REQUEST_RETENTION.es}.</td>
       </tr>
+      <tr>
+        <td>Si nos escribes por cualquier otro motivo (por ejemplo, con el botón «Contactar» de Ajustes): tu dirección de correo, lo que nos cuentes y los datos técnicos que la app añade al final del mensaje (versión de BlindNote, marca y modelo del móvil y versión de Android). Los ves antes de enviar y puedes borrarlos.</td>
+        <td>Responderte y, si nos cuentas un fallo, poder reproducirlo.</td>
+        <td>Nuestro <strong>interés legítimo</strong> en responder a quien nos escribe y en corregir los fallos que nos cuenta (art. 6.1.f). Los datos técnicos solo nos llegan si los dejas en el mensaje.</td>
+        <td>Conservamos esos correos {BLINDNOTE_SUPPORT_RETENTION.es}.</td>
+      </tr>
     </tbody>
   </table>
   <p>BlindNote no vende tus datos ni los cede a nadie más, salvo obligación legal, y no elabora perfiles con efectos sobre ti.</p>
@@ -149,18 +156,24 @@ import { route } from '../../i18n';
   <p>Hemos vinculado nuestra cuenta de AdMob con Firebase para ver en un mismo panel cómo funcionan los anuncios y la app. Por esa vinculación, el SDK de anuncios también puede enviar a Google Analytics eventos sobre los anuncios, por ejemplo que se ha mostrado o pulsado uno. <strong>Solo ocurre si has aceptado las estadísticas de uso</strong>: si las rechazas, Analytics está apagado y no recibe nada.</p>
 
   <h2>7. Proveedores</h2>
-  <p>El único proveedor es <strong>Google</strong> (según sus condiciones, en el Espacio Económico Europeo normalmente Google Ireland Limited), con estos papeles:</p>
+  <p>El proveedor de la app es <strong>Google</strong> (según sus condiciones, en el Espacio Económico Europeo normalmente Google Ireland Limited), con estos papeles:</p>
   <ul>
     <li><strong>Google Analytics para Firebase y Firebase Crashlytics:</strong> según las condiciones de Google, Google actúa como <strong>encargado del tratamiento</strong> en nuestro nombre; ver las <a href="https://firebase.google.com/terms/data-processing-terms" rel="noopener">condiciones de tratamiento de datos de Firebase</a> (<a href="https://firebase.google.com/support/privacy" rel="noopener">privacidad en Firebase</a>).</li>
     <li><strong>Google AdMob y User Messaging Platform:</strong> según las condiciones de Google, para la personalización de anuncios Google actúa como <strong>responsable independiente</strong>; ver sus <a href="https://business.safety.google/controllerterms/" rel="noopener">condiciones de responsable a responsable de la UE</a> y la <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad de Google</a>.</li>
   </ul>
+  <p>Si nos escribes, el correo pasa además por estos servicios:</p>
+  <ul>
+    <li><strong>Cloudflare Email Routing</strong> (Cloudflare, Inc.): recibe lo que envías a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a> y lo reenvía a nuestras bandejas, como <strong>encargado del tratamiento</strong> según su <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" rel="noopener">acuerdo de tratamiento de datos</a>.</li>
+    <li><strong>Gmail</strong> (Google): donde están nuestras bandejas y se guardan esos correos, según las condiciones y la <a href="https://policies.google.com/privacy" rel="noopener">política de privacidad de Google</a>.</li>
+  </ul>
   <p>Spotify no es un proveedor nuestro: es una app independiente que tú tienes instalada (ver sección 4).</p>
 
   <h2>8. Transferencias internacionales</h2>
-  <p>Google puede tratar datos en Estados Unidos y en otros países fuera del Espacio Económico Europeo. Estas transferencias se amparan en el <strong>Marco de Privacidad de Datos UE-EE. UU.</strong>, en el que Google LLC está certificada (<a href="https://www.dataprivacyframework.gov/list" rel="noopener">lista de empresas certificadas</a>), y en las <strong>cláusulas contractuales tipo</strong> de la Comisión Europea (art. 46 RGPD) que incluyen sus condiciones. Puedes consultar estas garantías en <a href="https://policies.google.com/privacy/frameworks" rel="noopener">los marcos de transferencia de datos de Google</a> o pedirnos una copia.</p>
+  <p>Google puede tratar datos en Estados Unidos y en otros países fuera del Espacio Económico Europeo. Estas transferencias se amparan en el <strong>Marco de Privacidad de Datos UE-EE. UU.</strong>, en el que Google LLC está certificada (<a href="https://www.dataprivacyframework.gov/list" rel="noopener">lista de empresas certificadas</a>), y en las <strong>cláusulas contractuales tipo</strong> de la Comisión Europea (art. 46 RGPD) que incluyen sus condiciones. Puedes consultar estas garantías en <a href="https://policies.google.com/privacy/frameworks" rel="noopener">los marcos de transferencia de datos de Google</a> o pedirnos una copia. Si nos escribes, Cloudflare también puede tratar el correo fuera del Espacio Económico Europeo, con las mismas garantías: está certificada en ese Marco y su acuerdo de tratamiento de datos incluye las cláusulas contractuales tipo.</p>
 
   <h2>9. Tus derechos</h2>
   <p>Puedes ejercer en cualquier momento tus derechos de <strong>acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad</strong>, y retirar tu consentimiento, escribiendo a <a href={`mailto:${LEGAL_EMAIL}`}>{LEGAL_EMAIL}</a>. Respondemos en un plazo máximo de {BLINDNOTE_DELETION_TERM.es} y conservamos esos correos {BLINDNOTE_REQUEST_RETENTION.es}. Como no hay cuentas ni sabemos quién usa la app, es posible que no podamos relacionar contigo los datos que conserva Google; si es así, te lo diremos. También puedes dirigirte directamente a <a href="https://policies.google.com/privacy" rel="noopener">Google</a>.</p>
+  <p><strong>Derecho de oposición:</strong> los correos que nos envías los tratamos por interés legítimo, así que puedes oponerte en cualquier momento, por motivos relacionados con tu situación particular, escribiéndonos a la misma dirección. Dejaremos de tratarlos salvo que haya motivos legítimos imperiosos o los necesitemos para reclamaciones legales.</p>
   <p>Tienes derecho a reclamar en cualquier momento ante la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>) o ante la autoridad de tu país, sin necesidad de escribirnos antes.</p>
 
   <h2>10. Eliminar tus datos</h2>
